@@ -1,0 +1,211 @@
+<div id="dashboard" class="tab-pane fade in active admin-page" >
+      
+     
+		<div class="section-heading" style="margin-bottom: 20px;">
+        	<h4 style="display: inline-block;">Dashboard</h4>
+        	<div class="dashboard-filters">
+        		<label>7 days from:</label>        		
+        	
+        		<div class="form-group mar-bottom-zero" style="display: inline-block; position: relative; width: 150px;">
+        			 <input type="text" id="date" class="form-control flat-control-search dateonly mar-bottom-zero" >
+        			 <button hidden id="hidden" ng-click="loadDashboard()"></button>        			 
+        		</div>
+        		
+        		<div class="dropdown" style="display: inline-block;"> 
+        		
+        <!-- <div class="dropdown-toggle checkdrop admindrop" data-toggle="dropdown">Design my dashboard <span class="caret"></span></div> -->
+<ul class="dropdown-menu padmenu">
+  <li>
+  	<div class="chckbx-cntnr zeromargin">
+     <input type="checkbox" id="app" name="check" class="flashuser" checked disabled>
+     <label class="cstmchk_lbluser"  for="app">Position</label> 
+   </div>
+  </li>
+  <li>
+  	<div class="chckbx-cntnr zeromargin">
+     <input type="checkbox" id="pv" name="check" class="flashuser" checked disabled>
+     <label class="cstmchk_lbluser" for="pv">Department</label> 
+   </div>
+  </li>
+  <li>
+  	<div class="chckbx-cntnr zeromargin">
+     <input type="checkbox" id="rj" name="check" class="flashuser" checked disabled>
+     <label class="cstmchk_lbluser" for="rj">Brand</label> 
+   </div>
+  </li>
+  <li>
+  	<div class="chckbx-cntnr zeromargin">
+     <input type="checkbox" id="ia" name="check" class="flashuser" checked disabled>
+     <label class="cstmchk_lbluser" for="ia">Experience</label> 
+   </div>
+  </li>
+  <li>
+  	<div class="chckbx-cntnr zeromargin">
+     <input type="checkbox" id="nit" name="check" class="flashuser" checked disabled>
+     <label class="cstmchk_lbluser" for="nit">Date</label> 
+   </div>
+  </li>
+  <li>
+  	<div class="chckbx-cntnr zeromargin">
+     <input type="checkbox" id="pc" name="check" class="flashuser" checked disabled>
+     <label class="cstmchk_lbluser" for="pc">Qualification</label> 
+   </div>
+  </li>
+  <li>
+  	<div class="chckbx-cntnr zeromargin">
+     <input type="checkbox" id="hj" name="check" class="flashuser" checked disabled>
+     <label class="cstmchk_lbluser" for="hj">Hot Jobs</label> 
+   </div>
+  </li>
+</ul>
+  </div>
+        	</div>
+        	<div class="clearfix"></div>
+       </div>
+       
+       <div class="upper-tiles">
+       	<div class="container-fluid">
+	       	<div class="row">
+	       		<div class="col-md-3">
+	       			<div class="admin-dashtile">
+	       				<div class="tile-icon blue-icon">
+	       					<i class="icon-user"></i>
+	       				</div>
+	       				<div class="tile-count">
+	       					<h2>{{ApplicantCount}}</h2>
+	       					<p>New Applicants</p>
+	       				</div>
+	       				<div class="clearfix"></div>
+	       			</div>
+	       		</div>
+	       		<div class="col-md-3">
+	       			<div class="admin-dashtile">
+	       				<div class="tile-icon red-icon">
+	       					<i class="icon-navigation"></i>
+	       				</div>
+	       				<div class="tile-count">
+	       					<h2>0</h2>
+	       					<p>Offers Released</p>
+	       				</div>
+	       				<div class="clearfix"></div>
+	       			</div>
+	       		</div>
+	       		<div class="col-md-3">
+	       			<div class="admin-dashtile">
+	       				<div class="tile-icon green-icon">
+	       					<i class="icon-briefcase"></i>
+	       				</div>
+	       				<div class="tile-count">
+	       					<h2>0</h2>
+	       					<p>Joining</p>
+	       				</div>
+	       				<div class="clearfix"></div>
+	       			</div>
+	       		</div>
+	       		<div class="col-md-3">
+	       			<div class="admin-dashtile">
+	       				<div class="tile-icon teal-icon">
+	       					<i class="icon-message-square"></i>
+	       				</div>
+	       				<div class="tile-count">
+	       					<h2>{{SchedularCount}}</h2>
+	       					<p>user slots assign</p>
+	       				</div>
+	       				<div class="clearfix"></div>
+	       			</div>
+	       		</div>
+	       	</div>    
+       	</div>   	
+       </div>
+       
+       <div class="container-fluid" style="padding:0px; margin:20px 0 0 0 ;">
+        <div class="col-md-6 col-sm-12">
+          <div class="first_bar">
+            <div class="bar_chart">
+              <span>Applied candidates</span>              
+              <canvas ng-show="set" id="crr" width="700" height="500"></canvas> 
+              <h1 ng-hide="set" style="text-align:center"> No Data Available </h1>                                        
+            </div>
+          </div>
+        </div>
+
+         <div class="col-md-6 col-sm-12">
+          <div class="first_bar">
+            <div class="bar_chart">
+              <span>Top 5 trending jobs</span>                
+              <canvas ng-show="pieset" id="pie-chart" width="650" height="465"></canvas>   
+              <h1 ng-hide="pieset" style="text-align:center"> No Data Available </h1>              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="">
+      <div class="container-fluid">
+        <div class="time_tabel table-responsive" >
+            <table class="table table-bordered" ng-if="timeSlots.length > 0">
+              <caption class="time_tabel_caption">Scheduler for this week</caption>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>{{ weekDate[0] | date : "EEE d/M"}}</th>
+                    <th>{{ weekDate[1] | date : "EEE d/M"}}</th>
+                    <th>{{ weekDate[2] | date : "EEE d/M"}}</th>
+                    <th>{{ weekDate[3] | date : "EEE d/M"}}</th>
+                    <th>{{ weekDate[4] | date : "EEE d/M"}}</th>
+                    <th>{{ weekDate[5] | date : "EEE d/M"}}</th>
+                    <th>{{ weekDate[6] | date : "EEE d/M"}}</th>
+                  </tr>
+                </thead>
+         
+                <tbody>
+                  <tr ng-repeat="t in timeSlots">
+                    <td class="time_head" style="font-size:18px !important;">{{t}}</td>
+                    <td><div ng-repeat="a in eventlist1[$index]" class="active_td"><span title="{{a.name}} ({{a.candidates}})">{{a.name}} ({{a.candidates}})</span> </div></td>
+                    <td><div ng-repeat="a in eventlist2[$index]" class="active_td"><span title="{{a.name}} ({{a.candidates}})">{{a.name}} ({{a.candidates}})</span> </div></td>
+                    <td><div ng-repeat="a in eventlist3[$index]" class="active_td"><span title="{{a.name}} ({{a.candidates}})">{{a.name}} ({{a.candidates}})</span> </div></td>
+                    <td><div ng-repeat="a in eventlist4[$index]" class="active_td"><span title="{{a.name}} ({{a.candidates}})">{{a.name}} ({{a.candidates}})</span> </div></td>
+                    <td><div ng-repeat="a in eventlist5[$index]" class="active_td"><span title="{{a.name}} ({{a.candidates}})">{{a.name}} ({{a.candidates}})</span> </div></td>
+                    <td><div ng-repeat="a in eventlist6[$index]" class="active_td"><span title="{{a.name}} ({{a.candidates}})">{{a.name}} ({{a.candidates}})</span> </div></td>
+                    <td><div ng-repeat="a in eventlist7[$index]" class="active_td"><span title="{{a.name}} ({{a.candidates}})">{{a.name}} ({{a.candidates}})</span> </div></td>
+                  </tr>
+                
+                </tbody>
+           </table>
+           <div class="table table-bordered" ng-if="timeSlots.length==0"><h2>No Event Schedule for this week</h2></div>
+         </div>
+         
+       </div>
+      </div>
+    </div>
+    
+    <script type ="text/javascript">
+    
+    	 $(document).on('dp.change', 'input.dateonly', function() {     		 
+       	  document.getElementById('hidden').click();       	
+       	});  
+      
+      $(function () {
+          $('.dateonly').datetimepicker({
+            format: 'DD-MM-YYYY',
+            defaultDate: new Date()
+          
+          })  
+      });       
+       
+       
+    </script>
+    
+ <script src="resources/js/Chart.js"></script>
+ <script type ="text/javascript">
+$("#date").change(function() {
+	$('#calender').submit();	
+	});
+
+/*  function addvalue()
+{
+	$('#calender').submit();
+}  */
+
+</script>
+ 

@@ -1,0 +1,96 @@
+<link rel="stylesheet" href="resources/css/workflowdashboard.css">
+<div class="tab-pane fade in active admin-page">
+	<div class="section-heading">
+		<h4>Approver Dashboard</h4>
+	</div>
+	<div class="section-content">
+		<div ng-click="openMyClaims(1)" class="col-md-3">
+			<div style="cursor: pointer; margin: 10px 0px;" class="tile">
+				<div class="colored-count1 blue">
+					<i class="fa fa-wpforms"></i>
+					<h2>{{pendingClaimsCount}}</h2>
+				</div>
+				<h4 style="padding: 19px 5px;">My Claims</h4>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div id="f1_container" class="f1_container">
+				<div id="f1_card" class="shadow f1_card">
+					<div class="front face">
+						<div style="cursor: pointer;" class="tile" id="">
+							<div class="colored-count1" ng-click="myTasksList()"
+								style="background-color: #00aeef;">
+								<i class="fa fa-pencil-square-o"></i>
+								<h2>{{myTaskCount}}</h2>
+							</div>
+							<h4>
+								<a ng-click="myTasksList()" style="color: #000;"
+									class="countred_count_link">My Tasks</a>
+							</h4>
+						</div>
+					</div>
+					<div class="back face">
+						<div style="cursor: pointer;" class="tile" id="">
+							<div class="colored-count back-count">
+								<ul class="workflow-status">
+									<li><p style="float: left;">Task Not Assigned</p>
+										<div class="round not-assigned"
+											ng-style="{'background-color':taskstatusColor[1].statusColorCode}">{{myTaskStatusCount.taskNotAssignedCount}}</div></li>
+									<li><p style="float: left;">Task Assigned</p>
+										<div class="round closed-tick"
+											ng-style="{'background-color':taskstatusColor[2].statusColorCode}">{{myTaskStatusCount.taskAssignedCount}}</div></li>
+									<li><p style="float: left;">Task closed</p>
+										<div class="round inprogress"
+											ng-style="{'background-color':taskstatusColor[3].statusColorCode}">{{myTaskStatusCount.taskCompletedCount}}</div></li>
+									<li><p style="float: left;">Task Overdue</p>
+										<div class="round overdue"
+											ng-style="{'background-color':taskstatusColor[4].statusColorCode}">{{myTaskStatusCount.taskOverDueCount}}</div></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div id="f1_container" class="f1_container">
+				<div id="f1_card" class="shadow f1_card">
+					<div class="front face">
+						<div style="cursor: pointer;" class="tile">
+							<div class="colored-count1 blue" ng-click="openWorkflowWidgets()">
+								<i class="fa fa-sitemap"></i>
+								<!-- <img src="resources/img/workflow-icon-white.png" class="img-responsive workflow-icon1"> -->
+								<h2>{{myWorkflowCount}}</h2>
+							</div>
+							<h4>
+								<a ui-sref="restricted.admin.ownerworkflow"
+									class="countred_count_link">My Workflows</a>
+							</h4>
+						</div>
+					</div>
+					<div class="back face">
+						<div style="cursor: pointer;" class="tile">
+							<div class="colored-count back-count">
+								<ul class="workflow-status">
+									<li><p style="float: left;">Tickets Not Assigned</p>
+										<div class="round not-assigned"
+											ng-style="{'background-color':statusColor[1].statusColorCode}">{{myTicketStatusCount.ticketNotAssignedCount}}</div></li>
+									<li><p style="float: left;">Tickets Assigned</p>
+										<div class="round closed-tick"
+											ng-style="{'background-color':statusColor[2].statusColorCode}">{{myTicketStatusCount.ticketAssignedCount}}</div></li>
+									<li><p style="float: left;">Tickets Closed</p>
+										<div class="round inprogress"
+											ng-style="{'background-color':statusColor[3].statusColorCode}">{{myTicketStatusCount.ticketClosedCount}}</div></li>
+									<li><p style="float: left;">Tickets Overdue</p>
+										<div class="round overdue"
+											ng-style="{'background-color':statusColor[4].statusColorCode}">{{myTicketStatusCount.ticketOverDueCount}}</div></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

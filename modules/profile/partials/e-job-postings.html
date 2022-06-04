@@ -1,0 +1,853 @@
+<div >
+<!---- Sticky Button ---->
+<a class="btn btn-default sticky-btn smooth" href="#slider">
+	<i class="icon-chevron-left"></i>
+</a>
+
+<div class="height-70"></div>
+
+<section id="jobs-main" style="padding: 5% 0;">
+  <div id="profl" class="container-fluid">
+    
+    <div class="row">
+      <div class="col-md-2">
+        <div class="recent-searches fixed-pills">
+          <h5>My Dashboard</h5>
+          <ul class="nav nav-pills nav-stacked">
+            <li id="liPersonal" class="active"><a data-toggle="pill" href="" ng-click="showFlag = 1" class="profile-tabs">Job Postings</a> <img ng-if="userPersonal.dob" src="resources/img/checked.svg" class="profile-complete"></li>
+            <li id="liEducational"><a data-toggle="pill" href="" ng-click="showFlag = 2" class="profile-tabs">To Do List</a><img ng-if="userEducation.length > 0" src="resources/img/checked.svg" class="profile-complete ng-scope"></li>
+            <li id="liWork"><a data-toggle="pill" href="" ng-click="showFlag = 3" class="profile-tabs">Assessments</a><img ng-if="userProfile.userCV.cvPath" src="resources/img/checked.svg" class="profile-complete"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="tab-content">
+		<div ng-show="showFlag == 1" id="personal" class="">
+	 
+		
+            <div class="job-search-cntnr">
+              <div class="srch-head"><h4>Job Postings</h4></div>
+              
+              <ul class="nav nav-tabs posting-tabs">
+			    <li class="active"><a data-toggle="tab" href="#home">Current Job Postings</a></li>
+			    <li><a data-toggle="tab" href="#menu1">Past Job Postings</a></li>
+			  </ul>
+
+			  <div class="tab-content">
+			    <div id="home" class="tab-pane fade in active">
+			 <form ng-submit="savePersonaldetails(userPersonal);setApplyClass(2)">
+              <div class="inner-details"> 
+	              
+	           <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Brand</th>
+                        <th>Ship</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>Location</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    	<tr>
+                    		<td>Cosco Shipping</td>
+                    		<td>Royal Princess</td>
+                    		<td>Galley</td>
+                    		<td>Slot Technician</td>
+                    		<td>Madaira</td>
+                    		<td>18-04-2018</td>
+                    		<td>26-05-2018</td>
+                    	</tr>
+                    </tbody>
+                    </table>
+               </div>
+	             
+              <div class="btn-cntnr">
+                      <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+                      <a ng-click="cancell()">Cancel</a>
+                    </div>
+              
+              </div>
+              </form>
+			    </div>
+			    <div id="menu1" class="tab-pane fade">
+			   	  <form ng-submit="savePersonaldetails(userPersonal);setApplyClass(2)">
+              <div class="inner-details"> 
+	              
+	           <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Brand</th>
+                        <th>Ship</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>Location</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    	<tr>
+                    		<td>Cosco Shipping</td>
+                    		<td>Royal Princess</td>
+                    		<td>Galley</td>
+                    		<td>Slot Technician</td>
+                    		<td>Madaira</td>
+                    		<td>04-09-2017</td>
+                    		<td>26-12-2017</td>
+                    	</tr>
+                    </tbody>
+                    </table>
+               </div>
+	             
+              <div class="btn-cntnr">
+                      <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+                      <a ng-click="cancell()">Cancel</a>
+                    </div>
+              
+              </div>
+              </form>   
+			    </div>
+			  </div>
+		
+              
+            </div>
+          </div>
+          <div ng-show="showFlag == 2" id="educational">
+            <h3 class="search-text">To Do List</h3>
+            <div class="job-search-cntnr">
+              <div class="srch-head"><h4>Compliance List</h4></div>
+             <form>
+              <div class="inner-details"> 
+                <div class="table-responsive">
+                
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Document Name</th>                       
+                        <th>Days</th>
+                        <th>Document No.*</th>
+                        <th>Issue Date*</th>
+                        <th>Expiry Date*</th>
+                        <th>Country of Issue*</th>
+                        <th>Expected Date</th>
+                        <th>Status</th>
+                        <th>Completion Date*</th>
+                        <th>Attach Documents*</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                      <td>
+                      	<input class="form-control flat-control-inner" name="task-name" value="Medical">
+                      </td>
+                      <td style="width: 80px;">
+                      	<input class="form-control flat-control-inner" name="task-name" value="15">
+                      </td>
+                      <td>
+                      	<input type="text" class="form-control flat-control-inner"  name="document no" value="4566">
+                      </td>
+                      <td>
+                      	<input type="text" class="dateonly form-control flat-control-inner" style="margin-bottom: 0;position:relative;">
+                      </td>
+                      <td>
+                      	<input type="text" class="dateonly form-control flat-control-inner" style="margin-bottom: 0;position:relative;">
+                      </td>
+                      <td>
+                      	<select id="countryOfIssue{{$index}}" class="form-control flat-control-inner" ng-model="cl.countryOfIssue"> 
+    					   <option ng-value="0">Select</option>          
+                           <option data-ng-repeat="ct in countryList" data-ng-value="{{ct.id}}" ng-selected="ct.id==cl.countryOfIssue">{{ct.CountryName}}</option>                                  
+        				</select>
+                      </td>
+                      <td>
+                      	<input type="text" class="dateonly form-control flat-control-inner" style="margin-bottom: 0;position:relative;">
+                      </td>
+                      <td>
+                      	 <div class="chckbx-cntnr zeromargin">
+		                      <input type="checkbox" name="chck" class="flashuser todayBox">
+		                      <input type="checkbox" id="chck" name="check" class="flashuser todayBox">
+		                   
+		                      <label class="cstmchk_lbl" for="chck" id="rdcheck" style="border: 1px solid #ccc; padding: 10px;margin: 10px 10px;"></label> 
+		                  </div>
+                      </td>
+                      <td>
+                      	<input type="text" class="dateonly form-control flat-control-inner" style="margin-bottom: 0;position:relative;" disabled>
+                      </td>
+                      <td style="width:150px;">
+                      	<div class="input-group">
+                               <input type="text" id="file_name0" readonly="" class="form-control flat-control-inner ng-scope">
+                                <span class="input-group-btn"> 
+                                     <span class="btn btn-primary btn-file"> Browse 
+                                       <input id="documentfilefotodo0"data-label="Browse" type="file" onchange="angular.element(this).scope().fileNameChanged(this)" single="">
+                                     </span>
+                                 </span>  
+                             </div>
+                      </td>
+                      <td>
+                      	<button type="button" class="btn bigblue-btn new-btn-dwn"><i class="fa fa-download" aria-hidden="true"></i></button>
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>                
+                </div>               
+              <div class="btn-cntnr" ng-show="complianceFlag">
+              <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+              <a ng-click="cancell()">Cancel</a>
+            </div>
+              </div>
+              </form>
+            </div>
+          </div>
+          <div ng-show="showFlag == 3" id="professional" class="">
+            <h3 class="search-text">Work Experience</h3>
+            <div class="job-search-cntnr">
+              <div class="srch-head"><h4>List of Work Details</h4></div>
+              <form ng-submit="saveworkExperience(userWork)">
+              <div class="inner-details"> 
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Employer's Name*</th>
+                        <th>Position*</th>
+                        <th>Location*</th>
+                        <th>From Date*</th>
+                        <th>To Date*</th>
+                        <th>Salary P.M.</th>
+                        <th>Reason for Leaving</th>
+                        <th>Upload Document</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                   	
+                      <tr ng-repeat="u in userWork">
+                        <td>
+                          <div class="form-group width-200">
+                            <input class="form-control flat-control-inner" id="emplName{{$index}}" ng-model="u.employerName" ng-change="fetchHotelListForEmployer(u.employerName,$index)" list="employerNameList" required>
+					       <datalist id="employerNameList">
+					    		<option  data-ng-repeat="el in employerNameList" value="{{el.employerName}}, {{el.area}}"> 
+					 		 </datalist>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group width-200">
+                            <input class="form-control flat-control-inner" ng-model="u.position" required>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group width-200">
+                            <input class="form-control flat-control-inner" ng-model="u.location" required>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group width-200">
+                            <input class="dateonly form-control flat-control-inner linked-date" id="fromdate{{$index}}"   ng-model="u.fromDate" required title="{{u.fromDate}}">
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <input class="dateonly form-control flat-control-inner linked-date2" id="todate{{$index}}" ng-model="u.toDate" ng-change="validateWorkDate(u,'todate'+$index)" required title="{{u.toDate}}">
+                          </div>
+                        </td>
+                        <td style="width: 160px;">
+                          <div class="form-group">
+                            <!-- <input class="form-control flat-control-inner" ng-model="u.salary"> -->
+                            <form class="form-inline">
+    
+						    <div class="input-group">
+						    
+						      <input type="text" class="form-control flat-control-inner currency-amount" ng-model="u.salary" id="inlineFormInputGroup{{$index}}" size="8">
+						      <div class="input-group-addon currency-addon" style="border-radius:0px;">
+						      
+							
+                           <!--  <!-- <option value = ""> --Please Select-- </option>
+                                  <option data-ng-repeat="cr in currencyList" value="{{cr.id}}" ng-selected="cr.id==u.currencyId">{{cr.currencyCode}}</option>                              
+                          </select> -->
+						        <select class="currency-selector" ng-model="u.currencyId">
+						       <option ng-value="0">Select</option>						          
+                                  <option data-ng-repeat="cr in currencyList" data-ng-value="{{cr.id}}" ng-selected="cr.id==u.currencyId">{{cr.currencyCode}}</option>                              						     
+						        </select>
+						
+						      </div>
+						    </div>
+  							</form>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group width-200">
+                            <input class="form-control flat-control-inner" ng-model="u.reasonOfLeaving">
+                          </div>
+                        </td>
+                         
+                        
+                        <td>
+                        <!-- <div class="inputWrapper" style="height: 30px; width: 30px;">
+    						<input class="fileInput hidden" type="file" name="file2"/>
+						</div> -->
+                         <div class="cv-upload">
+						    <label for="file-input{{$index}}">
+						        <i class="fa fa-upload" ng-if="u.certificatePath ==null || u.certificatePath == undefined" id="uploadfile{{$index}}" style="margin:16px 0px;"></i>
+						       <i class="fa fa-upload" ng-if="u.certificatePath !=null || u.certificatePath != undefined"  id="uploadfile{{$index}}" style="margin: 16px 0px; color:#3c9a3e;"></i>
+						    </label>
+							<input id="file-input{{$index}}" type="file" onchange="angular.element(this).scope().setColor(this)"/>
+							
+						</div>
+						</td>
+						<td class="text-center"> <button class="btn btn-default btn-remove"  ng-click="removeForWork(u)"><i class="icon-x-circle"></i></button></td>
+						 <td class="text-center"> <button class="btn btn-default btn-remove"  ng-click="removeForWork(u)"><i class="icon-x-circle"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="text-right adder">
+                  <button class="btn btn-default btn-round-add" ng-click="addRowForworkExperience()"><i class="icon-plus"></i></button>
+                </div>
+                </div>
+              <div class="btn-cntnr">
+              <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+              <a ng-click="cancell()">Cancel</a>
+            </div>
+              </div>
+              </form>
+            </div>
+
+			<form ng-submit="saveUserCV();setApplyClass(4)">
+            <div class="job-search-cntnr">
+              <div class="srch-head"><h4>Resume Details</h4></div>
+              <div class="inner-details"> 
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Upload Your CV</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control flat-control-inner"  readonly >
+                                <span class="input-group-btn">
+                                    <span class="btn btn-primary btn-file">
+                                        Upload CV <input type="file" id="filecv" single >
+                                    </span>
+                                </span>
+                            </div>
+                          </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Languages Known</label>
+                      <input type="text" class="form-control flat-control-inner" ng-model="langeageKnown">      
+                          </div>
+                  </div>
+                </div>
+                <div class="row">
+                	<div class="col-md-12">
+                    <div class="form-group">
+                      <label>Do you have any pictures of your work that you wish to share?</label>
+                      <div class="row">
+                   
+                        <div class="col-md-4"><input data-label="Upload Picture" class="demo" type="file" id="userimage" ng-model="userImage.image" multiple/></div>
+                        <!-- <div class="col-md-4"><input data-label="Upload Picture" class="demo" type="file" multiple/></div>
+                        <div class="col-md-4"><input data-label="Upload Picture" class="demo" type="file" multiple/></div> -->
+                       </div>
+                      </div>
+                    </div>
+                  <!--   <div class="text-right">
+                  <button class="btn btn-default btn-round-add" ng-click="addUserImage()"><i class="icon-plus"></i></button>
+                </div> -->
+                  </div> 
+                  <div class="btn-cntnr">
+              <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+              <a ng-click="cancell()">Cancel</a>
+            </div>
+                </div>
+              
+              </div>
+              </form>
+            </div>
+          </div>
+          <div ng-show="showFlag == 4" id="contact" class="">
+            <h3 class="search-text">Contact Info</h3>
+            <div class="job-search-cntnr">
+              <div class="srch-head"><h4>Location Details</h4></div>
+              <form ng-submit="saveUserContact(userContact);setApplyClass(5)">
+              <div class="inner-details"> 
+              <div class="row">
+                <div class="col-md-2">
+                   <div class="form-group extralink">
+                      <label>Flat/House No.*</label>
+                      <input type="text" name="" class="form-control flat-control-inner" ng-model="userContact.houseNo" maxlength="4" numbers-only="numbers-only" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                   <div class="form-group extralink">
+                      <label>Building/House*</label>
+                      <input type="text" name="" class="form-control flat-control-inner" ng-model="userContact.houseName" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                   <div class="form-group extralink">
+                      <label>Society*</label>
+                      <input type="text" name="" class="form-control flat-control-inner" ng-model="userContact.society" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                   <div class="form-group extralink">
+                      <label>Street/Road*</label>
+                      <input type="text" name="" class="form-control flat-control-inner" ng-model="userContact.street" required>
+                    </div>
+
+                </div> 
+                <div class="col-md-6">
+
+                </div>
+                 </div>
+              <!--   <div class="col-md-6">
+
+                     <div class="form-group">
+                      <label>Address*</label>
+                      <textarea type="text" name="" ng-model="userContact.address" class="form-control flat-control-inner" cols="5" rows="5" style="resize: none;" required></textarea>
+                    </div> 
+               </div> -->
+                <div class="row">
+               <div class="col-md-3">
+                    <div class="form-group extralink">
+                      <label>PIN/ZIP code*</label>
+                      <input type="text" name="" class="form-control flat-control-inner" ng-model="userContact.pincode" maxlength="6"   numbers-only="numbers-only" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Country*</label>      
+                      
+                 <!--       <select class="form-control flat-control-inner" ng-model="userContact.countryId" ng-change="fetchStateList(userContact.countryId)" ng-options="c.id as c.CountryName for c in countryList" required>
+                                                                               
+                            </select> -->
+                       <select class="form-control flat-control-inner" ng-model="userContact.countryId" ng-change="fetchStateList(userContact.countryId)" required> 
+    					   <option ng-value="0">Select</option>          
+                           <option data-ng-repeat="c in countryList" data-ng-value="{{c.id}}" ng-selected="c.id==userContact.countryId">{{c.CountryName}}</option>                                  
+        					</select> 
+                   
+                
+                            
+                    </div>
+                </div>
+                	<div class="col-md-3">                   
+                    <div class="form-group">
+                      <label>State*</label>
+                  <!--     <select class="form-control flat-control-inner" ng-model="userContact.state.id" ng-change="fetchCityList(userContact.state.id)" ng-options="s.id as s.stateName for s in stateList"  required>
+                     <option value="">--Select--</option> 
+                      <option value="{{state.id}}" ng-selected="state.id==userContact.state.id" ng-repeat="state in stateList">{{state.stateName}}</option> 
+                      </select> -->
+                      
+                          <select class="form-control flat-control-inner" ng-model="userContact.state.id" ng-change="fetchCityList(userContact.state.id)" required> 
+    					   <option ng-value="0">Select</option>          
+                           <option data-ng-repeat="s in stateList" data-ng-value="{{s.id}}" ng-selected="s.id==userContact.state.id">{{s.stateName}}</option>                                  
+        					</select> 
+                      
+                    </div>
+                  
+                </div>
+                 <div class="col-md-3">
+                    <div class="form-group extralink">
+                      <label>City*</label>
+                  <!--     <select class="form-control flat-control-inner"  ng-model="userContact.city.id"
+                      ng-options="c.id as c.cityName for c in cityList" required>
+                     <option value="">--Select--</option>
+                      </select> -->
+                      
+                            <select class="form-control flat-control-inner" ng-model="userContact.city.id" required> 
+    					   <option ng-value="0">Select</option>          
+                           <option data-ng-repeat="c in cityList" data-ng-value="{{c.id}}" ng-selected="c.id==userContact.city.id">{{c.cityName}}</option>                                  
+        					</select>        
+                      
+                      
+                      
+                    </div>
+                </div>
+                </div>
+             
+              <div class="row">
+             <!--  <div class="col-md-3">
+                   <div class="form-group extralink">
+                      <label>Area/Locality*</label>
+                      <input type="text" name="" class="form-control flat-control-inner" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                   <div class="form-group extralink">
+                      <label>Landmark*</label>
+                      <input type="text" name="" class="form-control flat-control-inner" required>
+                    </div>
+                </div> -->
+              
+              </div>
+              <div class="row">
+              
+                <div class="col-md-4">
+                    <div class="form-group extralink">
+                      <label>Mobile Number*</label>
+                      <div class="row">
+                        
+                        <div class="col-md-9">
+                        <input type="text" name="" class="form-control flat-control-inner" ng-model="userContact.phoneNumber" maxlength="10" numbers-only="numbers-only" required>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="btn-cntnr">
+              <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+              <a ng-click="cancell()">Cancel</a>
+            </div>
+              </div></form>
+            </div>
+          </div>
+          <div ng-show="showFlag == 5" id="travel" class="">
+            <h3 class="search-text">Compliance Information</h3>
+            <div class="job-search-cntnr">
+              <div class="srch-head"><h4>List of Compliance Documents</h4></div>
+              <form ng-submit="addForUserCompliance(userCompliance)">
+              <div class="inner-details"> 
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Document's Name*</th>
+                        <th>Document No.*</th>
+                        <th>Issue Date*</th>
+                        <th>Expiry Date*</th>
+                        <th>Country of Issue*</th>
+                        <th>Attach Document</th>
+                        <th>Form</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="c in userCompliance">
+                        <td>
+                          <div class="form-group width-200">
+                            <select class="form-control flat-control-inner" ng-model="c.compliance.id" ng-options="c.id as c.complianceName for c in compliancesList" ng-change="checkComplianceForm(c.compliance.id,$index)" required>
+                              <option value="">--Select--</option>
+                             
+                            </select>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group width-200">
+                            <input class="form-control flat-control-inner" ng-model="c.documentNumber" required>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group width-200">
+                            <input class="dateonly form-control flat-control-inner linked-date3" id="issuedate{{$index}}" ng-model="c.issueDate" required>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group width-200">
+                            <input class="dateonly form-control flat-control-inner linked-date4" id="expirydate{{$index}}"  ng-model="c.expiryDate" ng-change="validateDate(c,'expirydate'+$index)">
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group width-200">
+                  
+                                <select class="form-control flat-control-inner" ng-model="c.countryOfIssue" ng-options="c.id as c.CountryName for c in countryList" >
+                              <option value="">--Select--</option>
+                             
+                            </select>
+                               
+                           <!--  <select class="form-control flat-control-inner" ng-model="c.countryOfIssue"> 
+    					   <option ng-value="0">Select</option>          
+                           <option data-ng-repeat="ct in countryList" data-ng-value="{{ct.id}}" ng-selected="ct.id==c.countryOfIssue">{{ct.CountryName}}</option>                                  
+        					</select>                        
+                             -->
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group width-200">
+                            <div class="input-group">
+                                <input type="text" id="docfilepath{{$index}}" class="form-control flat-control-inner"  readonly="" required>
+                                 <span class="input-group-btn">
+                                    <span class="btn btn-primary btn-file"> Browse
+                                         <input type="file" id="documentfile{{$index}}" single>
+                                     </span>
+                                </span> 
+                            </div>
+                             <div ng-if=" c.path != null || c.path != undefined "> <a href="{{c.path}}" target="_blank">Download</a></div>                                                     
+                          </div>
+                        </td>
+                        <td><button type="button" ng-if="(c.compliance.complianceFormPath != null || c.compliance.complianceFormPath != undefined)" ng-click="download(c.compliance.complianceFormPath)" class="btn bigblue-btn new-btn-dwn"><i class="fa fa-download" aria-hidden="true"></i></button>
+                        <button type="button" id="formid{{$index}}" ng-show="c.compliance.complianceFormPath == null && formid==$index" ng-click="download(complianceForm.complianceFormPath)" class="btn bigblue-btn new-btn-dwn"><i class="fa fa-download" aria-hidden="true"></i></button> </td>                       
+                       <td> <button class="btn btn-default btn-remove"  ng-click="removeForUserCompliance(c)"><i class="icon-x-circle"></i></button></td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="text-right adder">
+                  <button class="btn btn-default btn-round-add" ng-click="addnewForCompliance()"><i class="icon-plus"></i></button>
+                </div>
+                </div>
+              <div class="btn-cntnr">
+              <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+              <a ng-click="cancell()">Cancel</a>
+            </div>
+              </div>
+              </form>
+            </div>
+          </div>                              
+        </div>
+      </div>
+    </div>
+    </section> 
+ </div>
+     
+ </div>
+   
+<!----Footer---->
+  <footer id="footer" style="margin-top: 10%;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-sm-4">
+        <img src="resources/img/logo-big.png">
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <h5>ADDRESS</h5>
+        <p>Carnival Support Services India Ltd,
+Kohinoor City, Tower 2, Floor 5,
+Kirol Road, Off. LBS Marg, Kurla West,
+Mumbai 400 070</p>
+      </div>
+      <div class="col-md-2 col-sm-4">
+        <h5>CONTACT</h5>
+        <p><a class="footer-contact" href="tel:+917942529292">+91-7942529292</a>
+ </p>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>GET IN TOUCH</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="https://www.facebook.com/cruisecareersindia/" target="_blank" class="facebook-link"><i class="icon-facebook"></i></a></li>
+          <li><a href="https://twitter.com/cruisecareers" target="_blank" class="twitter-link"><i class="icon-twitter2"></i></a></li>
+          <li><a href="" target="_blank" class="google-link"><i class="icon-instagram"></i></a></li>
+          <li><a href="https://www.linkedin.com/company/carnival-support-services-india-pvt.-ltd" target="_blank" class="utube-link"><i class="icon-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>MOBILE APP</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="coming_soon.html" class="android-link"><i class="icon-android"></i></a></li>
+          <li><a href="coming_soon.html" class="ios-link"><i class="icon-apple"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>  
+
+<!-- <div class="lower-footer">
+  &#169; 2017 CSSI Pvt. Ltd.
+</div>
+ -->
+
+  <script type="text/javascript">
+  $(function () {
+	    
+                $('.dateonly').datetimepicker({
+                  format: 'DD-MM-YYYY',
+                	  maxDate:new Date()
+                });
+               
+                $('#educational').on('focus',".dateonlyyear", function(){
+                	$('.dateonlyyear').datetimepicker({
+                        //debug: true,
+                		format: 'MM-YYYY',
+                    });
+        		    });
+                
+                
+                /* $('#professional').on('focus',".linked-date", function(){
+                 $('.linked-date').datetimepicker({
+                   format: 'DD-MM-YYYY'
+                 });
+                }); */
+
+                
+               /*  $('#professional').on('focus',".linked-date2", function(){  
+        	$('.linked-date2').datetimepicker({
+          format: 'DD-MM-YYYY',
+            useCurrent: false //Important! See issue #1075
+         
+        });
+       }); */
+       
+       $('#professional').on('focus',".dateonly", function(){  
+	    	$('.dateonly').datetimepicker({	    		
+	 			 format: 'DD-MM-YYYY',
+	  			 useCurrent: false, 
+	  			 //minDate:new Date()     	
+	    	}).on('dp.change', function (e) { $(this).change()});
+	});
+                
+                 /* $('#travel').on('focus',".dateonly", function(){
+                    $('.linked-date3').datetimepicker({
+                      format: 'DD-MM-YYYY'
+                    });
+                   });  */ 
+                   $('#travel').on('focus',".dateonly", function(){  
+           	$('.dateonly').datetimepicker({
+             format: 'DD-MM-YYYY',
+               useCurrent: false, //Important! See issue #1075
+               
+           }).on('dp.change', function (e) { $(this).change()});
+          });    
+       });
+</script>
+
+
+<script type="text/javascript">
+  $(document).on('change', '.btn-file :file', function() {
+  var input = $(this),
+      numFiles = input.get(0).files ? input.get(0).files.length : 1,
+      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+  input.trigger('fileselect', [numFiles, label]);
+  
+  var input = $(this).parents('.input-group').find(':text'),
+  log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+if( input.length ) {
+  input.val(log);
+} else {
+  if( log ) alert(log);
+}
+});
+
+$(document).ready( function() {
+    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+       
+    });     
+});
+
+</script>
+<script>
+	   
+$(document).ready(function() {
+$("input[type='file'].demo").filepicker({
+style: 'bootstrap' // default, bootstrap or jquery-ui
+});
+});
+</script>
+
+<script>
+ document.getElementById('getval').addEventListener('change', readURL, true);
+ function readURL(){
+    var file = document.getElementById("getval").files[0];
+    var reader = new FileReader();
+    reader.onloadend = function(){
+       document.getElementById('clock').style.backgroundImage = "url(" + reader.result + ")";        
+    }
+    if(file){
+       reader.readAsDataURL(file);
+     }else{
+     }
+ }
+ </script>
+ <script>
+	///Script to hide logo on click
+    $(".hide-logo").click(function(){
+    	$(".cruise-logo").fadeToggle();
+    });
+	
+    function signOut() {    	
+        var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function () {
+            //console.log('User signed out.');
+          }); 
+      }
+
+	</script>
+ 
+ <script type="text/javascript">
+    $(function () {
+    	
+ 
+     $(".linked-date2").datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+        $(".linked-date5").datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+        
+        $(".linked-date39").datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+             
+         $(".linked-date").on("dp.change", function (e) {
+         	debugger;
+         	var index = this.id.slice(-1);
+         	var idWithoutIndex =this.id.slice(0,-1);
+         	if(idWithoutIndex = 'fromdate'){
+         		idWithoutIndex ='#todate';
+         	}
+         	/* else if(idWithoutIndex ='issuedate')
+         	{
+         		idWithoutIndex='#expirydate';
+         	} */
+         	
+         	//console.log('aaaaaa',idWithoutIndex+index);
+             $(idWithoutIndex+index).data("DateTimePicker").minDate(e.date);
+         });  
+        
+          $(".linked-date4").datetimepicker({
+               format: 'DD/MM/YYYY'
+           });
+                $(".linked-date3").on("dp.change", function (e) {
+                
+                	
+                	var index = this.id.slice(-1);
+                	var idWithoutIndex =this.id.slice(0,-1);
+                
+                	 if(idWithoutIndex ='issuedate')
+                	{
+                		idWithoutIndex='#expirydate';
+                	}
+                	
+                	//console.log('aaaaaa',idWithoutIndex+index);
+                    $(idWithoutIndex+index).data("DateTimePicker").minDate(e.date);
+                });       
+    });        
+</script>
+ <script type="text/javascript">
+    $(function () {
+    	   
+    });
+    </script>
+ <script type="text/javascript">
+ $(".speaker").hide();
+ $("#ans-switch").click(function() {
+     if($(this).is(":checked")) {
+         $(".speaker").show();
+     } else {
+         $(".speaker").hide();
+     }
+ });
+ 
+ $(".speaker1").hide();
+ $("#ans-switch1").click(function() {
+     if($(this).is(":checked")) {
+         $(".speaker1").show();
+     } else {
+         $(".speaker1").hide();
+     }
+ });     
+ </script>
+
+<script>
+$(function() {
+    $(".inputWrapper").mousedown(function() {
+        var button = $(this);
+        button.addClass('clicked');
+        setTimeout(function(){
+            button.removeClass('clicked');
+        },50);
+    });
+});
+</script>

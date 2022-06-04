@@ -1,0 +1,94 @@
+#career-main {
+	margin-top:70px;
+}
+.applied_positions_heading {
+	background: #0a9f00;
+    color: #fff;
+    text-align: center;
+    height: 34px;
+    vertical-align: middle;
+    line-height: 34px;
+}
+.applied_positions_listing ul{
+	list-style-type:none;
+	padding: 0;
+}
+.applied_positions_listing ul li {
+	text-align: left;
+    line-height: 10px;
+    background: #fff;
+    padding: 10px 0px 1px 12px;
+    margin: 6px 0px;
+}
+.customize_carrer {
+	padding:0 !important;
+	background:#fff;
+}
+.customize_carrer video{
+	width:100%;
+}
+.shedule-a-meeting:hover{
+	color: #fff;
+}
+
+.job_name1 {
+	color:#00aaff;
+}
+.congrats_word {
+	color: #00aaff;
+    margin: 13px 0px;
+    display: block;
+}
+.customize_carrer button {
+	margin: 6px 2px !important;
+}
+.customize_carrer 
+.job_fair_name {
+	text-align:left;
+	font-size:18px;
+}
+.job_fair_date {
+	font-size:14px !important;
+}
+.job_fair_det .col-md-6{
+	padding:0px !important;
+}
+.job_fair_det {
+	display: inline-block;
+    width: 100%;
+    padding: 20px 10px;
+    background: #5bc0de;
+    margin-bottom:20px;
+}
+.see_all_btn {
+	background: #fff;
+    padding: 6px 0px;
+}
+.see_all_btn button{
+	background: #fff;
+    border: 0px;
+    color: #00aaff;
+    outline:none;
+}
+.applied_positions_listing li p {
+	font-size: 14px !important;
+}
+/* .job_fair_det .col-md-6{
+	text-align: left;
+} */
+.job_fair_det p {
+display: inline;
+    vertical-align: top;
+    text-align: left;
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.job_fair_name {
+	display: inline;
+    vertical-align: top;
+}
+.job_fair_date {
+	display: inline;
+    /* vertical-align: top; */
+}

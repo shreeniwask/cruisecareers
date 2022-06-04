@@ -1,0 +1,146 @@
+<div class="admin-page">
+	<div class="section-heading">
+		<h4>Meet A Recruiter</h4>
+	</div>
+	<div class="section-content" id="req-list">
+		<div class="upper-actions">
+			<div class="col-md-4 col-lg-4">
+			<div class="row">
+				<div class="button-group">
+					<button class="btn btn-default btn-create" id="create-req-btn"
+						ng-click="openEditJobFairPage(undefined,true)">
+						<i class="icon-plus"></i>
+					</button>
+					<button class="btn btn-default btn-delete" ng-click="check()">
+						<i class="icon-trash-2"></i>
+					</button>
+				</div>
+				</div>
+			</div>
+			<div class="col-md-2 col-lg-2"></div>
+			<div class="col-md-6 col-lg-6" style="padding: 0px;">
+				<div class="clone-upper" style="float: right;">
+				<div class="search-cntnr"
+						style="float: initial; padding-left: 0px;">
+						<div class="form-group search-box">
+							<input type="text" name="" id="id_of_textbox"
+								ng-model="searchterm" class="form-control flat-control-search">
+							<i class="icon-search" id="id_of_button"
+								ng-click="fetchJobFairsList(0,10,null,null,searchterm);fetchJobFairsListCount(searchterm)"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="table-cntnr table-responsive">
+			<table class="table table-striped red-table">
+				<caption>List of Meet A Recruiters</caption>
+				<thead>
+					<tr>
+						<th style="vertical-align: middle;">
+							<div class="chckbx-cntnr zeromargin">
+								<input type="checkbox" id="rd" name="check"
+									ng-click="checkedAllList(jobFairsList,all)" ng-model="all"
+									class="flashadmin"> <label class="cstmchk_lbladmin"
+									for="rd"></label>
+							</div>
+						</th>
+						<th style="vertical-align: middle; min-width: 135px;">Meet A Recruiter Name <i
+							ng-click="SortingJobFairsList('JobFairName',searchterm)"
+							class="fa fa-sort" aria-hidden="true" style="font-size: 12px;"></i>
+						</th>
+						<th style="vertical-align: middle; min-width: 95px;">Description
+							<i ng-click="SortingJobFairsList('Description',searchterm)"
+							class="fa fa-sort" aria-hidden="true" style="font-size: 12px;"></i>
+						</th>
+						<th style="vertical-align: middle; min-width: 135px;">Activation
+							Date <i
+							ng-click="SortingJobFairsList('ActivationDate',searchterm)"
+							class="fa fa-sort" aria-hidden="true" style="font-size: 12px;"></i>
+						</th>
+						<th style="vertical-align: middle; min-width: 145px;">Start
+							Date <i ng-click="SortingJobFairsList('StartDate',searchterm)"
+							class="fa fa-sort" aria-hidden="true" style="font-size: 12px;"></i>
+						</th>
+						<th style="vertical-align: middle; min-width: 125px;">End
+							Date <i ng-click="SortingJobFairsList('EndDate',searchterm)"
+							class="fa fa-sort" aria-hidden="true" style="font-size: 12px;"></i>
+						</th>
+						<th style="vertical-align: middle; min-width: 125px;">Jobs
+							Count <i ng-click="SortingJobFairsList('JobsCount',searchterm)"
+							class="fa fa-sort" aria-hidden="true" style="font-size: 12px;"></i>
+						</th>
+						<th style="vertical-align: middle; min-width: 125px;">Slots
+							Count <i ng-click="SortingJobFairsList('SlotsCount',searchterm)"
+							class="fa fa-sort" aria-hidden="true" style="font-size: 12px;"></i>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="jf in jobFairsList">
+						<td>
+							<div class="chckbx-cntnr zeromargin">
+								<input type="checkbox" id="{{jf.id}}" name="check"
+									ng-click="addCheckedJobFairId(jf.id)" ng-checked="all"
+									class="flashadmin"> <label class="cstmchk_lbladmin"
+									for="{{jf.id}}"></label>
+							</div>
+						</td>
+						<td><a ng-click="openEditJobFairPage(jf,false)">{{jf.name}}</a></td>
+						<td>{{jf.description}}</td>
+						<td>{{jf.activationDateString}}</td>
+						<td>{{jf.startDateSring}}</td>
+						<td>{{jf.endDateString}}</td>
+						<td><a ng-click=" openMappedJobListPage(jf.id)">{{jf.jobsCount}}</a></td>
+						<td><a ng-click="eventSlotflag();userdata(jf)" >{{jf.schedulerSlotsCount}}</a></td>
+					</tr>
+			</table>
+		</div>
+
+		<div class="text-right" style="margin: 12px 0;">
+			<ul class="pagination" style="margin-top: 0;">
+				<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+				<li ng-repeat="i in navButtons"
+					ng-class="$parent.offset == i * $parent.limit && 'active'"><a
+					class="" ng-click="current(i)">{{i+1}}</a></li>
+				<li><a ng-hide="(((start+5)*10) + 10) >= count"
+					ng-click="next()">&raquo;</a></li>
+			</ul>
+		</div>
+
+	</div>
+
+</div>
+
+<div id="deletelist" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-sm add-brand">
+
+		<!-- Modal content-->
+		<div class="modal-content flat-modal">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h4 class="modal-title common-title" style="margin-left: 0;">Delete
+					Record</h4>
+			</div>
+			<div class="modal-body flat-body">
+				<div class="clearfix"></div>
+				Are you sure want to delete {{checkedJobFairsids.length}} records?
+				<div class="modal-footer text-left">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="show_ass" ng-click="deleteJobFair('JobFair')">Delete</button>
+					<a class="btn btn-link" data-dismiss="modal">Cancel</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$("#id_of_textbox").keyup(function(event) {
+		if (event.keyCode === 13) {
+			$("#id_of_button").click();
+		}
+	});
+</script>

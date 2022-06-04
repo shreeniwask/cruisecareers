@@ -1,0 +1,121 @@
+<div class="admin-page" ng-controller="InterviewTemplater_Ctrl"> 
+<div id="interviewtemplate_type" class="tab-pane fade in">
+      <div class="section-heading">
+        <h4>Interview Template </h4>
+        <!-- <p> Organize events & trainings according to date, time and no. of candidates. </p> -->
+      </div>
+      <div class="section-content" id="interview-tabel">
+      <div class="upper-actions">
+          <div class="button-group">
+             
+            <!-- <button class="btn btn-default btn-edit"><i class="icon-edit-2"></i></button> -->
+          	<button class="btn btn-default btn-create" id="interview_add" ng-click="getData()"><i class="icon-plus"></i></button >
+        
+             <button class="btn btn-default btn-delete" data-target="#deletelist" ng-click="check()" ><i class="icon-trash-2"></i></button>
+              
+          
+          </div>
+                     
+          <div class="search-cntnr">
+            <div class="form-group interviewroup search-box">
+          
+             
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="fetchInterviewTemplateList(0,10,null,null,searchterm);getInterviewTemplateyListCount(searchterm)"></i>
+            </div>
+          </div>   
+          <div class="clearfix"></div>
+          </div>
+          
+   <div class="table-cntnr">
+          <table class="table table-striped red-table">
+            <caption>List of Interview Template</caption>
+            <thead>
+              <tr>
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(interviewList,all)" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th>
+                   <th>Interview Template<i ng-click="SortingfetchInterviewTemplateList('InterviewTemplate',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                   <th>Position<i ng-click="SortingfetchInterviewTemplateList('Position',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="p in interviewList">
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                       <input type="checkbox" id="{{p}}" name="check" class="flashadmin" ng-click="checkedInterviewTemplateList(p.id)" ng-checked="all">
+                      <label class="cstmchk_lbladmin" for="{{p}}"></label> 
+                    </div>
+                </td>
+                <td><a id="create-job-btn"  ng-click="interviewTemplatedata(p)">{{p.templateName}}</a></td>
+             
+                <td>{{p.position.positonname}}</td>
+               </tr>                
+            </tbody>
+          </table>
+           <div class="text-right">           
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+          </div>
+        </div>
+  
+   </div>
+      </div>
+
+    <!----Modal delete-list---->
+<div id="deletelist" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ng-value="getCheckedId()"></div>
+        Are you sure want to delete {{getCheckedInterviewTemplateid.length}} records?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deletefromList('InterviewTemplate')">Delete</button>
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+$("#id_of_textbox").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#id_of_button").click();
+    }
+}); 
+  $("#interview_edit").click(function(e) {
+        e.preventDefault();
+           
+            $("#add-interview").hide();
+            $("#show-interview").show();
+            $("#interview-tabel").hide();
+
+        });
+
+ /*  $("#interview_add").click(function(e) {
+        e.preventDefault();
+           
+            $("#add-interview").hide();
+            $("#show-add-interview").show();
+            $("#interview-tabel").hide();
+           
+            
+        });  */
+</script>

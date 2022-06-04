@@ -1,0 +1,56 @@
+<style>
+.sms_conf_radio_box{
+	background-color: #fff;
+	padding: 30px 15px;
+	border: 1px solid #ddd;
+}
+.radio-cntnr.sms_radio_margin {
+    margin-bottom: 5px;
+}
+.sms_conf_save_btn{
+	margin-top: 30px;
+	border-radius: 4px;
+    background-color: rgb(0, 174, 239);
+    color: #fff;
+}
+.sms_conf_save_btn:hover, .sms_conf_save_btn:focus, .sms_conf_save_btn:active{	
+    box-shadow: 0px 2px 5.76px 0.24px rgb(0 0 0 / 24%);
+    background-color: #009ad4 !important;
+    color: #fff !important;
+}
+</style>
+<div id="email" class="tab-pane fade in admin-page">
+      <div class="section-heading">
+        <h4>SMS Configuration</h4>      
+      </div>
+      <div class="section-content">
+      <div class="sms_conf_radio_box">
+         <div class="row">
+         	<div class="col-md-12">
+	            <div class="radio-cntnr sms_radio_margin">
+				  <input  type="radio"   ng-model="selectedsmsmode1" name="server_name" ng-value="1" id="tube_1" ng-checked="selectedsmsmode == '1'" >	 
+				  <label class="ser_lable_text" for="tube_1">Tubelight</label>
+				</div>
+            </div>
+            <div class="col-md-12">
+	            <div class="radio-cntnr sms_radio_margin">
+				  <input  type="radio"   ng-model="selectedsmsmode1" name="server_name" ng-value="2" id="aws_ind" ng-checked="selectedsmsmode == '2'"> 
+				  <label class="ser_lable_text" for="aws_ind">AWS (India)</label>
+				</div>
+            </div>
+            <div class="col-md-12">
+	            <div class="radio-cntnr sms_radio_margin">
+				  <input  type="radio" ng-model="selectedsmsmode1" name="server_name" ng-value="3" id="aws_uk" ng-checked="selectedsmsmode == '3'">
+				  <label class="ser_lable_text" for="aws_uk">AWS (UK)</label>
+				</div>
+            </div>
+            <div class="col-md-12">
+	            <div class="form-group">
+				  <button type="submit" ng-click="saveSmsMode(selectedsmsmode1);" class="btn btn-default sms_conf_save_btn">Save</button>
+				</div>
+            </div>
+         </div>          
+      </div>
+    </div>
+  
+ </div>

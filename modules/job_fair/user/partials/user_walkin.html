@@ -1,0 +1,936 @@
+<style>
+.cancelbtn{    
+	margin: 10px auto;
+    background: #00aeef;
+    color: #fff;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: rgba(0, 0, 0, 0.56);
+}
+#text1{
+  position: fixed;
+  top: 56%;
+  right: 12%;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+#text2{
+  position: fixed;
+  top: 42%;
+  right: 0;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+#text{
+  position: fixed;
+  top: 30%;
+  right: 8%;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+.pointer_hand{
+	width:40px;
+}
+.click_here {
+	margin-right:10px;
+	display:inline-block;
+	font-size: 20px;
+  	color: white;
+}
+
+@keyframes move {
+        from {
+          transform: translateX(-10px);
+        }
+
+        to {
+          transform: translateX(10px);
+        }
+      }
+ 
+      path {
+        fill: none;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+      
+      .object {
+        animation: fade-in 500ms, fade-out 500ms 3000ms forwards;
+      }
+  
+      .hand {
+        animation: move 750ms ease-in-out infinite alternate;
+        stroke: #000;
+      }
+      
+      .direction {
+        stroke: #f47920;
+      }
+</style>
+</defs>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+
+
+<div  ng-show="appliedJobCount !=0"> 
+<div class="overlay" id="overlay_sec" style="display:none;">
+	<div id="text">
+	<p class="click_here">Click this button to schedule a meeting</p>
+	<img src="resources/img/pointing-right.svg" class="pointer_hand hand">
+	</div>
+</div>
+</div>
+
+<div class="overlay" id="overlay_sec1" style="display:none;" ng-show="userdetails.STATUS=='active' || userdetails.STATUS=='Applied'">
+	<div id="text1">
+	<p class="click_here">Select your preferred date</p>
+	<img src="resources/img/pointing-right.svg" class="pointer_hand hand">
+	</div>
+</div>
+<div class="overlay" id="overlay_sec2" style="display:none;">
+	<div id="text2">
+	<p class="click_here" style="margin-right:10px;display:inline-block;">Select your preferred time</p>
+	<img src="resources/img/pointing-right.svg" class="pointer_hand hand">
+	</div>
+</div>
+<div> 
+
+<header ng-if="userdetails == undefined">
+<nav class="navbar navbar-default header-nav navbar-fixed-top" id="sc">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle hide-logo" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand cruise-logo smooth" href="#!home/" style="position: absolute;">
+      <img src="resources/img/logo-big.png" /></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right uppermenu">
+        <!-- <li class=""><a href="#jobs" class="smooth">Hot Jobs</a></li>
+        <li class=""><a href="#steps" class="smooth">How do I apply</a></li>
+        <li class=""><a href="#testimonials" class="smooth">Testimonials</a></li> -->
+        <li  class=""><a href="#!home/" class="smooth">Home</a></li>
+         <li class=""><a ui-sref="register" ui-sref-active="active" class="smooth"><span class="icon-edit"></span> Sign up</a></li>
+        <li class=""><a ui-sref="login" ui-sref-active="active" class="smooth"><span class="icon-log-in"></span> Login</a></li>
+     
+      </ul>
+    </div>
+  </div>
+</nav>
+</header>
+
+
+<div class="height-70"></div>
+
+
+
+<section id="jobs-main">
+  <div class="container-fluid">
+   
+    <div class="row">
+      <div class="col-md-3">
+        <div class="recent-searches">
+        <div class="row padding-right-0" >
+    <div class="col-md-12">
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-warning" id="test1">
+    <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion"  data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <h4 class="panel-title collapsed" role="button" >
+        <a >
+        {{job1.jobTitle}}
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+      {{job1.jobDescription}}
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-warning" id="test2">
+    <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion"  data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+      <h4 class="panel-title collapsed" role="button" >
+        <a class="collapsed" >
+   {{job2.jobTitle1}}
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+      {{job2.jobDescription1}}
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title collapsed"  role="button"  data-toggle="modal" data-target="#faq">
+        <a>
+          VCF FAQ
+        </a>
+      </h4>
+    </div>
+  
+  </div>
+  </div>
+</div>
+</div>
+         <!--  <h5>Recent Searches</h5> -->
+         <!--  <ul type="none">
+             <li ng-repeat="r in recentSearch"><a href="" ng-click="fetchJobResult(r.positionId,'position')">{{r.positionName}}</a></li>
+            <li><a href="">Chief Steward</a></li>
+            <li><a href="">Galley Manager</a></li>
+          </ul> -->
+        </div>
+      </div>
+      <div class="col-md-6">
+      <div class="clearfix banner-show-div">
+   <div class="text-center col-md-12">
+	      	 <h3><b><!-- {{jobfairjobObj.name}} --> CURRENT OPENINGS FOR MEET A RECRUITER</b></h3>
+       		 <p>{{dateformate2(jobfairjobObj.startDate1)}} - {{dateformate2(jobfairjobObj.endDate1)}}</p>
+       		<!--  <p>{{jobfairjobObj.description}}</p>     -->
+	      </div>
+      <!-- <div class="col-md-4 book-slot text-center">
+      <button class="btn btn-default" ng-if="buttonflag ==1 " data-toggle="modal" ng-click="fetchDateAndTimeSlots(jobFairId);getAppliedJobCountForUser(null)">Book a Slot</button>
+      <button class="btn btn-default orange"  ng-if=" buttonflag ==2 " ng-click="goStartInterview()" >Your Slot</button>
+      </div>    -->
+         
+      </div>
+      <p class="text-center">
+Please Note: All times are listed as IST (Indian Standard Time) unless otherwise specified.</p>
+       <!--
+        <h3 class="search-text">Start Finding Jobs In JobFair</h3> -->
+      
+        <div class="input-group search-cntnr-landing">
+    <input type="text" id="id_of_textbox" class="form-control flat-control-big"
+  ng-model="search" placeholder="Search job title or keyward" />
+  <span class="input-group-addon" id="search-icon" ng-click="fetchJobFairJobListForUser(search);getJobFairJobListForUsercount(search)"><i class="icon-search"></i></span>
+    </div>
+  
+    <div class="job-search-cntnr job-search-zebra">
+     <!--  <div class="srch-head"><h4>Search Results</h4></div> -->
+      <ul type="none" class="job-search-results job-fair" ng-if="j.statusId ==1" id="ulId" ng-repeat="j in joblist">
+       <li ng-click="fetchJobById(j.jobid,'walkin')" class="job-small clearfix">
+      <a href="" class="big-a" >
+        <div class="col-md-3">
+        	 <img ng-src="{{j.brand.logoPath}}" style="height:64px;">
+        </div>
+      	<div class="col-md-7">
+      		<a href="" ng-click="fetchJobById(j.jobid,'walkin')" class="link_job">{{j.position.positonname}}</a>
+              <div><b>Department:</b> {{j.category.categoryName}}</div>
+              <!-- <div><b>Job Summary:</b> <p>{{j.shortDescription}} </p> -->
+              </div>
+        
+      
+           </a>
+           <div class="status-applied col-md-2 text-center" ng-if="j.status == 'Applied'">
+	         <b>
+	           <i class="icon-thumbs-up"></i>
+	         </b>
+	         <b>Applied</b>
+           
+           </div>
+        </li>  
+       
+         <li  class="job-small s-m-new disabled" ng-if="j.statusId !=1"><a href="" class="big-a" ><a href="" ng-click="fetchJobById(j.jobid)"class="link_job">{{j.position.positonname}}</a>
+          	 <div class="col-md-3">
+        	 <img ng-src="{{j.brand.logoPath}}" style="height:64px;">
+        </div>
+           <div class="col-md-7">
+      		<a href="" ng-click="fetchJobById(j.jobid)" class="link_job">{{j.position.positonname}}</a>
+              <div><b>Department:</b> {{j.category.categoryName}}</div>
+             <!--  <div><b>Job Summary:</b> <p>{{j.shortDescription}} </p> -->
+              </div>
+            </a>
+        
+       
+           
+           <div class="status-applied col-md-2 text-center" ng-if="j.status == 'Applied'">
+				 <b>
+	           <i class="icon-thumbs-up"></i>
+	         </b>
+	         <b>Applied</b>
+		</div>
+        </li>
+ 
+      </ul>
+    </div>
+        
+      </div>
+      
+      <!-- <div><button class="cancelbtn" ng-click="deleteUserSlot()">cancel</button></div> -->
+      <div class="col-md-3 col-sm-12">
+      
+        <div ng-if="buttonflag !=2 " ng-show="appliedJobCount != 0" >
+       		<a class="shedule-a-meeting" ng-show="userdetails.STATUS=='inactive' || userdetails.STATUS=='Shortlisted' || userdetails.STATUS=='Selected' || userdetails.STATUS=='Pending Brand Approval' || userdetails.STATUS=='Hold'" ng-click="saveSlotsOfUser()"><p>Schedule a Meeting</p> </a>
+       		<a class="shedule-a-meeting"  ng-show="userdetails.STATUS=='active' || userdetails.STATUS=='Applied'"><p>Schedule a Meeting</p> </a>        		
+        <div class="date-time-selector row" style="display:none" ng-show="userdetails.STATUS=='active' || userdetails.STATUS=='Applied'">
+        <div class="col-md-6 padding-right-0">
+        <div class="date-selector mar-div ">
+        <i class=""><img src="resources/img/calendar.png"></i><span>Calendar</span>
+        </div>    
+        <div  class="customdate-picker col-md-12" data-ng-init='Datepicker1()'>  
+        	<input hidden  ng-model="dateField " id="calendar-date" ng-click="Datepicker1()" ng-change="changedate1()" class="form-control flat-control-inner" />
+        </div>
+     
+        </div>
+        <div class="col-md-6" id="time-select" style="display:none">
+        <div class="date-selector " >
+        <i class="r"><img src="resources/img/calendar-checked.png"></i><span>Timing</span>
+        </div> 
+        <div class="time-slot text-center">  
+        	 <div class="time-div" id="dates{{$index}}"  ng-click="acivteClass($index);fetchusersBysltId(d.id)" ng-repeat="d in listDate">
+        		
+	        		<div class="col-md-5 padding-5" >
+	        			<!-- <b>
+	        			{{dateformate(d.dateTime) | date:'DD-MM'}}
+                         </b> -->
+                         <b>{{dayName}}</b>
+                         <div>
+                         <b>
+	        			{{dateformate(d.dateTime)}}
+                         </b>
+                         </div>
+                         <!--  <b>
+	        			{{dateformate2(d.dateTime) | date:'MM'}}
+                         </b>  -->
+	        		</div>
+	        		 <div class="col-md-7 padding-5">
+	        			<p>{{d.dateTime.split(" ")[1]}} {{d.dateTime.split(" ")[2]}}</p>
+	        		</div>  
+        		
+        	</div> 
+       
+       	
+        	
+        </div>      
+        </div>
+        <div class="col-md-12 text-center btn-can-cof">
+        	<button class="can" ng-click="cancel()">Cancel</button>
+        	<button class="canf" ng-click="saveSlotsOfUser()">Confirm</button>
+        </div>
+        </div>
+        </div>
+        
+        
+          <div ng-if="buttonflag ==2">
+	        <!-- <button class="btn shedule-a-meeting  sheduled" ng-click="goStartInterview()" ng-disabled="!startInterview"><p>Scheduled  Meeting</p> </button> -->
+<!-- 	         <button class="btn shedule-a-meeting  sheduled" ng-disabled="!startInterview" ng-click="goStartInterview()"><p style="font-size:16px">Click here to start meeting</p> </button>
+ -->	          <button class="btn shedule-a-meeting  sheduled"  disabled><p style="font-size:16px">YOUR MEETING IS SCHEDULED</p> </button> 
+	         
+	          
+	         <div class="notes">
+ 	         	<p>You are all set! Your Meeting with a Recruiter is confirmed on {{dateformate1(userSelectedSlot.dateTime)}} at {{userSelectedSlot.dateTime.split(" ")[1]}} {{userSelectedSlot.dateTime.split(" ")[2]}}. We have also sent you an email with other details.</p>
+	         	<!-- <p>To speak to our recruiter on the day of the event, simply follow these steps: </p>
+	         	<p>1. Visit www.cruisecareers.in</p>
+	         	<p>2. Log in to your account </p>
+	         	<p>3. Click on 'Walkins'</p>
+	         	<p>4. Click on 'CLICK HERE TO START MEETING' to enter meeting room</p>
+	         	<p>5. Ensure that the camera and microphone on your device is active and Pop Ups are enabled</p> -->
+	         	<p class="text-center"><b>GOOD LUCK!</b></p>
+	         </div>
+	      
+	   <div class="col-md-12 text-center" ng-if="!inteviewOver"><button class="cancelbtn btn btn-default" ng-click="deleteUserSlot()">Cancel Your Slot</button></div>
+	      
+	      
+	     </div>
+	      </div>
+       
+      </div>
+     
+   
+    </div>
+  </section>
+   
+    <div id="add_sloter_msg" class="modal fade" role="dialog" style="padding-right: 17px;">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Selected Slot</h4>
+      </div>
+      <form class="ng-pristine ng-valid">
+      <div class="modal-body flat-body">
+        <div class="row">
+          <div class="col-md-12">
+        <video controls="">
+<source src="resources/img/Wildlife.wmv">
+</video>
+           
+          </div>
+        </div>
+        
+      </div>
+    
+</form>
+    </div>
+    
+  </div>
+</div>
+
+
+
+<div id="add_sloter" class="modal fade" role="dialog" style="padding-right: 17px;">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Book a slot</h4>
+       
+      
+      </div>
+      <form class="ng-pristine ng-valid">
+      <div class="modal-body flat-body">
+        <div class="row">
+          <div class="col-md-12">
+          <div class="col-md-6">
+            <div class="form-group">
+              <select class="form-control flat-control-search mar-bottom-zero" id="openinterview"  ng-change="fetchusersBysltId(selectedEvent)" ng-model="selectedEvent" ng-options=" jf.id as dateformate1(jf.dateTime) for jf in listDate" >
+                <option value="" >--Select Actions--</option>
+                          
+              </select>
+            
+             </div>
+           </div>
+            <div class="col-md-6">
+              <b>{{timeOut}}</b>
+              </div>
+      
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer text-right">
+      <div class="col-md-12">
+         <button type="button" class="btn btn-default" id="addslot"  ng-click="saveSlotsOfUser()" data-dismiss="modal" data-target="#add_sloter_msg" data-toggle="modal">Book Slot</button>
+        <a class="btn btn-link" data-dismiss="modal">Cancel</a>
+        </div>
+       
+      </div>
+</form>
+    </div>
+    
+  </div>
+</div>
+  </div>
+</section>
+
+<!----Footer---->
+<footer id="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-sm-4">
+        <img src="resources/img/logo-big.png">
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <h5>ADDRESS</h5>
+        <p>Carnival Support Services India Ltd,
+Kohinoor City, Tower 2, Floor 5,
+Kirol Road, Off. LBS Marg, Kurla West,
+Mumbai 400 070</p>
+<p>RPSL License No: RPSL - MUM - 062 (Valid till 14 December 2021)</p>
+
+      </div>
+      <div class="col-md-2 col-sm-4">
+        <h5>CONTACT</h5>
+        <p><a class="footer-contact" href="tel:+917942529292">+91-7942529292</a>
+ </p>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>GET IN TOUCH</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="https://www.facebook.com/cruisecareersindia/" target="_blank" class="facebook-link"><i class="icon-facebook"></i></a></li>
+          <li><a href="https://twitter.com/cruisecareers" target="_blank" class="twitter-link"><i class="icon-twitter2"></i></a></li>
+          <!-- <li><a href="" target="_blank" class="google-link"><i class="icon-instagram"></i></a></li> -->
+          <li><a href="https://www.linkedin.com/company/carnival-support-services-india-pvt.-ltd" target="_blank" class="utube-link"><i class="icon-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>MOBILE APP</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="#!comingsoon" class="android-link"><i class="icon-android"></i></a></li>
+          <li><a href="#!comingsoon" class="ios-link"><i class="icon-apple"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="lower-footer">
+  @2017 CSSI Pvt. Ltd.
+</div>
+
+
+<div id="faq" class="modal fade " role="dialog">
+		<div class="modal-dialog modal-lg add-brand">
+	
+			<!-- Modal content-->
+			<div class="modal-content flat-modal modal-lg">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 class="modal-title common-title" style="margin-left: 0;">FREQUENTLY ASKED QUESTIONS (FAQs)</h4>
+				</div>
+				<div class="modal-body flat-body">
+					<div class="clearfix"></div>
+					<div class="col-md-12 faq-oo">
+					
+					<!-- <div class="input-group search-cntnr-landing">
+	    	 <input type="text" id="" class="form-control flat-control-big" placeholder="Search FAQ"> 
+	 		  <span class="input-group-addon" id="search-icon" >
+	 		  <i class="icon-search"></i></span>
+    	</div> -->
+    	
+    	
+    	
+<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p1" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+        What is a Virtual Career Fair (VCF)?
+        </a>
+      </h4>
+    </div>
+    <div id="p1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+		Cruisecareers.in's VCF is a recruitment event that brings together cruise ship career aspirants-you, and the Cruisecareers recruitment team -us, online in a face-to-face video setting. The VCF provides you with an opportunity to explore an exciting cruise ship career from the comforts of your home without visiting our office. All you need to do is,
+		 log-on to <a href="#"> www.cruisecareers.in</a> and look for the VCF tab on the home page to schedule an appointment.   
+ 	 </div>
+    </div>
+  </div>
+  
+   <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p2" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+    	 Who is eligible to attend the Cruisecareers VCF?
+        </a>
+      </h4>
+    </div>
+    <div id="p2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+		Our minimum requirement to apply for an entry-level position is 18 years with a 3-year hotel school diploma or 21 years with one year of current work experience in any hospitality sector.
+		 Fluency in spoken English and 10 std. pass is mandatory. 
+		For more info, why not register and look at job descriptions to see if you qualify?     </div>
+    </div>
+  </div>
+  
+    <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p3" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+        Where and when do the VCFs hosted by Cruisecareers take place?
+        </a>
+      </h4>
+    </div>
+    <div id="p3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+	Regularly, in fact. The VCFs are always hosted on the Cruisecareers.in website and you can access it from your computer, tablet or smartphone. 
+	Look out for the schedule in VCF tab on our homepage to go to the event page where you can register and attend the fair.      </div>
+    </div>
+  </div>
+  
+   <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p4" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+       What are the cruise ship brands that you recruit for during the VCF?
+
+        </a>
+      </h4>
+    </div>
+    <div id="p4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+		Cruisecareers.in is the career portal of Carnival Support Services India Pvt. Ltd.
+		 We recruit for some of the best cruise ship brands in the world such as P&O Cruises, Princess Cruises, P&O Cruises Australia, Holland America Line, Cunard, Seabourn, Costa and Carnival Cruise Line.  
+ 		You can check our profile <a href="#">here</a>.      </div>
+    </div>
+  </div>
+  
+   <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p5" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+        How will I know when a VCF is scheduled?
+        </a>
+      </h4>
+    </div>
+    <div id="p5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+		We will be posting updates on our social media pages (Facebook, Instagram, Twitter and LinkedIn) and our website cruisecareers.in on the VCF schedule. 
+		Make sure you 'Like' and 'Follow' our social media pages to keep yourself updated.       </div>
+    </div>
+  </div>
+  
+   <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p6" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+       Do I need to pay any service charges or fees to attend the VCF?
+        </a>
+      </h4>
+    </div>
+    <div id="p6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+		All recruitment is free. You do not need to pay any fees or service charges to attend the VCF.      </div>
+    </div>
+  </div>
+ 
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p7" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+        What do I need to do to participate in the VCF?
+        </a>
+      </h4>
+    </div>
+    <div id="p7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+		To participate in the VCF, you have to sign-up and register yourself on cruisecareers.in to create a profile.
+	 	An updated profile will help our recruitment team have a mutually beneficial interaction with you at the VCF.
+ 		Therefore, we recommend that you complete your profile including uploading your education and work experience certificates.       </div>
+    </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p8" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+        Is registration compulsory for the VCF?
+        </a>
+      </h4>
+    </div>
+    <div id="p8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+	We recommend that you register for the VCF before the actual event. 
+	Your advantage: You can go through the job description and apply for suitable jobs. 
+	It also helps us to better plan the event and give you the best possible experience.       </div>
+    </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p9" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+        Can I update my CV after registering?
+        </a>
+      </h4>
+    </div>
+    <div id="p9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+	Yes, you can update it on your Cruisecareers profile page.       </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p10" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+        What personal information about me will Cruisecareers have access to?
+        </a>
+      </h4>
+    </div>
+    <div id="p10" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+		We take your personal information quite seriously and will only have access to information that you chose to provide during the registration process.
+	  	We will also be able to save a recording of the video interaction that they have with you for future reference.      </div>
+    </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p11" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+      Is uploading my documents into my Cruisecareers profile all I need to do to participate?
+        </a>
+      </h4>
+    </div>
+    <div id="p11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+		Uploading your personal, educational and professional documents will help our recruiters to know a little a bit about you before they speak to you. Check for profile completeness on the profile page.
+		The higher the rating the more information our recruiters have about you to take a decision.        </div>
+    </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p12" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+       Do I need to cancel my registration if I find myself unable to attend the event?
+        </a>
+      </h4>
+    </div>
+    <div id="p12" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+	We would appreciate if you could cancel the meeting, as it would mean someone else could use the vacated slot.
+	 You can cancel your registration on the event page.      </div>
+    </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p13" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+        I have a video meeting scheduled with you - what should I be wearing?
+        </a>
+      </h4>
+    </div>
+    <div id="p13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+	You should be dressed as if you were going on an interview. Make that first impression a good one! We also recommend you check what is visible behind you so that there is nothing to distract the recruiter.
+	 Make sure to speak loud and clear, preferably in a quiet surrounding.      </div>
+    </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p14" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+        Do I need to schedule a time slot for each position I have applied for?
+        </a>
+      </h4>
+    </div>
+    <div id="p14" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+	You can apply for as many positions as you want. However, you need to schedule a slot only once. 
+	The recruiter will already have the details of the positions you have applied for and will screen you accordingly.      </div>
+    </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p15" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+      I am unable to log-in to the VCF at the scheduled time. Can I rebook a slot?
+        </a>
+      </h4>
+    </div>
+    <div id="p15" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+	Yes you may. Please look out for an alternate date in the VCF tab and schedule a fresh slot.      </div>
+    </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p16" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+       Can I change my meeting slot if I am unable to make it for the earlier booked slot?
+        </a>
+      </h4>
+    </div>
+    <div id="p16" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+		We would appreciate very much if you are able to meet us at the booked timing.
+ 		However, if you are unable to meet us, then you will have to cancel your earlier appointment and book a fresh slot.   
+ 		After registering and updating your profile, please visit the VCF page on cruisecareers.in and schedule a meeting with our recruitment team. 
+ 		On the day of the event, please visit cruisecareers.in a few minutes before your scheduled meeting to view some interesting videos prior to speaking with our recruiter.
+    </div>
+    </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p17" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+        Is the virtual interview room at the VCF open continuously during the fair or only during assigned times?
+        </a>
+      </h4>
+    </div>
+    <div id="p17" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+		The virtual interview room will be open for pre-defined hours during the VCF.
+		 You will see the time slots once you click the 'Schedule Meeting' button, from where you can select the pre-defined time slot, when logged into your account.      </div>
+    </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p18" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+		Do actual interviews take place during the fair?        </a>
+      </h4>
+    </div>
+    <div id="p18" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+      This is completely up to the recruiter. We would like to use the VCF for a screening round before you are shortlisted for a position and invited to a personal interview.
+       Speaking to the recruiter on this platform is the first step in potentially securing a job offer.
+    </div>
+  </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p19" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+		If there are a number of participants trying to connect at the same time, will there be a waiting list in order of who joined the session first?        </a>
+      </h4>
+    </div>
+    <div id="p19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+      There is no waiting list, just a natural flow of participants. Recruiters may have a lot of traffic (just as in a live fair) and cannot reach everyone immediately.
+       Remember that patience is highly appreciated by the recruiters and the right job is worth the wait!
+    </div>
+  </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p20" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+		If I'm shortlisted at the VCF, will I be offered a letter of employment?        </a>
+      </h4>
+    </div>
+    <div id="p20" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+      More often than not, after speaking to you and looking at your profile, our recruiters will be able to shortlist you for a position and invite you for a personal interview. 
+      However, you are free to apply for one job or multiple jobs - it doesn't matter.
+    </div>
+  </div>
+  </div>
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p21" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+
+		I was not shortlisted for a personal interview. Can I try again?
+        </a>
+      </h4>
+    </div>
+    <div id="p21" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+      If you have not been shortlisted for a position, please wait for six months before applying again.
+       We recommend that you equip yourself with skills or competencies in the interim period to make yourself suitable for the applied position. Good Luck! 
+    </div>
+  </div>
+  </div>
+  
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p22" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+
+		What will I need before I meet the recruiter at the VCF? 
+        </a>
+      </h4>
+    </div>
+    <div id="p22" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+      You will need a webcam and an updated version of either Google Chrome, Internet Explorer or Firefox to participate in video chats or receive their audio/video broadcasts.
+    </div>
+  </div>
+  </div>
+  
+  <div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="">
+      <h4 class="panel-title collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" data-target="#p23" aria-expanded="true" aria-controls="collapseOne">
+        <a>
+
+		I am having difficulty connecting to the recruiter. What should I do?        </a>
+      </h4>
+    </div>
+    <div id="p23" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+      
+      Make sure you are using an updated version of the browser (recommended - Google Chrome/ Firefox). 
+      Please add the Virtual Career Fair URL to your list of trusted sites. Safari and Internet Explorer is also supported, however, you must update to the latest version. 
+      Please ensure that you have a good internet connection. 
+    </div>
+  </div>
+  </div>
+
+  </div>
+</div>
+					<div class="modal-footer text-left">
+						<!-- <button type="button" id="remove" ng-click="removeMe(reason)">Ok</button>
+						<a class="btn btn-link" data-dismiss="modal" ng-click="resetComment()">Cancel</a> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+<script>
+//Script to hide logo on click
+    $(".hide-logo").click(function(){
+    $(".cruise-logo").fadeToggle();
+    });
+
+//hide job description
+$(".close-jd").click(function(){
+$(this).hide();
+$('.job-detail-slider').addClass('hide-slider');
+});
+
+    function signOut() {   
+        var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function () {
+            //console.log('User signed out.');
+          });
+      }
+    $("#id_of_textbox").keyup(function(event) {
+        if (event.keyCode === 13) {
+            $("#id_of_button").click();
+        }
+    });
+
+</script>
+
+
+</div>
+<div id="sheduled_msg" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md modal-450">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal new-m">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="fetchStartInterviewDetails()" data-dismiss="modal"><i class="fa fa-window-close font-size-25"></i></button>
+       <!--  <h4 class="modal-title common-title"><i class="icon-thumbs-up"></i> Successfully Applied</h4> -->
+      </div>
+      <div class="modal-body flat-body text-center">
+      <div class="thubs-up-div text-center">
+      	<div class="thumb-circle">
+      		<i class="fa fa-check"></i>
+      	</div>
+      	<h3 class="thumb-text">Woohoo!</h3>
+      </div>
+      <div class="modaltext">
+        <p>Your meeting is confirmed for<br/>
+			 <span class="job-name-id"><b>
+        
+        <!-- <span>{{dateformate1(userSelectedSlot.dateTime)}}</span> -->
+        <span>{{dateformate1(userSelectedSlot.dateTime)}} At
+        {{userSelectedSlot.dateTime.split(" ")[1]}} {{userSelectedSlot.dateTime.split(" ")[2]}}</span>
+        </b></span></p>
+        <p class="email-message">
+Check your email for application details</p>
+</div>
+      </div>
+     <!--  <div class="modal-footer text-right">
+        <button type="button" class="btn btn-default" ng-click="redirectToJobListPage()">OK</button>
+      </div> -->
+    </div>
+
+  </div>
+</div>
+<script>
+$("#overlay_sec").click(function(){
+	//alert();
+	$("#overlay_sec").css('display','none');
+});
+
+$("#overlay_sec1").click(function(){
+	//alert();
+	$("#overlay_sec1").css('display','none');
+});
+$("#overlay_sec2").click(function(){
+	//alert();
+	$("#overlay_sec2").css('display','none');
+});
+
+</script>
+
+
+

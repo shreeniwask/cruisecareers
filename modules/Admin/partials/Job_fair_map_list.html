@@ -1,0 +1,236 @@
+<div class="admin-page" id="post-list" >
+<div class="section-heading">
+        <h4>Mapped Jobs</h4>
+              </div>
+      <div class="section-content">
+        <div class="upper-actions row">
+        <div class="col-md-3">
+          <div class="button-group">
+            <button class="btn btn-default btn-create" id="add-jobs" ng-click="addJobs()"  data-toggle="modal"><i class="icon-plus"></i></button>
+            <button class="btn btn-default btn-delete" ng-click="check()" data-toggle="modal" ><i class="icon-trash-2"></i></button>
+          </div>
+        </div>
+        
+        <div class="col-md-4"></div>
+        
+        <div class="col-md-4">
+       <!--  <div class="button-group" style="text-align: left;">
+                    <button class="btn btn-default btn-create" id="create-job-btn" style="background:#1fa67a;" ng-click="generateExcel()"><i class="fa fa-file-excel-o"></i></button>
+                    <button class="btn btn-default btn-delete" ng-click="generatePDF()"><i class="fa fa-file-pdf-o"></i></button>
+                </div> -->
+          <!-- <div class="search-cntnr">
+            <div class="form-group search-box">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="fetchMappedJobList(0,10,search,null);getPostedJobcount(searchterm)"></i>
+            </div>
+			</div> -->
+		</div>
+		<div class="col-md-1">
+		<!-- 	  <div class="button-group">
+          	<button class="btn-default btn-create icon-navigation1 dropdown-toggle" data-toggle="dropdown" id="create-req-btn"><i class="fa fa-check-square-o"></i></button>
+            <a class="dropdown-toggle select-drop" data-toggle="dropdown"></a>
+         	<span class="fa fa-filter"></span>
+	      <ul class="dropdown-menu selection-column" style="overflow:auto;left: -73px !important;">
+						 <li>
+						  	<div class="chckbx-cntnr zeromargin">
+						     <input type="checkbox" id="app1" name="check" class="flashadmin" ng-click="selectAllColoumns(colcheck);savesettings()" ng-model="colcheck">
+						     <label class="cstmchk_lbladmin"  for="app1"></label><label for="app1" class="table-label">Select All</label> 
+						   </div>
+						  </li>
+						  <li ng-repeat="c in columnlist">
+						  	<div class="chckbx-cntnr zeromargin" ng-if="c.name=='Position'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()" disabled>
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						   <div class="chckbx-cntnr zeromargin" ng-hide="c.name=='Position'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()">
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  </li>
+						  
+						</ul>
+          </div> -->
+		</div>
+		<div class="clearfix"></div>
+		<br>
+          <div class="clearfix"></div>
+        </div>
+        <div class="table-cntnr">       
+        
+        
+       <table  class="table table-striped red-table"> 
+            <caption>Mapped Jobs</caption>
+            <thead>
+              <tr>
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(mappedjoblist,all)" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th>
+                <th>Position <i ng-click="SortingJobMapList('Position',search)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></th>
+                <th>Department <i ng-click="SortingJobMapList('Department',search)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></th>
+                <th>Brand <i  ng-click="SortingJobMapList('Brand',search)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></th>
+                <!-- <th>Experience</th> -->
+                <!-- <th ng-show="activeColumn('Posted Date')" ng-click="SortingPostedJobList('PostedDate',searchterm)" style="max-width: 120px;"><div>Posted Date <i class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></div></th>
+                <th ng-show="activeColumn('Hot Jobs')" class="text-center">Hot Jobs</th>
+                <th ng-show="activeColumn('Status')" class="text-center" style="width: 120px;">Status</th> -->
+                <!-- <th>Hide Job</th> -->
+              </tr>
+            </thead>
+            <tbody>
+            
+            
+              <tr ng-repeat="j in mappedjoblist"  ng-if="!checkJobId(j.id)" >
+                <td>
+                
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="{{j}}" name="check" class="flashadmin" ng-click="checkedList(j.id)"  ng-checked="all" ng-model="value">
+                      <label class="cstmchk_lbladmin" for="{{j}}" ></label> 
+                    </div>
+                </td>
+                <td>{{j.position.positonname}}</td>
+                <td >{{j.category.categoryName}}</td>
+                <td >{{j.brand.brandName}}</td>
+        
+              </tr>
+             
+            </tbody> 
+          </table> 
+           
+        </div>
+       <!--  <a ng-click="cancel()" ui-sref="restricted.admin.jobfairslist" style="float: left;" >Back</a> -->
+        <a  ng-click="redirectPage()" style="float: left;" >Back</a>
+      
+      
+        <div class="text-right">
+            
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+ 
+            </div>
+        
+        
+        
+        <!----Modal delete-list---->
+<div id="deletelist" class="modal fade" role="dialog">
+  <div class="modal-dialog  modal-sm add-brand">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ng-value=""></div>
+        Are you sure want to delete {{getCheckedId.length}} records?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deleteMappedJob('Job')">Delete</button>
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+    
+    
+  <script type="text/javascript">
+        $('body').on("click", ".dropdown-menu", function (e) {
+            $(this).parent().is(".open") && e.stopPropagation();
+        });
+       
+        $("#id_of_textbox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#id_of_button").click();
+            }
+        });
+        
+ </script>
+ <script type="text/javascript">
+$("document").ready(function() {
+
+	  $('.dropdown-menu').on('click', function(e) {
+	      if($(this).hasClass('selection-column')) {
+	          e.stopPropagation();
+	      }
+	  });
+	});
+</script>
+    </div>
+      </div>
+      
+      
+<div id="add-jobs-in-jobfair" class="modal fade" role="dialog" >
+	<div class="modal-dialog modal-lg add-brand">
+
+		<!-- Modal content-->
+		<div class="modal-content flat-modal" style="">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h4 class="modal-title common-title" style="margin-left: 0;">Map Jobs</h4>
+			</div>
+			<div class="modal-body flat-body">
+				<div class="clearfix"></div>
+<!-- 				Are you sure want to delete {{checkedJobFairsids.length}} records? -->
+     <div class="search-cntnr">
+            <div class="form-group search-box">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="fetchJobListForMapping(0,10,null,null,searchterm,null);fetchJobListForMappingCount(searchterm,null);"></i>
+            </div>
+			</div> 
+     
+     
+        <table  class="table table-striped red-table"> 
+            <caption>Mapping Jobs</caption>
+            <thead>
+              <tr>
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd1" name="check" class="flashadmin" ng-change="checkedAllListMappingJobs(mappingJobList,all)" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd1"></label> 
+                    </div>
+                </th>
+                <th  ng-click="Sorting('Position',search)">Position <i class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></th>
+                <th  ng-click="Sorting('Department',search)">Department <i class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></th>
+                <th  ng-click="Sorting('Brand',search)">Brand <i class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></th>
+                <!-- <th>Experience</th> -->
+                <!-- <th ng-show="activeColumn('Posted Date')" ng-click="SortingPostedJobList('PostedDate',searchterm)" style="max-width: 120px;"><div>Posted Date <i class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></div></th>
+                <th ng-show="activeColumn('Hot Jobs')" class="text-center">Hot Jobs</th>
+                <th ng-show="activeColumn('Status')" class="text-center" style="width: 120px;">Status</th> -->
+                <!-- <th>Hide Job</th> -->
+              </tr>
+            </thead>
+            <tbody style="">
+            
+            
+              <tr ng-repeat="j in mappingJobList">
+                <td>
+                
+                  <div class="chckbx-cntnr zeromargin" >
+                      <input type="checkbox" id="{{j}}" name="check" class="flashadmin" ng-click="checkedList(j.id)"  ng-checked="all" ng-model="value">
+                      <label class="cstmchk_lbladmin" for="{{j}}" ></label> 
+                    </div>
+                </td>
+                <td>{{j.position.name}}</td>
+                <td >{{j.category.name}}</td>
+                <td >{{j.brand.brandName}}</td>
+        
+              </tr>
+             
+            </tbody> 
+          </table> 
+
+
+				<div class="modal-footer text-left">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="show_ass" ng-click="saveJobMapping('Job')">Save</button>
+					<a class="btn btn-link" data-dismiss="modal">Cancel</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

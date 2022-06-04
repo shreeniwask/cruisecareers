@@ -1,0 +1,300 @@
+ <!-- <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+ <script>
+      CKEDITOR.replace('main_duties');
+      //CKEDITOR.replace('preferred_qualification');
+      //CKEDITOR.replace('basic_qualification');
+      CKEDITOR.replace('template-text');
+    </script> -->
+
+ 
+<div id="post" class="tab-pane fade in admin-page">
+
+
+ <div class="section-heading">
+      <div class="shadow-container">
+       
+          <div class="inner-head">
+            <h4>Expense Head</h4>
+          </div>
+          <div class="inner-form" style="padding:0 15px 2px 15px;">
+            <div class="row">
+            <form>
+            <div class="reimb-setting">
+              <div class="col-md-4">
+                <div class="form-group" style="margin-bottom: 0px;margin-top: 5px;">
+                  <label>Type of Reimbursement:</label>
+                         
+                  
+                  <select class="form-control flat-control-inner" id="expenseid" ng-model="expenseMaster.reimbursementTypeId" ng-change="getReimbursementName(expenseMaster.reimbursementTypeId)" style="margin-bottom: 0px;" required>
+                   <option value="">--Select--</option>  
+                  <!--   <option value="1">Medical</option>  -->                    
+                  <option data-ng-repeat="b in ReimbursmentType" data-ng-value="{{b.reimbursementTypeId}}" ng-selected="b.reimbursementTypeId==expenseMaster.reimbursementTypeId">{{b.reimbursement_typeName}}</option>                                 
+                  </select>
+                </div>
+         </div>
+     <div class="col-md-3">
+              <div class="form-group" style="margin-bottom: 0px;margin-top: 5px;">
+                  <label>Name of Expense Head:</label>
+                  <input type="text" class="form-control flat-control-inner" name="expense-name" ng-model="expenseMaster.expense_headName" style="margin-bottom: 0px;" required>
+                </div>
+              </div>
+              
+              <div class="col-md-3">
+              	<div class="chckbx-cntnr zeromargin" style="top: 36px;">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin"  ng-click="checkAllSubhead(expenseMaster.travel_flag)"  ng-model="expenseMaster.travel_flag">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                      <p class="expense-trvl">Travel Expense</p>
+                    </div>
+              </div>
+              
+             <div class="col-md-2">
+               <div class="btn-cntnr" style="margin: 16% 0;">
+                	<a data-toggle="modal" ng-if="expenseFlag==false" href="" class="setting-red smooth" ng-click="expenseSetting(1,expenseMaster.expense_headName)">Settings*</a>
+             	    <a data-toggle="modal" ng-if="expenseFlag==true" href="" class="setting-red smooth"  ng-click="expenseSetting(1,expenseMaster.expense_headName);brandDetails(expenseMaster.expense_typeId)">Settings*</a>
+ 			   </div> 
+             </div>
+			</div>
+			</form>
+            </div>  
+            
+            
+             <div class="clearfix"></div>
+
+            <div class="text-right" style="display: block;margin: 10px 0;">
+                <button class="btn btn-default btn-round-add" type="button" style="margin-right: 5px;"  ng-click="clearSubHeadModal()"><i class="icon-plus"></i></button>
+                <p class="expense-heading">Expense Sub Head</p>
+                  
+            </div>
+           
+       <div>
+       	
+        <div class="table-cntnr">
+          <table class="table table-striped red-table" ng-if="subheadlist.length>0">
+            <caption>SubHead List</caption>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+                <th style="width: 150px;">Travel Expenses</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="s in subheadlist">
+                <td>{{s.name}}</td>
+              <td><a data-toggle="modal" ng-if="expenseFlag==false"   ng-model="sub"  class="setting-red smooth"  ng-click="expenseSetting(2,s.name);subHeadSetting($index)" >Settings*</a></td>   
+               <td><a data-toggle="modal" ng-if="expenseFlag==true"  ng-model="sub" class="setting-red smooth" ng-click="fetchSettingData(s.id);expenseSetting(2,s.name);subHeadSetting($index)">Settings*</a></td>   
+               
+               <td style="text-align: center;">
+                	<div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="subhead{{$index}}" name="check" class="flashadmin" ng-model="s.travel_flag">
+                      <label class="cstmchk_lbladmin" for="subhead{{$index}}"></label>
+                    </div>  
+                </td>
+                <td style="text-align: right;"><button  ng-if="s.id == undefined" class="btn btn-default btn-delete"  ng-click="removeFromSubHeadList($index)"><i class="icon-trash-2"></i></button>
+                <button ng-if="s.id != undefined" class="btn btn-default btn-delete"  ng-click="openDeleteModal(s.id)"><i class="icon-trash-2"></i></button> 
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <button type="submit" ng-click="saveExpenseDetails(expenseMaster)" ng-if="expenseFlag==false" class="btn btn-default btn-bluer" id="create_slot-btn">Submit</button>  
+           <button type="submit" ng-click="saveExpenseDetails(expenseMaster)" ng-if="expenseFlag==true" class="btn btn-default btn-bluer" id="create_slot-btn">Update</button> 
+                    <a href="" ng-click="cancelCreateExpense()">Cancel</a>  
+      </div>
+      
+      <div class="btn-cntnr" style="margin-top: 20px; margin-bottom: 20px;text-align: right;">
+           
+   </div>   
+          </div>
+        </div>
+      </div>
+
+ 
+      </div>
+      
+        
+  
+  
+   <!-- <div id="deletelist" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-sm add-brand">
+
+    Modal content
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ng-value=""></div>
+        Are you sure Do you want to delete record?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deletefromList(formlist)">Delete</button>
+      <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div> -->
+    
+    <div id="delete-subhead" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-sm add-brand">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ng-value=""></div>
+       Are you sure you want to delete record?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deleteSubHead()">Delete</button>
+      <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+ 
+  <!-- -----modal add subhead---------- -->
+  <div class="modal fade" id="edit_subhead" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Add Sub Head</h4>
+              </div>
+              <div class="modal-body">
+                <form id="BrandUpdate" ng-submit="saveExpenseSubHead(subhead,expenseMaster.travel_flag)">
+                  <p>Sub Head Name:</p>
+                  <div class="form-group">
+                    <input type="text" name="brand-name" class="brand-name" ng-model="subhead" required>
+                     <!-- <p>Amount:</p>
+                     <input type="number" name="brand-name" class="brand-name" ng-model="subheadAmount" required> -->
+                 </div>
+                 <div class="form-group text-right">
+                  <button type="submit" id="btnupdate" class="btn-info add_brand" ng-click="subModal($index)" >Add</button>
+                </div>
+               </form>
+              </div>
+              
+            </div>
+            
+          </div>
+   
+      </div>
+      
+      
+  <!-- -----setting modal ---------- -->    
+	<div class="modal fade" id="add_setting" role="dialog">
+          <div class="modal-dialog modal-lg add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="modal-title">
+                	<p class="det-setting" style=" margin: 0px 12px;">Expense Head: <b>{{headName}}</b></p>
+                </div>
+              </div>
+              <div class="modal-body">
+                <div class="upper-actions">
+          <div class="table-cntnr">
+          <table class="table table-striped red-table" style="border: 1px solid #cccccc;">
+             <caption>Settings</caption> 
+            <thead>
+              <tr>
+                <th>
+                  
+                </th>
+                <th>Brand</th>
+                <th>Code</th>
+               	<th>Max Amount</th>
+               </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="checkallbrandlist" name="check" class="flashadmin" ng-click="checkedAllList(brandsList,allchecked)" ng-model="allchecked" >
+                      <label class="cstmchk_lbladmin" for="checkallbrandlist"></label> 
+                    </div>
+                </td>
+                <td style="">Applicable to All</td>
+                     <td><input type="text" class="form-control flat-control-inner"  ng-model="codeCK" ng-change="applyToAllFieldscode(allchecked,codeCK)" style="margin: 0px;width: 70%;" ></td> 
+                     <td><input type="text" id="all-currency" class="form-control flat-control-inner" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" ng-model="amountCK" ng-change="applyToAllFieldsamount(allchecked,amountCK);formatAllCurrency();" style="margin: 0px;width: 70%;"></td>
+             <!--  id=checkbrandlistcode{{b.id}}" 
+              id="checkbrandlistamt{{b.id}}" -->
+               <!--  <td><input type="text" class="form-control flat-control-inner"  ng-model="codeCK" ng-change="applyToAllFields(allchecked,codeCK,amountCK)" style="margin: 0px;width: 70%;" ></td> 
+                     <td><input type="number" class="form-control flat-control-inner" ng-model="amountCK" ng-change="applyToAllFields(allchecked,codeCK,amountCK)" style="margin: 0px;width: 70%;"></td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <div class="clearfix"></div>
+        </div>
+        
+       <div class="table-responsive" style="height:300px;overflow-y:scroll;"> 
+        <div class="table-cntnr">
+          <table class="table table-striped red-table" style="border: 1px solid #cccccc;">
+            <!--<caption>Settings</caption>-->
+            
+            <tbody>
+              <tr ng-repeat="b in brandsList">
+                <td style="width: 6%;">
+                  <!-- <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="checedbrandlist{{b.id}}" name="check" class="flashadmin" ng-model="ck"  ng-click="checkedList(b.id,ck)"  ng-checked="allchecked">
+                      <label class="cstmchk_lbladmin" for="checedbrandlist{{b.id}}"></label> 
+                    </div>
+ -->                </td>
+                <td style="width: 23.5%;">{{b.brandName}}</td>
+                <td><input type="text" id="checedbrandlistcode{{b.id}}" class="form-control flat-control-inner" ng-model="b.code" style="margin: 0px;width: 72%;"></td> 
+                <td><input type="text" id="checedbrandlistamt{{b.id}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control flat-control-inner money max-amount-input" ng-model="b.currencyAmnt" ng-change="formatCurrency(b.id)" style="margin: 0px;width: 72%;"></td>
+              </tr>
+            </tbody>	
+          </table>
+        </div>
+        </div>
+          <div class="btn-cntnr" style="margin-top: 20px; margin-bottom: 20px;">
+              <button ng-if="expenseFlag==false" class="btn btn-default btn-bluer" id="create_slot-btn1"  ng-click="addSubHeadBrandList()">Done</button>
+              <button ng-if="expenseFlag==true" class="btn btn-default btn-bluer" id="create_slot-btn1"  ng-click="addSubHeadBrandList()">Done</button>
+               
+            </div>
+        
+              </div>
+              
+            </div>
+            
+          </div>
+      </div>
+ 
+  
+    
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+  <script src="script.js"></script>
+  
+  <!-- <script type="text/javascript">
+		$('.money').simpleMoneyFormat();			
+	</script> -->
+	
+<script type="text/javascript">
+    
+//Script for smooth scrolling
+$('a.smooth').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+        || location.hostname == this.hostname) {
+
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+           if (target.length) {
+             $('html,body').animate({
+                 scrollTop: target.offset().top - 70
+            }, 1000);
+            return false;
+        }
+    }
+});
+  </script>
+  

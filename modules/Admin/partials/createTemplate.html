@@ -1,0 +1,119 @@
+
+<div ng-app="templatemodule" >
+<div  id="template" class="tab-pane fade in admin-page">
+     
+      <div class="section-heading">
+        <h4>Template Master</h4>
+        <p></p>
+      </div>
+      
+     
+      <div class="section-content" id="create-template">
+      <div class="upper-actions container-fluid">
+      
+       <form ng-submit="saveOrUPdateTemplate(data)">
+      
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" name="" ng-model="data.templateName" class="form-control flat-control-inner" placeholder="Enter template name" required oninvalid="this.setCustomValidity('Please enter information in this field')" oninput="setCustomValidity('')">
+              </div>
+            </div>
+            
+             <div class="col-md-3">
+              <div class="form-group">                
+                <select class="form-control flat-control-inner" ng-model="data.modeId" ng-options="cl.id as cl.mode for cl in mode" ng-change="myfunc(data.modeId)" required>
+                 <option value = "">Select Mode</option>
+         </select>  
+              </div>              
+            </div>
+            
+            <div class="col-md-3">
+              <div class="form-group">              
+                      <select class="form-control flat-control-inner" ng-model="data.typeId" ng-options="cl.id as cl.type for cl in templatetype" ng-change="setsystemmail(data.typeId)" required>
+                       <option value = "">Select Category</option>
+         </select>              
+                
+              </div>              
+            </div>
+            
+            <div ng-hide="smsFlag == true || data.modeId==2 " class="col-md-9">
+              <div class="form-group">
+                <input type="text" name="" class="form-control flat-control-inner" placeholder="Enter subject name" ng-model="data.subject" ng-required="data.modeId!=2"  oninvalid="this.setCustomValidity('Please enter information in this field')" oninput="setCustomValidity('')">
+              </div>
+            </div> 
+             <div class="col-md-3" ng-if="smsFlag == true || data.modeId==2">
+            <div class="form-group">
+			<input type="text" name=""  placeholder="Enter DLT Template ID" class="form-control flat-control-inner" ng-model="data.dltTemplateId"  required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+          <div ng-if="smsFlag == true || data.modeId==2" class="col-md-9">
+              <div class="form-group">
+
+                <textarea   id="smsdesc"  cols="15" rows="15" class="form-control flat-control-inner" placeholder="Enter sms body" ng-model="data.bodyForTemplate" required></textarea>
+
+              </div>
+            </div>
+            <div ng-hide="smsFlag == true || data.modeId==2 " class="col-md-9">
+              <div class="template-cntnr">
+                <div class="teal-caption">Template Editor</div>
+                <div class="form-group">
+                <textarea id="fulldesc" class="form-control flat-control-inner" cols="15" rows="15" ng-model="data.bodyForTemplate" required></textarea>            
+                </div>
+              </div> 
+            </div> 
+            <div class="col-md-3">
+              <label>Enter following alias:</label>
+              <ul type="none" class="alias-list" style="overflow-y: scroll;height: 600px;">
+                <li>Alias</li>
+                <li>${applied_brand}</li>                
+                <li>${applied_department}</li>
+                <li>${applied_position}</li>
+                <li>${mail}</li>
+                <li>${reference_no}</li>
+                <li>${employee_no}</li>
+                <li>${schedule}</li>
+                <li>${selected_brand}</li> 
+                <li>${selected_department}</li> 
+                <li>${selected_position}</li> 
+                <li>${short_list_brand}</li> 
+                <li>${short_list_department}</li> 
+                <li>${short_list_position}</li>
+                <li>${current_brand}</li>
+                <li>${current_department}</li> 
+                <li>${current_position}</li>               
+                <li>${username}</li>        
+                <li>${notify_position}</li>
+                <li>${workflow_name}</li> 
+                <li>${task_name}</li> 
+                <li>${estimated_start_date}</li>
+                <li>${estimated_end_date}</li>
+                <li>${actual_end_date}</li>
+                <li>${ticket_number}</li>  
+                <li>${otp}</li>
+                <li>${CrewDeployment_Name}</li>
+                <li>${CrewDeployment_Brand}</li>
+                <li>${CrewDeployment_Position}</li>
+                <li>${CrewDeployment_Department}</li>
+                <li>${CrewDeployment_Ship}</li>
+                <li>${CrewDeployment_Port}</li>
+                <li>${CrewDeployment_Joiningdate}</li>                                                             
+              </ul>
+            </div>
+          </div>
+          <div class="btn-cntnr" style="margin-top: 20px;">
+              <button ng-if=flag type="submit" class="btn btn-default btn-bluer" id="save-temp-btn" >Save</button>
+              <button ng-if=!flag type="submit" class="btn btn-default btn-bluer" id="save-temp-btn" >Update</button> 
+              <a ng-click="canceltemplate()" >Cancel</a>
+            </div>
+        
+        
+        
+        </form>
+      </div>
+    </div>
+    
+</div>
+</div>

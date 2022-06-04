@@ -1,0 +1,133 @@
+<style>
+.scheduler-content{
+	padding: 6px 6px 0 14px;
+}
+.scheduler-content .upper-section button{
+	border: none;
+	background-color: #00aeef;
+	color: #fff;
+	font-size: 14px;
+}
+.scheduler_add_scheduler_data{
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+.delivery-type-label label{
+	font-size: 14px !important;
+}
+.delivery-type-padding{
+	padding: 0 0 20px 5px !important;
+}
+
+.delivery-type-padding .zeromargin{
+	margin-right: 5px !important;
+}
+.form-group-height{
+	height: 150px;
+}
+
+</style>
+
+<div id="Scheduler" class="tab-pane fade in admin-page">
+      <div class="section-heading">
+        <h4>Scheduler</h4>      
+      </div>
+          <div class="scheduler-content" id="scheduler-list">
+    	<div class="section-content">
+    <div class="upper-actions">
+      <div class="col-md-4 col-lg-4">
+        <div class="row">
+          <div class="button-group">
+            <button class="btn btn-default btn-create btn_log" id="add-scheduler-id" ng-click="addNewScheduler();"><i class="icon-plus"></i> </button>
+          	<button class="btn btn-default btn-delete" id="delete-scheduler-id" ng-click="check();"><i class="icon-trash-2"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-lg-2"></div>
+      <div class="col-md-6 col-lg-6" style="padding: 0px;">
+        <div class="clone-upper" style="float: right;">
+         <div class="search-cntnr search-box" style="float: initial; padding-left: 0px;">
+            <div class="form-group search-box">
+              <input type="text" name="" id="id_of_textbox" ng-model="searchterm" placeholder="Search" class="form-control flat-control-search mar-bottom-zero">
+              <i class="icon-search" id="id_of_button" ng-click="fetchSchedulerMaster(0,10,null,null,searchterm);getActiveSchedulerCount(searchterm)"></i> </div>
+          </div>
+        </div>
+      </div>
+	  <div class="clearfix"></div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped red-table">
+        <caption> Scheduler </caption>
+        <thead>
+          <tr>
+            <th style="vertical-align: middle;">
+               <div class="chckbx-cntnr zeromargin">
+                  <input type="checkbox" id="select-all" name="check" class="flashadmin" ng-click="checkedAllList(schedulermaster,all)" ng-model="all">
+                  <label class="cstmchk_lbladmin" for="select-all"></label> 
+               </div>
+            </th>
+            <th ng-click="Sortingschedulerlist('SchedulerName',searchterm)">Scheduler Name <i class="fa fa-sort" aria-hidden="true"></i> </th>
+            <th ng-click="Sortingschedulerlist('Activity',searchterm)">Activity <i class="fa fa-sort" aria-hidden="true"></i> </th>
+            <th ng-click="Sortingschedulerlist('DeliveryType',searchterm)">Delivery Type <i class="fa fa-sort" aria-hidden="true"></i> </th>
+          </tr>
+        </thead>
+         <tbody>
+            <tr ng-repeat='SchedulerMaster in schedulermaster'>
+            	<td>
+            		<div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="{{SchedulerMaster}}" name="check" class="flashadmin check-flashadmin" ng-click="checkedSchedulerList(SchedulerMaster.id)" ng-checked="all" >
+                      <label class="cstmchk_lbladmin" for="{{SchedulerMaster}}"></label> 
+                    </div> 
+                </td>
+            	 <td><a ng-click="fetchschedulerId(SchedulerMaster.id)">{{SchedulerMaster.schedulerName}}</a></td>
+                <td>{{SchedulerMaster.activityName}}</td>
+                <td>{{SchedulerMaster.deliverytypename}}</td>
+          	</tr>
+          	
+          </tbody>
+      </table>
+      <div class="text-right">
+            
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul> 
+            </div>
+    </div>
+
+  </div>
+    </div>
+  
+ </div>
+              <!----Modal delete-list---->
+<div id="deletelist" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm add-brand">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ng-value="getCheckedtemplateid"> </div>
+        Are you Sure want to delete {{getCheckedtemplateid.length}} record(s)?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deletefromList('schedulermaster')">Delete</button>
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div> 
+  
+<script type="text/javascript">
+$("#id_of_textbox").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#id_of_button").click();
+    }
+});
+</script>
+ 
+ 

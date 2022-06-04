@@ -1,0 +1,225 @@
+<style>
+#meeting_waiting{
+	margin-top: 140px;
+}
+#meeting_waiting .meeting_box_bg > .row{
+	margin: 0;
+}
+.meeting_box_bg {
+    padding: 15px 0;
+    background-color: #fff;
+}
+.banner_inner_padding{
+	padding: 0 10px;
+}
+.banner_note{
+	padding: 30px 15px;
+    background: #105B78;
+    margin-bottom: 40px;
+}
+.banner_note_box p{
+	margin-bottom: 0;
+	color: #fff;
+	font-size:15px;
+	text-align: center;
+}
+.applied_inner_padding{
+	padding: 0 10px;
+}
+.credential_details_box{
+	margin-bottom: 40px;
+}
+.credential_details_box ul{
+    padding-left: 0;
+    list-style-type: none;
+    margin-bottom: 0;
+}
+.credential_details_box ul li{
+	font-size: 14px;
+    margin-bottom: 5px;
+}
+.credential_details_box ul li span{
+    font-weight: 600;
+}
+.credential_details_box ul li:nth-child(2){
+    margin-bottom: 0;
+}
+.credential_details_box ul li:nth-child(3){
+    margin-top: 20px;
+}
+.start_meet_disabled{
+    background-color: #C4C2C3;
+    color: #585858;
+    border-radius: 0;
+    width: 200px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+.start_meet_disabled:hover{
+	background-color: #C4C2C3;
+	color: #585858;
+	cursor: not-allowed;
+}
+.start_meet_enabled{
+	background-color: #099F00;
+    color: #fff;
+    border-radius: 0;
+    width: 200px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+.start_meet_enabled:hover, .start_meet_enabled:focus{
+	background-color: #15af0c;
+	color: #fff !important;
+}
+.applied_position_text{
+	padding: 10px 30px;
+    background: #105B78;
+    border: 1px solid #105B78;
+    border-bottom: none;
+}
+.applied_position_text p{
+	font-size: 15px;
+	color: #fff;
+	text-align: left;	
+    margin-bottom: 0;
+}
+.applied_position_list {
+    height: 290px;
+    border: 1px solid #105B78;
+    background-color: #FAFAFA;
+    overflow: auto;
+}
+.position_list_box {
+    background-color: #fff;
+    margin: 15px 30px 15px 15px;
+    padding: 8px 15px;
+    box-shadow: 0px 3px 8px 0px rgb(0 0 0 / 10%);
+}
+.position_list_box p{
+	margin-bottom:0;
+    font-size: 14px !important;
+}
+.position_list_box p:first-child{
+   	color: #00aaff;	
+}
+.position_list_box p span{
+	font-weight: 600;
+}
+#carousel-reviews .carousel-inner .item img{
+	width: 100%;
+    height: 350px;
+}
+#carousel-reviews .carousel-inner .item video {
+    width: 100%;
+    height: 350px;
+}
+.prev_slide_btn, .next_slide_btn{
+    border: none;
+    opacity: 1;
+    background: none !important;
+    padding:0;
+}
+.prev_slide_btn img{
+	position: absolute;
+    left: -10px;
+    top: 35%;
+}
+.next_slide_btn img{
+	position: absolute;
+    right: -10px;
+    top: 35%;
+}
+.prev_slide_btn:hover, .prev_slide_btn:focus, .next_slide_btn:hover, .next_slide_btn:focus{
+    transform: inherit !important;
+    opacity: 1 !important;
+}
+</style>
+<section class="" id="meeting_waiting">
+	<div class="meeting_box_bg">
+		<div class="row">
+			<div class="col-md-7">
+				<div class="banner_inner_padding">
+					<div class="banner_note">
+						<div class="banner_note_box">
+							<p>You can browse through the reading/viewing matrial given below. until our recruiter oin you. Click on the 'START MEETING' when it turns green.</p>
+						</div>			
+					</div>
+					<div class="slider_box slider-div-initiat">						
+						<div class="carousel-reviews broun-block">						    
+				            <div id="carousel-reviews" class="carousel slide" data-ride="carousel">				            
+				                <div class="carousel-inner">
+				                    <div class="item active">	
+										<img src="https://s3.ap-south-1.amazonaws.com/cruisetesting/Jobfair/3d2c5ac0-b909-4766-9530-1c35a2c36733Desert.jpg">
+				                    </div>
+				                    <div class="item">						                        
+			            				<video src="https://s3.ap-south-1.amazonaws.com/cruisetesting/Jobfair/1d17e970-2f82-4f79-bfec-13afd162879efile_example_MP4_640_3MG.mp4" controls></video>											
+				                    </div>
+				                    <div class="item">
+										<img src="https://s3.ap-south-1.amazonaws.com/cruisetesting/Jobfair/3d2c5ac0-b909-4766-9530-1c35a2c36733Desert.jpg">
+				                    </div>                    
+				                </div>
+					                <button class="left carousel-control prev_slide_btn" href="#carousel-reviews" role="button" data-slide="prev">
+					                    <img src="resources/img/Group_1.png" />
+					                </button>
+					                <button class="right carousel-control next_slide_btn" href="#carousel-reviews" role="button" data-slide="next">
+					                    <img src="resources/img/Group_2.png" />
+					                </button>
+				            </div>						        
+						</div>
+					
+												
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="applied_inner_padding">
+					<div class="credential_details_box">
+						<ul>
+							<li> <span>URL : </span> https://meet.google.com/dnq-zxvj-nva?hs=146 </li>
+							<li> <span>Password : </span> Password@123 </li>
+							<li> <button class="btn start_meet_disabled">Start Meeting</button> <button class="btn start_meet_enabled">Start Meeting</button></li>
+						</ul>
+					</div>
+					<div class="applied_position_main">
+						<div class="applied_position_text">
+							<p>Applied Positions</p>
+						</div>
+						<div class="applied_position_list">
+							<div class="position_list_box">
+								<p>Sales and Marketing Executive </p>
+								<p><span>Department:</span> Sales and Marketing </p>
+								<p><span>Brand:</span> P&O - Europe1 </p>
+							</div>
+							<div class="position_list_box">
+								<p>Sales and Marketing Executive </p>
+								<p><span>Department:</span> Sales and Marketing </p>
+								<p><span>Brand:</span> P&O - Europe1 </p>
+							</div>
+							<div class="position_list_box">
+								<p>Sales and Marketing Executive </p>
+								<p><span>Department:</span> Sales and Marketing </p>
+								<p><span>Brand:</span> P&O - Europe1 </p>
+							</div>
+							<div class="position_list_box">
+								<p>Sales and Marketing Executive </p>
+								<p><span>Department:</span> Sales and Marketing </p>
+								<p><span>Brand:</span> P&O - Europe1 </p>
+							</div>
+							<div class="position_list_box">
+								<p>Sales and Marketing Executive </p>
+								<p><span>Department:</span> Sales and Marketing </p>
+								<p><span>Brand:</span> P&O - Europe1 </p>
+							</div>
+							<div class="position_list_box">
+								<p>Sales and Marketing Executive </p>
+								<p><span>Department:</span> Sales and Marketing </p>
+								<p><span>Brand:</span> P&O - Europe1 </p>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+</section>

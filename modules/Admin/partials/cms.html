@@ -1,0 +1,111 @@
+
+<div class="admin-page" ng-controller="Cms_Ctrl">
+
+      <div class="section-heading">
+        <h4>Manage Homepage</h4>
+       </div>
+      <div class="section-content" id="post-list">
+        <div class="upper-actions">
+          <div class="button-group">
+           	<button class="btn btn-default btn-create" id="create-job-btn" ng-click="fetchHomeImagesList()" data-toggle="modal" data-target="#preview-screen" ><i class="fa fa-eye"></i></button>
+    	  </div>
+       </div>
+
+      <div class="main-panel" ng-repeat="d in data">
+      <form id="myForm" name="" ng-submit="saveHomeImageDerails(d)">     
+        <div class="col-md-offset-1 col-md-10 cms-panel">
+        <div class="table-cntnr">
+         
+          <div class="col-md-4 col-sm-4">
+          
+                  <img  id="image_upload_preview{{$index}}" ng-src="{{d.path}}" alt="your image"  class="img-responsive image_upload_preview" style="min-height: 190px;width: 100%;"/>
+                  <p class="logo_recomm">Recommended Size: 1280*455px</p>
+                  <div class="btn-default browse-btn">Browse
+                  <input type='file' id="input-image{{$index}}" ng-click="getindex($index)"  class="input-image" accept="image/*">
+                  </div>
+
+                  <button type="button" class="btn-default remove-btn"  accept="image/*" id="remove-img" ng-click="getremove($index);">Remove</button>
+              <!-- </form> -->
+          </div>
+          <div class="col-md-8 col-sm-12">
+            <div class="form-group">
+              <label>Title</label>
+              <input type="text" class="form-control flat-control-search" id="name" ng-model="d.title" maxlength="30" ng-keypress="checkkeys()">             
+              <input type="hidden"  value="d" ng-model="d.id">
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea class="form-control flat-control-search" id="decs" cols="35" rows="5" ng-model="d.description" maxlength="60" ng-keypress="checkdecs()"style="margin-bottom: 0 !important;"></textarea>
+            </div>
+            
+            <div class="btn-cntnr text-right">
+        <button class="btn btn-default btn-bluer"  type="submit">Save</button>
+        <a ng-click="cancel(d)">Cancel</a>
+      </div>
+      </div>
+      </div>
+      </div>
+      </form>
+      </div>
+</div>
+
+
+
+
+<!--  modal part -->
+         <div class="modal fade" id="preview-screen" role="dialog" style="padding: 0px !important;">
+          <div class="modal-dialog modal-lg add-brand" style="width: 90% !important;"><!-- style="width: 80% !important;" -->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Homepage Preview</h4>
+              </div>
+              
+              <div class="modal-body height-550" >                 
+                 <div id="cruise-slider" class="carousel slide popupslide" data-ride="carousel">
+                 
+                 
+                 <ol class="carousel-indicators hidden-xs">
+  				  <li data-target="#cruise-slider" data-slide-to="{{$index}}" class="active" ng-repeat="b in homeImagesList" ></li>   
+    			 </ol>
+                 
+               
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-fade">
+                <div class="carousel-inner">
+    
+                  
+                  <div class="item relative-item" ng-class="{active:!$index}" ng-repeat="b in homeImagesList">
+      <img ng-src="{{b.path}}" alt="cr{{$index}}" width="100%" style="height: 455px;">
+       <div class="landing-btn setsail">
+      	<button class="btn btn-default landing-btn" id="land">Set Sail</button>
+      </div> 
+       <div class="carousel-caption cruise-captions cruise-cap-slide">
+       <h3 ng-bind-html="b.text"></h3>
+      </div>
+     
+      </div>        
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+              </div>
+              
+            </div>
+              
+              
+              
+</div>
+<script type="text/javascript">
+$('.popupslide').carousel({
+	  interval: 1000 * 4,
+	  pause: "false"
+	});
+	
+	
+
+
+</script>
+

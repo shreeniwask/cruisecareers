@@ -1,0 +1,300 @@
+<style>
+ul.dropdown-menu.kk-flex:after, ul.dropdown-menu.kk-flex:before {
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	border-bottom: 9px solid #fff;
+	top: -9px;
+	content: '';
+	left: 50%;
+	margin-left: 34px;
+	position: absolute;
+}
+
+ul.dropdown-menu.kk-flex:before {
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;
+	border-bottom: 12px solid #ccc;
+	border-top-color: inherit;
+	top: -12px;
+	margin-left: 31px;
+}
+
+ul.dropdown-menu.kk-flex li a {
+	padding-left: 10px !important;
+}
+
+.change_pwd {
+	margin-right: 10px;
+	font-size: 17px !important;
+	line-height: 0;
+	vertical-align: top;
+}
+.candidate-dashboard-navbar .btn_virtual_career {
+	background: #00aaff;
+    border: 1px solid #00aaff;
+    color: #fff;
+    box-shadow: 3px 8px 8px #c4ddea96;
+    padding: 6px !important;
+}
+
+.candidate-dashboard-navbar ul.uppermenu li a{
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+.candidate-dashboard-navbar ul.uppermenu li .toggle-text{
+  font-size: 13px !important;
+}
+
+.candidate-dashboard-navbar 
+</style>
+
+<div ng-controller="Header_Ctrl">
+	<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+		id="call_confirmation">
+		<div class="modal-dialog modal-sm add-brand">
+			<div class="modal-content flat-modal">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="declineCall()"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Incoming Call from
+						Support</h4>
+				</div>
+				<div class="modal-body flat-body"">
+					<img src="resources/img/ic/call.gif">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" id="modal-btn-si"
+						ng-click="acceptCall()">Accept</button>
+					<button type="button" class="btn btn-primary" id="modal-btn-no"
+						ng-click="declineCall()">Decline</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-controller="Register_Ctrl">
+		<nav class="navbar navbar-default admin-nav"
+			ng-if="userdetails.roleId == 1 || (userdetails.roleId > 3 && userdetails.roleId <= 8) || userdetails.roleId == 9 || userdetails.roleId == 12 || userdetails.roleId == 10">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav navbar-right adminmenu">
+
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown"> <img class="admin-img"
+							src="resources/img/call.png">
+					</a> <span class="badge badge-notify"
+						ng-if="callNotications.length > 0">{{callNotications.length}}</span>
+						<ul class="dropdown-menu kk-flex"
+							style="padding: 0px !important; border: 2px solid #ccc;">
+							<li ng-repeat="notification in callNotications"
+								ng-click="initiateCommunication(notification)"><a
+								ng-click="initiateCommunication(notification.id,notification.userid)">
+									<span ng-show="notification.communicationOption.id==1"><img
+										src="resources/img/video-icon.png" class="img-responsive"></span>
+									<span ng-show="notification.communicationOption.id==2"><img
+										src="resources/img/incoming-phone.png"
+										class="img-responsive workfow-img"></span> <span
+									ng-show="notification.communicationOption.id==3"><img
+										src="resources/img/envelope-text.png"
+										class="img-responsive workfow-img"></span> <span
+									ng-show="notification.communicationOption.id==4"><img
+										src="resources/img/microphone-black-shape.png"
+										class="img-responsive workfow-img"></span>
+							</a> {{notification.user.firstName}}</li>
+						</ul></li>
+					<li ng-if="userdetails.roleId == 8 || userdetails.roleId == 1 || userdetails.roleId == 12 || userdetails.roleId == 4 || userdetails.roleId == 5 || userdetails.roleId == 6 || userdetails.roleId == 7 ||  userdetails.roleId == 9" class="dropdown"><a
+						class="smooth big-icon notification-bell dropdown-toggle"
+						data-toggle="dropdown"> <i class="icon-bell"
+							ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()"
+							ng-click="seeAllNotifications()" style="cursor: pointer;"></i>
+					</a> <span class="badge badge-notify"
+						ng-if="unSeenNotifications.length > 0">{{unSeenNotifications.length}}</span>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="">
+							<div class="admin-img" style="background-image: url({{userdetails.profilePic}});"></div>
+							{{userdetails.firstName+" "+userdetails.lastName}} <span
+							class="icon-chevron-down"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a ui-sref="restricted.admin.changepasswordAdmin" class="logout-admin"><i
+									class="icon icon-lock change_pwd"></i>Change Password</a></li>
+							<li><a ng-click="logoutAdmin()" class="logout-admin"><i
+									class="fa fa-power-off change_pwd"></i>Logout</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</nav>
+		<div id="purgeConfm" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-md add-brand">
+
+				<!-- Modal content-->
+				<div class="modal-content flat-modal">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">x</button>
+						<h4 class="modal-title common-title" style="margin-left: 0;">Deactivate
+							Account</h4>
+					</div>
+					<div class="modal-body flat-body">
+						<div class="clearfix"></div>
+						Are you sure you want to deactivate your account?
+						<textarea class="form-control" placeholder="Tell Us Your Reason"
+							rows="5" ng-model="reason"></textarea>
+						<div class="modal-footer text-left">
+							<button type="button" id="remove" ng-click="removeMe(reason)">Ok</button>
+							<a class="btn btn-link" data-dismiss="modal"
+								ng-click="resetComment()">Cancel</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<header ng-controller="Register_Ctrl"
+		ng-if="(userdetails.roleId == 2 || userdetails.roleId == 3)">
+		<nav class="navbar navbar-default header-nav navbar-fixed-top" id="sc">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle hide-logo"
+						data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a ui-sref-opts="{reload: true, inherit: false}"
+						class="navbar-brand cruise-logo smooth"
+						ui-sref="restricted.dashboard" ui-sref-active="active"
+						style="position: absolute;"><img
+						src="resources/img/logo-big.png"></a>
+				</div>
+				<div class="collapse navbar-collapse candidate-dashboard-navbar" id="myNavbar">
+					<ul class="nav navbar-nav navbar-right uppermenu"
+						ng-controller="Header_Ctrl">
+						
+						 <li ng-if="isselected == true && eif_status == 1">
+						 
+						 <a ui-sref-opts="{reload: true, inherit: false}"
+							ui-sref="restricted.EIForm" ui-sref-active="active"
+							class="smooth" style="padding: 0 5px !important;"><b class="btn btn_virtual_career" style="font-size: 12px !important;">EIForm</b></a></li>	
+						
+							<li ng-if="userdetails.roleId == 2"><a
+							ng-if="activewalkinCount != 0"
+							ui-sref-opts="{reload: true, inherit: false}"
+							ui-sref="restricted.user_walkin" ui-sref-active="active"
+							class="smooth" style="padding: 0 5px !important;"><b class="btn btn_virtual_career" style="font-size: 12px !important;">Meet-A-Recruiter</b></a></li>
+							
+							
+						
+							
+							
+						<li ng-if="userdetails.roleId == 2"><a
+							ng-if="activeJobfairCount != 0"
+							ui-sref-opts="{reload: true, inherit: false}"
+							ui-sref="restricted.user_job_fair" ui-sref-active="active"
+							class="smooth" style="padding: 0 5px !important;"><b class="btn btn_virtual_career" style="font-size: 12px !important;">Virtual Career Fair</b></a></li>
+						<li ng-if="userdetails.roleId == 2"><a
+							ui-sref="restricted.job_result" ui-sref-active="active"
+							ui-sref-opts="{reload: true, inherit: false}" class="smooth">Find
+								Jobs</a></li>
+						<li ng-if="userdetails.roleId == 2"><a href="" class="smooth"
+							ui-sref-opts="{reload: true, inherit: false}"
+							ng-click="fetchMyApplications()">My Applications</a></li>
+						<li class='drop-dwon-tt'
+							ng-if="userdetails.roleId == 2 || userdetails.roleId == 3"><a
+							class="dropdown-toggle smooth toggle-text" data-toggle="dropdown"
+							ui-sref-active="active"> <img class="support"
+								src="resources/img/male.png" /> Support <span
+								class="icon-chevron-down"></span></a>
+							<ul class="dropdown-menu custom-menu">
+								<li><a ui-sref="restricted.region_selection"
+									ui-sref-active="active"> Contact Support</a></li>
+								<li class="withbord"><a ui-sref="restricted.supporttickets"
+									ui-sref-active="active"> My Support Tickets</a></li>
+							</ul></li>
+						<!-- <li ng-if="userdetails.roleId == 2"><a ui-sref="restricted.region_selection" ui-sref-active="active" class="smooth" ><i class="fas fa-headphones"></i> Support</a></li> -->
+						<!-- <li ng-if="userdetails.roleId == 8" class="dropdown"><a class="smooth big-icon notification-bell dropdown-toggle" data-toggle="dropdown">
+        <i class="icon-bell" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-click="seeAllNotifications()"></i>
+        </a>
+        <span class="badge badge-notify" ng-if="unSeenNotifications.length > 0">{{unSeenNotifications.length}}</span> 
+        
+         <ul class="dropdown-menu notification-dropdown-list" role="menu" id="notification-dropdown-list" type="round">
+         <div class="dropdown-header notify-head">
+		  <span class="heading">Notifications</span>
+		 </div>		
+		    <div class="edropdown eclosedrop"> 
+		    <li>Notification with dot</li>
+		    <li>Notification with dot</li>
+		    <li>Notification with dot</li>
+           	<li ng-repeat="n in unSeenNotifications"><i class="fa fa-circle"></i>{{n.notificationText}}</li>                    	           	
+           	<li class="text-center" ng-show="unSeenNotificationsCount == 0"><i></i>No new notifications.</li>          	
+           	<div ui-sref="restricted.my_notification" class="text-center" style="border-top: 1px solid #ccc;">
+           	<a class="btn-link not-link" style="color: #00aeef !important; line-height: 40px !important;padding-left: 0;text-transform: initial; cursor: pointer;">View all notifications</a>
+           	</div>
+           </div>            
+          </ul>  				
+        </li> -->
+						<li><a style="padding-right: 0px !important;"><div class="profile-pic-small" style="background-image: url({{userdetails.profilePic}})"></div></a></li>
+						<li class="dropdown closedrop"><a
+							class="dropdown-toggle toggle-text" id="not-drop"
+							data-toggle="dropdown"
+							ng-click="checkStatus();fetchCompliancebyJob()" href="">{{userdetails.firstName+"
+								"+userdetails.lastName}}<span class="icon-chevron-down"></span>
+						</a>
+							<ul class="dropdown-menu custom-menu">
+								<li><a ui-sref="restricted.dashboard"
+									ui-sref-active="active"><i class="icon-dashboard"></i>
+										Dashboard</a></li>
+								<li class="withbord"><a ui-sref="restricted.profile"
+									ui-sref-active="active"><i class="icon-user"></i> Profile</a></li>
+								<li class="withbord"><a ui-sref="restricted.todolist"
+									ui-sref-active="active" ng-show="statusflag"><i
+										class="icon-message-square"></i> To Do List</a></li>
+								<!--  <li><a href="" ng-click="logout();fbLogout();GmailsignOut()"><i class="icon-power" ></i>  -->
+								<li><a ui-sref="restricted.changepassword"><i
+										class="icon icon-lock"></i>Change Password</a></li></li>
+						<!-- <li ng-if="userdetails.roleId == 2 ||userdetails.roleId == 3"><a
+							data-target="#purgeConfm" data-toggle="modal"><i
+								class="fa fa-trash"></i> Remove Me</a></li> -->
+						</li>
+
+						<li><a href="" ng-click="checkToLogOut()"><i
+								class="icon-power"></i> Logout</a></li>
+					</ul>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+</div>
+<div ui-view></div>
+
+
+
+<script>
+	$(".custom-menu a").click(function() {
+		$(".toggle-text").dropdown("toggle");
+	});
+
+	$(".custom-menu li").click(function() {
+		alert('click');
+		$(".drop-dwon-tt").toggleClass("open");
+	});
+	
+	
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.closedrop li a').click(function() {
+			$('.closedrop').removeClass('open');
+		});
+	
+	
+	///Script to hide logo on click
+	$(".hide-logo").click(function(){
+		$(".cruise-logo").fadeToggle();
+	});
+	
+	});
+
+</script>
+

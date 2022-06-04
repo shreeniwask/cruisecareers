@@ -1,0 +1,213 @@
+<section class="tab-pane fade in active admin-page">
+	  <div class="section-heading">
+        <h4>Owner Workflow</h4>
+      </div> 
+            <div class="" id="main-listing">
+               <div class="new-dashboard">
+	              	<div class="col-md-7">
+	              	</div>
+                     <div class="col-md-5 pull-right">
+                        <div class="button-group" >
+                           <button class="btn btn-default btn-create" id="create-report-btn" style="background:#1fa67a;" ng-click="generateExcel()"><i class="fa fa-file-excel-o"></i></button>
+                        </div>
+                        <div class="form-group search-box new">
+                           <input type="text" name="" id="id_of_searchbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm" ng-blur="fetchWorkFlowOwnerList1(0,10,null,null,searchterm);getWorkflowOwnerListCount(searchterm,null)">
+                           <i class="icon-search" id="id_of_searchbutton" ng-click="fetchWorkFlowOwnerList1(0,10,null,null,searchterm);getWorkflowOwnerListCount(searchterm,null)"></i>
+                        </div>
+                        <div class="button-group middle">
+                           <button class="btn-default btn-create icon-navigation1 dropdown-toggle" data-toggle="dropdown" id="create-req-btn"><i class="fa fa-check-square-o"></i></button>
+                          
+                           <ul class="dropdown-menu selection-column" style="overflow:auto;">
+                              <li>
+                                 <div class="chckbx-cntnr zeromargin">
+                                    <input type="checkbox" id="app1" name="check" class="flashadmin" ng-click="selectAllColoumns(colcheck);savesettings()" ng-model="colcheck">
+                                    <label class="cstmchk_lbladmin"  for="app1"></label><label for="app1" class="table-label">Select All</label> 
+                                 </div>
+                              </li>
+                              <li ng-repeat="c in columnlist">
+                                 <div class="chckbx-cntnr zeromargin" ng-if="c.name=='Workflow Id' || c.name=='Workflow Name' || c.name=='Owner Name' || c.name=='Created On'">
+                                    <input type="checkbox" id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()" disabled>
+                                    <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+                                 </div>
+                                 <div class="chckbx-cntnr zeromargin" ng-hide="c.name=='Workflow Id' || c.name=='Workflow Name' || c.name=='Owner Name' || c.name=='Created On'">
+                                    <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()">
+                                    <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+              
+                  <div class="clearfix"></div>
+                  <div class="inner-details" style="padding: 0 20px 20px 20px;">
+                     <div class="table-responsive">
+                        <table class="table table-striped red-table">
+                        <caption>My Workflows</caption>
+                           <thead>
+                              <tr>
+                                 <!-- <th style="vertical-align: middle;min-width: 50px;text-align: center;">
+                                    <div class="chckbx-cntnr zeromargin">  
+                                       <input type="checkbox" id="rd" name="check" ng-click="checkedAllList(workFlowsList,all)" ng-model="all" class="flashadmin">
+                                       <label class="cstmchk_lbladmin" for="rd"></label> 
+                                    </div>
+                                 </th> -->
+                                 <th style="vertical-align: middle;min-width: 135px;" ng-show="activeColumn('Workflow Id')">Workflow Id <i ng-click="sortByName(search,'WorkflowId')" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                                 <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Workflow Name')">Workflow Name <i ng-click="sortByName(search,'WorkflowName')" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                                 <th style="vertical-align: middle;min-width: 135px;" ng-show="activeColumn('Short Name')">Short Name <i ng-click="sortByName(search,'WorkflowShortName')" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                                 <th style="vertical-align: middle;min-width: 130px;" down="activeColumn('Owner Name')">Owner Name <i ng-click="sortByName(search,'WorkflowOwnerName')" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                                 <th style="vertical-align: middle;min-width: 110px;" ng-show="activeColumn('Created By')">Created By <i ng-click="sortByName(search,'WorkflowCreatedBy')" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                                 <th style="vertical-align: middle;min-width: 125px;" ng-show="activeColumn('Created On')">Created On <i ng-click="sortByName(search,'WorkflowCreatedOn')" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                                 <!-- <th style="vertical-align: middle;min-width: 110px;">Add Fields </th>-->
+                                 <!-- <th style="vertical-align: middle;min-width: 65px;"></th> -->
+                                 <th style="vertical-align: middle;min-width: 65px;"></th>
+                                 <th style="vertical-align: middle;min-width: 65px;"></th>
+                                 <th style="vertical-align: middle;min-width: 65px;"></th>
+                              </tr>
+                           </thead>
+                           <tr ng-repeat="j in ownerWorkflowList">
+                              <!-- <td style="text-align: center;">
+                                 <div class="chckbx-cntnr zeromargin">
+                                    <input type="checkbox" id="C-1210" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="answers" ng-click="stateChanged(answers,j.userid,j.id,j.name,j.status,j.user.roleId);saveuserlist(j.userid,answers,j.user.roleId,j.referNumber)" ng-checked="all;checkIds(j.referNumber,j.userid)">
+                                    <label class="cstmchk_lbladmin" for="C-1210"></label>                     
+                                 </div>
+                              </td> -->
+                              <td ng-show="activeColumn('Workflow Id')">F-{{j.workFlowId}}</td>
+                              <td ng-show="activeColumn('Workflow Name')"><a ng-click="getTicketListByWorkflowId(j.workFlowId,j)" style="cursor: pointer;">{{j.name}}</a></td>
+                              <td ng-show="activeColumn('Short Name')">{{j.shortName}}</td>
+                              <td ng-show="activeColumn('Owner Name')">{{j.wf_Owner.name}}</td>
+                              <td ng-show="activeColumn('Created By')">{{j.createdBy}}</td>
+                              <td ng-show="activeColumn('Created On')">{{dateformate(j.createdAt)}}</td>
+                              <!-- <td><i class="fa fa-pencil write"></i></td> -->
+                              <td style="text-align:center;"><a ng-click="generateWFTemplate(j)" style="cursor: pointer;"><i class="fa fa-download dwn-icon" style="color: #39afef;"></i></td>
+                              <td style="text-align:center;"><i ng-click="openUploadTicketPage(j)" style="cursor: pointer;" class="fa fa-upload dwn-icon"></i></td>
+                              <td>
+                                 <a data-toggle="tooltip" data-placement="right" title="Task List" style="cursor: pointer;" ng-click="getTaskDetailsByWorkflowId(j)"><img src="resources/img/workflow-icon-black.png" class="img-responsive workfow-img" style="height: 25px;"></a>
+                              </td>
+                           </tr>
+                           <tbody>		                      
+                           </tbody>
+                        </table>
+                        
+                     </div>
+                     <div class="text-right">
+                           <ul class="pagination" style="margin-top: 10px;">
+                              <li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+                              <li ng-repeat="i in navButtons"
+                                 ng-class="$parent.offset == i * $parent.limit && 'active'"><a
+                                 class="" ng-click="current(i)">{{i+1}}</a></li>
+                              <li><a ng-hide="(((start+5)*10) + 10) >= count"
+                                 ng-click="next()">&raquo;</a></li>
+                           </ul>
+                        </div>
+                  </div>
+                                  
+               </div>
+            </div>
+  
+</section>
+<!----Modal error over-list---->
+<div id="error-over" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-md add-brand">
+      <!-- Modal content-->
+      <div class="modal-content flat-modal">
+         <div class="modal-header">
+            <!-- <button type="button" class="close" data-dismiss="modal" ng-click="sessionEnded()">X</button> -->
+            <h4 class="modal-title common-title" style="margin-left: 0;"> <i class="fa fa-exclamation-circle" id="err-mark1"></i>  Web Camera Not Detected</h4>
+         </div>
+         <div class="modal-body flat-body">
+            <div class="clearfix" ></div>
+            <p>The Assessment can not start as we could not detect your Web camera.<br><br>If you have a Web camera on your machine , then enable it using the Device Manager option on the Control panel.
+               <br><br>If you do not have a Web camera then please connect an external camera and launch the test again
+            </p>
+            <div class="modal-footer text-left">
+               <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="sessionEnded()">OK</button>
+               <!-- <a class="btn btn-link" data-dismiss="modal" >Cancel</a> -->
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script>
+   $(document).ready( function() {
+       $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+          
+       });
+       
+      
+   });
+   
+   $("#id_of_searchbox").keyup(function(event) {
+       if (event.keyCode === 13) {    	
+           $("#id_of_searchbutton").click();
+       }
+   });
+   
+   
+   $(document).ready(function(){
+       $('[data-toggle="tooltip"]').tooltip();   
+   });
+</script>
+<script>
+   $('#todo').on('focus',".dateonly", function(){  
+   	$('.dateonly').datetimepicker({
+     format: 'DD-MM-YYYY',
+       useCurrent: false, //Important! See issue #1075
+       
+   }).on('dp.change', function (e) { $(this).change()});
+   });
+   
+   $(document).ready(function() {
+   $("input[type='file'].demo").filepicker({
+   style: 'bootstrap' // default, bootstrap or jquery-ui
+   });
+   });
+</script>
+<script>
+   document.getElementById('getval').addEventListener('change', readURL, true);
+   function readURL(){
+      var file = document.getElementById("getval").files[0];
+      var reader = new FileReader();
+      reader.onloadend = function(){
+         document.getElementById('clock').style.backgroundImage = "url(" + reader.result + ")";        
+      }
+      if(file){
+         reader.readAsDataURL(file);
+       }else{
+       }
+   }
+   
+</script>
+<script>
+   $(function () {
+      
+                 $('.dateonly').datetimepicker({
+                   format: 'DD-MM-YYYY',
+                 	  maxDate:new Date(),
+                 	  useCurrent: false
+                 });
+</script>
+<script type="text/javascript">
+   $(document).on('change', '.btn-file :file', function() {
+   var input = $(this),
+       numFiles = input.get(0).files ? input.get(0).files.length : 1,
+       label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+   input.trigger('fileselect', [numFiles, label]);
+   
+   var input = $(this).parents('.input-group').find(':text'),
+   log = numFiles > 1 ? numFiles + ' files selected' : label;
+   
+   if( input.length ) {
+   input.val(log);
+   } else {
+   if( log ) alert(log);
+   }
+   });
+   
+   $(document).ready( function() {
+     $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+        
+     });     
+   });
+   
+</script>

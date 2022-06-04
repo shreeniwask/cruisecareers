@@ -1,0 +1,73 @@
+<style>
+.start_meet_btn{
+	background: #00aaff;
+    border: 1px solid #00aaff;
+    color: #fff;
+    box-shadow: 3px 8px 8px #c4ddea96;
+}
+.start_meet_btn:hover, .start_meet_btn:focus, .start_meet_btn:active{
+	color: #fff;
+	background: #00aaff;
+	box-shadow: inset 0 3px 5px rgb(0 0 0 / 13%);
+}
+</style>
+<div data-ng-controller="Register_Ctrl">
+<div class="height-70"></div>
+<section id="" style="padding: 4% 0;">
+  <div class="container-fluid">    
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <h3 class="search-text">My Upcoming Interviews</h3>
+      	<div style="height: 15px;"></div>
+	    <div class="job-search-cntnr" >
+	      <div class="srch-head"><h4>All Interviews List</h4></div> 
+	        <div class="inner-details"> 
+              <div class="table-responsive">
+                <table class="table table-bordered">
+		          <thead>
+					<tr>
+					  <th>Date & Time</th>
+					  <th>Scheduled By</th>
+					  <th>Link</th>
+					</tr>          
+				  </thead>
+		          <tbody>
+		           <tr ng-repeat="il in interviewList">
+			            <td>{{dateformate1(il.dateTime)}} {{il.dateTime.split(" ")[1]}} {{il.dateTime.split(" ")[2]}}</td>
+						<td>{{il.name}}</td>
+						<!-- <td><button class="btn start_meet_btn" type="button" ng-if="il.startInterview && il.statusId != 3" ng-click="goToInterviewInitiate(il.event.id,il.id)">Start the Meeting</button></td>  </td> -->
+		            <td><button class="btn start_meet_btn" type="button"  ng-click="checkStartDateTime(il.event.id,il.id,il.dateTime,il.createdby,il.userid)">Start the Meeting</button></td>  </td>
+		             </tr>
+		            <!--  <tr>
+			            <td>28-02-2022 09:30 AM</td>
+						<td>Admin</td>
+						<td></td>
+		             </tr>
+		             <tr>
+		             	<td>10-02-2022 01:30 PM</td>
+						<td>Self</td>
+						<td><button type="button" class="btn start_meet_btn" ng-click="openhtml()">Start the Meeting</button></td>  	
+		             </tr>   
+		             <tr>
+		             	<td>08-02-2022 10:00 AM</td>
+						<td>Admin</td>
+						<td><button type="button" class="btn start_meet_btn" ng-click="openscheduler()">Done</button></td> 
+						<td></td>              	
+		             </tr>
+		             <tr>
+		             	<td>05-02-2022 11:30 AM</td>
+						<td>Self</td>
+						<td><button type="button" class="btn start_meet_btn" ng-click="callscheduler()">Not Done</button></td>
+						<td></td>
+		             </tr> -->
+		           </tbody>    
+		        </table>
+		      </div>  
+		   </div>     
+	    </div>
+      </div>     
+    </div>
+  </div>
+</section>
+</div>

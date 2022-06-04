@@ -1,0 +1,379 @@
+<div class="tab-pane fade in admin-page">
+     
+    <div class="section-heading">
+     <h4 ng-if="newcreation == true && surveyFlag == false && interviewassesmentFlag == false">Assessment Master</h4>
+        <h4 ng-if="newcreation == true && surveyFlag == true && interviewassesmentFlag == false">Survey Master</h4>
+        <h4 ng-if="newcreation == true && surveyFlag == false && interviewassesmentFlag == true">Interview Assessment Master</h4>
+      <p></p>
+    </div>
+<div class="section-content" >
+
+          <div class="inner-head">
+            <h4 ng-if="newcreation == true && FilterData.assessmentType == 2" style="display: inline-block;">Add Questions <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="right" title="Add parameter for random question. difficulty level,number of question with its type"></i></h4>
+            <h4 ng-if="newcreation == false && FilterData.assessmentType == 2" style="display: inline-block;">Update Questions <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="right" title="Add parameter for random question. difficulty level,number of question with its type"></i></h4>                  
+          
+            <h4 ng-if="newcreation == true && FilterData.assessmentType == 1" style="display: inline-block;">Add Questions <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="right" title="Select question to save it in assessment"></i></h4>
+            <h4 ng-if="newcreation == false && FilterData.assessmentType == 1" style="display: inline-block;">Update Questions <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="right" title="Select question to save it in assessment"></i></h4>                  
+          
+          <h4 ng-if="newcreation == true && FilterData.assessmentType == 3" style="display: inline-block;">Add Questions <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="right" title="Select question to save it in assessment"></i></h4>
+            <h4 ng-if="newcreation == false && FilterData.assessmentType == 3" style="display: inline-block;">Update Questions <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="right" title="Select question to save it in assessment"></i></h4>                  
+            <a href="" ng-click="BackfromcreateAss()" class="ng-scope" style="float:right;">Back</a>
+            </div>
+         
+     
+	 <div class="first-phase" style="display:inline-block;width:100%;">
+	 
+	  <div ng-if="FilterData.assessmentType == 1"  class="col-md-8" >
+	  <form ng-submit="fetchfilteredquestion(0,10,null,null,null,level,list,true);getquestionlistcount(null)">
+	  <div class="table-cntnr">
+	 <table class="tabel">
+	 <tbody>
+	 <tr>
+	 <td style="padding: 0 20px 0 0;">
+	   <div ng-if="surveyFlag == false && interviewassesmentFlag == false" class="form-group">																					 
+       <label>Select Difficulty Level</label>
+       <!-- <input type="number" class="form-control flat-control-inner" ng-model="level" min="0" name="difficult-level" style="width: 300px;" > -->
+  
+   					<select style="width: 196px;" class="form-control flat-control-inner" data-ng-model="level" data-ng-change="fetchfilteredquestion(0,10,null,null,null,level,list);getquestionlistcount(null)">
+                    <option data-ng-value ="0"> Select Difficulty Level </option>
+                    <option value ="1">1</option>
+                    <option value ="2">2</option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5</option>
+                    <option value ="6">6</option>
+                    <option value ="7">7</option>
+                    <option value ="8">8</option>
+                    <option value ="9">9</option>
+                    <option value ="10">10</option>                    
+                  </select>
+  
+       </div>
+	 </td>
+	 <td style="padding: 0 20px 0 0;">	
+				<div ng-if="surveyFlag == false && interviewassesmentFlag == false" class="form-group" >
+                  <label>Select Category</label>
+                   <select style="width: 157px;" class="form-control flat-control-inner" ng-model="catId" ng-change="fetchlist(5,catId);fetchfilteredquestion(0,10,null,null,null,level,list);getquestionlistcount(null)">
+                   <option value = ""> Select Category </option>
+                             <option data-ng-repeat="p in questionCategory" value="{{p.id}}" ng-selected="p.id==catId">{{p.categoryName}}</option>
+                  </select>
+                </div>
+	 
+	     
+	 </td>
+	<td ng-if="interviewassesmentFlag == false" style="padding: 0 20px 0 0;">	
+				<div class="form-group" >
+                  <label>Select Question Type</label>
+                   <select class="form-control flat-control-inner" ng-model="typeId" ng-change="filterByQuestionType(typeId);fetchfilteredquestion(0,10,null,null,null,level,list,true);getquestionlistcount(null);updateQuestion()">
+                   
+                        <option value="">Type of Question</option>
+                        <option value="2">MCQ Single Answer Question</option>
+                        <option ng-if="surveyFlag == false" value="3">MCQ Multi Answer Question</option>
+                        <option ng-if="surveyFlag == false" value="1">Short Answer Question</option>
+                        <option ng-if="surveyFlag == true" value="4">Linear Scale</option>
+                  </select>
+                </div>
+	 
+	     
+	 </td>
+	 <td ng-if="interviewassesmentFlag == true" style="padding: 0 20px 0 0;">	
+				<div class="form-group" >
+                  <label>Select Question Type</label>
+                   <select class="form-control flat-control-inner" ng-model="typeId" ng-change="filterByQuestionType(typeId);fetchfilteredquestion(0,10,null,null,null,level,list,true);getquestionlistcount(null);updateQuestion()">
+                   
+                        <option value="">Type of Question</option>
+                        <option value="2">MCQ Single Answer Question</option>
+                        <option  value="3">MCQ Multi Answer Question</option>
+                        <option  value="1">Short Answer Question</option>
+                        <option  value="4">Linear Scale</option>
+                  </select>
+                </div>
+	 
+	     
+	 </td>
+	 </tr>
+	 <tr>
+	 	<td>	 		
+	 	</td>
+	 </tr>
+	 </tbody>
+	 </table>
+	 </div>
+	 </form>
+	 </div>
+       <div class="col-md-2"></div> 
+     <div ng-if="FilterData.assessmentType == 1" class="search-cntnr" style="margin:32px 0px;">
+    
+           <div class="form-group search-box inline-blck">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="getquestionlistcount(searchterm);fetchfilteredquestion(0,10,null,null,searchterm,0,questionTags,true)"></i>
+            </div>
+            
+            </div>
+          </div>
+
+	 
+	<div ng-if="FilterData.assessmentType == 2" class="" style="padding-left: 15px;">
+	<!-- <form ng-if="FilterData.assessmentType == 2 && newcreation == true" ng-submit="saveDynamicAssessments()" > 
+	<form ng-if="FilterData.assessmentType == 2 && newcreation == false" ng-submit="UpdateDynamicAssessment()">
+	 -->
+	 <form>
+	<div class="table-cntnr">
+       </div>	 
+
+
+<div class="row-to-add">
+
+	<!-- <div class="col-md-4">
+	<div ng-if="FilterData.assessmentType == 2" class="form-group">
+       <label>Select Difficulty Level</label>
+       <input type="number" class="form-control flat-control-inner" name="difficult-level"  min="0" ng-model="d.level" required>
+       </div>
+	</div>
+	<div class="col-md-3">
+		<div  ng-if="FilterData.assessmentType == 2" class="form-group">
+        <label>No. of Questions:</label>
+        <input type="text" class="form-control flat-control-inner" name="no-questions" ng-model="d.number" required>
+       </div>
+	</div>
+	<div class="col-md-4">
+		<div ng-if="FilterData.assessmentType == 2" class="form-group">
+           <label>Select Question Type</label> 
+			<select class="form-control flat-control-inner" id="select-assessment-type" ng-model="d.questionType" required>
+            <option value = ""> --Please Select-- </option>
+            <option data-ng-repeat="q in questionTypeList" ng-value="{{q.id}}" ng-selected="q.id == d.questionType">{{q.questionTypeName}}</option>
+            </select>                   
+        </div>  
+	</div>
+	<div class="col-md-1">
+		<div ng-if="FilterData.assessmentType == 2" class="form-group">	 	
+       	  <span class="btn btn-default btn-remove"  ng-click="removeForList($index)" style="margin-top: 28px;"><i class="icon-x-circle"></i></span>
+	 	</div>
+	</div> -->	
+      <div class="table-cntnr">
+	 <table class="tabel dyanmic-form">
+	 <tbody>
+	 <tr ng-repeat="d in dataList">
+	 <td>
+	 	<div ng-if="FilterData.assessmentType == 2" class="form-group">
+       <label>Select Difficulty Level</label>
+       <input type="number" class="form-control flat-control-inner" name="difficult-level"  min="0" ng-model="d.level" required>
+       </div>
+	 </td>
+	 <td>
+	 	<div  ng-if="FilterData.assessmentType == 2" class="form-group">
+        <label>No. of Questions:</label>
+        <input type="text" class="form-control flat-control-inner" name="no-questions" ng-model="d.number" required>
+       </div>
+	 </td>
+	  <td>
+	 	<div ng-if="FilterData.assessmentType == 2" class="form-group">
+           <label>Select Question Type</label> 
+			<select class="form-control flat-control-inner" id="select-assessment-type" ng-model="d.questionType"  required>
+            <option value = ""> --Please Select-- </option>
+            <option data-ng-repeat="q in questionTypeList" ng-value="{{q.id}}" ng-selected="q.id == d.questionType" >{{q.questionTypeName}}</option>
+            </select>                   
+        </div>        
+	 </td>
+	 
+	 <td>
+	 	<div ng-if="FilterData.assessmentType == 2" class="form-group">
+           <label>Select Category</label> 
+			<select class="form-control flat-control-inner" id="select-assessment-type" ng-model="d.questionCategory" required>
+            <option value = ""> --Please Select-- </option>
+            <option data-ng-repeat="q in questionCategory" ng-value="{{q.id}}" ng-selected="q.id == d.questionCategory">{{q.categoryName}}</option>
+            </select>                   
+        </div>        
+	 </td>
+	 
+	 <td>
+	 	<div ng-if="FilterData.assessmentType == 2" class="form-group">	 	
+       	  <span class="btn btn-default btn-remove"  ng-click="removeForList($index)" style="margin-top: 28px;"><i class="icon-x-circle"></i></span>
+	 	</div>
+	 </td>
+	 
+	 </tr>
+	 </tbody>
+	 </table>
+	 </div>
+	 
+	 
+	 </div>	
+	 <div class=clearfix></div>
+	 <div class="different-row">
+	 <div class="col-md-10"></div>
+     <div class="col-md-2">
+     <span ng-if="FilterData.assessmentType == 2" class="btn btn-default btn-add" style="margin:30px 0px;" id="filterate-que" ng-click="add()">Add</span>
+     </div>
+     </div>
+     
+	 <div class="clearfix"></div>
+	<button type="submit" ng-if="FilterData.assessmentType == 2 && newcreation == true"  ng-click="saveDynamicAssessments()" class="btn btn-default btn-bluer text-left" id="update_slot-btn" ng-disabled="disabled">Save</button>
+	<button type="submit" ng-if="FilterData.assessmentType == 2 && newcreation == false" ng-click="UpdateDynamicAssessment()" class="btn btn-default btn-bluer text-left" id="update_slot-btn" ng-disabled="disabled">Update</button>
+	<a ng-if="FilterData.assessmentType == 2" href="" ng-click="cancel()">Cancel</a>
+	<!-- </form ng-if="FilterData.assessmentType == 2 && newcreation == false">
+	</form ng-if="FilterData.assessmentType == 2 && newcreation == true"> -->
+	</form>
+	</div> 
+       
+          
+	<form>
+          <div ng-if="FilterData.assessmentType == 1" class="table-cntnr" style="min-height: 100px;display: inline-block; width:100%;">
+           <!--  <div class="no-que">
+            <span ng-if="questionList.length == 0">*No question found for selected parameters</span>
+           </div> -->
+           <div ng-if="questionList.length == 0" class="alert alert-danger" style="width: 50%;margin: 8px auto;">
+			  <p style="text-align: center;"><strong>Alert!</strong> No question found for selected parameters.</p>
+		  </div>
+              <table  class="table red-table quet-tab">
+              <thead>
+                <tr>
+                  <th>
+                <!--   <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(questionList,all)" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div> -->
+                  </th>
+                  <th>Questions <i class="fa fa-sort" aria-hidden="true" ng-click="sortingQuestionlist('question',searchterm)"></i></th>
+                  <th>Question Type <i class="fa fa-sort" aria-hidden="true" ng-click="sortingQuestionlist('question type',searchterm)"></i></th>
+                  <th ng-if="surveyFlag == false && interviewassesmentFlag == false">Difficulty Level <i class="fa fa-sort" aria-hidden="true" ng-click="sortingQuestionlist('level',searchterm)"></i></th>
+                </tr>
+              </thead>
+              <tbody>
+                 
+				<tr ng-repeat="q in questionList"  ng-init="outerIndex = $index" >
+                  <td >
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="check{{q.id}}" name="check" class="flashadmin"  ng-model="Cvalue" ng-click="getCheckedQuestions(q,Cvalue)" ng-checked="checkquestionId(q.id);">
+                      <label class="cstmchk_lbladmin" for="check{{q.id}}"></label> 
+                    </div>
+                </td>
+               
+                    <td><p class="que-big" data-toggle="tooltip" data-placement="top" title="{{q.questionText}}">{{q.questionText}}  <i style="font-size: 16px;" class="fa fa-toggle-right" ng-if="q.isvideoEnabled"></i><i class="fa fa-microphone" ng-if="q.isVoiceEnabled"></i></p><label ng-if="q.questionMediaType == 1"><i style="cursor: pointer;" class="fa fa-file-image-o que-file" ng-click="openmodal(q)"></i></label>
+						                   <label ng-if="q.questionMediaType == 2"><i style="cursor: pointer;" class="fa fa-file-audio-o que-file" ng-click="openmodal(q)"></i></label>
+						                   <label ng-if="q.questionMediaType == 3"><i style="cursor: pointer;" class="fa fa-video-camera que-file" ng-click="openmodal(q)"></i></label>
+                    <ul class="single-ans">
+                    
+                      <!-- <li data-ng-repeat="a in q.ans" ng-if="q.questionType==2">
+                      	<div class="radio-cntnr new-chc" style="margin-top: -10px;position: absolute;">
+                      	<input type="radio" name="radio-group" data-ng-value="true" data-ng-model="a.isCorrect" id="option{{$index}}" disabled>
+                  			<label for="{{$index}}"></label>
+                  		</div>
+                  		<label class="answers-single" data-toggle="tooltip" data-placement="top" title="{{a.answerText}}" style="display: block;position: relative;margin-left: 25px;font-weight: 500!important;">{{a.answerText}}</label>
+                  	</li>
+                  	 -->
+                  	<li data-ng-repeat="a in q.ans" class="big-ques-ans" ng-if="q.questionType==2 || q.questionType==4" ng-init="innerIndex = $index">
+                      	<div class="radio-cntnr new-chc" style="margin-top: -10px;position: absolute;">
+                      	<input type="radio" name="option_{{outerIndex}}_{{innerIndex}}" data-ng-value="true" data-ng-model="a.isCorrect" id="option_{{outerIndex}}_{{innerIndex}}" disabled>
+                  			 
+                  			<label for="option_{{outerIndex}}_{{innerIndex}}"></label>
+                  		</div>
+                  		<label class="answers-single" data-toggle="tooltip" data-placement="top" title="{{a.answerText}}" style="display: block;position: relative;margin-left: 25px;font-weight: 500!important;">{{a.answerText}}</label>
+                  	  </li>
+                  	
+                  	
+                  	<li ng-repeat="a in q.ans" class="big-ques-ans" ng-if="q.questionType==3">
+	                          <div class="chckbx-cntnr" style="float: left;margin-right: 18px;position: absolute;">
+		                      <input type="checkbox" id="checkoption{{$index}}" name="check" ng-model="a.isCorrect" class="flashadmin ng-pristine ng-untouched ng-valid" disabled>
+		                      <label class="cstmchk_lbladmin" for="checkoption{{$index}}"></label> 
+	                       	  </div>                       
+                           <label class="cstmchk_lbl answers-single " for="checkoption{{$index}}" style="display: block;position: relative;margin-left: 25px;font-weight:500!important;">{{a.answerText}}</label> 
+                    </li>
+                    </ul>
+                    </td>
+                    <td>{{q.questionTypeName}}</td>
+                    <td ng-if="surveyFlag == false && interviewassesmentFlag == false">{{q.level}}</td>
+                  </tr>
+				
+
+                  
+              </tbody>
+          </table>
+
+			 <!-- <div ng-if="FilterData.assessmentType == 1"  class="text-right">            
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul> 
+            </div>  -->
+
+        </div>
+
+                  <div class="" style="margin-top: 20px; margin-bottom: 20px;">
+                    <button ng-if="FilterData.assessmentType == 1 && newcreation == true" class="btn btn-default btn-bluer text-left" ng-click="saveFixedAssessment()" ng-disabled="disabled">Save</button>
+                    <button ng-if="FilterData.assessmentType == 1 && newcreation == false" class="btn btn-default btn-bluer text-left" ng-click="UpdateFixedAssessment(questionList)" ng-disabled="disabled">Update</button>
+                    
+                    <a ng-if="FilterData.assessmentType == 1" href="" ng-click="cancel()">Cancel</a>
+                  <!--   <button class="btn btn-default preview-btn" style="float:right;" data-toggle="modal" data-target="#preview-assessment">Preview</button> -->
+                  </div>
+
+				</form>
+         		</div> 
+               </div>    
+               
+         <div class="modal fade" id="media" role="dialog">     
+          <div class="modal-dialog add-brand">
+          
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>                
+              </div>
+              <div class="modal-body">              
+               
+               
+                <div class="media-popup" ng-if="MediaType == 1">
+               	<img src="{{MediaLink}}" class="img-responsive question-file"> 
+                </div>
+               
+               <div class="media-popup" ng-if="MediaType == 3">
+               <video width="568" id="mediaVideo" height="240" src="{{MediaLink}}" type="video/mp4"  controls="" controlslist="nodownload"></video>                
+               </div>
+               
+               <div class="media-popup" ng-if="MediaType == 2"> 
+               <audio width="568" height="240" id="audioMedia" controls="" controlslist="nodownload"><source src="{{MediaLink}}" type="audio/ogg"></audio> 
+               </div>
+              
+              <div class="clearfix"></div>
+              <div class="row">              
+        
+              </div>
+              </div>   
+          </div>         
+      </div>
+           </div>    
+            
+            
+            <div id="not_enough_question" class="modal fade" role="dialog">
+				  <div class="modal-dialog modal-md add-brand">
+				    <!-- Modal content-->
+				    <div class="modal-content flat-modal">
+				      <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" >X</button>  
+				        <h4 class="modal-title common-title" style="margin-left: 0;"><b>Alert!</b></h4>
+				      </div>
+				      <div class="modal-body flat-body">
+				          <div class="clearfix" ></div>
+				    <br>Not enough question in question bank for selected parameter of row <b>{{listIndex}}</b>
+				      <div class="modal-footer text-left">
+				        <button type="button" class="close" data-dismiss="modal">OK</button>
+				      
+				      </div>
+				    </div>
+				   </div>
+				    </div>
+				    </div>
+            
+            
+	<script type="text/javascript">
+        $("#id_of_textbox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#id_of_button").click();
+            }
+        });
+    </script>
+    <script>          
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>      

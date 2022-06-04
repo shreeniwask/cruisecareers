@@ -1,0 +1,234 @@
+<section id="e-claim-details" style="padding: 5% 0;margin: 5% 0;">
+<div>
+<!-- expense model -->
+    <div class="modal fade" id="AskReimbursement" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Claim Reimbursement</h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="askReimbursement(u)">   
+                <div class="form-group extralink">
+                      <label>Reimbursement Type*</label>                     
+                            <select class="form-control flat-control-inner" data-ng-model="u.reimbursementTypeId" required> 
+    					    <option data-ng-value="0">Select</option>          
+                            <option data-ng-repeat="c in ReimbursmentType" data-ng-value="{{c.reimbursementTypeId}}" data-ng-selected="c.reimbursementTypeId==u.reimbursementTypeId">{{c.reimbursement_typeName}}</option>                                  
+        			        </select>                       
+                </div>   
+                <div class="form-group text-right">
+                  <button type="submit" class="btn-info add_brand">Ask</button>
+                </div>
+               </form>
+              </div>              
+            </div>            
+          </div>
+    </div>
+    
+    <div class="section-content" id="employee-list" >
+      <div class="shadow-container">
+          <div class="inner-head">
+            <h4>Employee Claim List</h4>
+          </div>
+          <div class="inner-form">
+            <div class="row">
+              <div class="uppr-heading">
+              <div class="col-md-6">
+            <div class="type-re" style="margin: 5px 0 10px;">
+            <label style="font-size: 16px;">Type of Reimbursement:</label>
+          <div class="reg-head">
+            <p style="font-size: 14px;margin-left: 10px;">Training Reimbursement</p>
+          </div>  
+          </div>          
+      </div>
+      <div class="col-md-3">
+        <div class="type-re" style="margin: 5px 0 10px;">
+        <label style="font-size: 16px;">Brands:</label>
+          <div class="reg-head">
+            <p style="font-size: 14px;margin-left: 10px;">P & O</p>
+          </div> 
+        </div>  
+      </div>
+      <div class="col-md-3">
+        <div class="type-re" style="margin: 5px 0 10px;">
+        <label style="font-size: 16px;">Department:</label>
+          <div class="reg-head">
+            <p style="font-size: 14px;margin-left: 10px;">Galley</p>
+          </div> 
+        </div>  
+      </div>
+      <div class="col-md-3">
+        <div class="type-re" style="margin: 5px 0 10px;">
+        <label style="font-size: 16px;">Ship:</label>
+          <div class="reg-head">
+            <p style="font-size: 14px;margin-left: 10px;">Curise</p>
+          </div> 
+        </div>  
+      </div>
+      <div class="col-md-3">
+        <div class="type-re" style="margin: 5px 0 10px;">
+        <label style="font-size: 16px;">Position:</label>
+          <div class="reg-head">
+            <p style="font-size: 14px;margin-left: 10px;">Pizza Maker</p>
+          </div> 
+        </div>  
+      </div>
+      <div class="col-md-6">
+        <div class="type-re" style="margin: 5px 0 10px;">
+        <label style="font-size: 16px;">Reimbursement Date:</label>
+          <div class="reg-head">
+            <p style="font-size: 14px;margin-left: 10px;">12-02-2018</p>
+          </div> 
+        </div>  
+      </div>
+    </div>
+    </div>
+              <div class="row">
+              <div class="col-md-6">
+                <div class="type-re" style="margin: 5px 0 10px;display: inline-block;">
+                  <label>Name of Expense Head:</label>
+        
+                </div>
+                <div class="exp-txt" style="width: 55%;display: inline-block;">
+                  <select class="form-control flat-control-inner">
+                    <option>Training Reimbursement</option>
+                    <option>Medical Reimbursement</option>
+                  </select>
+              </div> 
+                
+              </div>
+              <div class="col-md-3">
+                <div ng-disabled="c.reimbursement_typeName == 'Travel'" class="type-re" style="margin: 5px 0 10px;display: inline-block;">
+                  <label>From:</label>
+        
+                </div>
+                <div class="exp-txt" style="width: 55%;display: inline-block;">
+                  <input type="text" class="form-control flat-control-inner">
+              </div> 
+                
+              </div>
+              <div class="col-md-3">
+                <div class="type-re" style="margin: 5px 0 10px;display: inline-block;">
+                  <label>To:</label>
+        
+                </div>
+                <div class="exp-txt" style="width: 55%;display: inline-block;">
+                  <input type="text" class="form-control flat-control-inner">
+              </div> 
+                
+              </div>
+              <div class="col-md-4">
+                <div class="type-re" style="margin: 5px 0 10px;display: inline-block;">
+                  <label>Amount:</label>
+        
+                </div>
+                <div class="exp-txt" style="width: 55%;display: inline-block;">
+                  <input type="text" class="form-control flat-control-inner">
+              </div> 
+                
+              </div>
+
+               <div class="col-md-4">
+              <div class="imageupload panel panel-default">
+                   <p>Upload Image</p>
+                    <div class="file-tab panel-body">
+                        <label class="btn btn-default btn-file">
+                            <span>Browse</span>
+                            <input type="file" name="image-file" onchange="ValidateSize(this)">
+                        </label>
+                        <button type="button" class="btn btn-default" id="remove-image">Remove</button>
+                  </div>
+                    <span id="checkEmail"></span>
+                </div>
+              </div>
+            </div>  
+
+            <div class="text-right" style="display: block;">
+                <button class="btn btn-default btn-round-add" data-target="#expense-subhead" data-toggle="modal" style="margin-right: 5px;" ><i class="icon-plus"></i></button>
+            </div>
+
+        <div class="table-cntnr">
+          <table class="table table-striped red-table">
+            <thead>
+              <tr>
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flash">
+                      <label class="cstmchk_lbl" for="rd"></label> 
+                  </div>
+                </th>
+                <th>Name of Expense Head</th>
+                <th>Date of Claim </th>
+                <th>Type of Reimbursement</th>
+                <th>Amount</th>
+                <th>Brand</th>
+                <th>Ship</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="1" name="check" class="flash">
+                      <label class="cstmchk_lbl" for="1"></label> 
+                  </div>
+                </td>
+                <td>Medical Expense</td>
+                <td>12-02-18</td>
+                <td>Training Reimbursement</td>
+                <td>10450</td>
+                <td>P & O</td>
+                <td>Ship1</td>                         
+              </tr>  
+            </tbody>
+          </table>
+        </div>
+       <div class="btn-cntnr" style="margin-top: 20px; margin-bottom: 20px;">
+      <button class="btn btn-default btn-bluer" id="create_slot-btn">Submit</button>
+     <a href="">Cancel</a>
+    </div>
+   </div>
+  </div>
+ </div>
+  </div>
+</section>
+  
+  <!----Footer---->
+  <footer id="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-sm-4">
+        <img src="resources/img/logo-big.png">
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <h5>ADDRESS</h5>
+        <p>Carnival Support Services India Ltd,
+Kohinoor City, Tower 2, Floor 5,
+Kirol Road, Off. LBS Marg, Kurla West,
+Mumbai 400 070</p>
+      </div>
+      <div class="col-md-2 col-sm-4">
+        <h5>CONTACT</h5>
+        <p><a class="footer-contact" href="tel:+917942529292">+91-7942529292</a>
+		 </p>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>GET IN TOUCH</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="https://www.facebook.com/cruisecareersindia/" target="_blank" class="facebook-link"><i class="icon-facebook"></i></a></li>
+          <li><a href="https://twitter.com/cruisecareers" target="_blank" class="twitter-link"><i class="icon-twitter2"></i></a></li>
+          <li><a href="" target="_blank" class="google-link"><i class="icon-instagram"></i></a></li>
+          <li><a href="https://www.linkedin.com/company/carnival-support-services-india-pvt.-ltd" target="_blank" class="utube-link"><i class="icon-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>MOBILE APP</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="coming_soon.html" class="android-link"><i class="icon-android"></i></a></li>
+          <li><a href="coming_soon.html" class="ios-link"><i class="icon-apple"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer> 

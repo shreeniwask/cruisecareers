@@ -1,0 +1,228 @@
+<div ng-if="userdetails.roleId == 1 || userdetails.roleId == 10 || (userdetails.roleId > 3 && userdetails.roleId <= 8) || userdetails.roleId == 9 || userdetails.roleId == 12" style="height: 70px"></div>
+
+  
+  <div class="side-menu" ng-if="userdetails.roleId == 1 || (userdetails.roleId > 3 && userdetails.roleId <=8) || userdetails.roleId == 9 || userdetails.roleId == 12 || userdetails.roleId == 10">
+      <div class="text-center">
+	      <a ui-sref-opts="{reload: true, inherit: false}" class="cruise-logo" ui-sref="restricted.admin.admindashboard" ng-if="userdetails.roleId == 1 || userdetails.roleId == 10" ui-sref="restricted.admin.dashboard" ui-sref-active="active">
+	      <img src="resources/img/logo-big.png" style="width:150px;">
+	      </a>
+	      <a ui-sref-opts="{reload: true, inherit: false}" class="cruise-logo" ng-if="userdetails.roleId == 8 || userdetails.roleId == 12" ui-sref="restricted.admin.ownerdashboarddetails" ui-sref-active="active">
+	      <img src="resources/img/logo-big.png" style="width:150px;">
+	      </a>
+	      <a ui-sref-opts="{reload: true, inherit: false}" class="cruise-logo" ng-if="userdetails.roleId > 3 && userdetails.roleId < 8" ui-sref="restricted.admin.approverdashboard" ui-sref-active="active">
+	      <img src="resources/img/logo-big.png" style="width:150px;">
+	      </a>
+	      <a ui-sref-opts="{reload: true, inherit: false}" class="cruise-logo" ng-if="userdetails.roleId == 9" ui-sref="restricted.admin.consulateverification" ui-sref-active="active">
+	      <img src="resources/img/logo-big.png" style="width:150px;">
+	      </a>
+      </div>
+      
+        <ul type="none" class="inner-ul nav nav-tabs">
+          <!-- <li ng-if="IsMenuEnabled('Admin Dashboard')"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.dashboard" ui-sref-active="active"  data-toggle="tab"><div><i class="fa fa-pie-chart" aria-hidden="true"></i></div> <span>Dashboard</span></a></li> -->
+          <li ng-if="IsMenuEnabled('Admin Dashboard')"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.admindashboard" ui-sref-active="active"  data-toggle="tab"><div><i class="fa fa-pie-chart" aria-hidden="true"></i></div> <span>Dashboard</span></a></li>
+          <li ng-if="IsMenuEnabled('Consulate Verification') || userdetails.roleId == 9"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.consulateverification" ui-sref-active="active"  data-toggle="tab"><div><img
+						src="resources/img/verify.png" style="width: 50%;"></div> <span>Consulate Verification</span></a></li>
+          <li ng-if="userdetails.roleId == 8 || userdetails.roleId == 12 || userdetails.roleId == 9"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.ownerdashboarddetails" ui-sref-active="active"  data-toggle="tab"><div><i class="icon-dashboard"></i></div> <span>Dashboard</span></a></li>
+          <li ng-if="userdetails.roleId > 3 && userdetails.roleId < 8"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.approverdashboard" ui-sref-active="active"  data-toggle="tab"><div><i class="icon-dashboard"></i></div> <span>Dashboard</span></a></li>
+          <!-- <li ng-if="IsMenuEnabled('Consulate Verification') || userdetails.roleId == 9"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.consulateverification" ui-sref-active="active"  data-toggle="tab"><div><i class="icon-dashboard"></i></div> <span>Consulate Verification</span></a></li> -->          
+                    
+          <li ng-if="IsMenuEnabled('Customer Requisition') "><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.customerrequisition" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-user"></i></div> <span>Customer Requisition</span></a></li>
+           <li ng-if=" IsMenuEnabled('Post Jobs')"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.adminpostedjobs" ui-sref-active="active" data-toggle="tab"><div><i class="icon-briefcase"></i></div> <span>Post Jobs</span></a></li>
+          <li ng-if=" IsMenuEnabled('Applied Jobs')"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.appliedjobs" ui-sref-active="active" data-toggle="tab"><div><i class="icon-navigation"></i></div> <span>Applied Jobs</span></a></li>
+          <li ng-if=" IsMenuEnabled('Event Scheduler')"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.eventScheduler" ui-sref-active="active" data-toggle="tab"><div><i class="icon-flag"></i></div> <span>Event Scheduler</span></a></li>
+			                      
+             <li ng-if=" IsMenuEnabled('Content Management')"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#cmsmenu"><div><i class="fa fa-sticky-note"></i></div>
+            <span class="sidebar-title">Content Management</span>
+            <b class="caret"></b>
+            </a>
+            <ul id="cmsmenu" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.cms" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-caret-right"></i></div>CMS</a></li>
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.testimonials" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-caret-right"></i></div>Testimonials</a></li>
+            </ul>
+          </li>    	        
+        
+         <li ng-if=" IsMenuEnabled('Mails Configuration')" ui-sref-active="bbbb"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#submenu-3"><div><i class="fa fa-envelope-o"></i></div>
+            <span class="sidebar-title">Mails Configuration</span>
+            <b class="caret"></b>
+            </a>
+            <ul id="submenu-3" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.emailConfig" ui-sref-active="active" data-toggle="tab"><div><i class="icon-settings"></i></div> <span>Email Configuration</span></a></li>
+                 <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.schedulermaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-calendar-plus-o"></i></div> <span>Scheduler</span></a></li>
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.smsConfig" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-comments-o"></i></div> <span>SMS Configuration</span></a></li>
+          		<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.templateMaster" ui-sref-active="active" data-toggle="tab"><div><i class="icon-format_align_left"></i></div> <span>Templates</span></a></li>
+          		<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.templatetypemaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-th-list"></i></div> <span>Template Categories</span></a></li>
+          		<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.communicationCenter" ui-sref-active="active" data-toggle="tab"><div><i class="icon-phone-call"></i></div> <span>Communication Center</span></a></li>
+          	</ul>
+         </li>        
+        
+         <li ng-if=" IsMenuEnabled('Masters')"  ><a class="accordion-toggle collapsed toggle-switch" ui-sref-opts="{reload: true, inherit: false}" ui-sref-active="active" data-toggle="collapse" data-target="#submenu-1"><div><i class="fa fa-database"></i></div>
+            <span class="sidebar-title">Masters</span>
+            <b class="caret"></b>
+            </a>
+            <ul id="submenu-1" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+				<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.brandmaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-bookmark-o"></i></div> <span>Brands</span></a></li>
+				<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.shipsmaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-ship"></i></div> <span>Ships</span></a></li>
+				<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.departmentmaster" ui-sref-active="active" data-toggle="tab"><div><i class="icon-layers"></i></div> <span>Departments</span></a></li>
+	          	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.positionmaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-black-tie"></i></div> <span>Positions</span></a></li>
+	          	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.compliancemaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-clipboard"></i></div> <span>Compliances</span></a></li>
+	          	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.compliancesmatrix" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-clipboard"></i></div> <span>Compliances Mapping</span></a></li>
+	          	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.interviewtemplate" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-handshake-o"></i></div> <span>Interview Template</span></a></li>
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.qualification" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-graduation-cap"></i></div> <span>Qualifications</span></a></li>
+<!--                 <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.interviewassessmentmaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-graduation-cap"></i></div> <span>Interview Assessment Master</span></a></li>
+ -->                
+<!--                 <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.flagsetting" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-flag"></i></div> <span>Flags</span></a></li>            	           
+ -->            </ul>
+         </li>    
+        
+        <li ng-if=" IsMenuEnabled('Assessment')"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#submenu-7"><div><i class="fa fa-tasks"></i></div>
+            <span class="sidebar-title">Assessment</span>
+            <b class="caret"></b>
+            </a>
+            <ul id="submenu-7" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.questionCategoryMaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-folder"></i></div> <span>Question Category</span></a></li>
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.questionnair" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-question-circle"></i></div> <span>Question Bank</span></a></li>
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.assessmentmaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-tasks"></i></div> <span>Assessments</span></a></li>
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.interviewassessmentmaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-handshake-o"></i></div> <span>Interview Assessments</span></a></li>	          	  	          	   
+            </ul>
+         </li>
+        
+        
+        <li><a ui-sref-opts="{reload: true, inherit: false}" ng-if="IsMenuEnabled('Survey')" ui-sref="restricted.admin.surveymaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-file-text-o" aria-hidden="true"></i></div> <span>Survey</span></a></li>	          	  	          	   
+            
+        
+        <li ng-if=" IsMenuEnabled('Crew')"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#submenu-5"><div><i class="fa fa-anchor"></i></div>
+            <span class="sidebar-title">Crew</span>
+            <b class="caret"></b>
+            </a>
+            <ul id="submenu-5" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.employeelist" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-users"></i></div>Employee List</a></li>
+	          	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.crewmembercompliancemapping" ui-sref-active="active" data-toggle="tab"><div><i class="icon-clipboard"></i></div> <span>Compliances Mapping for Crew</span></a></li>
+	          	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.uploadmaster" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-cloud-upload"></i></div> <span>Upload Ship Data</span></a></li>	          	  	          	   
+            </ul>
+         </li> 
+         
+         <li ng-if="IsMenuEnabled('User')"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#submenu-8"><div><i class="fa fa-users"></i></div>
+            <span class="sidebar-title">User</span>
+            <b class="caret"></b>
+            </a>
+            <ul id="submenu-8" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.createAdminUser" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-users"></i></div> <span>Users</span></a></li>
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.grouplisting" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-users"></i></div> <span>Groups</span></a></li>
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.role_listing" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-user-plus"></i></div> <span>Roles</span></a></li>
+<!--                 <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.purgeconfig" ui-sref-active="active" data-toggle="tab"><div><img src="resources/img/purge_data.png" class="img-responsive purge_icon"></div> <span>Purge Configuration</span></a></li> 	          	  	          	   
+ -->            </ul>
+         </li>
+         
+         <li ng-if=" (userdetails.roleId > 3 && userdetails.roleId < 8) || IsMenuEnabled('Expense')"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#submenu-6"><div><i class="fa fa-usd"></i></div>
+            <span class="sidebar-title">Expense</span>
+            <b class="caret"></b>
+            </a>
+            <ul id="submenu-6" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+            	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.expensemaster" ui-sref-active="active" data-toggle="tab"><div><img src="resources/img/expense.png"></div> <span>Expense</span></a></li>                
+	          	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.uploadRepatData" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-cloud-upload"></i></div> <span>Upload Repat Data</span></a></li>
+	          	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.employeeexpenselist" ui-sref-active="active" data-toggle="tab"><div><img src="resources/img/claim-list.png"></div><span>Claim List</span></a></li>    	          	   
+            	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.repatDataList" ui-sref-active="active" data-toggle="tab"><div><img src="resources/img/repat-icon.png"></div> <span>Repat Data</span></a></li>   	          	   
+            </ul>
+         </li>  
+        
+        <li ng-if=" IsMenuEnabled('Reports')"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#submenu-2"><div><i class="fa fa-files-o"></i></div>
+            <span class="sidebar-title">Reports</span>
+            <b class="caret"></b>
+            </a>
+            <ul id="submenu-2" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.jobseekerreadinessreport" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-caret-right"></i></div>Jobseeker Readiness Report</a></li>
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.eifapilogs" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-caret-right"></i></div>Mistral Integration Report</a></li>
+                <!-- <li><a ui-sref="restricted.admin.AssessmentHistory" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-caret-right"></i></div> <span>Assessment History</span></a></li> -->
+            </ul>
+         </li>        
+                             
+		  <li ng-if=" IsMenuEnabled('Workflow')"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.workflowlist" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-sitemap"></i></div> <span>Workflow</span></a></li>
+		  <li ng-if="IsMenuEnabled('My Workflows')"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.ownerworkflow" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-sitemap"></i></div> <span>My Workflows</span></a></li>
+		  <li ng-if="IsMenuEnabled('My Tasks')"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.mytask" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-sitemap"></i></div> <span>My Tasks</span></a></li>
+		  
+		
+		<li ng-if=" IsMenuEnabled('Inbox')"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#inbox-menus"><div><i class="fa fa-inbox"></i></div>
+            <span class="sidebar-title">Inbox</span>
+            <b class="caret"></b>
+            </a> 
+           <ul id="inbox-menus" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+		  <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.emailtypes" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-envelope-o"></i></div> <span>Emails</span></a></li>	
+		  <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.uploaddoclist" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-file"></i></div> <span>Documents</span></a></li>	
+
+     		</ul>
+        </li> 
+        <!-- <li ng-if=" IsMenuEnabled('Purge')"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#purge-menus"><div><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
+            <span class="sidebar-title">Purge</span>
+            <b class="caret"></b>
+            </a> 
+           <ul id="purge-menus" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+		  		<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.purgereq" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-envelope-o"></i></div> <span>Purge Requests</span></a></li>	
+     		</ul>
+        </li> -->
+        <li ng-if=" IsMenuEnabled('Free Query')"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#freequery-menus"><div><i class="fa fa-file-text-o" aria-hidden="true"></i></div>
+            <span class="sidebar-title">Free Query</span>
+            <b class="caret"></b>
+            </a> 
+           <ul id="freequery-menus" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+           <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.freequerylist" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-file-text-o" aria-hidden="true"></i></div> <span>Free Query List</span></a></li>	
+           
+		  <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.freequery" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-file-text-o" aria-hidden="true"></i></div> <span>Free Query Candidate</span></a></li>	
+		  <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.freequeryEmployee" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-file-text-o" aria-hidden="true"></i></div> <span>Free Query Employee</span></a></li>	
+	
+     		</ul>
+        </li> 
+<!--         <li ng-if=" IsMenuEnabled('Free Query')"><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.freequerylist" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-file-text-o" aria-hidden="true"></i></div> <span>Free Query</span></a></li>	
+ -->                
+		  <li ng-if=" IsMenuEnabled('Internet Calling')"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#submenu-ic"><div><i class="fa fa-phone-square" aria-hidden="true"></i></div>
+	            <span class="sidebar-title">Internet Calling</span>
+	            <b class="caret"></b>
+	            </a>
+	            <ul id="submenu-ic" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+	                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.call_log" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-caret-right"></i></div>Call Log</a></li>
+	                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.supportgrouplist" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-caret-right"></i></div> <span>Support Group</span></a></li>
+	                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.listsubsupportgroup" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-caret-right"></i></div> <span>Sub Support Group</span></a></li>
+	            </ul>
+	        </li>
+	        
+		      <li><a class="accordion-toggle collapsed toggle-switch" ng-if="userdetails.roleId != 10" data-toggle="collapse" data-target="#jobfair-menus"><div><i class="fa fa-file-text-o" aria-hidden="true"></i></div>
+	            <span class="sidebar-title">Job Fairs</span>
+	            <b class="caret"></b>
+	            </a> 
+	           <ul id="jobfair-menus" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+	           	<li><a  ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.jobfairslist" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-caret-right"></i></div> <span>Virtual Job Fair</span></a></li>	
+	           <li><a  ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.walkinlist" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-file-text-o" aria-hidden="true"></i></div> <span>Meet A Recruiter</span></a></li> 
+				</ul>
+	        </li> 
+	        
+	        <!-- <li><a ng-if=" IsMenuEnabled('Job Fairs')" ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.jobfairslist" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-caret-right"></i></div> <span>Job Fairs</span></a></li> -->
+	      
+	      
+	        <li><a ng-if=" IsMenuEnabled('Interviewer Screen')" ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.interviewer_screen" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-desktop" aria-hidden="true"></i></div> <span>Interviewer Screen</span></a></li> 	    
+	        <li><a ng-if=" IsMenuEnabled('Bulk SMS')" ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.bulksms" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-commenting-o" aria-hidden="true"></i> </div> <span>Bulk SMS</span></a></li>
+	        <li><a ng-if=" IsMenuEnabled('Passport Upload')" ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.passportupload" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-id-card-o" aria-hidden="true"></i> </div> <span>Passport Upload</span></a></li> 	        
+	        <li ng-if=" IsMenuEnabled('Crew Deployment')"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#submenu-crew-deploy"><div><i class="fa fa-anchor"></i></div>
+            <span class="sidebar-title">Crew Deployment</span>
+            <b class="caret"></b>
+            </a>
+            <ul id="submenu-crew-deploy" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+                <li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.crewdeploymentconfiguration" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-users"></i></div>Configuration</a></li>
+	          	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.uploadcrewdeployleavedata" ui-sref-active="active" data-toggle="tab"><div><i class="icon-clipboard"></i></div>Upload Data</a></li>
+	          	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.crewdeploymentrequisitionlist" ui-sref-active="active" data-toggle="tab"><div><i class="icon-clipboard"></i></div>Requisitions</a></li>
+	          	<li><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.admin.crewdeployApproverList" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-cloud-upload"></i></div>Approvers</a></li>	
+            </ul>
+         </li>   
+	            
+       <!-- <li ng-if="userdetails.roleId == 1"><a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" data-target="#workflowmenu"><div><i class="fa fa-files-o"></i></div>
+            <span class="sidebar-title">Workflow</span>
+            <b class="caret"></b>
+            </a>
+            <ul id="workflowmenu" class="panel-collapse collapse panel-switch drop-sidebar" role="menu">
+                <li><a ui-sref="restricted.admin.workflowlist" ui-sref-active="active" data-toggle="tab"><div><i class="fa fa-caret-right"></i></div>Workflows List</a></li>
+            </ul>
+         </li> -->
+       </ul>
+      
+    </div>
+  </div>
+  <ui-view></ui-view>
+    

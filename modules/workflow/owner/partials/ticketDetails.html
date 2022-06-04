@@ -1,0 +1,1317 @@
+<style>
+input {
+	font-weight: 400 !important
+}
+
+.chckbx-cntnr .flashadmin[type="checkbox"]+label.cstmchk_lbladmin {
+	left: 0px !important;
+}
+
+.input-group.dateonly {
+	width: 100% !important;
+}
+
+.input-group {
+	width: 100% !important;
+}
+
+.input-group input.form-control {
+	width: 100% !important;
+	background: none;
+	cursor: pointer;
+}
+
+.input-group span.input-group-addon {
+	position: absolute !important;
+	right: 0px;
+	padding: 7px 31px 11px 15px !important;
+	border: 1px solid #ddd !important;
+}
+
+.dates-head {
+	padding: 0px;
+}
+
+.browse-download {
+	float: right;
+	display: block;
+	/* margin: 4px 4px; */
+	background: #00aeef;
+	padding: 8px;
+	color: #fff;
+	border-radius: 2px;
+}
+
+.input-group.input-90 {
+	width: 70% !important;
+	margin-right:2%;
+}
+
+.box {
+	width: 40%;
+	margin: 0 auto;
+	background: rgba(255, 255, 255, 0.2);
+	padding: 35px;
+	border: 2px solid #fff;
+	border-radius: 20px/50px;
+	background-clip: padding-box;
+	text-align: center;
+}
+
+.button {
+	font-size: 1em;
+	padding: 10px;
+	color: #fff;
+	border: 2px solid #06D85F;
+	border-radius: 20px/50px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+}
+
+.button:hover {
+	background: #06D85F;
+}
+
+#popup {
+	position: fixed;
+	background: #fff;
+	display: none;
+	top: 30%;
+	left: 0px;
+	width: 260px;
+	min-height: 200px;
+	border: 1px solid #707070;
+	border-radius: 4px;
+	/* padding: 5px; */
+	color: #000;
+	z-index: 999;
+	height: 390px;
+	overflow-y: scroll;
+}
+
+.popup-prefilled-fields .input-group span.input-group-addon {
+	padding: 6px 20px 0px 6px !important;
+}
+
+.popup-prefilled-fields .glyphicon {
+	line-height: 2 !important;
+}
+
+.new_check_pref {
+	width: 50%;
+	float: left;
+}
+.popup-header {
+	padding: 3px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #00aaff;
+}
+.popup-header h5{
+	display: inline-block;
+	color:#fff;
+}
+.close_icon {
+	display: inline-block;
+    float: right;
+}
+#close_popup i {
+	color: #fff;
+    vertical-align: middle;
+}
+.for_coloan1 {
+	width:40% !important;
+	float:left;
+	background: none;
+	cursor: pointer;
+}
+.flat-control-inner {
+	margin-bottom:0px !important;
+}
+.radio-cntnr {
+	width:40% !important;
+}
+.coma-sep h4:last-child span{
+display:none;
+}
+</style>
+<section class="tab-pane fade in active admin-page">
+
+	<div class="">
+		<!-- <div class="col-md-2">
+        <div class="recent-searches fixed-pills">
+          <h5>My Dashboard</h5>
+          <ul ng-if="workflow.shortName != undefined" class="nav nav-pills nav-stacked e-pro">
+            <li id="workFlow" class="active" ng-click="getworkflowListTab();"><a data-toggle="pill" href="" class="profile-tabs">Workflow</a></li>
+            <li id="myTask" class="" ng-click="getMyTaskListTab();"><a data-toggle="pill" href="" class="profile-tabs">My Task</a></li>
+         
+          </ul>
+          <ul ng-if="workflow.shortName == undefined" class="nav nav-pills nav-stacked e-pro">
+            <li id="workFlow" class="" ng-click="getworkflowListTab();"><a data-toggle="pill" href="" class="profile-tabs">Workflow</a></li>
+            <li id="myTask" class="active" ng-click="getMyTaskListTab();"><a data-toggle="pill" href="" class="profile-tabs">My Task</a></li>
+         
+          </ul>
+        </div>
+      </div> -->
+
+
+		<div class="table-responsive" id="task-listing"
+			class="tab-pane fade in">
+			<div class="section-heading">
+				<h4>Ticket Details</h4>
+			</div>
+			<div class="section-content">
+				<div class="job-search-cntnr task-job-search">
+					<div class="srch-head" style="margin: 0px; padding: 4px 0px;">
+						<div class="row">
+							<div class="col-md-2">
+								<div>
+									<p class="workflw-head">
+										<span>Ticket Number:</span>
+									<h4 class="blue-bold workflow_head_name">{{ticket.ticket_number}}</h4>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="coma-sep">
+									<p class="workflw-head">
+										<span>Identifier:</span>
+									</p>
+									<h4 ng-repeat="pf in ticketDetails.identifierFields" class="blue-bold" style="display: inline-block;margin: 0px 4px !important">{{pf.fieldValue}}<span>,</span> </h4>
+								</div>
+
+							</div>
+							<div class="col-md-3">
+								<div>
+									<p class="workflw-head">
+										<span>Workflow Name:</span>
+									</p>
+									<h4 class="blue-bold workflow_head_name" style="display: inline-block;">{{workflow.name}}</h4>
+								</div>
+
+							</div>
+
+							<div class="col-md-4">
+								<div style="display: block; width: 100%; text-align: right;">
+									<div id="save"
+										ng-if="taskInfo.taskStatusId != 4 && taskInfo.editFlag==true "
+										class="form-group"
+										style="display: inline-block; margin-right: 10px; margin-bottom: 0px;">
+										<button class="btn btn-default btn-bluer"
+											ng-click="saveTaskDetails(3)"
+											data-target="#assignnment-details" data-toggle="modal"
+											type="button"
+											style="margin-right: 0px !important; padding: 7px 10px;">
+											Save <i class="fa fa-floppy-o save-btn"></i>
+										</button>
+									</div>
+									<div class="form-group"
+										style="display: inline-block; margin-right: 10px; margin-bottom: 0px;">
+										<button id="taskSubmit"
+											ng-if="taskInfo.taskStatusId != 4 && taskInfo.editFlag==true"
+											class="btn btn-default btn-bluer"
+											ng-click="saveTaskDetails(4)"
+											data-target="#assignnment-details" data-toggle="modal"
+											type="button"
+											style="margin-right: 0px !important; padding: 7px 10px;">
+											Submit <i class="fa fa-caret-square-o-up save-btn"></i>
+										</button>
+										<!-- <button id="prefilledsunmit"
+											ng-if="taskName1 == 'Prefilled Fields' && ticketDetails1.prefilledFieldFlag == true "
+											class="btn btn-default btn-bluer"
+											ng-click="savePrefilledFields()"
+											data-target="#assignnment-details" data-toggle="modal"
+											type="button"
+											style="margin-right: 0px !important; padding: 7px 10px;">
+											Submit <i class="fa fa-caret-square-o-up save-btn"></i>
+										</button> -->
+									</div>
+									<div class="form-group"
+										style="display: inline-block; margin-right: 10px; margin-bottom: 0px;">
+										<button class="btn btn-default btn-bluer"
+											ng-if="workflow.shortName != undefined"
+											ui-sref="restricted.admin.ticket"
+											data-target="#assignnment-details" data-toggle="modal"
+											type="button"
+											style="margin-right: 0px !important; padding: 7px 10px;">
+											Cancel <i class="fa fa-times-circle-o save-btn"></i>
+										</button>
+										<button class="btn btn-default btn-bluer"
+											ng-if="workflow.shortName == undefined"
+											ui-sref="restricted.admin.mytask"
+											data-target="#assignnment-details" data-toggle="modal"
+											type="button"
+											style="margin-right: 0px !important; padding: 7px 10px;">
+											Cancel <i class="fa fa-times-circle-o save-btn"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="section-content"
+						style="background: #fff; padding: 0px 14px 0px 14px;">
+						<div class="upper-actions"></div>
+						<div class="row">
+							<div class="col-md-2 left-box" style="padding: 0;">
+								<div class="table-cntnr">
+									<ul type="none" class=" nav nav-tabs task-listing-dtls">
+										<li class="side-title"
+											style="padding: 6px 6px; background-color: #f1f1f1;"><span>Tasks</span>
+										</li>
+										<li><a id="open_popup" ng-click="showPrefilledFields()">
+												<span style="font-weight: 400;">Prefilled Fields</span>
+										</a></li>
+										<li ng-class='{active: $first}'
+											ng-repeat="task in ticketDetails1.ticketTasks"
+											ng-if="task.taskShowFlag"><a
+											ng-click="fetchTaskFields(task)" data-toggle="tab">
+											<span>{{task.name}}</span>
+												<img src="resources/img/icon1.png"
+												ng-if="task.taskStatusId == 3"
+												class="img-responsive right-icon" data-toggle="tooltip"
+												data-placement="top" title="In Progress"> <img
+												src="resources/img/icon2.png" ng-if="task.taskStatusId == 2"
+												class="img-responsive right-icon" data-toggle="tooltip"
+												data-placement="top" title="Assigned"> <img
+												src="resources/img/icon3.png" ng-if="task.taskStatusId == 4"
+												class="img-responsive right-icon" data-toggle="tooltip"
+												data-placement="top" title="Completed"> </a></li>
+										<!-- <li><a href="#task2" data-toggle="tab"> <span>Task 2</span><img src="resources/img/icon2.png" class="img-responsive right-icon"></a></li>
+	            <li><a href="#task3" data-toggle="tab"> <span>Task 3</span><img src="resources/img/icon3.png" class="img-responsive right-icon" data-toggle="tooltip" data-placement="top" title="Completed"></a></li> -->
+									</ul>
+								</div>
+							</div>
+
+
+							<div id="popup" style="overflow-x: hidden;">
+								<div class="popup-header">
+									<h5>Prefilled Fields</h5>
+									<div class="close_icon"
+										style="display: inline-block; float: right;">
+										<a id="close_popup"><i class="fa fa-close" ng-click="closePrefilledFieldModal()"></i></a>
+									</div>
+								</div>
+								<div id="prefilled-fields" class="lower-tickt-filed clearfix">
+									<div class="clearfix"></div>
+									<div class="popup-prefilled-fields"
+										ng-repeat="pf in ticketDetails.preFilledFields">
+										<div ng-if="pf.fieldMasterId == 1">
+											<div class="col-md-12" style="padding: 3px;">
+													<!-- TEXT -->
+													<div ng-repeat="xx in pf.validationList">
+														<div ng-if="xx.id === 1 " class="">
+															<div class="form-group" style="margin-bottom:0px !important;">
+																<label>{{pf.label}}:</label> <input type="text"
+																	class="form-control input-flater"
+																	ng-model="pf.fieldValue"
+																	ng-disabled="!ticketDetails1.prefilledFieldFlag"
+																	ng-required="{{pf.required}}"
+																	maxLength="{{xx.validationValue}}" allow2>
+															</div>
+														</div>
+														<div ng-if="xx.id === 2" class="">
+															<div class="form-group" style="margin-bottom:0px !important;">
+																<label>{{pf.label}}:</label> <input type="text"
+																	class="form-control input-flater"
+																	ng-model="pf.fieldValue"
+																	ng-disabled="!ticketDetails1.prefilledFieldFlag"
+																	ng-required="{{pf.required}}"
+																	maxLength="{{xx.validationValue}}" allow1>
+															</div>
+														</div>
+														<div ng-if="xx.id === 3 " class="">
+															<div class="form-group" style="margin-bottom:0px !important;">
+																<label>{{pf.label}}:</label> <input type="password"
+																	class="form-control input-flater"
+																	ng-model="pf.fieldValue"
+																	ng-disabled="!ticketDetails1.prefilledFieldFlag"
+																	ng-required="{{pf.required}}"
+																	maxLength="{{xx.validationValue}}">
+															</div>
+														</div>
+														<div ng-if="xx.id === 4" class="">
+															<div class="form-group" style="margin-bottom:0px !important;">
+																<label>{{pf.label}}:</label> <input type="text"
+																	class="form-control input-flater"
+																	ng-model="pf.fieldValue"
+																	ng-disabled="!ticketDetails1.prefilledFieldFlag"
+																	ng-required="{{pf.required}}"
+																	maxLength="{{xx.validationValue}}">
+															</div>
+														</div>
+														<div ng-if="xx.id === 16" class="">
+															<div class="form-group" style="margin-bottom:0px !important;">
+																<label>{{pf.label}}:</label> <input type="text"
+																	class="form-control input-flater"
+																	ng-model="pf.fieldValue"
+																	ng-disabled="!ticketDetails1.prefilledFieldFlag"
+																	ng-required="{{pf.required}}"
+																	maxLength="{{xx.validationValue}}">
+															</div>
+														</div>
+														<span style="color: red;">{{errorMsg}}</span>
+													</div>
+
+
+													<!-- <div>
+												<label>Firstname<span>*</span></label> <input type="text"
+													class="form-control input-flater">
+											</div> -->
+												
+											</div>
+										</div>
+
+										<!-- TEXTAREA -->
+
+										<div ng-if="pf.fieldMasterId == 2" class="form-group">
+											<div class="col-md-12" style="padding: 3px;">
+												<div class="form-group">
+													<div>
+														<label>{{pf.label}}</label>
+														<textarea class="form-control flat-control-inner"
+															id="{{pf.fieldMasterId}}{{$index}}"
+															ng-model="pf.fieldValue"
+															ng-disabled="!ticketDetails1.prefilledFieldFlag"
+															ng-required="{{pf.required}}"
+															maxLength="{{pf.validationList[0].validationValue}}"
+															maxlength="255" style="height: 100px;"></textarea>
+														<span id="textArea-{{pf.fieldMasterId}}{{$index}}"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- RADIO BUTTONS -->
+
+										<div ng-if="pf.fieldMasterId == 3" class="form-group">
+											<div class="col-md-12" style="padding: 3px;">
+												<div class="form-group">
+													<div>
+														<label>{{pf.label}}</label>
+														<div class="prefill">
+															<div class="radio-cntnr"
+																ng-repeat="x2 in pf.wf_Options" style="float:left;">
+																<input type="radio" id="{{x2.optionId}}"
+																	name="radio-group{{pf.label}}"
+																	ng-model="pf.fieldValue" value="{{x2.optionLabel}}"
+																	ng-disabled="!ticketDetails1.prefilledFieldFlag">
+																<label for="{{x2.optionId}}" class="cstmchk_lbladmin"></label>
+																<p class="radio-sub-head">{{x2.optionLabel}}</p>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+										<!-- CHECKBOX -->
+
+										<div ng-if="pf.fieldMasterId == 4">
+											<div class="col-md-12" style="padding: 3px;">
+												<div class="form-group">
+													<div>
+														<label>{{pf.label}}</label>
+														<div class="prefill">
+															<div class="chckbx-cntnr new_check_pref"
+																ng-repeat="x1 in pf.wf_Options ">
+																<input type='checkbox' value="{{x}}"> <input
+																	type="checkbox" id="{{x1.optionId}}" class="flashadmin"
+																	name="check-group-{{currentIndex}}"
+																	ng-model="x1.optionValueFlag"
+																	check-list="x1.optionValueFlag" class=""
+																	ng-disabled="!ticketDetails1.prefilledFieldFlag">
+																<label class="cstmchk_lbladmin" for="{{x1.optionId}}">
+																	<p class="expense-trvl">{{x1.optionLabel}}</p>
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- DROPDOWN -->
+
+										<div ng-if="pf.fieldMasterId == 5">
+											<div class="col-md-12" style="padding: 3px;">
+												<div class="">
+													<label>{{pf.label}}</label> 
+													<select class="form-control flat-control-inner with-caret"
+														ng-model="pf.fieldValue"
+														ng-disabled="!ticketDetails1.prefilledFieldFlag">
+														<option value="">--select--</option>
+														<option ng-repeat="x in pf.wf_Options"
+															value="{{x.optionLabel}}">{{x.optionLabel}}</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+
+										<div ng-if="pf.fieldMasterId == 6">
+											<div class="col-md-12" style="padding: 3px;">
+												<div class="form-group">
+													<label>{{pf.label}}</label>
+													<div class="input-group">
+														<input type="text" id="docfilepath"
+															class="form-control flat-control-inner ng-pristine ng-valid ng-empty ng-touched"
+															ng-disabled="!ticketDetails1.prefilledFieldFlag"
+															ng-model="selectedfile"> <span
+															class="input-group-btn" style="width: 0px;"> <span
+															class="btn btn-primary btn-file new-browse"
+															style="padding: 12px;"> Browse</span>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+										<div ng-if="pf.fieldMasterId == 7">
+											<div class="col-md-12" style="padding: 3px;">
+												<div class="form-group">
+													<label>{{pf.label}}<span ng-if="field.isRequired">*</span></label>
+													<div class="input-group"">
+														<input class="form-control input-flater"
+															id="userdetail{{pf.id}}" ng-model="pf.userEmail"
+															ng-disabled="!ticketDetails1.prefilledFieldFlag"
+															ng-change="fetchUserDetails(pf.userEmail,pf.validationList[0].validationValue)"
+															ng-blur="addUserDetailsList()" list="userDetails" >
+														<datalist id="userDetails">
+															<option data-ng-repeat="u in EmployeeNumberList" class="{{u.id}}"
+																value="{{u.detail}}">
+														</datalist>
+													</div>
+													<div>
+														<a href=""
+															ng-if="ticketDetails1.prefilledFieldFlag && pf.userId != undefined && pf.userId != 0"
+															ng-click="openUserProfile(pf.userId)">Link to profile</a>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- DATE -->
+
+										<div class="col-md-12" style="padding: 3px;">
+											<div class="" ng-if="pf.fieldMasterId == 8">
+												<div ng-repeat="xp in pf.validationList">
+													<label>{{pf.label}}</label>
+													<div class="input-group" style="position: relative;">
+														<input type="text" id="prefld-date{{pf.id}}"
+															data-date-format="DD-MM-YYYY" ng-model="pf.fieldValue"
+															data-ng-init="onloadFun(this)"
+															class="form-control flat-control-inner dateonly2 ng-pristine ng-untouched ng-valid ng-empty"
+															style="position: relative;"> <span
+															class="input-group-addon" style="padding: 11px 12px;">
+															<span id="task-caldr5"
+															class="glyphicon glyphicon-calendar"></span>
+														</span>
+													</div>
+												</div>	
+												<!-- end ngRepeat: xp in field.validationList -->
+											</div>
+										</div>
+
+										<div class="clearfix"></div>
+									<div class="col-md-12" style="padding: 3px;">
+										<div ng-if="pf.fieldMasterId == 9" class="">
+											<label>{{pf.label}}<span ng-if="field.isRequired">*</span>
+											(24 Hours)
+											</label>
+											<div class="">
+												<div class="set-col">
+													<input id="hours{{pf.id}}" type="text" ng-model="pf.hours"
+														class="form-control flat-control-inner for_coloan1"
+														ng-disabled="!ticketDetails1.prefilledFieldFlag"
+														Placeholder="Hours" ng-required="{{field.required}}"
+														allow1>
+												</div>
+												<p class="time_colon">:</p>
+												<div class="set-col1">
+													<input id="minutes{{pf.id}}" type="text"
+														ng-model="pf.minutes"
+														class="form-control flat-control-inner for_coloan1"
+														ng-disabled="!ticketDetails1.prefilledFieldFlag"
+														placeholder="Minutes" ng-required="{{field.required}}"
+														allow1>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="clearfix"></div>
+									<div class="col-md-12" style="padding: 3px;">
+									<div ng-if="pf.fieldMasterId == 10" class="">
+									<label>{{pf.label}}<span ng-if="field.isRequired">*</span>
+									</label>
+									
+									<input type="text" id="txtNumber"
+										class="form-control input-flater"
+										ng-model="pf.fieldValue"
+										ng-disabled="!ticketDetails1.prefilledFieldFlag"
+										ng-required="{{pf.required}}"
+										placeholder='0.00' onkeyup="AddComma(this);" allow3 >
+									
+									</div>
+									
+									</div>
+
+											
+									</div>
+
+										<button id="prefilledsunmit"
+											ng-if="ticketDetails1.prefilledFieldFlag == true "
+											class="btn btn-default btn-bluer"
+											ng-click="savePrefilledFields()"
+											data-target="#assignnment-details" data-toggle="modal"
+											type="button"
+											style="margin-right: 0px !important; padding: 7px 10px;">
+											Submit <i class="fa fa-caret-square-o-up save-btn"></i>
+										</button>
+
+
+										<button class="btn btn-default btn-bluer" data-dismiss="modal"
+											type="button" ng-click="closePrefilledFieldModal()"
+											style="margin-right: 0px !important; padding: 7px 10px;">
+											Cancel <i class="fa fa-times-circle-o save-btn" data-dismiss="modal"></i>
+										</button>
+
+
+									<div class="clearfix"></div>
+									<div class="clearfix"></div>
+									<div class="popup-prefilled-fields"></div>
+									<div class="clearfix"></div>
+									<div class="popup-prefilled-fields"></div>
+
+
+
+								</div>
+							</div>
+
+							<div class="col-md-10 right-box" style="">
+								<div class="clearfix"></div>
+								<div class="tab-content">
+									<div id="workflowmain" class="tab-pane fade in active clearfix">
+										<div class="section-heading default-head"
+											style="padding: 1px 14px; border-bottom: 1px solid #ccc;">
+											<h5 ng-if="taskName == ''"
+												style="font-weight: 400 !important;">Prefilled Fields</h5>
+											<h5 ng-if="taskName != '' " 
+												style="font-weight: 400 !important;">{{taskName}}</h5>
+										</div>
+
+
+										<!-- 	<div id="prefilled-fields" class="lower-tickt-filed clearfix">
+											<div ng-repeat="pf in ticketDetails.preFilledFields"
+												class="col-md-4">
+												<div ng-if="pf.fieldMasterId == 1">
+													<div ng-repeat="xx in pf.validationList">
+														<div ng-if="xx.id === 1 " class="">
+															<div class="form-group">
+																<label>{{pf.label}}:</label> <input type="text"
+																	class="form-control flat-control-inner"
+																	ng-model="pf.fieldValue"
+																	ng-disabled="!ticketDetails.prefilledFieldFlag"
+																	ng-required="{{pf.required}}"
+																	maxLength="{{xx.validationValue}}" allow2>
+															</div>
+														</div>
+														<div ng-if="xx.id === 2" class="">
+															<div class="form-group">
+																<label>{{pf.label}}:</label> <input type="text"
+																	class="form-control flat-control-inner"
+																	ng-model="pf.fieldValue"
+																	ng-disabled="!ticketDetails.prefilledFieldFlag"
+																	ng-required="{{pf.required}}"
+																	maxLength="{{xx.validationValue}}" allow1>
+															</div>
+														</div>
+														<div ng-if="xx.id === 3 " class="">
+															<div class="form-group">
+																<label>{{pf.label}}:</label> <input type="password"
+																	class="form-control flat-control-inner"
+																	ng-model="pf.fieldValue"
+																	ng-disabled="!ticketDetails.prefilledFieldFlag"
+																	ng-required="{{pf.required}}"
+																	maxLength="{{xx.validationValue}}">
+															</div>
+														</div>
+														<div ng-if="xx.id === 4" class="">
+															<div class="form-group">
+																<label>{{pf.label}}:</label> <input type="text"
+																	class="form-control flat-control-inner"
+																	ng-model="pf.fieldValue"
+																	ng-disabled="!ticketDetails.prefilledFieldFlag"
+																	ng-required="{{pf.required}}"
+																	maxLength="{{xx.validationValue}}">
+															</div>
+														</div>
+														<div ng-if="xx.id === 16" class="">
+															<div class="form-group">
+																<label>{{pf.label}}:</label> <input type="text"
+																	class="form-control flat-control-inner"
+																	ng-model="pf.fieldValue"
+																	ng-disabled="!ticketDetails.prefilledFieldFlag"
+																	ng-required="{{pf.required}}"
+																	maxLength="{{xx.validationValue}}">
+															</div>
+														</div>
+														<span style="color: red;">{{errorMsg}}</span>
+													</div>
+												</div>
+												<div ng-if="pf.fieldMasterId == 8">
+													<div class="col-md-4">
+													<div class="form-group">
+														<div ng-repeat="xp in pf.validationList">
+															<label>{{pf.label}}</label>
+															<div class="input-group">
+																<input type="text" id="prefld-date{{pf.id}}"
+																	data-date-format="{{xp.validationValue | uppercase}}"
+																	data-ng-init="onloadFun(this)" ng-model="pf.fieldValue"
+																	ng-disabled="!ticketDetails.prefilledFieldFlag"
+																	class="form-control flat-control-inner dateonly2">
+																<span class="input-group-addon"
+																	style="padding: 11px 12px;"> <span
+																	id="prefld-cal{{xp.id}}"
+																	class="glyphicon glyphicon-calendar"></span>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div ng-if="pf.fieldMasterId == 2" class="form-group"
+													style="display: inline-block; width: 100%">
+													<label class="ticket-label">{{pf.label}}</label>
+													<textarea class="form-control flat-control-inner"
+														id="{{pf.fieldMasterId}}{{$index}}"
+														ng-model="pf.fieldValue"
+														ng-disabled="!ticketDetails.prefilledFieldFlag"
+														ng-required="{{pf.required}}"
+														maxLength="{{pf.validationList[0].validationValue}}"
+														style="height: 100px;"></textarea>
+													<span id="textArea-{{pf.fieldMasterId}}{{$index}}"></span>
+												</div>
+
+												<div ng-if="pf.fieldMasterId == 5">
+													<label>{{pf.label}}</label> <select
+														class="form-control flat-control-inner with-caret"
+														ng-model="pf.fieldValue"
+														ng-disabled="!ticketDetails.prefilledFieldFlag">
+														<option value="">--select--</option>
+														<option ng-repeat="x in pf.wf_Options"
+															value="{{x.optionLabel}}">{{x.optionLabel}}</option>
+													</select>
+												</div>
+
+												<div ng-if="pf.fieldMasterId == 4"
+													class="form-group task-checkbox"
+													style="display: inline-block; width: 100%">
+													<label style="">{{pf.label}}</label>
+													<div class="prefill">
+														<div class="chckbx-cntnr" ng-repeat="x1 in pf.wf_Options ">
+															<input type='checkbox' value="{{x}}"
+																check-list='checked_fruits'> <input
+																type="checkbox" id="{{x1.optionId}}" class="flashadmin"
+																name="check-group-{{currentIndex}}"
+																ng-model="x1.optionValueFlag"
+																check-list="x1.optionValueFlag" class=""
+																ng-disabled="!ticketDetails.prefilledFieldFlag">
+															<label class="cstmchk_lbladmin" for="{{x1.optionId}}">
+																<p class="expense-trvl">{{x1.optionLabel}}</p>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div ng-if="pf.fieldMasterId == 3" class="form-group">
+													<label class="ticket-label">{{pf.label}}</label>
+													<div class="prefill" style="">
+														<div class="radio-cntnr new-chc"
+															ng-repeat="x2 in pf.wf_Options ">
+															<input type="radio" id="{{x2.optionId}}"
+																name="radio-group{{currentIndex}}"
+																ng-model="pf.fieldValue" value="{{x2.optionLabel}}"
+																ng-disabled="!ticketDetails.prefilledFieldFlag">
+															<label for="{{x2.optionId}}"></label>
+															<p class="radio-sub-head" style="margin-left: 34px;">{{x2.optionLabel}}</p>
+														</div>
+													</div>
+												</div>
+
+												<div ng-if="pf.fieldMasterId == 6" class="form-group"
+													style="display: inline-block; width: 100%">
+													<label>{{pf.label}}</label>
+													<div class="input-group">
+														<input type="text" id="docfilepath"
+															class="form-control flat-control-inner ng-pristine ng-valid ng-empty ng-touched"
+															ng-disabled="!ticketDetails.prefilledFieldFlag"
+															ng-model="selectedfile"> <span
+															class="input-group-btn" style="width: 0px;"> <span
+															class="btn btn-primary btn-file new-browse"
+															style="padding: 12px;"> Browse</span>
+														</span>
+													</div>
+												</div>
+
+												<div ng-if="pf.fieldMasterId == 7" class="form-group ">
+													<label>{{pf.label}}<span ng-if="field.isRequired">*</span></label>
+													<div class="input-group"">
+														<input class="form-control flat-control-inner"
+															id="userdetail{{pf.id}}" ng-model="pf.userEmail"
+															ng-disabled="!ticketDetails.prefilledFieldFlag"
+															ng-change="fetchUserDetails(pf.userEmail,pf.validationList[0].validationValue)"
+															ng-blur="addUserDetailsList()" list="userDetails">
+														<datalist id="userDetails">
+															<option data-ng-repeat="u in EmployeeNumberList"
+																value="{{u.detail}}">
+														</datalist>
+													</div>
+													<div>
+														<a href=""
+															ng-if="ticketDetails.prefilledFieldFlag && pf.userId != undefined && pf.userId != 0"
+															ng-click="openUserProfile(pf.userId)">Link to profile</a>
+													</div>
+												</div>
+											</div>
+										</div>
+ -->
+										<div id="task-fields" style="margin-top: 6px;">
+											<div class="clearfix"></div>
+											<div class="top-fields-info">
+												<div class="col-md-3">
+													<div class="default-head">
+														<!-- <h4>Workflow 1</h4> -->
+														<p>
+															Assigned To: <span>{{taskInfo.assignedUserName}}</span>
+														</p>
+													</div>
+												</div>
+												<div class="col-md-9">
+													<div ng-if="ticketDetails.prefilledFieldFlag"
+														class="col-md-6 dates-head">
+														<div class="default-head">
+															<!-- <h4>Workflow 1</h4> -->
+															<p>
+																Planned Start Date: <span>{{dateformate(taskInfo.taskStartDate)}}</span>
+															</p>
+														</div>
+													</div>
+													<div ng-if="ticketDetails.prefilledFieldFlag"
+														class="col-md-6 dates-head">
+														<div class="default-head">
+															<!-- <h4>Workflow 1</h4> -->
+															<p>
+																Planned End Date: <span>{{dateformate(taskInfo.taskPlanEndDate)}}</span>
+															</p>
+														</div>
+													</div>
+													<div class="clearfix"></div>
+													<div
+														ng-if="taskInfo.taskEstimatedStartDate != '' && taskInfo.taskEstimatedStartDate != undefined"
+														class="col-md-6 dates-head">
+														<div class="default-head">
+															<!-- <h4>Workflow 1</h4> -->
+															<p>
+																Estimated Start Date: <span>{{dateformate(taskInfo.taskEstimatedStartDate)}}</span>
+															</p>
+														</div>
+													</div>
+													<div
+														ng-if="taskInfo.taskEstimatedEndDate != '' && taskInfo.taskEstimatedEndDate != undefined"
+														class="col-md-6 dates-head"
+														ng-if="taskInfo.taskStatusId==4">
+														<div class="default-head">
+															<!-- <h4>Workflow 1</h4> -->
+															<p>
+																Estimated End Date: <span>{{dateformate(taskInfo.taskEstimatedEndDate)}}</span>
+															</p>
+														</div>
+													</div>
+													<div class="clearfix"></div>
+													<div
+														ng-if="taskInfo.taskActualStartDate != '' && taskInfo.taskActualStartDate != undefined"
+														class="col-md-6 dates-head">
+														<div class="default-head">
+															<!-- <h4>Workflow 1</h4> -->
+															<p>
+																Actual Start Date: <span>{{dateformate(taskInfo.taskActualStartDate)}}</span>
+															</p>
+														</div>
+													</div>
+													<div
+														ng-if="taskInfo.taskActualEnd != '' && taskInfo.taskActualEnd != undefined"
+														class="col-md-6 dates-head"
+														ng-if="taskInfo.taskStatusId==4">
+														<div class="default-head">
+															<!-- <h4>Workflow 1</h4> -->
+															<p>
+																Actual End Date: <span>{{dateformate(taskInfo.taskActualEnd)}}</span>
+															</p>
+														</div>
+													</div>
+													<!-- <div class="col-md-4">
+          <div class="default-head">
+            <h4>Workflow 1</h4>
+            <p>Estimated Date: <span>{{dateformate(taskInfo.taskPlanEndDate)}}</span></p> 
+          </div>
+        </div> -->
+												</div>
+											</div>
+											<div class="clearfix"></div>
+											<div class="lower-tickt-filed" style="margin-top: 0px;">
+												<div ng-repeat="field in taskDetails" class="col-md-4"
+													ng-init="currentIndex=$index">
+													<div ng-if="field.fieldMasterId == 1" class="form-group ">
+														<div ng-repeat="xx in field.validationList">
+															<div ng-if="xx.id === 1 " class="">
+																<div class="form-group">
+																	<label>{{field.label}}<span
+																		ng-if="field.isRequired">*</span>:
+																	</label> <input type="text"
+																		class="form-control flat-control-inner"
+																		ng-model="field.fieldValue"
+																		ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																		ng-required="{{field.required}}"
+																		maxLength="{{xx.validationValue}}" allow2>
+																</div>
+															</div>
+															<div ng-if="xx.id === 2" class="">
+																<div class="form-group">
+																	<label>{{field.label}}<span
+																		ng-if="field.isRequired">*</span>:
+																	</label> <input type="text"
+																		class="form-control flat-control-inner"
+																		ng-model="field.fieldValue"
+																		ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																		ng-required="{{field.required}}"
+																		maxLength="{{xx.validationValue}}" allow1>
+																</div>
+															</div>
+															<div ng-if="xx.id === 3 " class="">
+																<div class="form-group">
+																	<label>{{field.label}}<span
+																		ng-if="field.isRequired">*</span>:
+																	</label> <input type="password"
+																		class="form-control flat-control-inner"
+																		ng-model="field.fieldValue"
+																		ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																		ng-required="{{field.required}}"
+																		maxLength="{{xx.validationValue}}">
+																</div>
+															</div>
+															<div ng-if="xx.id === 4" class="">
+																<div class="form-group">
+																	<label>{{field.label}}<span
+																		ng-if="field.isRequired">*</span>:
+																	</label> <input type="text"
+																		class="form-control flat-control-inner"
+																		ng-model="field.fieldValue"
+																		ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																		ng-required="{{field.required}}"
+																		maxLength="{{xx.validationValue}}">
+																</div>
+															</div>
+															<div ng-if="xx.id === 16" class="">
+																<div class="form-group">
+																	<label>{{field.label}}<span
+																		ng-if="field.isRequired">*</span>:
+																	</label> <input type="text"
+																		class="form-control flat-control-inner"
+																		ng-model="field.fieldValue"
+																		ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																		ng-required="{{field.required}}"
+																		maxLength="{{xx.validationValue}}">
+																</div>
+															</div>
+														</div>
+														<span style="color: red;">{{errorMsg}}</span>
+													</div>
+
+													<div ng-if="field.fieldMasterId == 8" class="form-group ">
+														<div ng-repeat="xp in field.validationList">
+															<label>{{field.label}}<span
+																ng-if="field.isRequired">*</span></label>
+															<div class="input-group" style="position: relative;">
+																<input type="text" id="task-date{{field.id}}"
+																	data-date-format="{{xp.validationValue | uppercase}}"
+																	data-ng-init="onloadFun(this)"
+																	ng-model="field.fieldValue"
+																	onclick="getDatepicker(this);" ng-blur="changeStyle()"
+																	ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																	class="form-control flat-control-inner dateonly2"
+																	style="position: relative;"> <span
+																	class="input-group-addon" style="padding: 11px 12px;">
+																	<span id="task-caldr{{xp.id}}"
+																	class="glyphicon glyphicon-calendar"></span>
+																</span>
+															</div>
+														</div>
+													</div>
+
+													<div ng-if="field.fieldMasterId == 2" class="form-group ">
+														<label class="ticket-label" ng-if=" taskInfo.taskShowFlag ==  true">{{field.label}}<span
+															ng-if="field.isRequired">*</span></label>
+														<textarea class="form-control flat-control-inner"
+															id="{{field.fieldMasterId}}{{$index}}"
+															ng-model="field.fieldValue"
+															ng-if=" taskInfo.taskShowFlag ==  true"
+															ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+															ng-required="{{field.required}}"
+															maxLength="{{field.validationList[0].validationValue}}"
+															style="height: 100px;"></textarea>
+														<span id="textArea-{{field.fieldMasterId}}{{$index}}"></span>
+													</div>
+
+													<div ng-if="field.fieldMasterId == 5" class="form-group ">
+														<label>{{field.label}}<span
+															ng-if="field.isRequired">*</span></label> <select
+															class="form-control flat-control-inner with-caret"
+															ng-model="field.fieldValue"
+															ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4">
+															<option value="">--select--</option>
+															<option ng-repeat="x in field.wf_Options"
+																value="{{x.optionLabel}}">{{x.optionLabel}}</option>
+														</select>
+													</div>
+													<div ng-if="field.fieldMasterId == 4" class="form-group ">
+														<label style="">{{field.label}}<span
+															ng-if="field.isRequired">*</span></label>
+														<div class="prefill text-style-wrap">
+															<div class="chckbx-cntnr new"
+																ng-repeat="x1 in field.wf_Options">
+																<input type='checkbox' value="{{x}}"
+																	check-list='checked_fruits'> <input
+																	type="checkbox" id="{{x1.optionId}}" class="flashadmin"
+																	name="check-group-{{currentIndex}}"
+																	ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																	ng-model="x1.optionValueFlag"
+																	check-list="x1.optionValueFlag" class=""> <label
+																	class="cstmchk_lbladmin" for="{{x1.optionId}}">
+																	<p class="expense-trvl">{{x1.optionLabel}}</p>
+																</label>
+															</div>
+														</div>
+													</div>
+
+													<div ng-if="field.fieldMasterId == 3"
+														class="form-group col-md-12">
+														<label class="ticket-label">{{field.label}}<span
+															ng-if="field.isRequired">*</span></label>
+														<div class="prefill">
+															<div class="radio-cntnr new-chc"
+																ng-repeat="x2 in field.wf_Options ">
+																<input type="radio" id="{{x2.optionId}}"
+																	name="radio-group{{currentIndex}}"
+																	ng-model="field.fieldValue"
+																	ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																	value="{{x2.optionLabel}}"> <label
+																	for="{{x2.optionId}}"></label>
+																<p class="radio-sub-head">{{x2.optionLabel}}</p>
+															</div>
+														</div>
+													</div>
+
+													<div ng-if="field.fieldMasterId == 6" class="form-group ">
+														<label style="display:block;">{{field.label}}<span
+															ng-if="field.isRequired">*</span></label>
+														<div class="input-group input-90"
+															style="width: 80%; float: left; display: inline-blcok">
+															<input type="text" id="docfilename{{currentIndex}}"
+																ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																ng-model="field.fileName" readonly=""
+																class="form-control flat-control-inner"> <span
+																class="input-group-btn"> <span
+																class="btn btn-primary btn-file"> Browse <input
+																	id="docfilepath{{currentIndex}}"
+																	onchange="angular.element(this).scope().fileNameChanged(this)"
+																	ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																	data-label="Browse" type="file" single />
+															</span>
+															</span>
+
+
+														</div>
+														<i ng-if="field.fieldValue != undefined && field.fieldValue != '' "
+															ng-click="download(field.fieldValue)"
+															class="fa fa-download browse-download"></i>
+															<button class="btn btn-default btn-create" ng-if="field.fieldValue != undefined && field.fieldValue != '' " id="create-job-btn" ng-click="openDocument(field.fieldValue)" data-toggle="modal"  data-target="#preview-screen-for-user"><i class="fa fa-eye"></i></button>
+													</div>
+													<div ng-if="field.fieldMasterId == 7" class="form-group ">
+														<label>{{field.label}}<span
+															ng-if="field.isRequired">*</span></label>
+														<div class="input-group">
+															<input autocomplete="off"
+																class="form-control flat-control-inner"
+																id="userdetail{{field.id}}" ng-model="field.userEmail"
+																ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																ng-change="fetchUserDetails(field.userEmail,field.validationList[0].validationValue)"
+																ng-blur="addUserDetailsList()" list="userDetails">
+															<datalist id="userDetails">
+																<option data-ng-repeat="u in EmployeeNumberList"
+																	value="{{u.detail}}">
+															</datalist>
+														</div>
+														<div>
+															<a href=""
+																ng-if="field.userId != undefined && field.userId != 0"
+																ng-click="openUserProfile(field.userId)">Link to
+																profile</a>
+														</div>
+													</div>
+
+													<div ng-if="field.fieldMasterId == 9" class="form-group ">
+														<label style="float: left;">{{field.label}}<span
+															ng-if="field.isRequired">*</span> <br>(24 Hours
+															)
+														</label>
+
+														<div class="input-group">
+															<div class="set-col">
+																<input id="hours{{field.id}}" type="text"
+																	ng-model="field.hours"
+																	class="form-control flat-control-inner estimated-timer for_coloan"
+																	ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																	Placeholder="Hours" ng-required="{{field.required}}"
+																	allow1 style="width: 35% !important; float: left;">
+															</div>
+															<p class="time_colon">:</p>
+															<div class="set-col1">
+																<input id="minutes{{field.id}}" type="text"
+																	ng-model="field.minutes"
+																	class="form-control flat-control-inner estimated-timer for_coloan"
+																	ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																	placeholder="Minutes" ng-required="{{field.required}}"
+																	allow1 style="width: 35% !important;">
+															</div>
+														</div>
+
+													</div>
+													
+													<div ng-if="field.fieldMasterId == 10" class="form-group ">
+													<label style="float: left;">{{field.label}}<span
+															ng-if="field.isRequired">*</span>
+														</label>
+														
+														<input type="text" id="txtNumber1{{$index}}"
+																		class="form-control flat-control-inner"
+																		ng-model="field.fieldValue"
+																		ng-disabled="!taskInfo.editFlag || taskInfo.taskStatusId==4"
+																		ng-required="{{field.required}}"
+																		placeholder='0.00' ng-change="AddComma1(field.fieldValue,{{$index}});" allow3 >
+													
+													</div>
+													
+													
+
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="modal fade" id="preview-screen-for-user" role="dialog">
+          <div class="modal-dialog modal-md add-brand">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Document</h4>
+              </div>
+              <div class="modal-body">
+              <div  style="overflow-y: scroll;" id="imagetab">
+              <img ng-src="{{fileurl}}" width="100%"  class="img-responsive" id="imgtab1">
+               <iframe  ng-show="pdfFlag == true" ng-src="{{pdfDocPath}}"  height="410px" width="100%" ></iframe>
+		        <!-- <img width="100%" src="resources/img/Fake.jpg" class="img-responsive" id="imgtab1"> -->
+		        <!-- <iframe ng-show="pdfFlag == true" ng-src="{{pdfDocPath}}" height="410px" width="100%"></iframe>  -->
+		       </div>
+              </div>             
+            </div>
+          </div>
+      </div>
+      
+
+</section>
+<script>
+	function getDatepicker(evt) {
+		$('.dateonly').datepicker({
+			format : $(this).attr("data-date-format"),
+			//maxDate:new Date(),
+			useCurrent : false,
+			autoclose : true
+		}).on('dp.change', function(e) {
+			$(this).change();
+			console.log($(this))
+		});
+	}
+
+	/* $(".dateonly").click(function(){
+	    $('.dateonly').datetimepicker();
+	}); */
+</script>
+<!-- <script type="text/javascript">
+ 			$(function () {
+                $('.dateonly').datetimepicker({
+                   format: 'DD-MM-YYYY',
+                   minDate:new Date(),
+                });
+            });
+</script> -->
+
+<script>
+	/* $('#professional').on('focus',".dateonly", function(){  
+	 $('.dateonly').datetimepicker({	    		
+	 format: 'DD-MM-YYYY',
+	 useCurrent: false, 
+	 //minDate:new Date()     	
+	 }).on('dp.change', function (e) { $(this).change()});
+	 }); */
+</script>
+
+<script>
+	/* $("#open_popup").click(function() {
+		$("#popup").css("display", "block");
+		$("#popup").draggable();
+	}); */
+
+	/* $("#close_popup").click(function() {
+		$("#popup").css("display", "none");
+	}); */
+</script>
+
+<!-- <script type="text/javascript">
+        function AddComma(text) {
+            switch (text.value.length) {
+                  case 1:
+                    document.getElementById("txtNumber").value = "0.0" + text.value;
+                    break;  
+                default:
+                    var data = text.value.replace(".", "");
+                    var first = data.substring(0, (data.length - 2));
+                    var second = data.substring(data.length - 2);
+                    var temp = Math.abs(first) + "." + second;
+                    document.getElementById("txtNumber").value = temp;
+            }
+        }
+    </script>
+    
+    <script type="text/javascript">
+        function AddComma1(text) {
+            switch (text.value.length) {
+                 case 1:
+                    document.getElementById("txtNumber1").value = "0.0" + text.value;
+                    break; 
+                default:
+                    var data = text.value.replace(".", "");
+                    var first = data.substring(0, (data.length - 2));
+                    var second = data.substring(data.length - 2);
+                    var temp = Math.abs(first) + "." + second;
+                    document.getElementById("txtNumber1").value = temp;
+            }
+        }
+    </script> --><div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</section>
+<script>
+	function getDatepicker(evt) {
+		$('.dateonly').datepicker({
+			format : $(this).attr("data-date-format"),
+			//maxDate:new Date(),
+			useCurrent : false,
+			autoclose : true
+		}).on('dp.change', function(e) {
+			$(this).change();
+			console.log($(this))
+		});
+	}
+
+	/* $(".dateonly").click(function(){
+	    $('.dateonly').datetimepicker();
+	}); */
+</script>
+<!-- <script type="text/javascript">
+ 			$(function () {
+                $('.dateonly').datetimepicker({
+                   format: 'DD-MM-YYYY',
+                   minDate:new Date(),
+                });
+            });
+</script> -->
+
+<script>
+	/* $('#professional').on('focus',".dateonly", function(){  
+	 $('.dateonly').datetimepicker({	    		
+	 format: 'DD-MM-YYYY',
+	 useCurrent: false, 
+	 //minDate:new Date()     	
+	 }).on('dp.change', function (e) { $(this).change()});
+	 }); */
+</script>
+
+<script>
+	/* $("#open_popup").click(function() {
+		$("#popup").css("display", "block");
+		$("#popup").draggable();
+	}); */
+
+	$("#close_popup").click(function() {
+		$("#popup").css("display", "none");
+	});
+</script>
+
+<script type="text/javascript">
+        function AddComma(text) {
+            switch (text.value.length) {
+                  case 1:
+                    document.getElementById("txtNumber").value = "0.0" + text.value;
+                    break;  
+                default:
+                    var data = text.value.replace(".", "");
+                    var first = data.substring(0, (data.length - 2));
+                    var second = data.substring(data.length - 2);
+                    var temp = Math.abs(first) + "." + second;
+                    document.getElementById("txtNumber").value = temp;
+            }
+        }
+    </script>
+    
+   <!--  <script type="text/javascript">
+        function AddComma1(text,i) {
+        
+        	alert("kdjf" +i);
+        	switch (text.value.length) {
+            case 1:
+              document.getElementById("txtNumber1"+i).value = "0.0" + text.value;
+              alert(i);
+              
+              break;  
+          default:
+              var data = text.value.replace(".", "");
+              var first = data.substring(0, (data.length - 2));
+              var second = data.substring(data.length - 2);
+              var temp = Math.abs(first) + "." + second;
+              document.getElementById("txtNumber1"+i).value = temp;
+             
+              i++;
+      }
+        		  
+        }
+    </script> -->

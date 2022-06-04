@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<style>
+#reqresModal .modal-body {
+    word-break: break-word;
+}
+.colored-count {
+    text-align: left;
+    padding: 12px 0;
+    color: #fff;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-radius: 4px;
+}
+body{
+overflow-x:hidden;}
+
+.datepicker-background:after {
+    content: "\f133";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    position: absolute;
+    font-size: 20px;
+    color: #000;
+    z-index: 1;
+    top: 28px;
+    right: 25px;
+    cursor: pointer;
+}
+</style>
+<div class="admin-page" id="eifapilog" ng-controller="EIFAPILogs_Ctrl">
+      <div class="section-heading">
+        <h4>Mistral Integration Report</h4>
+        <!--<p>Create and post new job or choose one from already posted jobs.</p>-->
+      </div>
+      <div class="section-content" id="api-logs">
+        <div class="upper-actions">
+        <div class="section-content">
+        		<div class="row">
+              <div class="col-md-2">
+                <div class="form-group date-cal datepicker-background">
+                  <label>From Date:</label>
+                  <input type="text" id="fromdate" ng-model="fromDate"  class="form-control flat-control-inner dateonly">
+                  
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group date-cal datepicker-background">
+                  <label>To Date:</label>
+                  <input type="text" id="todate" ng-model="toDate" class="form-control flat-control-inner dateonly" >
+                <!-- 	<i class="fa fa-calendar-o" aria-hidden="true"></i>   -->
+                </div>
+              </div>
+              <div class="col-md-1">
+              	<div class="button-group" style="margin: 26px 0px 0px 0px;">
+					<button class="btn btn-default btn-create" ng-click="fetchAPILogsCount(fromDate,toDate)"><i class="fa fa-filter"></i></button>
+				</div>
+              </div>
+              
+              <div class="col-md-7">
+              
+              <div class="col-md-4" ng-click="getLogsbystatus(fromDate,toDate,'total')">
+					<div id="f1_container" class="f1_container">
+						<div id="f1_card" class="shadow f1_card">
+							<div class="front face">
+								<div style="cursor: pointer;" class="tile" id="">
+									<div class="colored-count" style="background-color: #2e7cc6;">
+										<i class="fa fa-paper-plane" style="color:#fff; height: 86px;"></i>
+										<h2 class="ng-binding">{{totalcount}}</h2>
+										<a class="coloured-name" >
+											Total <br>Requests Sent</a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+              
+              
+              
+              	<div class="col-md-4" ng-click="getLogsbystatus(fromDate,toDate,'success')">
+					<div id="f1_container" class="f1_container">
+						<div id="f1_card" class="shadow f1_card">
+							<div class="front face">
+								<div style="cursor: pointer;" class="tile" id="">
+									<div class="colored-count" style="background-color: #5db85b; height: 86px;">
+										<i class="fa fa-check-circle" style="color:#fff"></i>
+										<h2 class="ng-binding">{{successcount}}</h2>
+										<a class="coloured-name" >
+											Successful <br>Requests</a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+					<div class="col-md-4" ng-click="getLogsbystatus(fromDate,toDate,'failed')">
+					<div id="f1_container" class="f1_container">
+						<div id="f1_card" class="shadow f1_card">
+							<div class="front face">
+								<div style="cursor: pointer;" class="tile" id="">
+									<div class="colored-count" style="background-color: #ed4640; height: 86px;">
+										<i class="fa fa-times-circle" style="color:#fff"></i>
+										<h2 class="ng-binding">{{failedcount}}</h2>
+										<a  class="coloured-name">
+											Failed<br>Requests</a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+					
+              
+              
+              
+              
+              </div>
+        </div>
+        </div>
+        
+        
+        <div class="table-cntnr">
+
+          <table id="content2" class="table table-striped red-table">
+           <caption>Logs</caption>
+            <thead>
+              <tr>
+                <th style="vertical-align: middle;">API<!-- <i ng-click="SortingReadinessReportList('User',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"></i> --></th>
+                <th style="vertical-align: middle;">Send Date <!-- <i ng-click="SortingReadinessReportList('Position',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"></i> --></th>
+                <th style="min-width:60px; text-align:center"><div >API Data <!-- <i ng-click="SortingReadinessReportList('SelectedDate',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"></i> --></div></th>
+                <th style="min-width:60px; text-align:center"><div >Response <!-- <i ng-click="SortingReadinessReportList('SelectedDate',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"> --></i></div></th>
+                <th style="min-width:126px;"><div >Response Status <!-- <i ng-click="SortingReadinessReportList('SelectedDate',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"> --></i></div></th>
+                <th style="min-width:126px;"><div >User <!-- <i ng-click="SortingReadinessReportList('SelectedDate',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"></i> --></div></th>
+               </tr>
+            </thead>
+            <tbody>
+            <tr ng-if="apilogs == undefined || apilogs.length == 0">
+            <td colspan="6" style="text-align: center;">No Data Available</td>
+            </tr>
+            <tr ng-repeat="al in apilogs">
+                <td>{{al.api_name}}</td>
+                <td>{{formatDate(al.send_date)}}</td>
+                <td style="text-align:center"><a><i style="font-size:14px" ng-if="al.api_id == 2" class="fa fa-arrow-up" aria-hidden="true" ng-click="showDetails(al.api_data)"></i></a></td>
+                <td style="text-align:center"><a><i style="font-size:14px" class="fa fa-arrow-down" aria-hidden="true" ng-click="showDetails(al.api_response_data)"></i></a></td>
+                <td ng-if="al.api_response_code==200">Success</td>
+                <td ng-if="al.api_response_code!=200">Failed</td>
+                <td>{{al.name}}</td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+        <div class="text-right">           
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+          </div>
+        </div>
+        <div class="modal fade" id="reqresModal" role="dialog">
+          <div class="modal-dialog modal-md add-brand">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Details</h4>
+              </div>
+              <div class="modal-body">
+         
+                </div>
+              
+              </div>              
+            </div>            
+          </div>
+      </div> 
+        </div>
+        <script type="text/javascript">
+      
+        $('#api-logs').on('focus',".dateonly", function(){  
+	    	$('.dateonly').datetimepicker({	    		
+	 			 format: 'DD-MM-YYYY',
+	  			 useCurrent: false, 
+	  			 //minDate:new Date()     	
+	    	}).on('dp.change', function (e) { $(this).change()});
+	});
+	</script>

@@ -1,0 +1,219 @@
+<style>
+.list-of-attachment{
+	list-style:none;
+	padding:0px;
+	}
+	.list-of-attachment li{
+	text-align:left;
+	positin:relative;
+	}
+	.list-of-attachment li i{
+	padding-right:5px;
+	}
+</style>
+<div class="modal fade" id="text_message" role="dialog">
+	<div class="modal-dialog  modal-lg add-brand">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" onclick="stop()" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title" id="reply_header">Text Message from
+					{{callLog.user.firstName}}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="audio-main" style="padding: 0 15px;" id="text_message_user">
+						<p>{{callLog.textMessage}}</p>
+						<ul class="list-attachment">
+							<li ng-repeat="userCallAttachment in userCallAttachmentList">
+
+								<span class="btn btn-success fileinput-button"
+								ng-click="download(userCallAttachment.path)"> <i
+									class="fa fa-download" style="font-size: 20px;"></i> <span>{{userCallAttachment.attachmentName}}</span>
+							</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="incoming_msg"  id="voice_message_user">
+					<div class="received_msg">
+						<div class="received_withd_msg">
+							<audio controls autoplay id="player{{callLog.id}}" style="display:none">
+							</audio>
+							<div class="video_controls_bar" >
+								 <button class="pButton pause"  onclick="playPause(this)" style="display:none"></button>
+<!-- 								 <button class="pButton replay"  onclick="replay(this)" style="display:none"></button> -->
+								 <button class="pButton start_play"  ng-click="playAudioMessage(callLog)" ></button>
+								  <div class="timeline">    
+								          <div class="playhead"></div>
+								  </div>
+<!-- 								  <div class="video_duration"><span class="curtimetext">00:00</span> -->
+<!-- 								/ <span class="durtimetext">00:00</span></div> -->
+								<button class="mutebtn unmute"  onclick="muteUnmute(this)"></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+					<div ng-repeat="conversation in ticketDetails">
+
+							<div class="incoming_msg" ng-if="!conversation.agentId">
+								<div class="received_msg">
+									<div class="received_withd_msg">
+										<p>{{conversation.textMessage}}</p>
+										
+										<span class="time_date">
+											{{dateformate(conversation.callReceivedAt)}}</span>
+									</div>
+								</div>
+							</div>
+							<div class="incoming_msg" ng-if="!conversation.agentId"
+								ng-repeat="userCallAttachment in conversation.userAttachments">
+								<div class="received_msg">
+									<div class="received_withd_msg">
+										<p ng-click="download(userCallAttachment.path)">
+											<i class="fa fa-download" style="font-size: 20px;"></i> <span><i>{{userCallAttachment.attachmentName}}</i></span>
+										</p>
+										<span class="time_date">
+											{{dateformate(conversation.callReceivedAt)}}</span>
+									</div>
+								</div>
+							</div>
+							<div class="outgoing_msg" ng-if="conversation.agentId&&conversation.textMessage">
+								<div class="incoming_msg_img" style="float: right;">
+									<img src="resources/img/male.png" alt="sunil">
+								</div>
+								<div class="sent_msg">
+									<p>{{conversation.textMessage}}</p>
+									<span class="time_date"> {{dateformate(conversation.callReceivedAt)}}</span>
+								</div>
+							</div>
+							<div class="outgoing_msg" ng-if="conversation.agentId" ng-repeat="userCallAttachment in conversation.userAttachments">
+								<div class="incoming_msg_img" style="float: right;">
+									<img src="resources/img/male.png" alt="sunil">
+								</div>
+								<div class="sent_msg">
+									<p ng-click="download(userCallAttachment.path)"><i class="fa fa-download" style="font-size: 20px;"></i> <span><i>{{userCallAttachment.attachmentName}}</i></span></p>
+									<span class="time_date"> {{dateformate(conversation.callReceivedAt)}}</span>
+								</div>
+							</div>
+							
+							<div class="outgoing_msg" ng-if="conversation.agentId&&conversation.voiceMessage">
+								<div class="incoming_msg_img" style="float: right;">
+									<img src="resources/img/male.png" alt="sunil">
+								</div>
+								<div class="sent_msg">
+								<audio width="100%" height="350" controls autoplay id="player{{conversation.id}}" poster="" style="display:none">
+							</audio>
+							<div class="video_controls_bar" ng-if="conversation.voiceMessage">
+								 <button class="pButton pause"  onclick="playPause(this)" style="display:none"></button>
+<!-- 								 <button class="pButton replay"  onclick="replay(this)" style="display:none"></button> -->
+								 <button class="pButton start_play"  ng-click="playAudioMessage(conversation)" ></button>
+								  <div class="timeline">    
+								          <div class="playhead"></div>
+								  </div>
+<!-- 								  <div class="video_duration"><span class="curtimetext">00:00</span> -->
+<!-- 								/ <span class="durtimetext">00:00</span></div> -->
+								<button class="mutebtn unmute"  onclick="muteUnmute(this)"></button>
+							</div>
+									<span class="time_date"> {{dateformate(conversation.callReceivedAt)}}</span>
+								</div>
+							</div>
+							
+							
+						</div>
+				<div class="row flex-div">
+					<div class="col-md-12 flex-contaoner reply-mesg text-center">
+					<div class="user-voice-call flex-item" ng-show="calloptions">
+							<a id="message-user" style="cursor: pointer;"
+								ng-click="replyToMissedCall(callLog.id,callLog.userid,false)"><i
+								class="fa fa-phone" aria-hidden="true"></i></a>
+							<p>Reply via Audio Call</p>
+						</div>
+						<div class="user-voice-call flex-item" ng-show="calloptions">
+							<a id="message-user" style="cursor: pointer;"
+								ng-click="replyToMissedCall(callLog.id,callLog.userid,true)"><i
+								class="fa fa-video-camera" aria-hidden="true"></i></a>
+							<p>Reply via Video Call</p>
+						</div>
+						<div class="user-voice-call flex-item">
+							<a id="message-user" style="cursor: pointer;"
+								ng-click="showOptions(true,false);enableFileEvent();"><i
+								class="fa fa-envelope" aria-hidden="true"></i></a>
+							<p>Reply via Message</p>
+						</div>
+						<div class="user-voice-call flex-item">
+							<a id="message-user" style="cursor: pointer;"
+								ng-click="showOptions(false,true)"><i
+								class="fa fa-microphone" aria-hidden="true"></i></a>
+							<p>Reply via Voice Message</p>
+						</div>
+					</div>
+				</div>
+				<div class="row leave-msg" style="margin: 0px;" ng-show="textmessage">
+					<form
+						ng-submit="replyViaMessage(textMessage,'attachments_message')"
+						enctype="multipart/form-data" id="text_reply_form">
+						<div id="" class="">
+							<div class="" style="text-align: center;">
+								<textarea class="text-field" ng-model="textMessage"
+									style="width: 100%" placeholder="Please leave a message"></textarea>
+							</div>
+							<div class="" style="text-align: center;">
+										<ul class="list-of-attachment">
+										<li ng-repeat="file in attachments"><i class="fa fa-paperclip" aria-hidden="true"></i>{{file.name}}</li></ul>
+										</div>
+							<div class="upload-btn-wrapper">
+								<button class="btn">Upload Files</button>
+								<input type="file" file-model="files" multiple
+									id="attachments_message">
+							</div>
+						</div>
+						<div class="btn-right" style="">
+							<button class="btn btn-default btn-bluer" id="next-btn">Send</button>
+							<div class="form-group width-200"></div>
+						</div>
+					</form>
+					<!-- <a href="">Cancel</a> -->
+				</div>
+				<div class="row voice-message-div" style="margin: 0px;"
+					ng-if="voicemessage">
+					<form ng-submit="replyViaVoiceMessage()" enctype="multipart/form-data">
+						<img class="img-responsive text-center logo-voice"
+							src="resources/img/voice-rec.png" />
+						<h3 id="timertime">00.00.00</h3>
+						<!-- <button type="button" onClick="myTimer = setInterval(myCounter, 1000)">Start counter!</button>
+                                       <p id="demo">Click on the button above and I will count forever.</p>
+                                       
+                                          <button type="button" onClick="clearInterval(myTimer)">Stop counter!</button> -->
+						<button type="button" id="button_play"
+							onClick="myTimer = setInterval(myCounter, 1000)"
+							class="btn play-audio" title="Start Your Recording"
+							ng-click="recordAudio(true)">
+							<i class="fa fa-play"></i>
+						</button>
+						<button disabled type="button" id="button_stop"
+							onClick="clearInterval(myTimer)" class="btn play-stop"
+							title="Stop Your Recording"
+							ng-click="recordAudio(false);checkvalueSelected(audioRecorded)">
+							<i class="fa fa-stop"></i>
+						</button>
+						<!-- <img src="resources/img/audio.png" ng-if="question.isVoiceEnabled==true && audioRecorded==true" class="audio-png"  ng-click="enabledAudioT=true;generatedSignUrl(question.audioAns)" alt="" style="display: block;">
+                                       -->
+						<audio
+							style="margin: 15px auto; display: block; text-align: center; display: none"
+							src="" id="voice-respnce" type="audio/ogg" controls
+							controlsList="nodownload"></audio>
+						<div class="btn-right-1" style="">
+							<button class="btn btn-default btn-bluer" id="next-btn" ng-disabled="!recorded">Send</button>
+							<div class="form-group width-200"></div>
+						</div>
+					</form>
+				</div>
+				<!-- <div class="btn-cntnr" style="">
+                                 <button class="btn btn-default btn-bluer" id="cancel-req-btn">Save</button>
+                                 <a data-target="">Cancel</a>
+                                 </div> -->
+			</div>
+		</div>
+	</div>
+</div>

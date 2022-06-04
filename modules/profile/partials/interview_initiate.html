@@ -1,0 +1,358 @@
+<style>
+#meeting_waiting{
+	margin-top: 140px;
+}
+#meeting_waiting .meeting_box_bg > .row{
+	margin: 0;
+}
+.meeting_box_bg {
+    padding: 15px 0;
+    background-color: #fff;
+}
+.banner_inner_padding{
+	padding: 0 10px;
+}
+.banner_note{
+	padding: 30px 15px;
+    background: #105B78;
+    margin-bottom: 40px;
+}
+.banner_note_box p{
+	margin-bottom: 0;
+	color: #fff;
+	font-size:15px;
+	text-align: center;
+}
+.applied_inner_padding{
+	padding: 0 10px;
+}
+.credential_details_box{
+	margin-bottom: 40px;
+}
+.credential_details_box ul{
+    padding-left: 0;
+    list-style-type: none;
+    margin-bottom: 0;
+}
+.credential_details_box ul li{
+	font-size: 14px;
+    margin-bottom: 5px;
+}
+.credential_details_box ul li span{
+    font-weight: 600;
+}
+.credential_details_box ul li:nth-child(2){
+    margin-bottom: 0;
+}
+.credential_details_box ul li:nth-child(3){
+    margin-top: 20px;
+}
+.start_meet_disabled{
+    background-color: #C4C2C3;
+    color: #585858;
+    border-radius: 0;
+    width: 200px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+.start_meet_disabled:hover{
+	background-color: #C4C2C3;
+	color: #585858;
+	cursor: not-allowed;
+}
+.start_meet_enabled{
+	background-color: #099F00;
+    color: #fff;
+    border-radius: 0;
+    width: 200px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+.start_meet_enabled:hover, .start_meet_enabled:focus{
+	background-color: #15af0c;
+	color: #fff !important;
+}
+.applied_position_text{
+	padding: 10px 30px;
+    background: #105B78;
+    border: 1px solid #105B78;
+    border-bottom: none;
+}
+.applied_position_text p{
+	font-size: 15px;
+	color: #fff;
+	text-align: left;	
+    margin-bottom: 0;
+}
+.applied_position_list {
+    height: 290px;
+    border: 1px solid #105B78;
+    background-color: #FAFAFA;
+    overflow: auto;
+}
+.position_list_box {
+    background-color: #fff;
+    margin: 15px 30px 15px 15px;
+    padding: 8px 15px;
+    box-shadow: 0px 3px 8px 0px rgb(0 0 0 / 10%);
+}
+.position_list_box p{
+	margin-bottom:0;
+    font-size: 14px !important;
+}
+.position_list_box p:first-child{
+   	color: #00aaff;	
+}
+.position_list_box p span{
+	font-weight: 600;
+}
+#carousel-reviews .carousel-inner .item img{
+	width: 100%;
+    height: 350px;
+}
+#carousel-reviews .carousel-inner .item video {
+    width: 100%;
+    height: 350px;
+}
+.prev_slide_btn, .next_slide_btn{
+    border: none;
+    opacity: 1;
+    background: none !important;
+    padding:0;
+}
+.prev_slide_btn img{
+	position: absolute;
+    left: -10px;
+    top: 35%;
+}
+.next_slide_btn img{
+	position: absolute;
+    right: -10px;
+    top: 35%;
+}
+.prev_slide_btn:hover, .prev_slide_btn:focus, .next_slide_btn:hover, .next_slide_btn:focus{
+    transform: inherit !important;
+    opacity: 1 !important;
+}
+</style>
+<section class="" id="meeting_waiting">
+	<div class="meeting_box_bg">
+		<div class="row">
+			<div class="col-md-7">
+				<div class="banner_inner_padding">
+					<div class="banner_note">
+						<div class="banner_note_box">
+							<p>You can browse through the reading/viewing matrial given below. until our recruiter join you. Click on the 'START MEETING' when it turns green.</p>
+						</div>			
+					</div>
+					
+					<div id="carousel-slider12" class="carousel slide" data-ride="carousel"  ng-show="statusflag=='true'">
+						<div class="carousel-fade">
+							<div class="carousel-inner">
+								<div class="item relative-item active">
+
+									<div>
+										<img
+											ng-if="startInterviewDetails.jobFairMedias[0].mediaType == 'image'"
+											ng-src="{{startInterviewDetails.jobFairMedias[0].mediaPath}}"
+											alt="cr{{$index}}">
+										<video
+											ng-if="startInterviewDetails.jobFairMedias[0].mediaType == 'video'"
+											ng-src="{{startInterviewDetails.jobFairMedias[0].mediaPath}}"
+											controls></video>
+									</div>
+								</div>
+							<div class="item relative-item"
+								ng-repeat="media in mediaFile track by $index">
+								<img ng-if="media.mediaType == 'image'"
+									ng-src="{{media.mediaPath}}" alt="cr{{$index}}">
+								<video ng-if="media.mediaType == 'video'"
+									ng-src="{{media.mediaPath}}" controls></video>
+							</div>
+
+
+
+						</div>
+						 <button class="left carousel-control prev_slide_btn" href="#carousel-slider12" role="button" data-slide="prev">
+					                    <img src="resources/img/Group_1.png" />
+					                </button>
+					                <button class="right carousel-control next_slide_btn" href="#carousel-slider12" role="button" data-slide="next">
+					                    <img src="resources/img/Group_2.png" />
+					                </button>
+						
+					</div>
+				</div>
+				
+				
+						<div class="slider_box slider-div-initiat" ng-show="statusflag=='false'">						
+						<div class="carousel-reviews broun-block">						    
+				            <div id="carousel-reviews" class="carousel slide" data-ride="carousel">				            
+				                <div class="carousel-inner">
+				                    <div class="item active">	
+										<img src="https://s3.ap-south-1.amazonaws.com/cruisetesting/Jobfair/1b688296-0f06-4c98-977a-c205d31ec225cruise.png">
+				                    </div>
+				                    <div class="item">						                        
+			            				<video src="https://s3.ap-south-1.amazonaws.com/cruisetesting/Jobfair/1d17e970-2f82-4f79-bfec-13afd162879efile_example_MP4_640_3MG.mp4" controls></video>											
+				                    </div>
+				                                 
+				                </div>
+					                <button class="left carousel-control prev_slide_btn" href="#carousel-reviews" role="button" data-slide="prev">
+					                    <img src="resources/img/Group_1.png" />
+					                </button>
+					                <button class="right carousel-control next_slide_btn" href="#carousel-reviews" role="button" data-slide="next">
+					                    <img src="resources/img/Group_2.png" />
+					                </button>
+				            </div>						        
+						</div>
+					
+												
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="applied_inner_padding">
+					<div class="credential_details_box">
+						<ul>
+							<li ng-if="vcdata.url !='' && vcdata.url !=undefined  && flag "> <span>URL : </span> {{vcdata.url}} </li>
+							<li ng-if="vcdata.password !='' && vcdata.password != undefined && flag "> <span>Password : </span> {{vcdata.password}} </li>
+							<li> <button class="btn start_meet_disabled"  ng-if="vcdata.url == '' || vcdata.url == undefined || !flag" >Start Meeting</button>
+							 <button class="btn start_meet_enabled" ng-if="vcdata.url != '' && vcdata.url !=undefined && flag" ng-click="startInterview(vcdata.url)">Start Meeting</button></li>
+						</ul>
+					</div>
+					<div class="applied_position_main" ng-show="statusflag=='true'">
+						<div class="applied_position_text">
+							<p>Applied Positions</p>
+						</div>
+						<div class="applied_position_list">
+							<div class="position_list_box" ng-repeat="appJob in appliedJobs">
+								<p class="job_name1">{{appJob.position.name}} </p>
+								<p><span>Department:</span> {{appJob.category.name}} </p>
+								<p><span>Brand:</span> {{appJob.brand.brandName}} </p>
+							</div>
+							
+						</div>	
+					</div>
+				</div>
+				
+				
+					<div class="notes" ng-show="statusflag=='false'">
+ 	         	<p>You are all set!! Your meeting is confirmed . We have also sent you an email.</p>
+	         	<p>To speak to our recruiter on the day of the event, simply follow these steps: </p>
+	         	<p>1. Visit www.cruisecareers.in</p>
+	         	<p>2. Log in to your account </p>
+	         	<p>3. Click on 'Virtual Career Fair'</p>
+	         	<p>4. Click on 'CLICK HERE TO START MEETING' to enter meeting room</p>
+	         	<p>5. Ensure that the camera and microphone on your device is active and Pop Ups are enabled</p>
+	         	<p class="text-center"><b>GOOD LUCK!</b></p>
+	         </div>
+				
+			</div>
+		</div>	
+	</div>
+</section>
+
+
+ <footer id="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-sm-4">
+        <img src="resources/img/logo-big.png">
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <h5>ADDRESS</h5>
+        <p>Carnival Support Services India Ltd,
+Kohinoor City, Tower 2, Floor 5,
+Kirol Road, Off. LBS Marg, Kurla West,
+Mumbai 400 070</p>
+      </div>
+      <div class="col-md-2 col-sm-4">
+        <h5>CONTACT</h5>
+        <p><a class="footer-contact" href="tel:+917942529292">+91-7942529292</a>
+ </p>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>GET IN TOUCH</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="https://www.facebook.com/cruisecareersindia/" target="_blank" class="facebook-link"><i class="icon-facebook"></i></a></li>
+          <li><a href="https://twitter.com/cruisecareers" target="_blank" class="twitter-link"><i class="icon-twitter2"></i></a></li>
+          <!-- <li><a href="" target="_blank" class="google-link"><i class="icon-instagram"></i></a></li> -->
+          <li><a href="https://www.linkedin.com/company/carnival-support-services-india-pvt.-ltd" target="_blank" class="utube-link"><i class="icon-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>MOBILE APP</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="#!comingsoon" class="android-link"><i class="icon-android"></i></a></li>
+          <li><a href="#!comingsoon" class="ios-link"><i class="icon-apple"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<div class="lower-footer">
+  &#169; 2017 CSSI Pvt. Ltd.
+</div>
+   
+
+ <script>
+ 
+
+ 
+ 
+ $("video").on("play", function () {
+
+	 $("video").not(this).each(function (index, video) {
+
+	 var tmp_src = video.currentSrc;
+
+	 var playtime = video.currentTime;
+
+	 video.src = '';
+
+	 video.load();
+
+	 video.src = tmp_src;
+
+	 video.currentTime = playtime;
+
+
+
+	 });
+
+	 });
+ 
+ 
+	    $('#carousel-slider12').carousel({
+	      interval: false
+	    })
+	    $("#prev").click(function(){
+    $("#carousel-slider12").carousel("prev");
+   // alert('prev');
+   var i =0;
+    $('#carousel-slider12 .item').each(function() {
+    	
+	    $('.item video').get(i).pause();
+	    i++;
+	});
+    
+  });
+  $("#next").click(function(){
+    $("#carousel-slider12").carousel("next");
+    //alert('prev');
+    var i = 0
+    //$("#carousel-slider12 video").get(0).pause()
+    $('#carousel-slider12 .item').each(function() {
+    	$('.item video').get(i).pause();
+	    i++;
+	});
+  });
+
+ /* 
+ ( document ).ready(function(){
+	    $('.carousel-slider12').carousel({
+	      interval: 2000
+	    })
+	}); */
+  </script>

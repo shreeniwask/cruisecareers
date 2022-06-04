@@ -1,0 +1,200 @@
+<div id="expense" class="tab-pane fade in admin-page">
+      <div class="section-heading">
+        <h4>Expense Master</h4>
+        <!--<p>Create and post new job or choose one from already posted jobs.</p>-->
+      </div>
+      <div class="section-content" id="post-list">
+        <div class="upper-actions">
+          <div class="button-group">
+            <button class="btn btn-default btn-create" id="create-job-btn" ng-click="addExpense()"><i class="icon-plus"></i></button>
+             <button class="btn btn-default btn-delete"  ng-click="check()"  ><i class="icon-trash-2"></i></button>
+          </div>
+          <div class="search-cntnr">
+            <div class="form-group search-box inline-blck">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="getExpenseMasterList(0,10,null,null,searchterm);getExpenseListCount(searchterm)"></i>
+            </div>
+          </div>
+          
+          <div class="clearfix"></div>
+        </div>
+        <div class="table-cntnr">
+          <table class="table table-striped red-table">
+           <caption>Expense Master</caption>
+            <thead>
+              <tr>
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(expenseMasterList,all)" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th>
+                <th>Expense Head <i class="fa fa-sort" aria-hidden="true" ng-click="SortingExpenseMasterList('Expense Head',searchterm)"></th>
+                <th>Sub Head <i  aria-hidden="true"></th>
+                <th>Type of Reimbursement <i class="fa fa-sort" aria-hidden="true" ng-click="SortingExpenseMasterList('Type of Reimbursement',searchterm)"></i></th>
+              
+               </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="e in expenseMasterList">
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="{{e}}" name="check" class="flashadmin"  ng-click="checkedList(e.expense_typeId)" ng-checked="all">
+                      <label class="cstmchk_lbladmin" for="{{e}}"></label> 
+                    
+                    </div>
+                 
+                </td>
+                <!-- <td><a href="#" id="create-job-btn" data-toggle="modal" data-target="#expense_category">Travel</a></td> -->
+               <td><a  data-target="#edit_expense" id="edit_expense"   ng-click="updateExpences(e)">{{e.expense_headName}}</a></td>
+                   <td>{{e.subHeadName}}</td>
+                   <td>{{e.reimbursement_typeName}}</td>
+              </tr>
+             <!-- ng-click="expensedata(e)"  -->
+              
+            </tbody>
+          </table>
+          
+          
+          
+          <div class="text-right">
+            
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+ 
+            </div>
+          
+        </div>
+      </div>
+
+      <div class="modal fade" id="expense_category" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Expense Category</h4>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <p>Expense Name:</p>
+                  <div class="form-group">
+                    <input type="text" name="brand-name" class="brand-name">
+                 </div>
+                 
+                 <p>Amount:</p>
+                  <div class="form-group">
+                    <input type="text" name="brand-name" class="brand-name">
+                 </div>
+                
+                <div class="form-group text-right">
+                  <button type="submit" class="btn-info add_brand">Save Changes</button>
+                </div>
+               </form>
+              </div>
+              
+            </div>
+            
+          </div>
+      </div>
+
+      <div class="modal fade" id="add_expense" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Expense Details</h4>
+              </div>
+              
+              <div class="modal-body">
+                <form ng-submit="saveExpenseDetails(expenseMaster)">
+                  <p>Expense Name:</p>
+                  <div class="form-group">
+                    <input type="text" name="brand-name" class="brand-name"ng-model="expenseMaster.expense_type" required >
+                 </div>
+                
+                  <p>Amount:</p>
+                  <div class="form-group">
+                  
+                    <input type="text" name="brand-name" class="brand-name"ng-model="expenseMaster.maxAmount" required>
+                 </div>
+
+                   <div class="form-group text-right">
+                  <button type="submit" class="btn-info add_brand">Add</button>
+                </div>
+               </form>
+              </div>
+              
+            </div>
+            
+          </div>
+      </div>
+
+      </div>
+  </div>
+      
+      
+      
+      
+      
+      
+      
+      
+
+        
+        
+        <div id="deletelist" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm add-brand">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ng-value=""></div>
+          Are you sure you want to delete {{getCheckedIdList.length}} record(s)?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deletefromList('expenseMaster')">Delete</button>
+        
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+        
+        
+        
+
+ </div>
+
+
+
+   </div>
+ </div>
+ 
+  <script type="text/javascript">
+ $("#id_of_textbox").keyup(function(event) {
+	    if (event.keyCode === 13) {
+	        $("#id_of_button").click();
+	    }
+	});
+ 
+ $(document).ready(function() {
+	 $("input[type='file'].demo").filepicker({
+	 style: 'bootstrap' // default, bootstrap or jquery-ui
+	 });
+	 });
+ 
+ $("#add_expense").click(function(){
+     $("#slot-expense").hide();
+     $("#new_expense").show();
+   });
+ </script>
+      

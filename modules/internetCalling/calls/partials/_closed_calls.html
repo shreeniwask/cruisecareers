@@ -1,0 +1,59 @@
+
+	<br>
+	<div class="table-cntnr" style="padding: 0 14px;">
+		<table class="table table-striped red-table"
+			style="margin-bottom: 0px;">
+			<caption>Call Details</caption>
+			<thead>
+				<tr>
+					<th>Name <i ng-click="SortingfetchCallList('callername',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+					<th>Emp Id/Ref No. <i ng-click="SortingfetchCallList('refno',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+					<th>Time of call <i ng-click="SortingfetchCallList('timeofcall',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+					<th>Description <i ng-click="SortingfetchCallList('desc',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+					<th>Support Type <i ng-click="SortingfetchCallList('support',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+					<th style="width:105px">Rating</th>
+					<th>Actions <i class="fa fa-sort" aria-hidden="true" ng-repeat="i in getNumber(number)"></i></th>
+				</tr>
+			</thead>
+			<tbody class="font-20">
+				<tr ng-repeat="callLog in callLogs">
+
+					<td>{{callLog.user.firstName}} {{callLog.user.lastName}}</td>
+					<td ng-if="callLog.user.employeeId">{{callLog.user.employeeId}} </td>
+					<td ng-if="!callLog.user.employeeId"> {{callLog.user.refNo}}</td>
+					<td>{{dateformate(callLog.createdTimestamp)}}</td>
+					
+					<td>{{callLog.subSupportGroup.name}}</td>
+					<td>{{callLog.communicationOption.name}}</td>
+					<td class="star-icon"><i class="fa fa-star" aria-hidden="true" ng-repeat="i in getNumber(callLog.rating)  track by $index"></i></td>
+					<td
+						ng-if="callLog.communicationOption.id==2||callLog.communicationOption.id==1"><a
+						class="intrnt-icon" data-toggle="tooltip" data-placement="down"
+						title="Play Recording" style="font-weight: 500 !important;"><i
+							class="fa fa-play-circle-o" ng-click="showCallRecording(callLog)" style="color: #333;"></i></a> <a
+						class="intrnt-icon" data-toggle="tooltip" data-placement="top"
+						title="Details" style="font-weight: 500 !important;"><i
+							ng-click="fetchCommunicationNotes(callLog)"
+							class="fa fa-file-text-o" data-target="#communication-details"
+							data-toggle="modal" style="color: #333;"></i></a></td>
+					<!--  <td style="text-align: center;" ng-show="activeColumn('userId')"><a  ng-click="fetchCommunicationNotes(callLog.id)" id="task-flow" data-toggle="tooltip" data-placement="top" title="Notes" style="font-weight: 500 !important;"><i class="fa  fa-envelope"  style="color: #333;"></i></a></td>-->
+					<td ng-if="callLog.communicationOption.name=='Text Message'||callLog.communicationOption.name=='Voice Message'"><a
+						class="intrnt-icon" data-toggle="tooltip" data-placement="top"
+						title="Details" style="font-weight: 500 !important;"><i
+							ng-click="fetchCommunicationHistory(callLog)"
+							class="fa fa-file-text-o" style="color: #333;"></i></a></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="text-right">
+			<br>
+			<ul class="pagination" style="margin-top: 0;">
+				<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+				<li ng-repeat="i in navButtons"
+					ng-class="$parent.offset == i * $parent.limit && 'active'"><a
+					class="" ng-click="current(i)">{{i+1}}</a></li>
+				<li><a ng-hide="(((start+5)*10) + 10) >= count"
+					ng-click="next()">&raquo;</a></li>
+			</ul>
+		</div>
+	</div>

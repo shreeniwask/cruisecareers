@@ -1,0 +1,140 @@
+<div class="admin-page">
+<div class="section-heading">
+        <h4>Flags</h4>
+</div>
+<div class="section-content" id="settings-list">
+          <div class="shadow-container">
+          <div class="inner-head">
+            <h4 style="display: inline-block;">Flags</h4>
+          </div>
+          <div class="inner-form" style="display: inline-block;width: 100%;">
+             
+             <div id="SLA-settings" ng-show="!settingTabFlag" class="tab-pane fade in active">
+                 <!-- Single button -->
+<div class="col-md-1" style="width: 10%;">                
+  <div class="color-picker">
+  <label>Flag Color</label>
+	<div class="btn-group">
+	  <button type="button" class="btn btn-default dropdown-toggle "id="colorpicker" data-toggle="dropdown">
+	  <!-- <span class="caret"></span> -->
+	  </button>
+    
+    <div class="dropdown-menu colorschemebox color_pallet" role="menu"> 
+         <button type="button" class="btn btn-default colorscheme" id="pal1" name="#FFFFFF" style="background:#FFFFFF;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal2" name="#e8ecf1" style="background:#e8ecf1;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal3" name="#607d8b" style="background:#607d8b;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal4" name="#795548" style="background:#795548;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal5" name="#0000FF" style="background:#0000FF;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal6" name="#2979ff" style="background:#2979ff"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal7" name="#7b1fa2" style="background:#7b1fa2;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal8" name="#1de9b6" style="background:#1de9b6"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal9" name="#FF0000" style="background:#FF0000;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal10" name="#ffff00" style="background:#ffff00;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal11" name="#ffc400" style="background:#ffc400;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal12" name="#ff9100" style="background:#ff9100;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal13" name="#f50057" style="background:#f50057"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal14" name="#FF6600" style="background:#FF6600;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal15" name="#00FF00" style="background:#03bb03;"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal16" name="#76ff03" style="background:#76ff03"></button>
+         <button type="button" class="btn btn-default colorscheme" id="pal17" name="#A52A2A" style="background:#A52A2A"></button>
+		 <button type="button" class="btn btn-default colorscheme" id="pal18" name="#000000" style="background:#000000"></button>
+		 
+         
+         
+	</div>
+   </div>
+  </div>
+ </div>
+<div class="col-md-3">
+  <div class="status-name">
+  <div class="form-group">
+  	<label>Flag Name</label>
+  	<input type="text" id="status-name" ng-model="userFlag.flagStatus" class="form-control flat-control-inner">
+  </div>
+  </div>
+</div>
+
+
+<div class="col-md-4">
+	<div class="btn-cntnr" style="margin: 8% 0 0 0;">
+      <button class="btn btn-default btn-bluer" ng-click="addNewFlag(userFlag)" id="cancel-req-btn">Add</button>
+      <!-- <a href="">Cancel</a> -->
+    </div>
+</div>
+
+<div class="clearfix"></div>
+                	
+                	<div class="table-cntnr">
+				          <table class="table table-striped red-table flag_list">
+				            <caption>List of Flags</caption>
+				            <thead>
+				              <tr>
+				                 <td style="vertical-align: middle;">
+				                    <div class="chckbx-cntnr">
+				                      <input type="checkbox" id="color_check" name="check" class="flashadmin">
+				                      <label class="cstmchk_lbladmin" for="color_check"></label> 
+				                    </div>
+				                 </td>
+				                <th style="vertical-align: middle;"> Color </th>
+				                <th style="vertical-align: middle;"> Flag Name </th>
+				                <th style="vertical-align: middle;"> </th>
+				              </tr>
+		                	</thead>
+		                	<tbody>
+		                	<tr ng-repeat="f in fetchflag">
+		                		 <td style="vertical-align: middle;">
+				                    <div class="chckbx-cntnr">
+				                      <input type="checkbox" id="rd1" name="check" class="flashadmin">
+				                      <label class="cstmchk_lbladmin" for="rd1"></label> 
+				                    </div>
+				                 </td>
+			                	<td style="vertical-align: middle;"> <!-- <p class="status-color" style="background:#0000FF;"></p>  -->
+			                	<i class="fa fa-flag" ng-style="{'color':f.flagStyle}"></i>
+			                	</td>
+			                	<td style="vertical-align: middle;">{{f.flagStatus}}</td>
+			                	<td>
+			                	<button class="btn btn-default btn-delete" ng-click="checkDelete(f.id)" data-toggle="modal"><i class="icon-trash-2"></i></button>
+			                	</td>
+			                	
+		                	</tr>
+		                	</tbody>
+		                	</table>
+                	</div>
+                	
+	</div>
+ </div>
+</div>
+</div>
+</div> 
+
+     <div id="deletelist" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm add-brand">
+
+    Modal content
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix"></div>
+        Are you sure you want to delete the flag?
+      <div class="modal-footer text-left" >
+        <button type="button" class="btn btn-default" id="show_ass" data-dismiss="modal"  ng-click="deleteFlag(id)">Delete</button>
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>  
+    
+ <script type="text/javascript">
+ $( document ).ready(function() {
+	  $(".colorschemebox .btn").on("click",function(){
+	      $("#colorpicker").css("background-color", $(this).attr('name'));
+	      $("#colorpicker").val($(this).attr('name'));
+	});
+	});
+ 
+ 
+ </script>

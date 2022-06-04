@@ -1,0 +1,435 @@
+<script src="modules/internetCalling/js/player.js"></script>
+<style>
+.font-20 i {
+	font-size: 20px !important;
+}
+
+.font-15 i {
+	font-size: 15px !important;
+}
+
+.workfow-img {
+	height: 20px !important
+}
+
+.list-attachment {
+	list-style: none;
+	margin: 15px 0px 40px !important;
+	padding: 0px;
+}
+
+.communication-content textarea {
+	width: 100%;
+	padding: 0.5rem;
+	font-size: 12px;
+	border: 1px solid #D9D9D9;
+	border-radius: 3px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+	min-height: 100px;
+	margin-bottom: 1rem;
+}
+
+.reply-mesg i {
+	font-size: 40px;
+}
+
+.call-green {
+	-webkit-animation: NAME-YOUR-ANIMATION 1s infinite; /* Safari 4+ */
+	-moz-animation: NAME-YOUR-ANIMATION 1s infinite; /* Fx 5+ */
+	-o-animation: NAME-YOUR-ANIMATION 1s infinite; /* Opera 12+ */
+	animation: NAME-YOUR-ANIMATION 1s infinite; /* IE 10+, Fx 29+ */
+}
+
+@
+-webkit-keyframes NAME-YOUR-ANIMATION { 0%, 49% {
+	background-color: #adff2f;
+}
+
+50%,
+100%
+{
+background-color
+:
+#fff
+;
+
+
+}
+}
+.voice-message-div {
+	text-align: center;
+}
+
+.voice-message-div .logo-voice {
+	margin: 0 auto;
+	width: 100px;
+}
+
+#timertime {
+	margin: 0px;
+}
+
+.btn-right-1 {
+	margin: 20px 0px;
+	text-align: center;
+}
+
+.btn-right-1 .btn-bluer {
+	margin: 0px !important
+}
+
+.next-btn {
+	margin: 0px !important
+}
+
+.leave-msg textarea {
+	width: 100%;
+	padding: 0.5rem;
+	font-size: 16px;
+	border: 1px solid #D9D9D9;
+	border-radius: 3px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+	min-height: 100px;
+	margin-bottom: 1rem;
+}
+
+.upload-btn-wrapper {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	cursor: pointer
+}
+
+.upload-btn-wrapper .btn {
+	border: 1px solid #00aeef;
+	color: #00aeef;
+	background-color: white;
+	padding: 8px 20px;
+	border-radius: 8px;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	opacity: 0;
+	height: 100%;
+	cursor: pointer;
+}
+</style>
+<!----Main Content---->
+<ng-include
+	src="'modules/internetCalling/calls/partials/_communication_notes_modal.html'"></ng-include>
+<ng-include
+	src="'modules/internetCalling/calls/partials/_video_player.html'"></ng-include>
+<ng-include src="'modules/internetCalling/calls/partials/_reply.html'"></ng-include>
+<div id="main-content">
+	<div class="tab-content">
+		<div id="video-calling" class="tab-pane fade in active">
+			<div class="section-heading">
+				<h4>Master Listing</h4>
+				<!-- <p>Create new requisition for recruitment from customers.</p> -->
+			</div>
+			<div class="section-content" id="main-listing">
+				<div class="">
+					<!-- <div class="inner-head">
+                  <h4>Master Listing</h4>
+                  </div> -->
+					<div class="" style="padding: 10px 14px 0px 14px;">
+						<ul class="nav nav-tabs assessment-tabs1">
+							<li class="nav-item active"><a class="nav-link active"
+								id="call_master_tab" data-toggle="tab" data-target="#home"
+								data-toggle="tab" data-target="#menu1"
+								ng-click="fetchCallListCount(null,false,false,false,false);">Master</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab"
+								data-target="#missed-call"
+								ng-click="fetchCallListCount(null,false,true,false,false);">Missed
+									Calls</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab"
+								data-target="#answered-calls"
+								ng-click="fetchCallListCount(null,true,false,false,false)">Answered
+									Calls</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab"
+								data-target="#outgoing-calls"
+								ng-click="fetchCallListCount(null,false,false,false,true)">Outgoing
+									Calls</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab"
+								data-target="#closed-call"
+								ng-click="fetchCallListCount(null,false,false,true,false)">Closed
+									Calls</a></li>
+
+
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div id="home" class=" tab-pane active">
+							<ng-include
+								src="'modules/internetCalling/calls/partials/_all_calls.html'"></ng-include>
+						</div>
+						<div id="answered-calls" class=" tab-pane fade">
+							<ng-include
+								src="'modules/internetCalling/calls/partials/_answered_calls.html'"></ng-include>
+						</div>
+						<div id="missed-call" class=" tab-pane fade">
+							<ng-include
+								src="'modules/internetCalling/calls/partials/_missed_calls.html'"></ng-include>
+						</div>
+						<div id="closed-call" class=" tab-pane fade">
+							<ng-include
+								src="'modules/internetCalling/calls/partials/_closed_calls.html'"></ng-include>
+						</div>
+
+
+
+
+
+
+						<div id="outgoing-calls" class=" tab-pane fade">
+							<ng-include
+								src="'modules/internetCalling/calls/partials/_outgoing_calls.html'"></ng-include>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ng-include
+				src="'modules/internetCalling/calls/partials/_support_history.html'"></ng-include>
+		</div>
+		<!-- <div class="lower-footer-admin">
+         © 2017 CSSI Pvt. Ltd.
+         </div> -->
+		<!----All Scripts---->
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script
+			src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+		<script
+			src="http://rendro.github.io/easy-pie-chart/javascripts/jquery.easy-pie-chart.js"></script>
+		<script type="text/javascript">
+			$('.carousel').carousel({
+				interval : 3000,
+				pause : "false",
+			});
+		</script>
+		<script type="text/javascript">
+			var expanded = false;
+
+			function showCheckboxes() {
+				var checkboxes = document.getElementById("checkboxes");
+				if (!expanded) {
+					checkboxes.style.display = "block";
+					expanded = true;
+				} else {
+					checkboxes.style.display = "none";
+					expanded = false;
+				}
+			}
+		</script>
+
+		<script type="text/javascript">
+			$("#next-btn").click(function() {
+				$("#task-flow-list").show();
+				$("#user-calling").hide();
+			});
+
+			$("#cancel-req-btn").click(function() {
+				$("#ticket-prefields").show();
+				$("#req-list-ticket").hide();
+			});
+
+			$("#tickt-owner").click(function() {
+				$("#main-listing").show();
+				$("#user").hide();
+			});
+
+			$("#workflowname").click(function() {
+				$("#task-listing").show();
+				$("#main-listing").hide();
+			});
+
+			$("#voice-call-user").click(function() {
+				$("#user-audio-screen").show();
+				$("#task-flow-list").hide();
+			});
+
+			$("#video-call-user").click(function() {
+				$("#user-video-screen").show();
+				$("#task-flow-list").hide();
+			});
+
+			$("#message-user").click(function() {
+				$("#user-message-screen").show();
+				$("#task-flow-list").hide();
+			});
+
+			$("#user-audio-calling,#voice-massage-call").click(function() {
+				$("#user-audio").show();
+				$("#video-calling").hide();
+			});
+
+			$("#user-video-calling").click(function() {
+				$("#user-video").show();
+				$("#video-calling").hide();
+			});
+
+			$("#user-message-calling").click(function() {
+				$("#user-message").show();
+				$("#video-calling").hide();
+			});
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				$('#datetimepicker12, #datetimepickercns').datetimepicker({
+					inline : true,
+					sideBySide : true
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#openinterview").change(function() {
+					var modalint = $(this).val();
+					if (modalint == "int") {
+						$("#interview_schedule").modal('show');
+					}
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(function() {
+
+				$('.dateonly').datetimepicker({
+					format : 'DD/MM/YYYY'
+				});
+			});
+		</script>
+		<script>
+			function readURL(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+
+					reader.onload = function(e) {
+						$('#blah').attr('src', e.target.result);
+					}
+
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+
+			$("#imgInp").change(function() {
+				file = this;
+				var FileSize = file.files[0].size / 160 / 65; // in MB
+				if (FileSize > 1) {
+					$("#checksize").text("File size exceeds 1 MB");
+					$("#checksize").css("display", "block");
+				} else {
+					$("#checksize").css("display", "none");
+					readURL(this);
+				}
+
+			});
+		</script>
+		<script type="text/javascript">
+			var expanded = false;
+
+			function showCheckboxes() {
+				var checkboxes = document.getElementById("checkboxes");
+				if (!expanded) {
+					checkboxes.style.display = "block";
+					expanded = true;
+				} else {
+					checkboxes.style.display = "none";
+					expanded = false;
+				}
+			}
+			$('.user-profile').click(function() {
+				$('.user-profile').hide();
+				$('.user-data').fadeIn(1000, function() {
+					$(this).show();
+				});
+				$('.cross').fadeIn(1000, function() {
+					$(this).show();
+				});
+			});
+			$('.cross').click(function() {
+				$('.user-profile').show();
+				$('.user-data').fadeOut(1000, function() {
+					$(this).hide();
+				});
+				$('.cross').fadeOut(1000, function() {
+					$(this).hide();
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			var expanded = false;
+
+			function showCheckboxes() {
+				var checkboxes = document.getElementById("checkboxes");
+				if (!expanded) {
+					checkboxes.style.display = "block";
+					expanded = true;
+				} else {
+					checkboxes.style.display = "none";
+					expanded = false;
+				}
+			}
+			$('#user-audio-profile').click(function() {
+				$('#user-audio-profile').hide();
+				$('.user-data').fadeIn(1000, function() {
+					$(this).show();
+				});
+				$('.cross').fadeIn(1000, function() {
+					$(this).show();
+				});
+			});
+			$('.cross').click(function() {
+				$('#user-audio-profile').show();
+				$('.user-data').fadeOut(1000, function() {
+					$(this).hide();
+				});
+				$('.cross').fadeOut(1000, function() {
+					$(this).hide();
+				});
+			});
+		</script>
+		<script>
+			var sec = 0;
+			var min = 0;
+			var hr = 0;
+			function myCounter() {
+				if (sec == 60) {
+					min++;
+					sec = 0;
+				}
+				if (min == 60) {
+					hr++;
+					min = 0;
+					sec = 0;
+				}
+
+				sec++;
+				var seconds = "" + sec;
+				var mins = "" + min;
+				var hours = "" + hr;
+				if (sec < 10) {
+					seconds = "0" + sec;
+				}
+				if (min < 10) {
+					mins = "0" + min;
+				}
+				if (hr < 10) {
+					hours = "0" + hr;
+				}
+				document.getElementById("timertime").innerHTML = hours + ":"
+						+ mins + ":" + seconds;
+
+			}
+		</script>
+	</div>
+</div>

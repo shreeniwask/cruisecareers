@@ -1,0 +1,239 @@
+ <style>
+        #diagramContainer {
+            padding: 20px;
+            width:80%; height: 100px;
+             margin: 10px 0 0 10px;
+        }
+        
+        .item {
+            height:62px; width: 80px;
+                float: left;
+            margin:30px 0px;
+             background-color: #00aeef;
+           color: #fff;
+          padding: 20px;
+         border-radius: 5px;
+        }
+    </style>
+<div class="admin-page">
+	<div class="inner-head" style="height: 70px;">
+         <h4>Task Listing</h4>
+         
+         <div class="modal-footer text-left task-close-btn">       
+        		<a class="btn btn-link" ui-sref="restricted.admin.workflowlist">Back</a>
+      	 	</div>
+    </div>
+<div class="section-content" id="task-flow-list">
+	
+	
+<div class="upper-actions">
+          <div class="col-md-4 col-lg-4">
+           <div class="button-group">
+            <button class="btn btn-default btn-create" id="add-task-list-btn" ng-click="createTask()"><i class="icon-plus"></i></button>
+            <button class="btn btn-default btn-delete" ng-click="check()"><i class="icon-trash-2"></i></button>
+          </div>
+          </div>
+          <div class="col-md-1 col-lg-1">
+            
+          </div>
+          <div class="col-md-6 col-lg-6" style="padding: 0px;">
+            <div class="srch-uppr" style="float: right;">
+            <div class="button-group" style="text-align: right;display: inline-block;padding-left: 10px;">
+               <button class="btn btn-default btn-create" id="create-report-btn" style="background:#1fa67a;" ng-click="generateExcel()"><i class="fa fa-file-excel-o"></i></button>
+            </div>
+          <div class="search-cntnr" style="float: initial;">
+            <div class="form-group search-box">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="fetchTasksList(0,10,null,null,searchterm);fetchTasksListCount(search)"></i>
+            </div>
+          </div>
+          </div>
+          
+          </div>
+          
+          <div class="col-md-1">
+          <div class="button-group" style="padding-left: 10px;">
+		<button class="btn-default btn-create icon-navigation1 dropdown-toggle" data-toggle="dropdown" id="create-req-btn"><i class="fa fa-check-square-o"></i></button>
+           <!--  <a class="dropdown-toggle select-drop" data-toggle="dropdown"></a>
+         	<span class="fa fa-filter"></span> -->
+	      	<ul class="dropdown-menu selection-column" style="overflow:auto;left: -98px !important;">
+						 <li>
+						  	<div class="chckbx-cntnr zeromargin">
+						     <input type="checkbox" id="app1" name="check" class="flashadmin" ng-click="selectAllColoumns(colcheck);savesettings()" ng-model="colcheck">
+						     <label class="cstmchk_lbladmin"  for="app1"></label><label for="app1" class="table-label">Select All</label> 
+						   </div>
+						  </li>
+						  <li ng-repeat="c in columnlist">
+						  <div class="chckbx-cntnr zeromargin" ng-if="c.name=='Task Id' || c.name=='Task Name' || c.name=='Created On' || c.name=='SLA' || c.name=='Dependencies'">
+						     <input type="checkbox" id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()" disabled>
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  	<div class="chckbx-cntnr zeromargin" ng-hide="c.name=='Task Id' || c.name=='Task Name' || c.name=='Created On' || c.name=='SLA' || c.name=='Dependencies'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()">
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  </li>
+						</ul>          </div>
+        </div>
+          
+          <div class="clearfix"></div>
+        </div>
+
+	<div class="task-screen">
+            <div class="col-md-9 col-lg-9" style="padding: 0px;">
+        <div class="table-cntnr">
+          <table class="table table-striped red-table" style="background-color: #fff;margin: 0px;">
+            <caption>List of Tasks</caption>
+            <thead>
+              <tr>
+                <th style="vertical-align: middle;">
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" ng-click="checkedAllList(tasksList,all)" ng-model="all" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th>
+                <th ng-show="activeColumn('Task Id')" style="vertical-align: middle;min-width: 93px;">Task Id <i ng-click="SortingTasksList('TaskId',searchterm)"  class="fa fa-sort" aria-hidden="true"></i></th>
+                <th ng-show="activeColumn('Task Name')" style="vertical-align: middle;min-width: 93px;"">Task Name <i ng-click="SortingTasksList('TaskName',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th ng-show="activeColumn('Created On')" style="vertical-align: middle;">Created On <i ng-click="SortingTasksList('TaskCreatedDate',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th ng-show="activeColumn('SLA')" style="vertical-align: middle;min-width: 145px;text-align: center;">SLA
+                <div class="set-sla" style="text-align: left;">
+              			<p>Days :</p>
+              			<p> Hrs :</p>
+			            <p> Min</p>
+			    </div> </th>
+                <th ng-show="activeColumn('Dependencies')" style="vertical-align: middle;">Dependencies</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="task in tasksList">
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="{{task.id}}" name="check" ng-click="addCheckedTasksId(task.id)" ng-checked="all" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="{{task.id}}"></label> 
+                    </div>
+                </td>
+                <td ng-show="activeColumn('Task Id')" ng-click="openEditTaskPage(task)">
+	                <a>{{workflow.shortName}}-T-{{task.id}}</a>
+	                <!-- <span ng-if="task.taskStatusId != 1 && task.taskStatusId != 0">{{workflow.shortName}}-T-{{task.id}}</span> -->
+                </td>
+                <td ng-show="activeColumn('Task Name')">{{task.name}}</td>
+                <td ng-show="activeColumn('Created On')">{{dateformate(task.createdDate)}}</td>
+                <!-- <td>Admin</td> -->
+                <td ng-show="activeColumn('SLA')"><span ng-if="task.slaDate == undefined"><span ng-if="task.slaDays != undefined">{{task.slaDays}}D :</span><span ng-if="task.slaHours != undefined">{{task.slaHours}}H :</span><span ng-if="task.slaMinutes != undefined">{{task.slaMinutes}}M</span></span>
+                <span ng-if="task.slaDate != undefined">{{formatDate(task.slaDate)}}</span>
+                </td>
+                <td ng-show="activeColumn('Dependencies')">
+                <a style="cursor: pointer;">
+                <span ng-if="task.dependentTask == undefined" ng-click="fetchTasksForDependency(task.id)">None</span>
+                <span ng-if="task.dependentTask != ''" ng-click="fetchTasksForDependency(task.id)">{{task.dependentTask}}</span>
+                </a>
+                </td>
+                <td>
+                <div class="button-group">
+					<button class="btn btn-default btn-create" alt="setting" title="Settings" ng-click="openTaskSetting(task)">
+						<i class="fa fa-cog"></i>
+					</button>
+				</div>
+                <!-- ui-sref="restricted.admin.tasksetting" -->
+                </td>
+              </tr>  
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="text-right" style="margin: 12px 0;">            
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+        </div>
+        
+        </div>
+        
+ <div class="col-md-3 col-lg-3" style="padding: 0px;">
+        
+       <div id="diagramContainer" class="" style="padding: 0px;" ng-repeat="tasks in taskstree" on-finish-render="ngRepeatFinished">
+              <div class="row" style="width: 100px;margin: 0px;" ng-repeat="node in tasks">
+              <div class="task-type" id="node{{node.id}}">
+                <p title="{{node.name}}">{{node.name}}</p>
+              </div>
+              </div>
+              </div>
+        
+        <div id="deletelist" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm add-brand">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix"></div>
+        Are you sure want to delete {{checkedTasksIds.length}} records?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deleteTaskFromList('Task')">Delete</button>
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+   </div>
+   
+   
+   <div class="modal fade" id="depedencies" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Dependencies</h4>
+              </div>
+              <div class="modal-body">
+                <div class="prefill col-md-12" style="display: block;width: 100%;padding: 0 6px;">
+                  <div class="chckbx-cntnr zero-margin" ng-repeat="task in otherTasksList">
+                      <input type="checkbox" id="task{{task.id}}" ng-click="addDependentTasksId(task.id)" ng-model="task.dependentTaskFlag" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="task{{task.id}}">
+                      <p class="vali-sub-head" style="margin-left: 10px;min-width: 229px;">{{task.name}}</p>
+                    </label> 
+                  </div>
+                  <!-- <div class="chckbx-cntnr zero-margin">
+                      <input type="checkbox" id="1" name="check" class="flash">
+                      <label class="cstmchk_lbl" for="1">
+                      <p class="vali-sub-head" style="margin-left: 10px;">Task 2</p>
+                    </label> 
+                  </div>
+                  <div class="chckbx-cntnr zero-margin">
+                      <input type="checkbox" id="1" name="check" class="flash">
+                      <label class="cstmchk_lbl" for="1">
+                      <p class="vali-sub-head" style="margin-left: 10px;">Task 3</p>
+                    </label> 
+                  </div> -->
+                </div>
+                <div class="btn-cntnr" style="margin: 0px 0 10px;">
+              <button class="btn btn-default btn-bluer" id="cancel-req-btn" ng-click="saveTaskDependency()">Save</button>
+              <a data-dismiss="modal">Cancel</a>
+            </div>
+              </div>
+
+              
+              
+            </div>
+            
+          </div>
+      </div>
+    
+ </div>
+ 
+ <script type="text/javascript">
+       
+       
+        $("#id_of_textbox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#id_of_button").click();
+            }
+        });
+        
+    </script>

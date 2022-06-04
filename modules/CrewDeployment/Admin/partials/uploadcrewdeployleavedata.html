@@ -1,0 +1,225 @@
+<style>
+.config-content {
+    margin-left: 250px;
+}
+.date-cal input{
+	position:relative;
+}
+.date-cal i {
+    position: absolute;
+    font-size: 20px;
+    top: 32px;
+    right: 25px;
+    cursor: pointer;
+}
+.empl-upper-btn{
+	margin-top: 25px;
+}
+.Employee-Leave-Data-List tbody tr td:last-child i{
+	margin: 9px 42px;
+    cursor: pointer;
+}
+.pagination{
+	margin-top: 0;
+}
+.pagination li:first-child{
+	display:none;
+}
+.empLeaveData-log {
+    width: 90%;
+}
+
+</style>
+	<div class="config-content">
+		<div class="tab-content">			
+			<div class="section-heading conf-heading">
+				<h4>Employees on Leave Data</h4>
+			</div>
+			<div class="section-content">
+				<div class="upper-actions">       	
+		        	<div class="col-md-7">
+	           			<div class="button-group empl-upper-btn">         
+	                  		<button class="btn btn-default btn-create" data-toggle="modal" data-target="#upload-excel"><i class="icon-plus"></i></button> 
+	                  		<button class="btn btn-default btn-assign" type="button" ng-click="downloadSample(sampledocument)" style="margin-right:0px !important;padding: 7px 10px;"><i class="fa fa-file-excel-o"></i>   Download Sample</button>
+	          			</div>
+	          		</div>
+	          		
+	          		<div class="col-md-1">
+	           			<div class="button-group empl-upper-btn" style="float:right;">         
+	          				<div class="button-group excel-download">
+	                    		<button class="btn btn-default btn-create" style="background:#1fa67a;" ng-click="generateExcel()"><i class="fa fa-file-excel-o"></i></button>
+	                		</div>
+	          			</div>
+	          		</div>
+					
+			        <div class="col-md-2">
+						<div class="form-group">
+							<label>Filter By Brand*</label>
+							<select class="form-control flat-control-inner" ng-change="fetchUploadFileList(0,10,null,null,searchterm,bl.id);fetchUploadFileListCount(searchterm,bl.id)" ng-model="bl.id" ng-options="bl.id as bl.brandName for bl in brandsList">
+								<option value="" class="" selected="selected">--Select--</option>
+                  			</select>	
+						</div>
+			        </div>
+			       	             
+		          
+					<div class="col-md-2" style=" padding-left: 0; padding-right: 0;">
+						<div class="search-cntnr" style=" margin-top: 24px;">
+						  <div class="form-group search-box inline-blck">
+						    <input type="text" name="" id="id_of_searchtextbox" placeholder="Search" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+						    <i class="icon-search" id="id_of_searchbutton" ng-click="fetchUploadFileList(0,10,null,null,searchterm,bl.id);fetchUploadFileListCount(searchterm,bl.id)"></i>
+						  </div>
+						</div> 
+					</div>
+		            <div class="clearfix"></div>
+	                    
+	             </div>
+	             <div class="table-cntnr">
+		          <table class="table table-striped red-table Employee-Leave-Data-List">
+		            <caption>Employee Leave Data List</caption>
+		            <thead>
+		              <tr>
+		                 <th style="vertical-align: middle;">File Name <i ng-click="sortByColumn('Filename',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+						<th style="vertical-align: middle;">Brand Name <i ng-click="sortByColumn('Brandname',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+		                <th style="vertical-align: middle;">Uploaded By <i ng-click="sortByColumn('Uploadedby',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+		                <th style="vertical-align: middle;">Uploaded Date <i ng-click="sortByColumn('Uploadeddate',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+		                <th style="vertical-align: middle;">Record Success</th>                
+		                <th style="vertical-align: middle;">Status</th>
+		                <th style="vertical-align: middle;">Log</th>
+		                <th style="vertical-align: middle;">Download File</th>
+		                <tr>
+		            </thead>
+		            <tbody>
+		              <tr ng-repeat="upl in fetchuploadfilelist">                     
+		                <td >{{upl.filename}}</td>
+		                <td >{{upl.brandname}}</td>
+		                <td>{{upl.Updatedbyname}}</td>
+		                <td>{{dateformate1(upl.updateddate)}}</td>
+		                <td >{{upl.successfulrecords}}/{{upl.totalrecords}}</td>
+		                <td>
+		                  <span class="label label-success" ng-if="upl.statusid==1">Success</span>
+		                 <span class="label label-danger" ng-if="upl.statusid==2">Failed</span>
+		                 <span class="label label-warning" ng-if="upl.statusid==3">Partial Success</span>
+		                </td>
+		                <td ng-if="upl.statusid!=1"> <button class="btn btn-default btn-delete" ng-click="fetchFileUploadLog(upl.id)" data-toggle="modal" data-target="#log_details"><i class="fa fa-eye"></i></button></td>
+		               <td ng-if="upl.statusid==1"></td>
+		                <td><a><i class="fa fa-download" ng-click="download(upl.pdffile)"></i></a></td>
+		              </tr>
+		            </tbody>
+		          </table>        
+	        	</div>
+	        	<div class="text-right">
+            
+            <ul class="pagination" style="margin-top: 20px;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+ 
+            </div>
+			</div>
+		</div>	
+	</div>
+	
+<!------- upload employee leave data modal end ------------------------>	
+	
+	<div class="modal fade in" id="upload-excel" role="dialog">
+        <div class="modal-dialog modal-sm add-brand">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Upload Employees on Leave Data</h4>
+            </div>
+            <div class="modal-body">
+              <form ng-submit="CrewDeployemnetUploadFile(bl1.id)">
+                <div class="imageupload panel panel-default">
+	              <div class="form-group">
+	                <label>Brand*</label>
+	               <select class="form-control flat-control-inner" ng-model="bl1.id" ng-options="bl1.id as bl1.brandName for bl1 in brandsList" required>
+					<option value="" class="" selected="selected">--Select--</option>
+                  	</select>
+	              </div>
+        			<p>Upload File (XLSX):</p>
+              		<div class="form-group">
+                  		<input type="file" name="" class="file que-file-upload">                                                
+		                  <div class="input-group">
+		                        <input type="text" id="cduploadfilepath" class="form-control flat-control-inner" disabled="" readonly="" required="">
+		                         <span class="input-group-btn">
+		                            <span class="btn btn-primary btn-file"> Browse
+		                                 <input type="file" id="cduploadfile" onchange="angular.element(this).scope().smsFileNameChanged(this)" single="">
+		                             </span>
+		                        </span> 
+		                  </div>
+                 	</div>
+        		</div>
+               <div class="form-group text-right">
+                <button type="submit" id="" class="btn-info add_brand">Add</button>
+              </div>
+             </form>
+            </div>              
+          </div>            
+        </div>
+      </div>
+      
+ <!------- upload employee leave data modal end ------------------------>
+      
+      
+     
+     
+     <!------- log modal start ------------------------>
+     
+		<div class="modal fade in" id="log_details" role="dialog">
+          <div class="modal-dialog modal-lg add-brand empLeaveData-log" style="">
+            <div class="modal-content log-modal-height">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Log of {{log_filename}}</h4>
+              </div>
+              <div class="modal-body">
+                <div class="table-div" style="width: auto;max-height: 420px;overflow: auto;">
+                    <table class="table table-striped red-table">
+                        <thead>
+                            <tr>
+                                <th style="min-width: 100px;">First Name</th>
+                                <th style="min-width: 100px;">Last Name</th>
+                                <th style="min-width: 70px;">Emp No.</th>
+                                <th style="min-width: 160px;">Email</th>
+                                <th style="min-width: 90px;">Brand</th>
+                                <th style="min-width: 100px;">Department</th>
+                                <th style="min-width: 100px;">Position</th>
+                                <th style="min-width: 100px;">Sign on date</th>
+                                <th style="min-width: 100px;">Sign off date</th>
+                                <th style="min-width: 70px;">Status</th>
+                                <th style="min-width: 160px;">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="fll in fetchuploadfileloglist">
+                                <td>{{fll.firstname}}</td>
+                                <td>{{fll.lastname}}</td>
+                                <td>{{fll.empid}}</td>
+                                <td>{{fll.email}}</td>
+                                <td>{{fll.brandname}}</td>
+                                <td>{{fll.departmentname}}</td>
+                                <td>{{fll.positionname}}</td>
+                                <td>{{fll.signondate}}</td>
+                                <td>{{fll.signoffdate}}</td>
+                                <td style="color:red">Failed</td>
+                                <td>{{fll.message}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+              </div>              
+            </div>            
+          </div>
+      </div>
+
+      <script type="text/javascript">
+$("#id_of_searchtextbox").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#id_of_searchbutton").click();
+    }
+});
+
+</script>

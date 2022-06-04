@@ -1,0 +1,122 @@
+
+<div ng-app="templatemodule" >
+<div  id="template" class="tab-pane fade in admin-page">
+     
+      <div class="section-heading">
+        <h4>Template Master</h4>
+        <p></p>
+      </div>
+      <div class="section-content" id="temp-list">
+      <div class="upper-actions">
+          <div class="button-group">
+            <!-- <button class="btn btn-default btn-edit"><i class="icon-edit-2"></i></button> -->
+            <button class="btn btn-default btn-create" id="create-temp" ng-click="addtemplate()"><i class="icon-plus"></i></button>
+            <button class="btn btn-default btn-delete" ng-click="check()"><i class="icon-trash-2"></i></button>            
+           
+          </div>
+          <div class="search-cntnr">
+            <div class="form-group search-box">             
+              
+              <input type="text" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm" placeholder="Search">
+              <i class="icon-search" id="id_of_button" ng-click="fetchTemplateMaster(0,10,null,null,searchterm);getAcitveTemplateCount(searchterm)"></i>
+              
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="table-cntnr">
+          <table class="table table-striped red-table">
+            <caption>Templates</caption>
+            <thead>
+              <tr>
+                <th>
+                
+                  <div class="chckbx-cntnr zeromargin" >
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(templatemaster,all)" ng-model="all" >
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                    
+                </th>
+                <th ng-click="SortingPostedJobList('TemplateName',searchterm)">Template Name <i class="fa fa-sort" aria-hidden="true"></i></th>
+                <th ng-click="SortingPostedJobList('TemplateType',searchterm)">Category <i class="fa fa-sort" aria-hidden="true"></i></th>
+                <th ng-click="SortingPostedJobList('Mode',searchterm)">Mode <i class="fa fa-sort" aria-hidden="true"></i></th>
+                <th ng-click="SortingPostedJobList('CreatedOn',searchterm)">Created On <i class="fa fa-sort" aria-hidden="true"></th>                
+              </tr>
+            </thead>
+            <tbody ng-repeat='tmplateMaster in templatemaster'>
+              <tr>
+                <td>
+                                
+                  <div class="chckbx-cntnr zeromargin" >
+                      <input type="checkbox" id="{{tmplateMaster}}" name="check" class="flashadmin" ng-click="checkedtemplateList(tmplateMaster.id)" ng-checked="all" ng-model="value">
+                      <label class="cstmchk_lbladmin" for="{{tmplateMaster}}" ></label> 
+                    </div>   
+                    
+                </td>
+                <td><a ng-click="fetchtemplateId(tmplateMaster.id)">{{tmplateMaster.templateName}}</a></td>
+                <td>{{tmplateMaster.type}}</td>
+                <td>{{tmplateMaster.mode}}</td>
+                <td>{{tmplateMaster.createdDate}}</td>                
+              </tr>             
+            </tbody>
+          </table>
+          
+           <div class="text-right">
+            
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul> 
+            </div>
+          
+          
+        </div>
+        </div>
+      </div>
+    </div> 
+        
+   
+        
+        
+         
+             <!----Modal delete-list---->
+<div id="deletelist" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm add-brand">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ng-value="getCheckedtemplateid"> </div>
+        Are you Sure want to delete {{getCheckedtemplateid.length}} record(s)?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deletefromList('templateMaster')">Delete</button>
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div> 
+    
+
+        
+    
+    
+         </div>
+         
+        <script type="text/javascript">
+        $('body').on("click", ".dropdown-menu", function (e) {
+            $(this).parent().is(".open") && e.stopPropagation();
+        });
+     
+        $("#id_of_textbox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#id_of_button").click();
+            }
+        });
+     
+    </script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>

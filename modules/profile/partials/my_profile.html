@@ -1,0 +1,1912 @@
+<style>
+.table_height_css{
+    min-height: 340px;
+}
+</style>
+<div>
+<!---- Sticky Button ---->
+<a class="btn btn-default sticky-btn smooth"> <i
+class="icon-chevron-left"></i>
+</a>
+
+<div class="height-70"></div>
+
+<section id="jobs-main" style="padding: 5% 0;">
+<div id="profl" class="container-fluid">
+
+
+<div class="row">
+<div class="col-md-2">
+<div class="recent-searches fixed-pills">
+<h5>Profile</h5>
+<ul class="nav nav-pills nav-stacked">
+
+
+
+
+<li id="liPersonal" class="active" style="width: 100%;"><a
+data-toggle="pill" href="" ng-click="showFlag = 0"
+class="profile-tabs">Personal Information</a> <img
+ng-if="userPersonal.dob && userPersonal.firstName && userPersonal.lastName && userPersonal.gender" src="resources/img/checked.svg"
+class="profile-complete"></li>
+
+<li id="liPassport" style="width: 100%;"><a
+data-toggle="pill" href="" ng-click="showFlag = 1"
+class="profile-tabs">Passport Details</a> <img
+ ng-if="passportData.countryOfissue && passportData.dateOfBirth && passportData.passportNo 
+&& passportData.placeOfBirth && passportData.placeOfIssue && passportData.dateOfIssue 
+&& passportData.expiryDate" src="resources/img/checked.svg"
+class="profile-complete"></li>
+
+<li id="liEducational" style="width: 100%;"><a
+data-toggle="pill" href="" ng-click="showFlag = 2"
+class="profile-tabs">Educational Info</a><img
+ng-if="userEducation.length > 0" src="resources/img/checked.svg"
+class="profile-complete ng-scope"></li>
+
+<li id="liWork" style="width: 100%;"><a data-toggle="pill"
+href="" ng-click="showFlag = 3" class="profile-tabs">Work
+Experience</a><img ng-if="userWork.length>0"
+src="resources/img/checked.svg" class="profile-complete"></li>
+
+<li id="liResume" style="width: 100%;"><a data-toggle="pill"
+href="" ng-click="showFlag = 4" class="profile-tabs">Resume
+Details</a><img ng-if="userProfile.userCV.cvPath"
+src="resources/img/checked.svg" class="profile-complete"></li>
+
+<li id="liContact" style="width: 100%;"><a
+data-toggle="pill" href="" ng-click="showFlag = 5"
+class="profile-tabs">Contact Information</a><img
+ng-if="userContact.phoneNumber && userContact.countryId>0 && userContact.state.id>0 && userContact.city.id>0 && userContact.houseNo && userContact.society && userContact.street && userContact.houseName"
+src="resources/img/checked.svg" class="profile-complete"></li>
+
+<li id="liCompliance" style="width: 100%;"><a
+data-toggle="pill" href="" ng-click="showFlag = 6"
+class="profile-tabs">Compliance Info</a><img
+ng-if="userCompliance.length>0"
+src="resources/img/checked.svg" class="profile-complete"></li>
+
+<li id="role_specific_compliances" style="width: 100%;">
+	<a data-toggle="pill" href="" ng-click="showFlag = 7" class="profile-tabs">Role Specific Compliances</a>
+    <img ng-if="JobBaseUserMandatoryCompliances&&JobBaseUserMandatoryCompliances.length>0" src="resources/img/checked.svg" class="profile-complete">
+</li>
+
+</ul>
+</div>
+</div>
+<div class="col-md-10">
+<div class="tab-content">
+
+<div ng-show="showFlag == 0" id="personal" class="">
+<div class="job-search-cntnr add_ocr">
+<div class="srch-head">
+<h4>Personal Details</h4>
+</div>
+<form
+ng-submit="savePersonaldetails(userPersonal);setApplyClass(1);checkdata()">
+<div class="inner-details">
+<div class="row">
+<div class="col-md-4">
+<div class="form-group">
+<label>First name*</label> <input type="text" name=""
+class="form-control flat-control-inner"
+ng-model="userPersonal.firstName" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="form-group">
+<label>Last name*</label> <input type="text" name=""
+class="form-control flat-control-inner"
+ng-model="userPersonal.lastName" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="form-group profile-group">
+<label>Profile picture</label>
+<div class="profile-cntnr"
+style="background-image: url({{userPersonal.profilePic}})"
+id="clock">
+<input type='file' id='getval'
+accept="image/x-png,image/gif,image/jpeg"
+name="background-image" hidden />
+</div>
+<span>(Click to upload)</span>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div class="form-group datepicker-candidate"
+ng-if="userdetails.roleId == 2 || userdetails.roleId == 8 || userdetails.roleId == 3">
+<label>Date of Birth*</label> <input type="text" name=""
+ng-change="dateBirth()" id="dob"
+class="form-control flat-control-inner dateonly"
+ng-model="userPersonal.dob" required>
+</div>
+<!-- <div class="form-group" ng-if="userdetails.roleId == 3 || userdetails.roleId == 8">
+                      <label>Date of Birth*</label>
+                      <input type="text" name=""  id="dob" class="form-control flat-control-inner dateonly" ng-model="userPersonal.dob" required>
+                    </div> -->
+</div>
+<div class="col-md-4">
+<div class="form-group">
+<div>
+<label>Gender*</label>
+</div>
+<div class="radio-cntnr" style="margin-top: 8px;">
+<input type="radio" id="test1" name="radio-group"
+value="male" ng-model="userPersonal.gender" required>
+<label for="test1">Male</label>
+</div>
+<div class="radio-cntnr" style="margin-top: 8px;">
+<input type="radio" id="test2" name="radio-group"
+value="female" ng-model="userPersonal.gender" required>
+<label for="test2">Female</label>
+</div>
+</div>
+</div>
+
+</div>
+<div class="row">
+
+<div class="col-md-4" ng-if="userdetails.roleId==2">
+<!-- <select class="form-control"  ng-model="userPersonal.sourceOfInfo.id" ng-options="si.id as si.name for si in sourceOfInfoList">
+                    <option value="">--Select--</option>
+                </select> -->
+<div class="form-group">
+<label>Source of Info</label>
+<!-- <select class="form-control flat-control-inner" ng-model="userPersonal.sourceOfInfo.id" required> 
+      <option ng-value="0">--Select--</option>          
+                           <option data-ng-repeat="si in sourceOfInfoList" data-ng-value="{{si.id}}" ng-selected="si.id==userPersonal.sourceOfInfo.id">{{si.name}}</option>                                  
+          </select> -->
+<select class="form-control flat-control-inner dateonly"
+ng-model="userPersonal.sourceOfInfo.id"
+ng-options="si.id as si.name for si in sourceOfInfoList">
+<option value="">--Select--</option>
+</select>
+</div>
+</div>
+<div class="col-md-12">
+<div class="btn-cntnr">
+<button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+<a ng-click="cancell()">Cancel</a>
+</div>
+</div>
+
+</div>
+</div>
+</form>
+
+
+</div>
+
+<!-- <div class="col-md-12">
+<div class="btn-cntnr">
+<button class="btn btn-default btn-bluer" id="" type="button" ng-click="checkdata()">Save</button>
+<a ng-click="cancell()">Cancel</a>
+</div>
+</div> -->
+</div>
+
+
+<div id="passsport" class="job-search-cntnr" ng-show="showFlag == 1">
+<div class="srch-head">
+<h4>Passport Details</h4>
+</div>
+<div class="inner-details">
+<div class="row">
+<div class="col-md-7 no-padding">
+<div class="col-md-4"  id="countryOfIssue">
+<div class="form-group">
+<div>
+<label>Country of Issue*</label>
+</div>
+<div class="radio-cntnr" style="margin-top: 8px;">
+<input type="radio" id="india" name="radiobtn" 
+value="india" ng-click="checkData()" required ng-checked="true"> <label for="india">India</label>
+</div>
+<div class="radio-cntnr" style="margin-top: 8px;">
+<input type="radio" id="others" name="radiobtn" 
+value="others" required > <label for="others">Others</label>
+</div>
+</div>
+</div>
+<div class="col-md-7">
+<div class="form-group" id="browsePic">
+<div>
+<label></label>
+</div>
+<div class="input-group passport-data">
+<input type="text"  id="passportImage1" ng-model="userPassport.name" 
+class="form-control flat-control-inner" readonly=""
+placeholder="Upload passport here"> <span
+class="input-group-btn"> <span
+class="btn btn-primary btn-file passport-browse-btn"> Browse <input
+id="passportImage" data-label="Browse" type="file" onchange="angular.element(this).scope().showmodal(this)" single="">
+</span>
+</span>
+</div>
+<p class="passport_img_note">(A copy of your passport has to be mandatorily uploaded. Upload only jpg, png or jpeg format. (Do not upload in pdf). Maximum file size is 1 MB.)</p>
+</div>
+
+<div class="form-group" id="browsePic1">
+<div class="input-group"  style="display: none;">
+<input type="text"  id="passportImage" ng-model="userPassport.name" 
+class="form-control flat-control-inner" readonly=""
+placeholder="Upload passport here"> <span
+class="input-group-btn"> <span
+class="btn btn-primary btn-file"> Browse <input
+id="passportImage2" data-label="Browse" type="file" onchange="angular.element(this).scope().showmodal(this)" single="">
+</span>
+</span>
+
+
+</div>
+
+
+</div>
+
+</div>
+<!-- <div class="col-md-3">
+	<img src="resources/img/passport_sample.png" class="sample_pass">
+</div> -->
+<div class="clearfix"></div>
+<div class="others_passport_det" style="display: none;">
+ <div class="col-md-12">
+<p style="">Uh-Huh! Only Indian Passports allowed</p>
+</div>
+</div>
+
+<div class="confirmed_passport_det" style="display: none;">
+<div class="col-md-6">
+<div class="form-group">
+<label>Given Names</label> <input type="text" name=""
+class="form-control flat-control-inner" id="sname" ng-blur="checkinputtext(passportData.firstName,'sname')"
+ng-model="passportData.firstName" required>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Surname</label> <input type="text" name=""
+class="form-control flat-control-inner" id="gnam" ng-blur="checkinputtext(passportData.lastName,'gnam')"
+ng-model="passportData.lastName" required>
+</div>
+</div>
+<div class="clearfix"></div>
+
+<div class="col-md-6">
+<div class="form-group">
+<label>Date of Birth *</label> <input type="text" name="" ng-change="dateFormat(passportData.dateOfBirth);dateBirthcheck(passportData.dateOfBirth,passportData)"
+class="form-control flat-control-inner dateonly"
+ng-model="passportData.dateOfBirth" required>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Passport No.*</label> <input type="text" name="" ng-blur="checkValidPassport(passportData.passportNo)"
+value="" ng-model="passportData.passportNo" class="form-control flat-control-inner"
+required>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Place of Birth*</label> <input type="text" name="" ng-model="passportData.placeOfBirth" id="pbir" ng-blur="checkinputtext(passportData.placeOfBirth,'pbir')"
+value="" class="form-control flat-control-inner" required>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Place of Issue*</label> <input type="text" name="" ng-model="passportData.placeOfIssue" id="pissu" ng-blur="checkinputtext(passportData.placeOfIssue,'pissu')"
+value="" class="form-control flat-control-inner" required
+>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Date of Issue*</label> <input type="text" name="" ng-change="dateFormat(passportData.dateOfIssue);validateDate1(passportData)"
+value="" ng-model="passportData.dateOfIssue" 
+class="form-control flat-control-inner dateonly" required>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Date of Expiry*</label> <input type="text" name="" ng-change="dateFormat(passportData.expiryDate);validateDate1(passportData)"
+value="" ng-model="passportData.expiryDate"
+class="form-control flat-control-inner dateonly" required>
+</div>
+</div>
+
+<div class="col-md-12" id="reuploaddiv" style="display:none">
+<div class="btn-cntnr">
+<button class="btn btn-default btn-bluer" id="reupload" ng-click="showConformReuploadModal()"
+ data-toggle="modal" >Re-upload</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-3"  id="passport_sample">
+	<img src="resources/img/passport_sample.png" class="sample_pass">
+</div>
+<div class="col-md-12" style="display: none;" id="updatebtn">
+	<div class="btn-cntnr">
+		<button class="btn btn-default btn-bluer" type="button" ng-click="adduserPassport(passportData)">Save</button>
+		<a ng-click="cancell()">Cancel</a>
+	</div>
+</div>
+</div>
+
+
+</div>
+</div>
+
+<div ng-show="showFlag == 2" id="educational" class="">
+<h3 class="search-text">Educational Info</h3>
+<div class="job-search-cntnr">
+<div class="srch-head">
+<h4>List of Educational Informations</h4>
+</div>
+<form
+ng-submit="addEducationDetails(userEducation);setApplyClass(3);checkdata()">
+<div class="inner-details">
+<div class="table-responsive table_height_css">
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>Qualification*</th>
+<!-- <th>Qualification Description</th> -->
+<th>Passing Year*</th>
+<th>Board/University</th>
+<th style="width: 110px;word-break: break-word;">Grade/Score/Percentage</th>
+<th>Attach Certificate</th>
+<th></th>
+</tr>
+</thead>
+
+<!--   <div class="form-group">
+                          <label>Education</label>
+                          <select class="form-control flat-control-inner" ng-model="list.typekey"  >
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="q in qualificationsList" value="{{q.levelId}}" ng-selected="q.levelId==list.typekey">{{q.qualificationName}}</option>
+                          </select>
+                        </div> -->
+
+<tbody>
+<tr ng-repeat="list in userEducation" ng-if="userEducation.length != 0">
+<td>
+<!-- <div class="form-group width-200">
+                            <select class="form-control flat-control-inner" ng-model="list.qualificationObj.id" ng-options="q.id as q.qualificationName for q in qualificationsList" required>
+                              <option value="">-- Select </option>                             
+                            </select>
+                          </div> -->
+
+<div class="form-group width-200">
+
+<select class="form-control flat-control-inner"
+ng-model="list.qualificationObj.id"
+ng-options="q.id as q.qualificationName for q in qualificationsList"
+required>
+<option value="">--Select--</option>
+</select>
+</div>
+
+
+</td>
+<!-- <td>
+                          <div class="form-group">
+                            <textarea class="form-control flat-control-inner" rows="5" cols="5"></textarea>
+                          </div>
+                        </td> -->
+<td>
+<div class="form-group width-200 edu-info-datepicker">
+<input type="text"
+class="form-control flat-control-inner dateonlyyear"
+id="yearpassing{{$index}}"
+ng-model="list.yearOfPassing" required>
+
+</div>
+</td>
+<td>
+<div class="form-group width-200">
+<input class="form-control flat-control-inner"
+ng-model="list.board">
+</div>
+</td>
+<td>
+<div class="form-group">
+<input class="form-control flat-control-inner"
+ng-model="list.gradeScore">
+</div>
+</td>
+<td>
+<div class="form-group width-200">
+
+<div class="input-group">
+<input type="text" id="file_name{{$index}}"
+class="form-control flat-control-inner" readonly>
+<span class="input-group-btn"> <span
+class="btn btn-primary btn-file"> Browse <input
+id="file{{$index}}" data-label="Browse" type="file"
+single />
+</span> <!--  <input ng-model="list.certificatePath"/>  -->
+</span>
+
+
+</div>
+</div> <a href="" ng-if="list.certificatePath != ''"
+ng-click="download(list.certificatePath)"
+ng-disabled="false">Download</a>
+
+
+</td>
+<td>
+<button class="btn btn-default btn-remove"
+ng-click="removeForEducation(list)">
+<i class="icon-x-circle"></i>
+</button>
+</td>
+</tr>
+<tr ng-if="userEducation.length == 0">
+<td colspan="6">
+<div  style="margin-bottom: 20px;">
+	<h4 class="no-data-found">No Data Found !</h4>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<div class="text-right adder">
+<button class="btn btn-default btn-round-add"
+ng-click="addnewForEducation()">
+<i class="icon-plus"></i>
+</button>
+</div>
+</div>
+<div class="btn-cntnr">
+<button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+<a ng-click="cancell()">Cancel</a>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div ng-show="showFlag == 3" id="professional" class="">
+<h3 class="search-text">Work Experience</h3>
+<div class="job-search-cntnr">
+<div class="srch-head">
+<h4>List of Work Details</h4>
+</div>
+<form ng-submit="saveworkExperience(userWork);setApplyClass(4)">
+<div class="inner-details">
+<div class="table-responsive table_height_css">
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>Company's Name*</th>
+<th>Position*</th>
+<th>Location*</th>
+<th>From Date*</th>
+<th>To Date</th>
+<th>Salary P.M.*</th>
+<th>Reason for Leaving</th>
+<th>Upload Document</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+
+<tr ng-repeat="u in userWork" ng-if="userWork.length != 0">
+<td>
+<div class="form-group width-200">
+<input class="form-control flat-control-inner"
+id="emplName{{$index}}" ng-model="u.employerName"
+ng-change="fetchHotelListForEmployer(u.employerName,$index)"
+list="employerNameList" required>
+<datalist id="employerNameList">
+<option data-ng-repeat="el in employerNameList"
+value="{{el.employerName}}, {{el.area}}">
+</datalist>
+</div>
+</td>
+<td>
+<div class="form-group width-200">
+<input class="form-control flat-control-inner"
+ng-model="u.position" required>
+</div>
+</td>
+<td>
+<div class="form-group width-200">
+<input class="form-control flat-control-inner"
+ng-model="u.location" required>
+</div>
+</td>
+<td>
+<div class="form-group width-200">
+<input
+class="dateonly form-control flat-control-inner linked-date"
+id="fromdate{{$index}}" ng-model="u.fromDate" required
+title="{{u.fromDate}}">
+</div>
+</td>
+<td>
+<div class="form-group">
+<input
+class="dateonly form-control flat-control-inner linked-date2"
+id="todate{{$index}}" ng-model="u.toDate"
+ng-change="validateWorkDate(u,'todate'+$index)"
+ title="{{u.toDate}}">
+</div>
+</td>
+<td style="width: 170px;">
+<div class="form-group">
+<!-- <input class="form-control flat-control-inner" ng-model="u.salary"> -->
+<form class="form-inline">
+
+<div class="input-group">
+<div class="input-group-addon currency-addon"
+style="border-radius: 0px;     width: 55px;">
+
+
+<!--  <!-- <option value = ""> --Please Select-- </option>
+                                  <option data-ng-repeat="cr in currencyList" value="{{cr.id}}" ng-selected="cr.id==u.currencyId">{{cr.currencyCode}}</option>                              
+                          </select> -->
+<select class="currency-selector"
+ng-model="u.currencyId">
+<optgroup>
+<!-- <option ng-value="0">Currency</option> -->
+<option data-ng-repeat="crp in currencyListPartF"
+data-ng-value="{{crp.id}}"
+ng-selected="crp.id==u.currencyId">{{crp.currencyCode}}</option>
+</optgroup>
+<optgroup label="------------">
+<!--       <option disabled ng-if="currencyList[5].sequence==5">──────────</option>
+ -->
+<option data-ng-repeat="crs in currencyListPartS"
+data-ng-value="{{crs.id}}"
+ng-selected="crs.id==u.currencyId">{{crs.currencyCode}}</option>
+</optgroup>
+<!-- <option class="divider"></option> -->
+<!-- <md-select>  
+      <ng-container *ngFor="let a of b; let last=last">    
+      <md-divider *ngIf="last"></md-divider>    
+      <md-option>      
+      {{ a }}    
+      </md-option>  
+      </ng-container>
+</md-select> -->
+<!-- <ul class="dropdown-menu">
+      <li ng-repeat="c in collection">
+        <a>{{c.name}}</a>
+      </li>
+      <li class="divider"></li>
+      
+    </ul> -->
+<!--                                   <option data-ng-repeat="cr in currencyList" data-ng-value="{{cr.id}}" ng-selected="cr.id==u.currencyId">{{cr.currencyCode}}</option>                              	    
+ -->
+</select>
+
+</div>
+<input type="text"
+class="form-control flat-control-inner currency-amount"
+oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+ng-model="u.salary"
+ng-change="formatCurrency($index)"
+id="inlineFormInputGroup{{$index}}" size="8" required>
+
+</div>
+</form>
+</div>
+</td>
+<td>
+<div class="form-group width-200">
+<input class="form-control flat-control-inner"
+ng-model="u.reasonOfLeaving">
+</div>
+</td>
+
+
+<td>
+<!-- <div class="inputWrapper" style="height: 30px; width: 30px;">
+    <input class="fileInput hidden" type="file" name="file2"/>
+</div> -->
+<div class="cv-upload">
+<label for="file-input{{$index}}"> <i
+class="fa fa-upload"
+ng-if="u.certificatePath ==null || u.certificatePath == undefined"
+id="uploadfile{{$index}}" style="margin: 16px 0px;"></i>
+<i class="fa fa-upload"
+ng-if="u.certificatePath !=null || u.certificatePath != undefined"
+id="uploadfile{{$index}}"
+style="margin: 16px 0px; color: #3c9a3e;"></i>
+</label> <input id="file-input{{$index}}" type="file"
+accept=".doc,.docx,.txt,.pdf,image/x-png,image/gif,image/jpeg"
+onchange="angular.element(this).scope().setColor(this)" />
+
+</div>
+</td>
+<td class="text-center">
+<button class="btn btn-default btn-remove"
+ng-click="removeForWork(u)">
+<i class="icon-x-circle"></i>
+</button>
+</td>
+</tr>
+<tr ng-if="userWork.length == 0">
+<td colspan="9">
+<div  style="margin-bottom: 20px;">
+	<h4 class="no-data-found">No Data Found !</h4>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="text-right adder">
+<button class="btn btn-default btn-round-add"
+ng-click="addRowForworkExperience()">
+<i class="icon-plus"></i>
+</button>
+</div>
+</div>
+<div class="btn-cntnr">
+<button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+<a ng-click="cancell()">Cancel</a>
+</div>
+</div>
+</form>
+</div>
+
+
+</div>
+</div>
+
+<div id="resume"  ng-show="showFlag == 4"  class="">
+<form ng-submit="saveUserCV();setApplyClass(5)">
+<div class="job-search-cntnr">
+<div class="srch-head">
+<h4>Resume Details</h4>
+</div>
+<div class="inner-details">
+<div class="row">
+<div class="col-md-4">
+<div class="form-group">
+<label>Upload Your CV</label>
+<div class="input-group">
+<input type="text" class="form-control flat-control-inner" ng-model="cvPath"
+readonly> <span class="input-group-btn"> <span
+class="btn btn-primary btn-file"> Upload CV <input
+type="file"
+accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
+id="filecv" single>
+</span>
+</span>
+</div>
+<a href="" ng-if="userProfile.userCV.cvPath != null"
+ng-click="download(userProfile.userCV.cvPath)"
+ng-disabled="false">Download</a>
+</div>
+</div>
+<div class="col-md-4">
+<div class="form-group">
+<label>Languages Known</label> <input type="text" id="langknown"
+class="form-control flat-control-inner"
+ng-model="langeageKnown">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label>Do you have any pictures of your work that
+you wish to share?</label>
+<div class="row">
+
+<img ng-repeat="medialist in userProfile.UserWorkMediaList" ng-if="userProfile.UserWorkMediaList.length != 0" 
+ng-src="{{medialist.mediaPath}}" width="20%">
+
+<div class="col-md-4">
+<input data-label="Upload Picture" class="demo"
+accept="image/x-png,image/gif,image/jpeg" type="file"
+id="userimage" ng-model="userImage.image" multiple />
+</div>
+<!-- <div class="col-md-4"><input data-label="Upload Picture" class="demo" type="file" multiple/></div>
+                        <div class="col-md-4"><input data-label="Upload Picture" class="demo" type="file" multiple/></div> -->
+</div>
+</div>
+</div>
+<!--   <div class="text-right">
+                  <button class="btn btn-default btn-round-add" ng-click="addUserImage()"><i class="icon-plus"></i></button>
+                </div> -->
+</div>
+<div class="btn-cntnr">
+<button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+<a ng-click="cancell()">Cancel</a>
+</div>
+</div>
+
+</div>
+</form>
+</div>
+
+
+
+
+<div ng-show="showFlag == 5" id="contact" class="">
+<h3 class="search-text">Contact Info</h3>
+<div class="job-search-cntnr">
+<div class="srch-head">
+<h4>Location Details</h4>
+</div>
+<form ng-submit="saveUserContact(userContact);setApplyClass(6)">
+<div class="inner-details">
+<div class="row">
+<div class="col-md-2">
+<div class="form-group extralink">
+<label>Flat/House No.*</label> <input type="text" name=""
+class="form-control flat-control-inner"
+ng-model="userContact.houseNo" maxlength="4"
+numbers-only="numbers-only" required>
+</div>
+</div>
+<div class="col-md-3">
+<div class="form-group extralink">
+<label>Building/House*</label> <input type="text" name=""
+class="form-control flat-control-inner"
+ng-model="userContact.houseName" required>
+</div>
+</div>
+<div class="col-md-3">
+<div class="form-group extralink">
+<label>Society*</label> <input type="text" name=""
+class="form-control flat-control-inner"
+ng-model="userContact.society" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="form-group extralink">
+<label>Street/Road*</label> <input type="text" name=""
+class="form-control flat-control-inner"
+ng-model="userContact.street" required>
+</div>
+
+</div>
+<div class="col-md-6"></div>
+</div>
+<!--   <div class="col-md-6">
+
+                     <div class="form-group">
+                      <label>Address*</label>
+                      <textarea type="text" name="" ng-model="userContact.address" class="form-control flat-control-inner" cols="5" rows="5" style="resize: none;" required></textarea>
+                    </div> 
+               </div> -->
+<div class="row">
+<div class="col-md-3">
+<div class="form-group extralink">
+<label>PIN/ZIP code*</label> <input type="text" name=""
+class="form-control flat-control-inner"
+ng-model="userContact.pincode" maxlength="6"
+numbers-only="numbers-only" required>
+</div>
+</div>
+<div class="col-md-3">
+<div class="form-group">
+<label>Country*</label>
+
+<!--       <select class="form-control flat-control-inner" ng-model="userContact.countryId" ng-change="fetchStateList(userContact.countryId)" ng-options="c.id as c.CountryName for c in countryList" required>
+                                                                               
+                            </select> -->
+<select class="form-control flat-control-inner"
+ng-model="userContact.countryId"
+ng-change="fetchStateList(userContact.countryId)"
+id="country" required>
+<option ng-value="0">Select</option>
+<option data-ng-repeat="c in countryList"
+data-ng-value="{{c.id}}"
+ng-selected="c.id==userContact.countryId">{{c.CountryName}}</option>
+</select>
+
+
+
+</div>
+</div>
+<div class="col-md-3">
+<div class="form-group">
+<label>State*</label>
+<!--     <select class="form-control flat-control-inner" ng-model="userContact.state.id" ng-change="fetchCityList(userContact.state.id)" ng-options="s.id as s.stateName for s in stateList"  required>
+                     <option value="">--Select--</option> 
+                      <option value="{{state.id}}" ng-selected="state.id==userContact.state.id" ng-repeat="state in stateList">{{state.stateName}}</option> 
+                      </select> -->
+
+<select class="form-control flat-control-inner"
+ng-model="userContact.state.id"
+ng-change="fetchCityList(userContact.state.id)" id="state"
+required>
+<option ng-value="0">Select</option>
+<option data-ng-repeat="s in stateList"
+data-ng-value="{{s.id}}"
+ng-selected="s.id==userContact.state.id">{{s.stateName}}</option>
+</select>
+
+</div>
+
+</div>
+<div class="col-md-3">
+<div class="form-group extralink">
+<label>City*</label>
+<!--     <select class="form-control flat-control-inner"  ng-model="userContact.city.id"
+                      ng-options="c.id as c.cityName for c in cityList" required>
+                     <option value="">--Select--</option>
+                      </select> -->
+
+<select class="form-control flat-control-inner"
+ng-model="userContact.city.id" id="city" required>
+<option ng-value="0">Select</option>
+<option data-ng-repeat="c in cityList"
+data-ng-value="{{c.id}}"
+ng-selected="c.id==userContact.city.id">{{c.cityName}}</option>
+</select>
+
+
+
+</div>
+</div>
+</div>
+
+<div class="row">
+<!--  <div class="col-md-3">
+                   <div class="form-group extralink">
+                      <label>Area/Locality*</label>
+                      <input type="text" name="" class="form-control flat-control-inner" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                   <div class="form-group extralink">
+                      <label>Landmark*</label>
+                      <input type="text" name="" class="form-control flat-control-inner" required>
+                    </div>
+                </div> -->
+
+</div>
+<!-- <div class="row">
+
+<div class="col-md-4">
+<div class="form-group extralink">
+<label>Mobile Number*</label>
+<div class="row">
+
+<div class="col-md-9">
+<input type="text" name=""
+class="form-control flat-control-inner"
+ng-model="userContact.phoneNumber" maxlength="10"
+numbers-only="numbers-only" required>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="form-group extralink">
+<label>Email Id*</label>
+<div class="row">
+
+<div class="col-md-9">
+<input type="email" name=""
+class="form-control flat-control-inner"
+ng-model="userContact.email" required>
+</div>
+</div>
+</div>
+</div>
+</div> -->
+
+  <div class="row">
+             
+                <div class="col-md-3">
+                    <div class="form-group extralink">
+                      <label>Mobile Number*</label> 
+                        <input type="text" name=""  class="form-control flat-control-inner" ng-model="userContact.phoneNumber" maxlength="10" numbers-only="numbers-only" required>
+                    </div>
+                </div> 
+                
+                 <div class="col-md-3">
+                    <div class="form-group extralink">
+                      <label>Alternate Mobile Number</label> <input type="text" name="" class="form-control flat-control-inner" ng-model="userContact.altPhoneNumber" maxlength="10" numbers-only="numbers-only">
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="form-group extralink">
+                      <label>Email Id*</label>
+                        <input type="email" name="" class="form-control flat-control-inner" ng-model="userContact.email"  required>
+                    </div>
+                </div>
+              
+                
+              <div class="col-md-3">
+                    <div class="form-group extralink">
+                      <label>Alternate Email Id</label>
+                      <input type="email" name="" class="form-control flat-control-inner" ng-model="userContact.altEmail">
+                    </div>
+                </div>
+                
+               </div>
+
+
+
+
+
+<div class="btn-cntnr">
+<button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+<a ng-click="cancell()">Cancel</a>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div ng-show="showFlag == 6" id="travel" class="">
+<h3 class="search-text">Compliance Information</h3>
+<div class="job-search-cntnr">
+<div class="srch-head">
+<h4>List of Compliance Documents</h4>
+</div>
+<div class="btn-cntnr" style="margin: 0px 2%;">
+<button class="btn btn-default btn-bluer" id="" type="submit" data-target="" ng-click="showPassportData()" data-toggle="modal">Passport Details</button>
+</div>
+<form ng-submit="addForUserCompliance(userCompliance);setApplyClass(7)">
+<div class="inner-details">
+<div class="table-responsive">
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>Document's Name*</th>
+<th>Form <label><i
+class="fa fa-question-circle-o" style="color: #A9A9A9;"
+data-toggle="tooltip" data-placement="top"
+title="If download icon appears please download form, complete it and attach the form."></i></label></th>
+<th>Document No.*</th>
+<th>Issue Date*</th>
+<th>Expiry Date*</th>
+<th>Country of Issue*</th>
+<th>Attach Document</th>
+
+<th></th>
+</tr>
+</thead>
+<tbody>
+
+<tr ng-repeat="c in userCompliance" ng-if="userCompliance.length != 0">
+<td>
+ <div class="form-group width-200" ng-if="c.compliance.complianceName==null">
+<select class="form-control flat-control-inner" ng-disabled="{{c.ocr == 1}}"
+ng-model="c.compliance.id" id="valselect" ng-click="dropdown()"
+ng-options="c.id as c.complianceName for c in compliancesList"
+ng-change="checkComplianceForm(c.compliance.id,$index)"
+required>
+<option value="">--Select--</option>
+
+</select>
+</div> 
+<div ng-if="c.compliance.complianceName!=null">
+<label>{{c.compliance.complianceName}}</label>
+</div>
+
+</td>
+<td><button type="button"
+ng-if="(c.compliance.complianceFormPath != null || c.compliance.complianceFormPath != undefined)"
+ng-click="download(c.compliance.complianceFormPath)"
+class="btn bigblue-btn new-btn-dwn">
+<i class="fa fa-download" aria-hidden="true"></i>
+</button>
+<button type="button" id="formid{{$index}}"
+ng-show="c.compliance.complianceFormPath == null && formid==$index"
+ng-click="download(complianceForm.complianceFormPath)"
+class="btn bigblue-btn new-btn-dwn">
+<i class="fa fa-download" aria-hidden="true"></i>
+</button></td>
+<td>
+<div class="form-group width-200">
+<input class="form-control flat-control-inner"
+ng-model="c.documentNumber" required ng-disabled="{{c.ocr == 1}}" required>
+</div>
+</td>
+<td>
+<div class="form-group width-200">
+<input
+class="form-control flat-control-inner linked-date3"
+id="issuedate{{$index}}" ng-model="c.issueDate" required ng-disabled="{{c.ocr == 1}}" required>
+</div>
+</td>
+<td>
+<div class="form-group width-200">
+<input
+class="form-control flat-control-inner linked-date4"
+id="expirydate{{$index}}" ng-model="c.expiryDate"
+ng-change="validateDate(c,'expirydate'+$index)" ng-disabled="{{c.ocr == 1}}" required>
+</div>
+</td>
+<td>
+<div class="form-group width-200">
+
+<select class="form-control flat-control-inner" ng-disabled="{{c.ocr == 1}}"
+ng-model="c.countryOfIssue" id="countryOfIssue" 
+ng-options="c.id as c.CountryName for c in countryList" required>
+<option value="">--Select--</option>
+
+</select>
+
+<!--  <select class="form-control flat-control-inner" ng-model="c.countryOfIssue"> 
+      <option ng-value="0">Select</option>          
+                           <option data-ng-repeat="ct in countryList" data-ng-value="{{ct.id}}" ng-selected="ct.id==c.countryOfIssue">{{ct.CountryName}}</option>                                  
+        </select>                        
+                             -->
+</div>
+</td>
+<td>
+<div class="form-group width-200" id="browse">
+<div class="input-group">
+<input type="text" id="docfilepath{{$index}}"
+class="form-control flat-control-inner" readonly="" 
+required> <span class="input-group-btn">
+<span class="btn btn-primary btn-file" ng-disabled="{{c.ocr == 1}}" > Browse <input
+type="file" id="documentfile{{$index}}" single ng-disabled="{{c.ocr == 1}}">
+</span>
+</span>
+</div>
+<div ng-if=" c.path != null || c.path != undefined " ng-hide="{{c.ocr == 1}}">
+<a href="" ng-click="download(c.path)" target="_blank">Download</a>
+<a ng-click="PreviewDocument(c.path)" data-toggle="modal" data-target="#expand_view">View</a> 
+</div>
+</div>
+
+
+ <!-- <div class="form-group width-200" id="update" ng-show="{{c.ocr == 1}}"  ng-disabled="{{c.ocr == 1}}">
+<div class="input-group">
+<input type="text" id="docfilepath{{$index}}"
+class="form-control flat-control-inner" readonly="" 
+required> <span class="input-group-btn">
+<span class="btn btn-primary btn-file"> Update <input id="passportImage" 
+type="file" single>
+</span>
+</span>
+</div>
+<div ng-if=" c.path != null || c.path != undefined ">
+<a href="" ng-click="download(c.path)" target="_blank">Download</a>
+</div>
+</div>  -->
+
+
+</td>
+
+<td>
+<button class="btn btn-default btn-remove" ng-disabled="{{c.ocr == 1}}"
+ng-click="removeForUserCompliance(c)">
+<i class="icon-x-circle"></i>
+</button>
+</td>
+
+</tr>
+<tr ng-if="userCompliance.length == 0">
+<td colspan="8">
+<div  style="margin-bottom: 20px;">
+	<h4 class="no-data-found">No Data Found !</h4>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="text-right adder">
+<button class="btn btn-default btn-round-add"
+ng-click="addnewForCompliance()">
+<i class="icon-plus"></i>
+</button>
+</div>
+</div>
+<div class="btn-cntnr">
+<button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+<a ng-click="cancell()">Cancel</a>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div ng-show="showFlag == 7" id="specific_compliances" class="">
+	<h3 class="search-text">Role Specific Compliances Information</h3>
+	<div class="job-search-cntnr">
+		<div class="srch-head">
+			<h4>List of Role Specific Compliances Documents</h4>
+		</div>
+		<form ng-submit="addForUserCompliance(JobBaseUserMandatoryCompliances)" class="ng-invalid ng-invalid-required ng-dirty ng-valid-parse">
+		 <div class="inner-details">
+		    <div class="table-responsive">
+		    	<table class="table table-bordered" ng-if="JobBaseUserMandatoryCompliances.length>0">
+				  <thead>
+				    <tr>
+				      <th>Document's Name*</th>
+		              <th>Form</th>
+		              <th>Document No.*</th>
+		              <th>Issue Date*</th>
+		              <th>Expiry Date*</th>
+		              <th>Country of Issue*</th>
+		              <th>Attach Document</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr ng-repeat="c in JobBaseUserMandatoryCompliances">
+				      <td>
+				      	<div ng-if="c.compliance.complianceName!=null">
+						<label>{{c.compliance.complianceName}}</label>
+						</div>
+				      </td>
+				      <td>
+				      	<button type="button"
+						ng-if="(c.compliance.complianceFormPath != null || c.compliance.complianceFormPath != undefined)"
+						ng-click="download(c.compliance.complianceFormPath)"
+						class="btn bigblue-btn new-btn-dwn">
+						<i class="fa fa-download" aria-hidden="true"></i>
+						</button>
+						<button type="button" id="formid{{$index}}"
+						ng-show="c.compliance.complianceFormPath == null && formid==$index"
+						ng-click="download(complianceForm.complianceFormPath)"
+						class="btn bigblue-btn new-btn-dwn">
+						<i class="fa fa-download" aria-hidden="true"></i>
+						</button>
+				      	</td>
+				      <td>
+				      	<div class="form-group width-200">
+						<input class="form-control flat-control-inner"
+						ng-model="c.documentNumber" required ng-disabled="{{c.ocr == 1}}" required>
+						</div>
+				      </td>
+				      <td>
+				      <div class="form-group width-200">
+						<input
+						class="form-control flat-control-inner linked-date3"
+						id="issuedate_compl{{$index}}" ng-model="c.issueDate" required ng-disabled="{{c.ocr == 1}}" required>
+						</div>
+				      </td>
+				      <td>
+				      	<div class="form-group width-200">
+						<input
+						class="form-control flat-control-inner linked-date4"
+						id="expirydate_compl{{$index}}" ng-model="c.expiryDate"
+						ng-change="validateDate(c,'expirydate'+$index)" ng-disabled="{{c.ocr == 1}}" required>
+						</div>
+				      </td>
+				      <td>
+				      	<div class="form-group width-200">
+				         <select class="form-control flat-control-inner" ng-disabled="{{c.ocr == 1}}"
+							ng-model="c.countryOfIssue" id="countryOfIssue" 
+							ng-options="c.id as c.CountryName for c in countryList" required>
+							<option value="">--Select--</option>
+						
+						</select>
+				        </div></td>
+				      <td>
+				      	<div class="form-group width-200" id="browse">
+				          <div class="input-group">
+							<input type="text" id="docfilepath{{$index}}"
+							class="form-control flat-control-inner" readonly="" 
+							required> <span class="input-group-btn">
+							<span class="btn btn-primary btn-file" ng-disabled="{{c.ocr == 1}}" > Browse <input
+							type="file" id="documentfile_compl{{$index}}" single ng-disabled="{{c.ocr == 1}}">
+							</span>
+							</span>
+							</div>
+							<div ng-if=" c.path != null || c.path != undefined " ng-hide="{{c.ocr == 1}}">
+							<a href="" ng-click="download(c.path)" target="_blank">Download</a>
+							<a ng-click="PreviewDocument(c.path)" data-toggle="modal" data-target="#expand_view">View</a> 
+						</div>
+				        </div>
+				      </td>
+				    </tr>
+				  </tbody>
+				</table>	
+				<div  style="height: 200px; margin-bottom: 20px;" ng-if="JobBaseUserMandatoryCompliances.length==0">
+          		 <h4 class="no-data">No Role Specific Compliances Found !</h4>
+          </div>					    	
+		    </div>
+		    <div class="btn-cntnr">
+			  <button class="btn btn-default btn-bluer" id="" type="submit" ng-if="JobBaseUserMandatoryCompliances.length>0">Save</button>
+			</div>
+		    
+		  </div>
+		</form>     
+	</div>		
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div id="profileModel" class="modal fade" role="dialog">
+<div class="modal-dialog modal-sm add-brand">
+
+<!-- Modal content-->
+<div class="modal-content flat-modal">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">x</button>
+<!--  //  <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4> -->
+</div>
+<div class="modal-body flat-body">
+<div class="clearfix" ng-value=""></div>
+Age limit for applying job is {{age_limit}} and above
+<div class="modal-footer text-left">
+<button type="button" class="btn btn-default" data-dismiss="modal"
+id="show_ass">OK</button>
+
+
+</div>
+</div>
+</div>
+
+
+
+
+
+</div>
+</div>
+<div class="modal fade" id="expand_view" role="dialog">
+          <div class="modal-dialog modal-md add-brand">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Document</h4>
+              </div>
+              <div class="modal-body">
+              <div  id="imagetab">
+              <img ng-show="imageFlag == true" ng-src="{{fileurl}}" width="100%"  class="img-responsive" id="imgtab1">
+               <iframe ng-show="pdfFlag == true"  ng-src="{{pdfDocPath}}" height="410px" width="100%" id="imgtab2"></iframe>
+		        <!-- <img width="100%" src="resources/img/Fake.jpg" class="img-responsive" id="imgtab1"> -->
+		        <!-- <iframe ng-show="pdfFlag == true" ng-src="{{pdfDocPath}}" height="410px" width="100%"></iframe>  -->
+		       </div>
+              </div>             
+            </div>
+          </div>
+      </div>
+      
+       
+<!----Footer---->
+<footer id="footer">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-3 col-sm-4">
+<img src="resources/img/logo-big.png">
+</div>
+<div class="col-md-3 col-sm-4">
+<h5>ADDRESS</h5>
+<p>Carnival Support Services India Ltd, Kohinoor City, Tower 2,
+Floor 5, Kirol Road, Off. LBS Marg, Kurla West, Mumbai 400 070</p>
+<p>RPSL License No: RPSL - MUM - 062 (Valid till 14 December 2021)</p>
+</div>
+<div class="col-md-2 col-sm-4">
+<h5>CONTACT</h5>
+<p><a class="footer-contact" href="tel:+917942529292">+91-7942529292</a>  </p>
+</div>
+<div class="col-md-2 col-sm-12">
+<h5>GET IN TOUCH</h5>
+<ul type="none" class="social-foot">
+<li><a href="https://www.facebook.com/cruisecareersindia/"
+target="_blank" class="facebook-link"><i class="icon-facebook"></i></a></li>
+<li><a href="https://twitter.com/cruisecareers"
+target="_blank" class="twitter-link"><i class="icon-twitter2"></i></a></li>
+<li><a href="" target="_blank" class="google-link"><i
+class="icon-instagram"></i></a></li>
+<li><a
+href="https://www.linkedin.com/company/carnival-support-services-india-pvt.-ltd"
+target="_blank" class="utube-link"><i class="icon-linkedin"></i></a></li>
+</ul>
+</div>
+<div class="col-md-2 col-sm-12">
+<h5>MOBILE APP</h5>
+<ul type="none" class="social-foot">
+<li><a href="coming_soon.html" class="android-link"><i
+class="icon-android"></i></a></li>
+<li><a href="coming_soon.html" class="ios-link"><i
+class="icon-apple"></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+
+<div class="modal fade" id="passport_det" role="dialog">
+<div class="modal-dialog modal-lg add-brand">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" ng-click="cleardata()">X</button>
+<h4 class="modal-title">Passport Details</h4>
+</div>
+<div class="modal-body">
+<form id="BrandUpdate" class="passport_det">
+<div class="col-md-12" style="margin-bottom: 10px;">
+<p>Please verify the details as per your passport.</p>
+</div>
+<div class="col-md-8 no-padding">
+<div class="col-md-6">
+<div class="form-group">
+<label>Surname</label> <input type="text" name="" id="snam" ng-blur="checkinputtext(passportData.firstName,'snam')"
+class="form-control flat-control-inner"
+ng-model="passportData.firstName" required>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Given Names</label> <input type="text" name="" id="gnm" ng-blur="checkinputtext(passportData.lastName,'gnm')"
+class="form-control flat-control-inner"
+ng-model="passportData.lastName" required>
+</div>
+</div>
+<div class="clearfix"></div>
+<!-- <div class="col-md-6">
+<div class="form-group">
+<label>Date of Birth</label> <input type="text" name="" ng-change="dateFormat(passportData.dateOfBirth);validateDate1(passportData)"
+class="form-control flat-control-inner dateonly" 
+ng-model="passportData.dateOfBirth">
+</div>
+<div class="form-group">
+<label>Date of Birth*</label> 
+<input type="text" name="" id="dateonly" ng-model="passportData.placeOfBirth"
+class="form-control flat-control-inner dateonly">
+</div>
+</div> -->
+
+
+<div class="col-md-6">
+<div class="form-group">
+<label>Date of Birth*</label> <input type="text" name="" ng-change="dateFormat(passportData.dateOfIssue);dateBirthcheck(passportData.dateOfBirth,passportData)"
+class="form-control flat-control-inner dateonly1"
+ng-model="passportData.dateOfBirth">
+</div>
+</div>
+
+
+<div class="col-md-6">
+<div class="form-group">
+<label>Passport No.*</label> <input type="text" name="" ng-model="passportData.passportNo" id="passNo" ng-blur="checkValidPassport(passportData.passportNo)"
+ class="form-control flat-control-inner" data-toggle="tooltip" title="Hooray!"
+required disabled>
+<div class="pop-msg" style="display: none;" id="validPassport">
+<img src="resources/img/warning.png">
+<span>Duplicate Detected</span>
+<p>Oops - this seems to be a duplicate of another profile. Probably you may have created one in the past. Please delete the earlier profile and start again.</p>
+<button type="button" class="btn" ng-click="clearTxt()">Ok</button>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Place of Birth*</label> <input type="text" name="" ng-model="passportData.placeOfBirth" id="pbi" ng-blur="checkinputtext(passportData.placeOfBirth,'pbi')"
+ class="form-control flat-control-inner">
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Place of Issue*</label> <input type="text" name=""  ng-model="passportData.placeOfIssue" id="pis" ng-blur="checkinputtext(passportData.placeOfIssue,'pis')" class="form-control flat-control-inner">
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Date of Issue*</label> <input type="text" name="" ng-model="passportData.dateOfIssue" ng-change="dateFormat(passportData.dateOfIssue);validateDate1(passportData)"
+ class="form-control flat-control-inner dateonly2"
+required>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Date of Expiry*</label> <input type="text"  name="" ng-model="passportData.expiryDate" ng-change="dateFormat(passportData.expiryDate);validateDate1(passportData)"
+ class="form-control flat-control-inner dateonly1" 
+required>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<img ng-src="{{passportData.path}}" >
+<div class="zoom_out"><a data-target="#passport_big" data-toggle="modal"><i class="fa fa-search"></i></a></div>
+</div>
+<div class="clearfix"></div>
+<div class="col-md-12">
+<div class="form-group text-left">
+<button type="button" ng-click="confirmedData(passportData)" id="btnupdate" class="btn-info add_brand" 
+style="margin-right: 20px;">Confirm</button>
+<!-- <button type="button" ng-click="updatePassportData(passportData)" id="btnupdate" class="btn-info add_brand"
+style="margin-right: 20px;">Confirm</button> -->
+<a id="btnupdate" ng-click="cleardata()">Cancel</a>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="passport_big" role="dialog">
+<div class="modal-dialog modal-lg add-brand">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">X</button>
+<h4 class="modal-title">Passport Details</h4>
+</div>
+<div class="modal-body">
+<img ng-src="{{passportData.path}}" class="img-responsive" style="margin: 0 auto;">
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="passport_det_modal" role="dialog">
+<div class="modal-dialog modal-lg add-brand">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">X</button>
+<h4 class="modal-title">Passport Details</h4>
+</div>
+<div class="modal-body">
+<div class="row">
+<div class="col-md-8 no-padding">
+<div class="col-md-6">
+<div class="form-group">
+<label>Surname</label> <input type="text" name="" id="snam" ng-blur="checkinputtext(passportData.firstName,'snam')"
+class="form-control flat-control-inner"
+ng-model="passportData.firstName" disabled>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Given Names</label> <input type="text" name="" id="gnm" ng-blur="checkinputtext(passportData.lastName,'gnm')"
+class="form-control flat-control-inner"
+ng-model="passportData.lastName" disabled>
+</div>
+</div>
+<div class="clearfix"></div>
+<!-- <div class="col-md-6">
+<div class="form-group">
+<label>Date of Birth</label> <input type="text" name="" ng-change="dateFormat(passportData.dateOfBirth);validateDate1(passportData)"
+class="form-control flat-control-inner dateonly" 
+ng-model="passportData.dateOfBirth">
+</div>
+<div class="form-group">
+<label>Date of Birth*</label> 
+<input type="text" name="" id="dateonly" ng-model="passportData.placeOfBirth"
+class="form-control flat-control-inner dateonly">
+</div>
+</div> -->
+
+
+<div class="col-md-6">
+<div class="form-group">
+<label>Date of Birth*</label> <input type="text" name="" ng-change="dateFormat(passportData.dateOfIssue);dateBirthcheck(passportData.dateOfBirth,passportData)"
+class="form-control flat-control-inner dateonly1"
+ng-model="passportData.dateOfBirth" disabled>
+</div>
+</div>
+
+
+<div class="col-md-6">
+<div class="form-group">
+<label>Passport No.*</label> <input type="text" name="" ng-model="passportData.passportNo" id="passNo" ng-blur="checkValidPassport(passportData.passportNo)"
+ class="form-control flat-control-inner" data-toggle="tooltip" title="Hooray!" disabled>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Place of Birth*</label> <input type="text" name="" ng-model="passportData.placeOfBirth" id="pbi" ng-blur="checkinputtext(passportData.placeOfBirth,'pbi')"
+ class="form-control flat-control-inner" disabled>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Place of Issue*</label> <input type="text" name=""  ng-model="passportData.placeOfIssue" id="pis" ng-blur="checkinputtext(passportData.placeOfIssue,'pis')" class="form-control flat-control-inner" disabled>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Date of Issue*</label> <input type="text" name="" ng-model="passportData.dateOfIssue" ng-change="dateFormat(passportData.dateOfIssue);validateDate1(passportData)"
+ class="form-control flat-control-inner dateonly1"
+disabled>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Date of Expiry*</label> <input type="text"  name="" ng-model="passportData.expiryDate" ng-change="dateFormat(passportData.expiryDate);validateDate1(passportData)"
+ class="form-control flat-control-inner dateonly1" 
+disabled>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<img ng-src="{{passportData.path}}" >
+</div>
+										
+									</div>
+</div>
+</div>
+</div>
+</div>
+
+ <div class="modal fade" id="reupload-passport" role="dialog">
+<div class="modal-dialog modal-sm add-brand">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">X</button>
+<h4 class="modal-title">Re-Upload</h4>
+</div>
+<div class="modal-body">
+<p>Are you sure you want to re-upload your passport?</p>
+</div>
+ <div class="modal-footer">
+ 		<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="reUploadPassport()">Ok</button>
+         
+      </div>
+</div>
+</div>
+</div>
+   
+<script type="text/javascript" class="ng-scope">
+$('#personal').on('focus', ".dateonly", function() {
+$(this).datetimepicker({
+format : 'DD-MM-YYYY',
+useCurrent : false,
+//minDate:new Date()     
+}).on('dp.change', function(e) {
+$(this).change()
+});
+});
+
+$('#passport_det').on('focus', ".dateonly1", function() {
+	$(this).datetimepicker({
+	format : 'DD-MM-YYYY',
+	useCurrent : false,
+	//minDate:new Date()     
+	}).on('dp.change', function(e) {
+	$(this).change()
+	});
+	});
+	
+$('#passport_det').on('focus', ".dateonly2", function() {
+	$(this).datetimepicker({
+	format : 'DD-MM-YYYY',
+	//useCurrent : false,
+	maxDate: new Date()
+	}).on('dp.change', function(e) {
+	$(this).change()
+	});
+	});
+
+/* $('.confirmed_passport_det').on('focus', ".dateonly", function() {
+	$(this).datetimepicker({
+	format : 'DD-MM-YYYY',
+	useCurrent : false,
+	//minDate:new Date()     
+	}).on('dp.change', function(e) {
+	$(this).change()
+	});
+	}); */
+/* $(document).on("click", ".confirmed_passport_det", function () {
+    $(".dateonly").datepicker({
+      dateFormat: 'DD-MM-YYYY'                                    
+      });
+       });   */
+
+
+$('#educational').on('focus', ".dateonlyyear", function() {
+$(this).datetimepicker({
+debug : true,
+format : 'MM-YYYY',
+widgetPositioning: {
+    vertical: 'bottom'
+  }
+});
+});
+$('#educational').on('focusout', ".dateonlyyear", function() {
+$(this).datepicker('hide')
+
+});
+
+$('#professional').on('focus', ".linked-date", function() {
+$('.linked-date').datetimepicker({
+format : 'DD-MM-YYYY'
+}).on('dp.change', function(e) {
+$(this).change()
+});
+});
+
+$('#professional').on('focus', ".linked-date2", function() {
+$('.linked-date2').datetimepicker({
+format : 'DD-MM-YYYY',
+useCurrent : false
+//Important! See issue #1075
+
+}).on('dp.change', function(e) {
+$(this).change()
+});
+});
+
+$('#travel').on('focus', ".linked-date3", function() {
+$('.linked-date3').datetimepicker({
+format : 'DD-MM-YYYY'
+}).on('dp.change', function(e) {
+$(this).change()
+});
+});
+
+$('#travel').on('focus', ".linked-date4", function() {
+$('.linked-date4').datetimepicker({
+format : 'DD-MM-YYYY'
+}).on('dp.change', function(e) {
+$(this).change()
+});
+});
+
+$('#specific_compliances').on('focus', ".linked-date3", function() {
+$('.linked-date3').datetimepicker({
+format : 'DD-MM-YYYY'
+}).on('dp.change', function(e) {
+$(this).change()
+});
+});
+
+$('#specific_compliances').on('focus', ".linked-date4", function() {
+$('.linked-date4').datetimepicker({
+format : 'DD-MM-YYYY'
+}).on('dp.change', function(e) {
+$(this).change()
+});
+});
+
+var inputs = $('.datepicker').datepicker({
+autoclose : true
+});
+
+inputs.on('blur', function() {
+console.log($(this));
+
+});
+
+$(function() {
+$('.dateonly1').datetimepicker({
+	format : 'DD-MM-YYYY'
+	
+});
+
+$('#professional').on('focus', ".dateonly", function() {
+$('.dateonly').datetimepicker({
+format : 'DD-MM-YYYY',
+useCurrent : false,
+//minDate:new Date()     
+}).on('dp.change', function(e) {
+$(this).change()
+});
+});
+
+/* $('#travel').on('focus',".dateonly", function(){
+  $('.linked-date3').datetimepicker({
+    format: 'DD-MM-YYYY'
+  });
+ });  */
+$('#travel').on('focus', ".dateonly", function() {
+$('.dateonly').datetimepicker({
+format : 'DD-MM-YYYY',
+useCurrent : false, //Important! See issue #1075
+
+}).on('dp.change', function(e) {
+$(this).change()
+});
+});
+ 
+$('#specific_compliances').on('focus', ".dateonly", function() {
+$('.dateonly').datetimepicker({
+format : 'DD-MM-YYYY',
+useCurrent : false, //Important! See issue #1075
+
+}).on('dp.change', function(e) {
+$(this).change()
+});
+});
+});
+</script>
+
+
+<script type="text/javascript">
+$(document)
+.on(
+'change',
+'.btn-file :file',
+function() {
+var input = $(this), numFiles = input.get(0).files ? input
+.get(0).files.length
+: 1, label = input.val().replace(/\\/g, '/')
+.replace(/.*\//, '');
+input.trigger('fileselect', [ numFiles, label ]);
+
+var input = $(this).parents('.input-group').find(
+':text'), log = numFiles > 1 ? numFiles
++ ' files selected' : label;
+
+if (input.length) {
+input.val(log);
+} else {
+if (log)
+alert(log);
+}
+});
+
+$(document).ready(function() {
+$('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+
+});
+});
+</script>
+<script>
+$(document).ready(function() {
+$("input[type='file'].demo").filepicker({
+style : 'bootstrap' // default, bootstrap or jquery-ui
+});
+});
+
+
+/* $(document).ready(function() {
+	
+	$('.thumbnail').find('img').attr('src', '');
+	//$('.fetch_results').find('input:text').val('');
+	}); */
+</script>
+
+<script>
+document.getElementById('getval').addEventListener('change', readURL, true);
+function readURL() {
+var file = document.getElementById("getval").files[0];
+var reader = new FileReader();
+reader.onloadend = function() {
+document.getElementById('clock').style.backgroundImage = "url("
++ reader.result + ")";
+}
+if (file) {
+reader.readAsDataURL(file);
+} else {
+}
+}
+
+
+</script>
+<script>
+///Script to hide logo on click
+$(".hide-logo").click(function() {
+$(".cruise-logo").fadeToggle();
+});
+
+function signOut() {
+var auth2 = gapi.auth2.getAuthInstance();
+auth2.signOut().then(function() {
+console.log('User signed out.');
+});
+}
+
+$(document).ready(function() {
+$('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+<script type="text/javascript">
+$(function() {
+
+$(".linked-date2").datetimepicker({
+format : 'DD/MM/YYYY'
+});
+$(".linked-date5").datetimepicker({
+format : 'DD/MM/YYYY'
+});
+
+$(".linked-date39").datetimepicker({
+format : 'DD/MM/YYYY'
+});
+
+$(".date1").datetimepicker({
+	format : 'DD-MM-YYYY'
+	});
+
+
+$(".linked-date").on("dp.change", function(e) {
+debugger;
+var index = this.id.slice(-1);
+var idWithoutIndex = this.id.slice(0, -1);
+if (idWithoutIndex = 'fromdate') {
+idWithoutIndex = '#todate';
+}
+/* else if(idWithoutIndex ='issuedate')
+{
+idWithoutIndex='#expirydate';
+} */
+
+//console.log('aaaaaa',idWithoutIndex+index);
+$(idWithoutIndex + index).data("DateTimePicker").minDate(e.date);
+});
+
+$(".linked-date4").datetimepicker({
+format : 'DD/MM/YYYY'
+});
+$(".linked-date3").on("dp.change", function(e) {
+
+var index = this.id.slice(-1);
+var idWithoutIndex = this.id.slice(0, -1);
+
+if (idWithoutIndex = 'issuedate') {
+idWithoutIndex = '#expirydate';
+}
+
+//console.log('aaaaaa',idWithoutIndex+index);
+$(idWithoutIndex + index).data("DateTimePicker").minDate(e.date);
+});
+});
+</script>
+<script type="text/javascript">
+$(function() {
+
+});
+</script>
+<script type="text/javascript">
+$(".speaker").hide();
+$("#ans-switch").click(function() {
+if ($(this).is(":checked")) {
+$(".speaker").show();
+} else {
+$(".speaker").hide();
+}
+});
+
+$(".speaker1").hide();
+$("#ans-switch1").click(function() {
+if ($(this).is(":checked")) {
+$(".speaker1").show();
+} else {
+$(".speaker1").hide();
+}
+});
+</script>
+
+<script>
+$(function() {
+$(".inputWrapper").mousedown(function() {
+var button = $(this);
+button.addClass('clicked');
+setTimeout(function() {
+button.removeClass('clicked');
+}, 50);
+});
+});
+
+
+
+$(function() {
+    $("body").delegate(".dateonly", "focusin", function(){
+        $(this).datetimepicker({
+        	format : 'DD-MM-YYYY',
+        	maxDate : new Date(),
+        	useCurrent : false
+        	});
+    });
+});
+
+</script>
+<script>
+    /*  $("#others").click(function() {
+    $('.others_passport_det').find('input:text').val('');
+    $(".others_passport_det").show();
+    $(".confirmed_passport_det").hide();
+    $("#browsePic").hide();
+    
+    }); 
+     $("#india").click(function() {
+    	
+    $("#edit").hide();
+    $(".others_passport_det").hide();
+   $("#browsePic").show();
+    }); */
+</script>

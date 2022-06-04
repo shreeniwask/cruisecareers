@@ -1,0 +1,145 @@
+<div>
+<!---- Sticky Button ---->
+<a class="btn btn-default sticky-btn smooth" href="#terms_page">
+	<i class="icon-chevron-left"></i>
+</a>
+   <header>
+	<nav class="navbar navbar-default header-nav navbar-fixed-top" id="sc">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle hide-logo" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand cruise-logo smooth" href="#!home/" style="position: absolute;"><img src="resources/img/logo-big.png"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right uppermenu">
+       <!--  <li class=""><a href="#jobs" class="smooth">Hot Jobs</a></li>
+        <li class=""><a href="#steps" class="smooth">How do I apply</a></li>
+        <li class=""><a href="#testimonials" class="smooth">Testimonials</a></li>
+        <li class=""><a href="#about" class="smooth">About us</a></li> -->
+        <li class=""><a ui-sref="register" ui-sref-active="active" class="smooth"><span class="icon-edit"></span> Sign up</a></li>
+        <li class=""><a ui-sref="login" ui-sref-active="active" class="smooth"><span class="icon-log-in"></span> Login</a></li>
+       </ul>
+    </div>
+  </div>
+</nav>	
+</header>
+
+	
+<div class="height-70"></div>
+
+	<div class="container" id="terms_page">
+		<div class="terms_page">
+			<div class="sect_board">
+				<h1>Terms and Conditions</h1>
+				<p class="date_text">Last updated: 01st January 2018</p>
+				<p>Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the <a href="http://www.cruisecareers.in/" target="_blank"> http://www.cruisecareers.in </a> website and the cruisecareers App mobile application (the "Service") operated by Carnival Support Services India Pvt. Ltd.</p>
+				<p>Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.</p>
+				<p><strong>By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service.</strong></p>
+			</div>
+
+			<div class="sect_board">
+				<span>Links To Other Web Sites</span>
+				<p>Our Service may contain links to third-party web sites or services that are not owned or controlled by Carnival Support Services India Pvt. Ltd.</p>
+				<p>Carnival Support Services India Pvt. Ltd. has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that Carnival Support Services India Pvt. Ltd. shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.</p>
+			</div>
+  			
+  			<div class="sect_board">
+				<span>Changes</span>
+				<p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+			</div>
+
+			<div class="sect_board">
+			<span>Contact Us</span>
+			<p>If you have any questions about these Terms, please contact us at <a href="mailto:support@cruisecareers.in">support@cruisecareers.in</a></p>
+		</div>
+		</div>
+</div>
+
+<!----Footer---->
+<footer id="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <img src="resources/img/logo-big.png">
+      </div>
+      <div class="col-md-3">
+        <h5>ADDRESS</h5>
+        <p>Carnival Support Services India Ltd,
+Kohinoor City, Tower 2, Floor 5,
+Kirol Road, Off. LBS Marg, Kurla West,
+Mumbai 400 070</p>
+      </div>
+      <div class="col-md-2">
+        <h5>CONTACT</h5>
+        <p><a class="footer-contact" href="tel:+917942529292">+91-7942529292</a>
+ </p>
+      </div>
+      <div class="col-md-2">
+        <h5>GET IN TOUCH</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="https://www.facebook.com/cruisecareersindia/" target="_blank" class="facebook-link"><i class="icon-facebook"></i></a></li>
+          <li><a href="https://twitter.com/cruisecareers" target="_blank" class="twitter-link"><i class="icon-twitter2"></i></a></li>
+          <!-- <li><a href="" target="_blank" class="google-link"><i class="icon-instagram"></i></a></li> -->
+          <li><a href="https://www.linkedin.com/company/carnival-support-services-india-pvt.-ltd" target="_blank" class="utube-link"><i class="icon-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <h5>MOBILE APP</h5>
+        <ul type="none" class="social-foot">
+         <li><a href="#!comingsoon/" class="android-link"><i class="icon-android"></i></a></li>
+          <li><a href="#!comingsoon/" class="ios-link"><i class="icon-apple"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="lower-footer">
+  &copy; 2017 CSSI Pvt. Ltd.
+</div>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    ///Script to hide logo on click
+    $(".hide-logo").click(function(){
+    	$(".cruise-logo").fadeToggle();
+    });
+  //Script for sticky button
+    $(window).scroll(function(){
+         var scroll = $(window).scrollTop();
+
+        if (scroll >= 500) {
+            $(".sticky-btn").addClass("reveal1");
+        }
+      else {
+            $(".sticky-btn").removeClass("reveal1");
+        }
+        if (scroll >= 1000) {
+            $(".sticky-btn").addClass("reveal2");
+        }
+      else {
+            $(".sticky-btn").removeClass("reveal2");
+        }
+
+    });
+  //Script for smooth scrolling
+    $('a.smooth').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+            || location.hostname == this.hostname) {
+
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+               if (target.length) {
+                 $('html,body').animate({
+                     scrollTop: target.offset().top - 70
+                }, 1000);
+                return false;
+            }
+        }
+    });
+  });    
+</script>
+</div>

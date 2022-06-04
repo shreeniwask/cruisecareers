@@ -1,0 +1,67 @@
+
+<!----Main Content---->
+<div id="main-content">
+  <div class="tab-content">
+      
+    <div id="owner" class="tab-pane fade in active">
+      <div class="section-heading">
+        <h4>Documents Upload</h4>
+      </div>
+      <div class="section-content new-content-upload" id="list-uploaded-files">
+        <form id="fileupload" method="POST" enctype="multipart/form-data">
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-upload" style="font-size: 20px;"></i>
+                    <span >Upload files</span>
+                    <input  type="file" id="userdoc" ng-model="userDoc.doc" accept="*/*" multiple />
+                </span>
+                <p class="uploaded-file-names">
+                </p>
+                
+                	<div class="btn-cntnr1">
+                        <button class="btn btn-default btn-bluer" id="cancel-req-btn" ng-click="getDocumnetUploadId()">Save</button>
+                        <a href="" ng-click="closeCurrentTab()">Cancel</a>
+                    </div>
+            </form>
+            
+        </div>
+      </div>
+    </div>
+    
+           <!-- Modal -->
+<div id="warning-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md modal-400">
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <h4 class="modal-title common-title"></h4>
+      </div>
+      <div class="modal-body flat-body">
+           <p id="docUploadMod"></p>
+           <p id="docUploadMod2"></p>
+           <p id="docUploadMod3"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="saveClaimedList(claimDataForModal)">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+
+
+<script>
+$('#userdoc').change(function (event) {
+    window.console && console.log(this.files);
+    var files = [];
+    if (this.files) {
+        Array.prototype.slice.call(this.files).forEach(function (file) {
+            files.push(file.name);
+        });
+    } else { // IE or Old browser
+        files.push(this.value.split('\\').pop().split('/').pop());
+    }
+    $('p').html(files.join('<br/>'));
+    $('<br/>').css("border-bottom","1px solid #ccc")
+});    
+    
+</script>

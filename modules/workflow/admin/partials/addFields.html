@@ -1,0 +1,516 @@
+<div class="admin-page">
+<div class="section-content" id="createdfield-list">
+        <div class="shadow-container">
+          <div class="inner-head">
+            <h4 style="font-weight: normal;">Workflow Name: <span style="font-weight: 600;">{{workflow.name}}</span></h4>
+          </div>
+          <div class="inner-form">
+            
+            <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group" style="margin-bottom: 10px;">
+                      <label>Add Fields</label>
+                      
+                      <select class="form-control flat-control-inner fields-admin" ng-model="workflow.wf_FieldMaster.id" ng-options="field.id as field.name for field in fieldsList" ng-change="changeFieldType(field.id)">
+                    	<option value="">--Select Field--</option>                
+                  	  </select>
+                   </div>
+                  </div> 
+                </div>  
+                
+                <div class="middle-field-setting">
+                <div class="inner-field">  
+                
+                  <div class="field-sttng">
+                    <div class="col-md-6" style="padding: 0px;">
+                      <p class="field-setting">Field Settings</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6"></div>
+                
+                  <div class="clearfix"></div>
+
+                  <div class="main-field-setting">
+                  <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Label*</label>
+                      <input type="text" ng-model="workflow.wf_FieldMaster.label" placeholder="Label Name" class="form-control flat-control-inner">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <label>Is Required ?*</label>
+                      <select class="form-control flat-control-inner input-file" ng-model="workflow.wf_FieldMaster.required" style="margin-bottom: 0px;width: 85%;" ng-change="selectedItemChanged(workflow.wf_FieldMaster.required)">
+                        <option value ="">---Select---</option>
+                        <option value ="1">Yes</option>
+                        <option value ="2">No</option>                        
+                      </select>
+                  </div>  
+                  <div class="col-md-2">
+                    <div ng-if="workflow.wf_FieldMaster.id != 6" class="prefill" style="position: relative;top: 36px;">
+                    <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="prefilled-check" name="check" ng-model="workflow.wf_FieldMaster.prefilledFlag" class="flashadmin" data-ng-click='checkFunction(workflow.wf_FieldMaster.prefilledFlag)'>
+                      <label class="cstmchk_lbladmin" for="prefilled-check">
+                        <p style="margin-left: 10px;">Prefilled</p>
+                      </label> 
+                    </div>
+                  </div>
+                  </div>  
+                  <div class="col-md-3" style="display: none;" id="identifierField">
+                    <div class="prefill" style="position: relative;top: 36px;">
+                    <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="prefilled-check1" name="check" ng-model="workflow.wf_FieldMaster.identifierFlag" class="flashadmin" disabled>
+                      <label class="cstmchk_lbladmin" for="prefilled-check1">
+                        <p style="margin-left: 10px;width:200px;">Identifier</p>
+                      </label> 
+                    </div>
+                  </div>
+                  </div>  
+                </div>
+                 
+                
+                <div class="back-clr">
+                <div class="row">
+                  <div class="middle-cntnt" ng-if="workflow.wf_FieldMaster.id == 1 || workflow.wf_FieldMaster.id == 2" id="input1">
+                    <div class="col-md-12">
+                      <p class="field-setting">Validation*</p>
+                      <div ng-if="workflow.wf_FieldMaster.id == 1" class="prefill" style="display: inline-block;width: 20%;float: left;margin-left: 6px;">
+                        <div class="chckbx-cntnr zeromargin">
+                          <input type="checkbox" id="textCheck1" name="check" ng-model="workflow.wf_FieldMaster.wf_ValidationMaster.characterOnly" ng-click="unCheckOther(1)" class="flashadmin">
+                          <label class="cstmchk_lbladmin" for="textCheck1">
+                          <p class="vali-sub-head" style="margin-left: 10px;font-weight: normal;">Character Only</p>
+                        </label> 
+                        </div>
+                      </div>
+                      <div ng-if="workflow.wf_FieldMaster.id == 1" class="prefill" style="display: inline-block;width: 20%;">
+                        <div class="chckbx-cntnr zeromargin">
+                          <input type="checkbox" id="textCheck2" name="check" ng-model="workflow.wf_FieldMaster.wf_ValidationMaster.numberOnly" ng-click="unCheckOther(2)" class="flashadmin">
+                          <label class="cstmchk_lbladmin" for="textCheck2">
+                          <p class="vali-sub-head" style="margin-left: 10px;font-weight: normal;">Number Only</p>
+                        </label> 
+                        </div>
+                      </div>
+                      <div ng-if="workflow.wf_FieldMaster.id == 1" class="prefill" style="display: inline-block;width: 20%;">
+                        <div class="chckbx-cntnr zeromargin">
+                          <input type="checkbox" id="textCheck3" name="check" ng-model="workflow.wf_FieldMaster.wf_ValidationMaster.password" ng-click="unCheckOther(3)" class="flashadmin">
+                          <label class="cstmchk_lbladmin" for="textCheck3">
+                          <p class="vali-sub-head" style="margin-left: 10px;font-weight: normal;">Password</p>
+                        </label> 
+                        </div>
+                      </div>
+                      <div ng-if="workflow.wf_FieldMaster.id == 1" class="prefill" style="display: inline-block;width: 20%;">
+                        <div class="chckbx-cntnr zeromargin">
+                          <input type="checkbox" id="textCheck4" name="check" ng-model="workflow.wf_FieldMaster.wf_ValidationMaster.emailFormat" ng-click="unCheckOther(4)" class="flashadmin">
+                          <label class="cstmchk_lbladmin" for="textCheck4">
+                          <p class="vali-sub-head" style="margin-left: 10px;font-weight: normal;">Email</p>
+                        </label> 
+                        </div>
+                      </div>
+                                          
+                      <div ng-if="workflow.wf_FieldMaster.id == 1 || workflow.wf_FieldMaster.id == 2" class="form-group" style="margin-top: 15px;">
+                      <label>Maximum Field Length*</label>
+                      <input type="number" ng-model="workflow.wf_FieldMaster.wf_ValidationMaster.fieldLength" class="form-control flat-control-inner" style="width: 15%;">
+                      </div>
+                  </div> 
+                    </div> 
+
+                    <div class="middle-cntnt" id="input4" ng-if="workflow.wf_FieldMaster.id == 8">
+	                    <div class="col-md-12">
+	                      <p class="field-setting">Validation*</p>
+	                                                       
+	                      <div class="form-group" style="margin-top: 15px;">
+		                      <label>Define Format</label>
+		                      <input type="text" placeholder="DD-MM-YYYY" ng-model="workflow.wf_FieldMaster.wf_ValidationMaster.dateFormat" class="form-control flat-control-inner" style="width: 15%;display: inline-block;">
+	                      </div>
+	                  	</div> 
+                    </div> 
+                    
+                    <div class="middle-cntnt" id="input10" ng-if="workflow.wf_FieldMaster.id == 7">
+	                    <div class="col-md-12">
+	                      <p class="field-setting">Validation*</p>
+	                      <div class="prefill" style="display: inline-block;width: 20%;float: left;margin-left: 6px;">
+	                        <div class="radio-cntnr new-chc">
+	                          <input type="radio" id="textCheck1" name="radio-group" data-ng-value="true" ng-click="pushReferenceValue()" class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" value="true" checked> 
+	                          <label class="cstmchk_lbladmin" for="textCheck1">
+	                          <p class="vali-sub-head" style="margin-left: 10px;font-weight: normal;">Employee</p>
+	                        </label> 
+	                        </div>
+	                        
+                      	  </div>
+                      	  <div class="prefill" style="display: inline-block;width: 20%;float: left;margin-left: 6px;">
+	                        <div class="radio-cntnr new-chc">
+	                          <input type="radio" id="textCheck2" name="radio-group" data-ng-value="true" ng-click="pushReferenceValue()" class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" value="true">
+	                          <label class="cstmchk_lbladmin" for="textCheck2">
+	                         	 <p class="vali-sub-head" style="margin-left: 10px;font-weight: normal;">Candidate</p>
+	                          </label> 
+	                        </div>
+                      	  </div>
+	                  	</div> 
+                    </div> 
+
+
+                    <div class="middle-cntnt" id="input6" ng-if="workflow.wf_FieldMaster.id == 5">
+                    <div class="col-md-12">
+                      <div class="col-md-4" style="padding: 0px;">
+                      <div class="form-group">
+                        <label>Option</label>
+                        <input type="text" id="list-item" ng-model="itemname" placeholder="list item" class="form-control flat-control-inner">
+                      </div>
+                      </div>                      
+                      <div class="col-md-4">
+                        <div class="list-item-link">
+                          <a ng-click="addItemInList(itemname)">Add List Item</a>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="radio-cntnr new-chc" style="float: left;">
+                      <label ng-if="workflow.wf_FieldMaster.options.length > 0">List Items</label>
+                        <ul>
+                        <li ng-repeat="item in workflow.wf_FieldMaster.options">{{item}}</li>
+                        </ul>
+                        </div>
+                  	</div> 
+                 	</div> 
+
+                    <div class="middle-cntnt" id="input7" ng-if="workflow.wf_FieldMaster.id == 3">
+                    <div class="col-md-12">
+                      <div class="col-md-4" style="padding: 0px;">
+                      <div class="form-group">
+                        <label>Option</label>
+                        <input type="text" id="list-item" ng-model="itemname" placeholder="Option" class="form-control flat-control-inner">
+                      </div>
+                      </div>
+                      
+                      <div class="col-md-4">
+                        <div class="list-item-link">
+                          <a id="add-radio" ng-click="addItemInList(itemname)">Add Radio Item</a>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+
+                      <div class="test-main" id="radio-list">
+                        <div class="prefill" ng-if="workflow.wf_FieldMaster.options.length > 0">   
+                        <label ng-if="workflow.wf_FieldMaster.options.length > 0" style="display: block;">Radio Button Items</label>                    
+                         <ul style="padding: 0 15px;">
+                        <li ng-repeat="item in workflow.wf_FieldMaster.options track by item" class="list-item-cntnt"><i class="fa fa-circle list-chk"></i>{{item}}</li>
+                        </ul>
+                        
+                        </div>
+                      </div>
+                      </div>  
+                  </div> 
+                  
+
+                    <div class="middle-cntnt" id="input8" ng-if="workflow.wf_FieldMaster.id == 4">
+                    <div class="col-md-12">
+                      <div class="col-md-4" style="padding: 0px;">
+                      <div class="form-group">
+                        <label>Option</label>
+                        <input type="text" id="list-item" ng-model="itemname" placeholder="Option" class="form-control flat-control-inner">
+                      </div>
+                      </div>
+                      
+                      <div class="col-md-4">
+                        <div class="list-item-link">
+                          <a id="add-checkbox" ng-click="addItemInList(itemname)">Add Checkbox Item</a>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+
+                      <div class="test-main" id="checkbox-list">                                            
+                      <div class="prefill" ng-if="workflow.wf_FieldMaster.options.length > 0">   
+                        <label ng-if="workflow.wf_FieldMaster.options.length > 0">Checkbox Button Items</label>                    
+                        <ul style="padding: 0 15px;">
+                        <li ng-repeat="item in workflow.wf_FieldMaster.options track by item" class="list-item-cntnt"><i class="fa fa-circle list-chk"></i>{{item}}</li>
+                        </ul>
+                        </div>
+                      
+                      </div>  
+                  </div> 
+                 </div> 
+
+                    <div class="middle-cntnt" id="input9" ng-if="workflow.wf_FieldMaster.id == 6">
+                    <div class="col-md-12">
+                      <p class="field-setting">Validation*</p>
+                      <!-- <div class="prefill" style="display: inline-block;width: 20%;float: left;">
+                        <div class="chckbx-cntnr zeromargin">
+                          <input type="checkbox" id="1" name="check" class="flashadmin">
+                          <label class="cstmchk_lbladmin" for="1">
+                          <p class="vali-sub-head" style="margin-left: 10px;font-weight: normal;">File</p>
+                        </label> 
+                        </div>
+                      </div>
+                      <div class="prefill" style="display: inline-block;width: 20%;">
+                        <div class="chckbx-cntnr zeromargin">
+                          <input type="checkbox" id="1" name="check" class="flashadmin">
+                          <label class="cstmchk_lbladmin" for="1">
+                          <p class="vali-sub-head" style="margin-left: 10px;font-weight: normal;">Image</p>
+                        </label> 
+                        </div>
+                      </div> -->
+                      
+                      
+                  </div> 
+                      <div class="col-md-4">
+                        <div class="form-group" style="margin-top: 10px;">
+								<!-- <label for="status" class=''>File Type</label> -->
+								<div class="dropdown" >
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										File Type* <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<!-- <li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="allbrands" name="check" class="flashuser"> 
+												<label class="cstmchk_lbluser" for="allbrands">Select All</label>
+											</div>
+										</li> -->
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="file1" ng-click="pushIntoIdInFileTypeList(11,1)" name="check" class="flashuser"> 
+												<label class="cstmchk_lbluser" for="file1">JPG</label>
+											</div>
+										</li>
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="file2" ng-click="pushIntoIdInFileTypeList(17,2)" name="check" class="flashuser"> 
+												<label class="cstmchk_lbluser"  for="file2">PNG</label>
+											</div>
+										</li>
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="file3" ng-click="pushIntoIdInFileTypeList(9,3)" name="check" class="flashuser"> 
+												<label class="cstmchk_lbluser"  for="file3">XLSX</label>
+											</div>
+										</li>
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="file4" ng-click="pushIntoIdInFileTypeList(8,4)" name="check" class="flashuser"> 
+												<label class="cstmchk_lbluser" for="file4">PDF</label>
+											</div>
+										</li>
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="file5" ng-click="pushIntoIdInFileTypeList(10,5)" name="check" class="flashuser"> 
+												<label class="cstmchk_lbluser" for="file5">DOC</label>
+											</div>
+										</li>
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="file6" ng-click="pushIntoIdInFileTypeList(12,6)" name="check" class="flashuser"> 
+												<label class="cstmchk_lbluser" for="file6">MP3</label>
+											</div>
+										</li>
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="file7" ng-click="pushIntoIdInFileTypeList(13,7)" name="check" class="flashuser"> 
+												<label class="cstmchk_lbluser" for="file7">MP4</label>
+											</div>
+										</li>
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="file8" ng-click="pushIntoIdInFileTypeList(20,8)" name="check" class="flashuser"> 
+												<label class="cstmchk_lbluser" for="file8">DOCX</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+                      </div> 
+                      <div class="col-md-4">
+                        <div class="form-group" style="margin-top: 10px;">
+                        <label>File Size</label>
+                        <input type="number"  ng-model="workflow.wf_FieldMaster.wf_ValidationMaster.fileSize"class="form-control flat-control-inner file-size" style="margin-bottom: 0px;">
+                      </div>
+                      </div> 
+                      <div class="col-md-4">
+                      <div class="size-btns">
+                          <input type="radio" ng-click="setFileUnit('kb')" id="kb" name="drone" checked/>
+                          <label for="kb">KB</label>
+                        </div>
+                        <div class="size-btns">
+                          <input type="radio" ng-click="setFileUnit('mb')" id="mb" name="drone" />
+                          <label for="mb">MB</label>
+                        </div>                        
+                        <div class="size-btns">
+                          <input type="radio" ng-click="setFileUnit('gb')" id="gb" name="drone" />
+                          <label for="gb">GB</label>
+                        </div>
+                      </div> 
+                    </div> 
+                    
+                    <div class="middle-cntnt" id="input9" ng-if="workflow.wf_FieldMaster.id == 9">
+	                    <div class="col-md-12">
+	                      <p class="field-setting">Time*</p>
+	                                                       
+	                      <div class="form-group" style="margin-top: 15px;">
+		                      <label>24 Hours</label>
+<!-- 		                      <input type="text" placeholder="DD-MM-YYYY" ng-model="workflow.wf_FieldMaster.wf_ValidationMaster.dateFormat" class="form-control flat-control-inner" style="width: 15%;display: inline-block;">
+ -->	                      
+ 								<div class="set-col">
+ 									<input type="number" ng-model="" class="form-control flat-control-inner estimated-timer for_coloan" Placeholder="Hours" disabled>  
+              					  	<p class="time_colon">:</p>
+               					   <input type="number" ng-model="" class="form-control flat-control-inner estimated-timer for_coloan" placeholder="Minutes" disabled>
+             					 </div>
+    
+ 						</div>
+	                  	</div> 
+                    </div> 
+                    
+                    <div class="middle-cntnt" id="input10" ng-if="workflow.wf_FieldMaster.id == 10">
+	                    <div class="col-md-12">
+	                      <p class="field-setting">Amount*</p>
+	                                                       
+	                      <div class="form-group" style="margin-top: 15px;">
+		                      
+	                      
+ 								<div class="set-col">
+ 									<input type="number" id="txtNumber" ng-model="decimal" class="form-control flat-control-inner estimated-timer for_coloan" placeholder='0.00' onkeyup="AddComma(this)" disabled>  
+              					  	
+<!--                					   <input type="number" ng-model="" class="form-control flat-control-inner estimated-timer for_coloan" placeholder="Minutes" disabled>
+ -->             					 </div>
+    
+ 						</div>
+	                  	</div> 
+                    </div> 
+                    
+                    
+                    
+                    
+                    
+                </div>
+              </div>
+              
+              </div>
+            </div>
+            <div class="btn-cntnr" style="padding-top: 10px;">
+                 <button class="btn btn-default btn-bluer" id="cancel-req-btn" ng-click="saveWorkFlowField(workflow)">Add Field</button>
+                 <a ng-if="fieldId == 0" ui-sref="restricted.admin.createworkflow">Cancel</a>
+                 <a ng-if="fieldId == undefined" ui-sref="restricted.admin.workflowlist">Cancel</a>
+                 
+            </div>
+         </div>        
+          </div> 
+          
+          <div class="table-cntnr" style="padding: 0 20px 10px;" ng-if="workflowFieldList.length > 0">
+          <table class="table table-striped red-table" style="margin-bottom: 0px;">
+            <caption>Workflow Fields</caption>
+            <thead>
+              <tr>
+                <th>Field Name <i class="fa fa-sort" aria-hidden="true" ng-click="SortingWorkFlowFieldsList('Field Name')"></i></th>
+                <th>Field Type <i class="fa fa-sort" aria-hidden="true" ng-click="SortingWorkFlowFieldsList('Field Type')"></i></th>
+                <th>Is Required ? <i class="fa fa-sort" aria-hidden="true" ng-click="SortingWorkFlowFieldsList('Is Required')"></i></th>
+                <th>Prefilled <i class="fa fa-sort" aria-hidden="true" ng-click="SortingWorkFlowFieldsList('Prefilled')"></i></th>               
+                <th>Identifier<i class="fa fa-sort" aria-hidden="true" ng-click="SortingWorkFlowFieldsList('Identifier')"></i></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="field in workflowFieldList">
+                <td>{{field.label}}</td>
+                <td>{{field.name}}</td>
+                <td><span ng-if="field.required == 1">Yes</span><span ng-if="field.required == 2">No</span></td>
+                <td><span ng-if="field.prefilledFlag == true">Yes</span><span ng-if="field.prefilledFlag == false">No</span></td>
+                <td><span ng-if="field.identifierFlag == true">Yes</span><span ng-if="field.identifierFlag == false">No</span></td>
+                <td><button class="btn btn-default btn-delete ng-scope" ng-click="showDeleteModal(field)"><i class="icon-trash-2"></i></button></td>                
+              </tr>
+              <!-- <tr>
+                <td>Name</td>
+                <td>Text</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td><i class="fa fa-pencil write"></i></td>
+                <td><button class="btn btn-default btn-delete ng-scope"><i class="icon-trash-2"></i></button></td>
+              </tr>
+              <tr>
+                <td>Email Id</td>
+                <td>Email</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td><i class="fa fa-pencil write"></i></td>
+                <td><button class="btn btn-default btn-delete ng-scope"><i class="icon-trash-2"></i></button></td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>Text</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td><i class="fa fa-pencil write"></i></td>
+                <td><button class="btn btn-default btn-delete ng-scope"><i class="icon-trash-2"></i></button></td>
+              </tr>
+              <tr>
+                <td>Upload File</td>
+                <td>Upload</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td><i class="fa fa-pencil write"></i></td>
+                <td><button class="btn btn-default btn-delete ng-scope"><i class="icon-trash-2"></i></button></td>
+              </tr>
+              <tr>
+                <td>Date of Birth</td>
+                <td>Date</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td><i class="fa fa-pencil write"></i></td>
+                <td><button class="btn btn-default btn-delete ng-scope"><i class="icon-trash-2"></i></button></td>
+              </tr> -->             
+            </tbody>
+          </table>
+        </div>    
+        </div>
+        </div>
+        
+        
+        <div id="deletelist" class="modal fade" role="dialog">
+  		<div class="modal-dialog modal-sm add-brand">
+    	<div class="modal-content flat-modal">
+      	<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      	</div>
+      	<div class="modal-body flat-body">
+          <div class="clearfix"></div>
+        Are you sure you want to delete record?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default"  id="show_ass" ng-click="deleteWorkFlowFieldFromList()" data-dismiss="modal">Delete</button>
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    	</div>
+   		</div>
+    	</div>
+    	</div>
+        
+       </div>
+       
+       
+   <!--  <script type="text/javascript">
+        $(function () {
+            $('#multi-drpdwn').multiselect({
+                includeSelectAllOption: true
+            });
+            });
+    </script>  -->       
+    
+ 	<script>
+	$('body').on("click", ".dropdown-menu", function(e) {
+		$(this).parent().is(".open") && e.stopPropagation();
+	});
+</script>
+
+<script type="text/javascript">
+        function AddComma(text) {
+            switch (text.value.length) {
+                 /* case 1:
+                    document.getElementById("txtNumber").value = "0.0" + text.value;
+                    break;  */
+                default:
+                    var data = text.value.replace(".", "");
+                    var first = data.substring(0, (data.length - 2));
+                    var second = data.substring(data.length - 2);
+                    var temp = Math.abs(first) + "." + second;
+                    document.getElementById("txtNumber").value = temp;
+            }
+        }
+    </script>

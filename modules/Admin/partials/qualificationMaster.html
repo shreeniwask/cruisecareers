@@ -1,0 +1,170 @@
+
+<div class=" admin-page" >
+      <div class="section-heading">
+        <h4>Qualification Master</h4>
+        <!--<p>Create and post new job or choose one from already posted jobs.</p>-->
+      </div>
+      <div class="section-content" id="post-list">
+        <div class="upper-actions">
+          <div class="button-group">
+            <button class="btn btn-default btn-create"id="create-job-btn"data-toggle="modal" ng-click="clear()"data-target="#add_qualification"><i class="icon-plus"></i></button>
+         
+            <button class="btn btn-default btn-delete"data-target="#deletelist"ng-click="check()"><i class="icon-trash-2"></i></button>
+          </div>
+         <div class="search-cntnr">
+            <div class="form-group search-box inline-blck">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="fetchQualificationList(0,20,null,null,searchterm);getQualificationCount(searchterm)"></i>
+            </div>
+          </div>
+          
+          <div class="clearfix"></div>
+        </div>
+        <div class="table-cntnr">
+          <table class="table table-striped red-table">
+
+          <caption>Qualification</caption>
+           
+            <thead>
+              <tr>
+				  <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(qualificationList,all)" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th>
+              
+                <th>Qualification<i ng-click="SortingfetchQualificationList('qualification',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+               <th>Level<i ng-click="SortingfetchQualificationList('Level',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+               </tr>
+               
+            </thead>
+            <tbody>
+            
+              <tr ng-repeat="q in qualificationList">
+                <td>
+                       <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="{{q}}" name="check" class="flashadmin" ng-click="checkedQualificationList(q.id)" ng-checked="all">
+                      <label class="cstmchk_lbladmin" for="{{q}}"></label> 
+                    </div> 
+                      
+                    </div>
+                </td>
+                <td><a id="create-job-btn" data-toggle="modal" ng-click="qualificationData(q)" data-target="#edit_qualification">{{q.qualificationName}}</a></td>
+         
+                <td>{{q.level}}</td>
+              </tr>
+            
+            </tbody>
+          </table>
+           <div class="text-right">            
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul> 
+           </div>
+        </div>
+      </div>
+
+       <!----Modal delete-list---->
+<div id="deletelist" class="modal fade" role="dialog">
+  <div class="modal-dialog  modal-sm add-brand ">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ng-value="getCheckedId()"></div>
+        Are you sure want to delete {{getCheckedQualificationid.length}} records?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deletefromList('Qualification')">Delete</button>
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+
+<!-- -----Add Qualifiction modal----- -->
+      <div class="modal fade" id="add_qualification" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Qualification  </h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="saveQualificationDetails(qualification)" >
+                  <p>Qualification name:</p>
+                  <div class="form-group">
+                    <input type="text" name="qualifiaction-name" class="brand-name" ng-model="qualification.qualificationName" required>
+                 </div>     
+                
+                  <div class="form-group">
+                     <select class="form-control flat-control-search" ng-model="qualification.levelId" ng-options="cl.levelId as cl.level for cl in levelList" required>
+                      <option value="">---select level----</option>
+                 
+                    </select>
+                  </div>
+
+                   <div class="form-group text-right">
+                  <button type="submit" class="btn-info add_brand">Add</button>
+                </div>
+               </form>
+              </div>
+            </div>
+          </div>
+      </div>
+<!-- -----Add Qualification modal end------- -->
+
+
+<div class="modal fade" id="edit_qualification"role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Qualification</h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="updateQualificationDetails(qualification)">
+                  <p>Qualification:</p>
+           
+                  <div class="form-group">
+                   <input type="text" name="brand-name" class="brand-name" ng-model="qualification.qualificationName" required>
+               
+                 </div>
+                   <div class="form-group">
+                     <select class="form-control flat-control-search" ng-model="qualification.levelId" ng-options="cl.levelId as cl.level for cl in levelList" required>
+                      <option value="">---select level----</option>    
+                    </select>
+                  </div>
+               
+          
+                <div class="form-group text-right">
+                  <button type="submit" class="btn-info add_brand" >Save Changes</button>
+                </div>
+              </form>
+              </div>
+              </div>
+              
+            </div>
+            
+          </div>
+   
+      </div>
+      
+<script type="text/javascript">
+$("#id_of_textbox").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#id_of_button").click();
+    }
+});
+</script>
+
+                                                            

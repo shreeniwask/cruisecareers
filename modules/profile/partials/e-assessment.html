@@ -1,0 +1,261 @@
+<section id="jobs-main">
+  <div class="container-fluid">
+    
+    <div class="row">
+       <div class="col-md-2">
+        <div class="recent-searches fixed-pills">
+          <!-- <h5>My dashboard</h5> -->
+          <ul class="nav nav-pills nav-stacked">
+           <!--  <li><a href="" class="profile-tabs">Applied Jobs</a></li>
+            <li><a href="" class="profile-tabs">Profile Views</a></li>
+            <li><a href="" class="profile-tabs">Recommended Jobs</a></li>
+            <li><a href="" class="profile-tabs">Interviews Appeared</a></li>
+            <li><a href="" class="profile-tabs">Notifications</a></li>
+            <li><a href="" class="profile-tabs">Profile Completed</a></li> -->
+            <li id="assigned-assessment" class="active"><a data-toggle="pill" href="" class="profile-tabs">My Assessments</a></li>
+          </ul>
+        </div>
+      </div>
+        <div class="col-md-10">
+         <div class="tab-content">
+			
+          <div id="assigned-assessment" class="">
+            <h3 class="search-text">My Assessments</h3>
+            <div class="job-search-cntnr">
+            	
+             <ul class="nav nav-tabs assessment-tabs">
+			    <li ng-if="isCurrent" class="active"><a href="" ng-click="switchAssessment(1);fetchAssessmets(false)">Current Assessments</a></li>
+			    <li ng-if="isSelf"><a href="" ng-click="switchAssessment(1);fetchAssessmets(false)">Current Assessments</a></li>
+			    
+			    <li ng-if="isSelf" class="active"><a  href="" ng-click="switchAssessment(2);fetchSelfAssessments()">Self Assessments</a></li>
+			    <li ng-if="isCurrent"><a  href="" ng-click="switchAssessment(2);fetchSelfAssessments()">Self Assessments</a></li>
+		    </ul>
+            
+            <div class="tab-content">
+			    <div id="current-assessment" class="tab-pane fade in active" ng-show="isCurrent">
+			      <div class="srch-head"><h4>List of Current Assessments</h4></div>
+		              <form>
+		              <div class="inner-details"> 
+		                <div class="table-responsive">
+		                  <table class="table table-bordered">
+		                    <thead>
+		                      <tr>
+		                        <th>Brand</th>		                       
+		                        <th>Department</th>
+		                        <th>Position</th>
+		                        <th>Name of Assessments</th>
+		                        <th>Date</th>
+		                        <th>Status</th>
+		                        <th>Score</th>
+		                        <th></th>
+		                      </tr>
+		                    </thead>
+		                     <tr ng-repeat="a in assessmentList">
+		                     	<td>{{a.brand.name}}</td>		                     	
+		                     	<td>{{a.category.name}}</td>
+		                     	<td>{{a.position.name}}</td>
+		                     	<td>{{a.assessmentName}}</td>
+		                     	<td>{{formatDate(a.assessmentDate) |  date:'dd-MM-yyyy'}}</td>
+		                     	
+		                     	<td ng-if="a.statusId ==1"><span class="label label-success">{{a.statusName}}</span></td>
+		                     	<td ng-if="a.statusId ==3"><span class="label label-info">{{a.statusName}}</span></td>
+		                     	<td ng-if="a.statusId ==2 "><span class="label label-danger">{{a.statusName}}</span></td> 
+		                     	
+		                     	<td>{{a.score}}</td> 
+		                     	<td><button ng-if="a.statusId != 1 && a.IsTodaysDate == true" type="button" class="btn btn-primary" ng-click="fetchqestn(a);openLaunchModel()">Launch</button>
+		                     	<span ng-if="a.statusId == 1 || a.IsTodaysDate == false" type=" " class=" "  disabled></span>
+		                     	</td>
+		                     </tr>
+		                    <tbody>
+		                      
+		                    </tbody>
+		                  </table>
+		                </div>
+		         <!--      <div class="btn-cntnr">
+		              <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+		              <a ng-click="cancell()">Cancel</a>
+		            </div> -->
+		              </div>
+		              </form>
+    		</div>
+    		
+    		
+    		
+    		<div id="self-assessment" class="tab-pane fade in active" ng-show="isSelf">
+			      <div class="srch-head"><h4>List of Self Assessment</h4></div>
+		              <form>
+		              <div class="inner-details"> 
+		                <div class="table-responsive">
+		                  <table class="table table-bordered">
+		                    <thead>
+		                      <tr>
+		                        <th>Brand</th>		                        
+		                        <th>Department</th>
+		                        <th>Position</th>
+		                        <th>Name of Assessments</th>
+		                        <th>Compeleted Date</th>
+		                        <th>Status</th>
+		                        <th>Score</th>
+		                        <th></th>
+		                      </tr>
+		                    </thead>
+		                    <tr ng-repeat="a in SelfAssessmentList">
+		                     	<td>{{a.brand.brandName}}</td>		                     	
+		                     	<td>{{a.category.categoryName}}</td>
+		                     	<td>{{a.position.positonname}}</td>
+		                     	<td>{{a.assessmentName}}</td>		                     	
+		                       <!--  <td>{{a.assessmentDate}}</td>  -->
+		                        <td ng-if="a.assessmentDate == undefined"></td>
+		                        <td ng-if="a.assessmentDate != undefined">{{formatDate(a.assessmentDate) |  date:'dd-MM-yyyy'}}</td>
+		                        
+		                        <td ng-if="a.statusId ==0 || a.statusId == undefined"><span class="label label-danger">Not Started</span></td>
+		                     	<td ng-if="a.statusId ==1"><span class="label label-success">{{a.statusName}}</span></td>
+		                     	<td ng-if="a.statusId ==3"><span class="label label-info">{{a.statusName}}</span></td>
+		                     	<td ng-if="a.statusId ==2 "><span class="label label-danger">{{a.statusName}}</span></td> 
+		                     	
+		                     	<td>{{a.score}}</td>
+		                     	<td><button ng-if="a.statusId != 1" type="button" class="btn btn-primary" ng-click="fetchqestn(a);openLaunchModel()">Launch</button>
+		                     	<span ng-if="a.statusId == 1" type=" " class=" "  disabled> </span>
+		                     	</td>
+		                     </tr>		                 
+		                    <tbody>		                      
+		                    </tbody>
+		                  </table>
+		                </div>
+		              <!-- <div class="btn-cntnr">
+		              <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+		              <a ng-click="cancell()">Cancel</a>
+		            </div> -->
+		              </div>
+		              </form>
+    		</div>     
+    		
+    		       
+            </div>
+          </div>
+     	
+      </div>
+      
+      
+      </div>
+      </div>
+      </div>
+      
+      <!-- assign assessment -->
+      <div id="start-assessment" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Terms & Condition</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix"></div>
+       <p> Are you sure you want to launch?</p>
+        
+        <p>Terms & Condition
+        1.
+        2.</p>
+        
+      <p>  NOTE: Once question is submited you cant change the question AND 
+      once your start the test you can't close it until exam is over</p>
+        
+      <div class="modal-footer text-left">
+        <button type="button" class="btn" ng-click="openquestionModel()">Next</button>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+      
+      <div class="modal fade" id="start-assessment-question" role="dialog">
+     
+          <div class="modal-dialog modal-lg add-brand" style="width:1000px;">
+          
+            <!-- Modal content-->
+            <div class="modal-content" style="height:450px;">
+              <div class="modal-header">
+               <!--   <button type="button" class="close" data-dismiss="modal">X</button>  -->
+                <!-- <h4 class="modal-title">{{Assessmentlist.assessmentName}}</h4> -->
+              </div>
+              <div class="modal-body">
+               <form ng-submit="saveAns(ans);submitAndNext()"> 
+              <div class="col-md-7">          
+              
+              
+              <!-- Question with audio video and image-->
+                <div class="form-group">
+                <label style="margin-left: 20px;"><span class="que-no" style="margin-left: -28px;position:absolute;">{{currentQuestionNo}}</span>{{question.questionText}}</label>
+       
+                    
+	                 <ul class="single-ans"> 
+	                         
+	                         <li data-ng-if="question.questionType == 1">
+	                       <!--   <input  type="text" data-ng-model="$parent.ans.text"> -->
+	                      <div class="input-group">
+                                <textarea type="text" class="form-control flat-control-inner ng-pristine ng-valid ng-empty ng-touched" id="transcript1" data-ng-model="$parent.ans.text" placeholder="Answer" style="width:100%;" cols="100" rows="4"></textarea>
+                            </div> 
+                            
+                                                        
+	                         </li>
+	                                  
+                      <li data-ng-repeat="a in question.ans" ng-if="question.questionType == 2" style="float: none;margin: 5px 35px;">
+                   
+                      	<div class="radio-cntnr new-chc radio-quecheck-ans">
+                      	<input type="radio" id="redioAns{{$index}}" name="redioAnsName" data-ng-value="true" ng-click="checkRedio(a.id)" data-ng-model="redioCheck">
+                  			<label for="redioAns{{$index}}"></label>
+                  		</div>                  		
+                  		<label for="redioAns{{$index}}" style="display:block !important;margin-left: 28px;">{{a.answerText}}</label> 
+                  		
+                  		</li>
+                  		
+                  		 <li data-ng-repeat="a in question.ans" ng-if="question.questionType == 3" style="float: none;margin: 5px 35px;">
+                         
+                          <div class="chckbx-cntnr" style="float: left;margin-right: 18px;">                          
+	                      <input type="checkbox" id="checkboxAns{{$index}}" class="flashadmin ng-pristine ng-untouched ng-valid" ng-change="checkBox(a.id,check5)" ng-model="check5">
+	                      <label class="cstmchk_lbladmin" for="checkboxAns{{$index}}"></label> 	                      
+                       	  </div>                         	                      
+                           <label class="cstmchk_lbl" for="checkboxAns{{$index}}" style="display:block !important;">{{a.answerText}}</label> 
+                           
+                        </li>
+                        
+                    </ul> 
+	           
+                 </div>  
+                
+               </div>
+               <div class="col-md-5" ng-if="question.questionMediaType == 1">
+               		<img   src="{{question.questionMedia}}" class="img-responsive img-thumbnail question-file"> 
+               </div>
+               
+               <div class="col-md-5"ng-if="question.questionMediaType == 3">
+               <video width="320" height="240" id="mediaVideo" src="{{question.questionMedia}}" type="video/mp4"  controls=""  controlslist="nodownload"></video> 
+               
+               </div>
+               
+                 <div class="col-md-5" ng-if="question.questionMediaType == 2">
+                 <audio width="320" height="240" id="audioMedia"  style="margin: 18% 10%;" controls="" controlslist="nodownload"><source src="{{question.questionMedia}}" type="audio/ogg"></audio> 
+               </div>
+                 
+                  <div class="row">
+                    <div class="col-md-8">
+                     <p class="text-left que_count">{{currentQuestionNo}} of {{questionList.length}}</p> </div>
+                    <div class="col-md-4 text-right">
+                    
+                   
+                    
+                    <button class="btn btn-default btn-bluer que-submit" id="" type="submit" >Submit & Next</button>
+                      </div> 
+                    </div> 
+                    </form>
+              </div>
+              
+            </div>
+            
+          </div>
+         
+      </div>
+      </div>
+      </section>

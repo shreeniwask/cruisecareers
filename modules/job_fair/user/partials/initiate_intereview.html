@@ -1,0 +1,292 @@
+<div class="height-70"></div>
+<section id="career-main">
+<div class="text-center">
+	<div class="row" style="margin:0px;">
+		
+	 <div class="col-md-3">
+	 	<div class="applied_positions_heading">
+	 		<p>Applied Positions</p>
+	 	</div>
+	 	<div class="applied_positions_listing">
+	 		<ul ng-if="showSeeAll" ng-repeat="appJob in threeAppliedJobs">
+	 			<li>
+	 				<p class="job_name1">{{appJob.position.name}}</p>
+	 				<p><b>Department:</b> {{appJob.category.name}}</p>
+	 				<p><b>Brand:</b> {{appJob.brand.brandName}}</p>
+	 			</li>
+	 			
+	 			<!-- <li>
+	 				<p class="job_name1">Utility F&B</p>
+	 				<p><b>Department</b>: Bars</p>
+	 				<p><b>Brand</b>: Princess Cruises</p>
+	 			</li>
+	 			<li>
+	 				<p class="job_name1">Utility F&B</p>
+	 				<p><b>Department</b>: Bars</p>
+	 				<p><b>Brand</b>: Princess Cruises</p>
+	 			</li> -->
+	 		</ul>
+	 		<ul>
+	 		
+	 		<ul ng-if="!showSeeAll" ng-repeat="appJob in appliedJobs">
+	 			<li>
+	 				<p class="job_name1">{{appJob.position.name}}</p>
+	 				<p><b>Department:</b> {{appJob.category.name}}</p>
+	 				<p><b>Brand:</b> {{appJob.brand.brandName}}</p>
+	 			</li>
+	 		</ul>
+	 		<div ng-if="appliedJobs.length > 3 && showSeeAll" class="see_all_btn">
+	 			<button type="button" ng-click="showHideSeeAll()">SEE ALL</button>
+	 		</div>
+	 	</div>
+      </div>
+	 <div class="col-md-6 slider-div-initiat" style="position:relative">
+	 	<div class="clearfix">
+					<div class="job_fair_det">
+						<!-- <div class="col-md-6 text-left">
+							<p>Job Fair Name:</p> <h4 ng-bind="jobFair.name" class="job_fair_name"></h4>
+						</div>
+						<div class="col-md-6 text-right">
+							<h4 class="text-right job_fair_date">{{jobFair.startDate}} -
+								{{jobFair.endDate}}</h4>
+						</div> -->
+						<p ng-if="requestForStartFlag && !inteviewOverFlag">You can browse through the reading/viewing material given below, until our recruiter joins you. Click on the 'START MEETING' when it turns green.</p>
+						<p ng-if="startFlag">The recruiter has initiated your meeting. Please click on 'START MEETING.'</p>					
+						<!-- <p>Your meeting in progress.</p> -->
+						<p ng-if="inteviewOverFlag">Your meeting is over. If you are shortlisted,our recruitment team will get in touch with you within 2 weeks.</p>
+					</div>
+				</div>
+	 	<!-- <div class="interview-notice" ng-show="showConnectMsg && (callDetail == undefined || callDetail == null)">Your request has been sent to the Recruitment team. Please click on 'Refresh'to enable start interview button </div>
+		<div class="interview-notice" ng-show="callDetail != undefined">Your request has been accepted. Please click on 'Start Interview' button to start your interview</div>	 -->	
+				<!-- <div class="carrer-box customize_carrer" ng-show="!closeSlot">
+					<div>
+						<h4 class="congrats_word">Congratulations!!!</h4>
+        				<h4><span>Your interview is scheduled for {{formatDate(startInterviewDetails.event.slots[0].dateTime)}} at
+        				{{startInterviewDetails.event.slots[0].dateTime.split(" ")[1]}} {{startInterviewDetails.event.slots[0].dateTime.split(" ")[2]}}</span>
+        				</h4>
+ 					</div> 
+					
+					
+					<div>
+						<button ng-if="!showConnectMsg" ng-disabled="!startInterview" data-target="#start-interview" class="btn btn-success" data-toggle="modal">
+							<span>Start</span>							
+						</button>
+						<button ng-if="callDetail != undefined" ng-click="generateInterview()" class="btn btn-success" data-toggle="modal">
+							<span>Start Interview</span>							
+						</button>
+						<button ng-if="showConnectMsg && (callDetail == undefined || callDetail == null)" ng-click="fetchInterviewCallLogId()" class="btn btn-success">
+							<span>Refresh</span>							
+						</button>
+						<button class="btn btn-info" ng-click="backToJobfair(jobFairId)">Back</button>
+						<a href="" ng-click="deleteUserSlot()"> Cancel your Slot </a>
+					</div>
+					<video controls="">
+								<source src="resources/img/Wildlife.wmv">
+							</video>
+				
+				</div> -->
+				
+				<!-- ---------------------- -->
+				
+				<div id="carousel-slider12" class="carousel slide" data-ride="carousel">
+					
+					  <div class="carousel-fade">
+				  <div class="carousel-inner">
+				 	 <div class="item relative-item active">
+				   		<!-- <div class="job_fair_det">
+				   			<p>Important Document</p>	
+				   		</div>		
+				   		<ul class="file_list">
+				   			<li>1. List one</li>
+				   			<li>2. List one</li>
+				   			<li>3. List one</li>
+				   			<li>4. List one</li>
+				   		</ul> -->   
+				   		<div>
+				   		<img  ng-if="startInterviewDetails.jobFairMedias[0].mediaType == 'image'" ng-src="{{startInterviewDetails.jobFairMedias[0].mediaPath}}" alt="cr{{$index}}">
+				   	 	<video ng-if="startInterviewDetails.jobFairMedias[0].mediaType == 'video'" ng-src="{{startInterviewDetails.jobFairMedias[0].mediaPath}}" controls></video>
+				   		</div> 
+				   </div> 		  				  
+				    <div class="item relative-item" ng-repeat="media in mediaFile track by $index">
+				   	<img  ng-if="media.mediaType == 'image'" ng-src="{{media.mediaPath}}" alt="cr{{$index}}">
+				   	 <video ng-if="media.mediaType == 'video'" ng-src="{{media.mediaPath}}" controls></video>  			   	
+				   </div> 
+				    
+				    
+				   
+				    </div> 
+				  </div>
+				</div>
+				
+				
+<!-- 				<div><button ng-click="deleteUserSlot()">cancel</button></div>
+ -->				<!--  ----------------------- -->
+				
+
+					<!-- <div class="interview-slider" data-ng-init="inittiateSlider()">
+
+			
+					 <div class="interview-slider" data-ng-init="inittiateSlider()">
+
+ 							<div class="slick-item"  ng-repeat="media in startInterviewDetails.jobFairMedias" >
+								<img ng-if="media.mediaType == 'image'" ng-src="{{media.mediaPath}}">
+								<source ng-if="media.mediaType == 'video'" ng-src="{{media.mediaPath}}"></source>
+							</div>
+							<div >
+								<video controls>
+									
+								</video>
+							</div>
+ 						<div>
+							<video controls>
+								<source src="resources/img/Wildlife.wmv"></source>
+							</video>
+						</div>
+						
+					</div> -->
+				
+					<button id="next"><img src="resources/img/Group_2.png" /></button>
+					<button id="prev"><img src="resources/img/Group_1.png" /></button>
+				
+			</div>
+
+      <div class="col-md-3 col-sm-12">
+        	<button class="btn shedule-a-meeting" ng-disabled="callDetail == undefined" ng-click="generateInterview()"><p>Start Meeting</p> </button>
+        	<div class="date-time-selector row">      		
+        	</div>
+        </div>
+
+	
+	</div>
+	
+	
+</div>	
+
+</section>
+
+<div id="start-interview" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm add-brand">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Start Interview</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix"></div>
+        Are you sure want to start interview ?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="selectCommunicationOption(1)">Yes</button>
+         <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+
+ <footer id="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-sm-4">
+        <img src="resources/img/logo-big.png">
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <h5>ADDRESS</h5>
+        <p>Carnival Support Services India Ltd,
+Kohinoor City, Tower 2, Floor 5,
+Kirol Road, Off. LBS Marg, Kurla West,
+Mumbai 400 070</p>
+      </div>
+      <div class="col-md-2 col-sm-4">
+        <h5>CONTACT</h5>
+        <p><a class="footer-contact" href="tel:+917942529292">+91-7942529292</a>
+ </p>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>GET IN TOUCH</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="https://www.facebook.com/cruisecareersindia/" target="_blank" class="facebook-link"><i class="icon-facebook"></i></a></li>
+          <li><a href="https://twitter.com/cruisecareers" target="_blank" class="twitter-link"><i class="icon-twitter2"></i></a></li>
+          <!-- <li><a href="" target="_blank" class="google-link"><i class="icon-instagram"></i></a></li> -->
+          <li><a href="https://www.linkedin.com/company/carnival-support-services-india-pvt.-ltd" target="_blank" class="utube-link"><i class="icon-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>MOBILE APP</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="#!comingsoon" class="android-link"><i class="icon-android"></i></a></li>
+          <li><a href="#!comingsoon" class="ios-link"><i class="icon-apple"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="lower-footer">
+  &#169; 2017 CSSI Pvt. Ltd.
+</div>
+    
+ 
+
+
+ <script>
+ 
+
+ 
+ 
+ $("video").on("play", function () {
+
+	 $("video").not(this).each(function (index, video) {
+
+	 var tmp_src = video.currentSrc;
+
+	 var playtime = video.currentTime;
+
+	 video.src = '';
+
+	 video.load();
+
+	 video.src = tmp_src;
+
+	 video.currentTime = playtime;
+
+
+
+	 });
+
+	 });
+ 
+ 
+	    $('#carousel-slider12').carousel({
+	      interval: false
+	    })
+	    $("#prev").click(function(){
+    $("#carousel-slider12").carousel("prev");
+   // alert('prev');
+   var i =0;
+    $('#carousel-slider12 .item').each(function() {
+    	
+	    $('.item video').get(i).pause();
+	    i++;
+	});
+    
+  });
+  $("#next").click(function(){
+    $("#carousel-slider12").carousel("next");
+    //alert('prev');
+    var i = 0
+    //$("#carousel-slider12 video").get(0).pause()
+    $('#carousel-slider12 .item').each(function() {
+    	$('.item video').get(i).pause();
+	    i++;
+	});
+  });
+
+ /* 
+ ( document ).ready(function(){
+	    $('.carousel-slider12').carousel({
+	      interval: 2000
+	    })
+	}); */
+  </script>

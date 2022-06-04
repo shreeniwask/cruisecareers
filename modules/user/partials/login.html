@@ -1,0 +1,119 @@
+<!-- <div ng-controller="Register_Ctrl"> -->
+	<!----Navbar---->
+<header>
+	<nav class="navbar navbar-default header-nav navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle hide-logo" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand cruise-logo" href="#!home" style="position: absolute;"><img src="resources/img/logo-big.png"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right zeromargin">
+        <li class="login-li"><span class="black-text">Don't have an account?</span>
+        	<span class="linked"><a href="#!register">SIGN UP</a></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>	
+</header>
+<div class="height-100"></div>
+	<!----Main-cntnr---->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1 hidden-xs hidden-sm">
+			<div class="chef-img">
+				<img src="resources/img/chef-login.png" width="100%">
+			</div>
+		</div>
+		<div class="col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 col-sm-6 col-sm-offset-3 col-xs-12">
+		<div class="alert alert-danger" style="max-width: 400px;" ng-if="error==true||error=='true'">
+ 		 <strong>Alert !</strong> Your session has expired!  Please login again.
+	</div>
+			<div class="login-cntnr" ng-controller="Register_Ctrl">
+				<h4 class="form-heading">Log In to Your Cruisecareers Account</h4>
+				<!-- <div  id="buttonId" class="social-btns text-center">					
+					<button class="btn btn-default btn-fb" ng-click="fbLogin();checkLogin(1)" id="fbLink"><i class="icon-facebook"></i></button>
+					
+					
+					 <div id="divId" class="g-signin2" onclick="ClickLogin()" ng-click ="checkLogin(2)" data-onsuccess="onSignIn"  ></div> 				 
+					
+				</div> -->
+				<!-- <i class="login_msg">(If you have used Facebook or Google to sign-up, continue using the same every time you sign-in)</i> -->
+				<!-- <h4 class="or">OR</h4> -->
+				<form ng-submit="getLogin(user)">
+					<div class="form-group icon-grup icon-grup-email">
+						<input type="email" name="" id="emailid" class="form-control flat-control" placeholder="E-mail" ng-model="user.email" required>
+					</div>
+					
+					<div class="form-group icon-grup icon-grup-password">
+						<input type="password" name="" class="form-control flat-control" id="passwordid" placeholder="Password" ng-model="user.password" required>
+						<span><a class="ftgt-link" href="#!forgotpassword">Forgot password?</a></span>
+					</div>
+					
+					<div class="checkbox-cntnr">
+						<input type="checkbox" name="" id="remember">
+						<label for="remember" class="label-text" >Remember Me</label>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-default btn-block btn-login" id="btnsubmit" type="submit" ng-click="checkLogin(0)">Log In</button>
+					</div>
+					<p class="terms">By logging in, you agree to our <a href="#!terms_conditions" target="_blank">Terms of Use</a> and <a href="#!privacy_policy" target="_blank">Privacy Policy</a>.</p>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+	
+</div>
+ 
+ <div id="resendactivationlink" class="modal fade in" role="dialog" style="">
+		<div class="modal-dialog ">	
+		  <!-- Modal content-->
+			<div class="modal-content flat-modal resendactivationlink-modal" style="height: 220px;">
+				<div class="modal-header">
+				  	<button type="button" class="close" data-dismiss="modal">x</button>
+				  	<h4 class="modal-title common-title" style=""></h4>
+				</div>
+				<div class="modal-body flat-body">
+				<p>Your account is not yet activated.</p>
+				<p>Please click on "OK"  to receive an activation link on your email.</p>
+				</div>
+				<div class="modal-footer text-left">
+				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resendActivationLink(emailforactivationlink)">OK</button>
+				<!-- <a class="btn btn-link" data-dismiss="modal">Cancel</a> -->
+				</div>
+			</div>
+		 </div>
+	</div> 
+ 
+<script>
+	///Script to hide logo on click
+    $(".hide-logo").click(function(){
+    	$(".cruise-logo").fadeToggle();
+    });
+	</script>
+     <script src="https://apis.google.com/js/platform.js" async defer></script> 
+   <!--  <script src="https://apis.google.com/js/client:platform.js?onload=startApp"></script> -->
+    	
+	<script>
+	var clicked=false;
+	
+	function ClickLogin()
+	{
+	    clicked=true;
+	}	 
+	 
+ 	  function onSignIn(googleUser) 
+	{  if (clicked) {	
+	  var profile = googleUser.getBasicProfile(); 		 
+	  angular.element(document.getElementById('divId')).scope().UserGoogleRegistration(profile);	
+	}
+	}	
+	
+   	</script>
+ 

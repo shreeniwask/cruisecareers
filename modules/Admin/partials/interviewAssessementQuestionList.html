@@ -1,0 +1,78 @@
+<style>
+.select_width{
+width:250px;
+}
+</style>
+<div class="admin-page">
+     
+    <div class="section-heading">
+     <h4>Interview Assessment Master</h4>
+    </div>
+    	 <div class="section-content" >
+    		 <div class="table-cntnr" style="min-height: 100px;display: inline-block; width:100%;">
+       			
+       		<table  class="table table-striped red-table quet-tab">
+       		<caption>Questions List</caption>
+              <thead>
+               <th>Sequence</th>
+               <th>Questions <i ng-click="sortingQuestionlist('questions',searchterm)" class="fa fa-sort" aria-hidden="true" ></i></th>
+              <th>Question Type <i  ng-click="sortingQuestionlist('questionType',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+              	<th></th>
+             </thead>
+              
+              
+              <tbody>
+                 
+				<tr ng-repeat="iaql in QuestionList">
+				<td  class="select_width">
+				 <div class="form-group">
+	              		<select class="form-control flat-control-search mar-bottom-zero ng-pristine ng-valid ng-empty ng-touched" id="openinterview" 
+	              		ng-change="changeSequenceis(iaql.sequence,$index)" ng-model="iaql.sequence">	              		
+	              		<option ng-value="0">select</option>
+	              		<option ng-repeat="s in sequenceList" ng-value="{{s.sequence}}" >{{s.sequence}}</option>
+              		</select>
+              		</div>
+				</td>
+				<td>{{iaql.questionText}}</td>
+				<td>{{iaql.questionTypeName}}</td>
+		     	<td><button class="btn btn-default btn-delete ng-scope" ng-click="showDeleteModal(iaql)"><i class="icon-trash-2"></i></button></td>                
+				
+				</tr>
+				</tbody>
+				</table>
+				<!-- <a style="float:right" href="" ui-sref ="restricted.admin.interviewassessmentmaster">Cancel</a> -->
+				 <div class="btn-cntnr" style="padding-top: 10px;">
+                 <button class="btn btn-default btn-bluer" id="cancel-req-btn" ng-click="saveInterviewAssessmentQuestionList()">Save</button>
+                 <!-- ngIf: fieldId == 0 -->
+                 <!-- ngIf: fieldId == undefined -->
+                 <a href="" ng-click="cancelInterviewAssessmentseq()">Cancel</a><!-- end ngIf: fieldId == undefined -->
+                 
+            </div>
+				
+		<div id="deletelist" class="modal fade" role="dialog">
+	  		<div class="modal-dialog modal-sm add-brand">
+	    		<div class="modal-content flat-modal">
+	      			<div class="modal-header">
+	       			 <button type="button" class="close" data-dismiss="modal">X</button>
+	       			 <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+	      			</div>
+	      		<div class="modal-body flat-body">
+	          	<div class="clearfix"></div>
+	       			 Are you sure you want to delete record?
+	     		 <div class="modal-footer text-left">
+	       		 <button type="button" class="btn btn-default"  id="show_ass" ng-click="deleteQuestionFromInterviewAssessmentList()" data-dismiss="modal">Delete</button>
+	       		 <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+	      		</div>
+	    	</div>
+	   		</div>
+	    	</div>
+	    	</div>
+			
+     
+     </div>
+	<form>
+	</form>
+	</div>
+    </div>
+    </div>
+    

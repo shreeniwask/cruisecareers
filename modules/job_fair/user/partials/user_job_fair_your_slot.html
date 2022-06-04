@@ -1,0 +1,33 @@
+
+<header>
+
+<div>
+
+<form class="ng-pristine ng-valid">
+      <div class="modal-body flat-body">
+        <div class="row">
+          <div class="col-md-12">
+        	<br>
+        	<br>
+        	<h3 class="text-center">
+        	<b>
+        		<p>Congratulations!!!! Your interview is sheduled for</p>
+        		<p><span>{{dateformate(userSelectedSlot.dateTime) | date:'dd-MM-yyyy'}}</span>
+        		 <span>{{userSelectedSlot.dateTime.split(" ")[1]}} {{userSelectedSlot.dateTime.split(" ")[2]}}</span>
+        		 </p>
+        	</b>
+        	</h3>
+        	
+        	 <a href="" style ="padding-left: 45%;">Cancel Slot here</a>
+        	<br>
+        	<br>
+       
+          </div>
+        </div>
+         
+      </div>
+     
+	</form>
+</div>
+
+</header>

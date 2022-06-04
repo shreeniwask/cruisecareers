@@ -1,0 +1,69 @@
+<style>
+.more-det{
+text-align:right;
+
+}
+.more-det a{
+    display: initial !important;
+}
+</style>
+
+<section class="tab-pane fade in active admin-page">
+	  <div class="section-heading">
+        <h4>Notifications</h4>
+      </div>
+     <div class="section-content"> 
+      <div class="job-search-cntnr">
+      <!-- <div class="srch-head" style="margin-bottom: 0;"><h4>All Notifications</h4></div> -->
+      	<div class="notification-tile-nohover" ng-repeat="n in notificationList"> 
+           <ul class="notification-1">
+           	<li ng-bind-html-unsafe="n.notificationText">
+           	<i class="fa fa-caret-right"></i>
+           	<span>{{dateformate(n.createdDate)}}</span>
+           	<span>{{n.notificationText}}</span>      
+           <p class="more-det">	<a href="" ng-click="redirectPage(n.workflowId)">More Details</a> </p> </li>            	           	
+           	<li class="text-center" ng-if="n == 0" ng-show="noNotificationflag">You don't have any notifications</li>       	
+    		</ul>
+    	</div>
+    
+        <div class="text-right">            
+	        <ul class="pagination" style="margin: 5px 16px !important;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+	     	</ul> 
+       </div>  
+      </div>
+	</div>
+  </section>
+
+  <script>
+	///Script to hide logo on click
+    $(".hide-logo").click(function(){
+    	$(".cruise-logo").fadeToggle();
+    });
+	</script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+    $(".notification-tile").click(function() {
+          window.location = $(this).find("a").attr("href"); 
+          return false;
+        });
+    });
+  
+    
+    $(document).ready(function(){
+        $('.closedrop li a').click(function(){
+     	 $('.closedrop').removeClass('open');  
+       });  
+     });
+    
+    </script>
+    
+ 
+    <script>
+    $("a.not-link").click(function() {
+    	   $("#not-drop").dropdown("toggle");
+    	});
+    </script>
+   

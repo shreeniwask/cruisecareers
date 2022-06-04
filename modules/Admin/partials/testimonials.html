@@ -1,0 +1,162 @@
+<!--Testimonial Section-->
+<div id="createtestimonials" class="tab-pane fade in admin-page">
+      <div class="section-heading">
+        <h4>Testimonials</h4>
+        <!--<p>Create and post new job or choose one from already posted jobs.</p>-->
+      </div>
+      <div class="section-content" id="testimonialslist">
+        <div class="upper-actions">
+          <div class="button-group">
+            <button class="btn btn-default btn-create" id="create-testimonial" ng-click="clear()"><i class="icon-plus"></i></button>
+            <button class="btn btn-default btn-delete" data-target="#deletelist" ng-click="check()"><i class="icon-trash-2"></i></button>
+          </div>
+          <div class="search-cntnr">
+            <div class="form-group search-box inline-blck">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="fetchTestimonialsList(0,10,null,null,searchterm);getTestimonialsListCount(searchterm)"></i>
+            </div>
+          </div>
+          
+          <div class="clearfix"></div>
+        </div>
+        <div class="table-cntnr">
+          <table class="table table-striped red-table">
+            <caption>Testimonials</caption>
+            <thead>
+              <tr>
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="aller" name="check" class="flashadmin" ng-click="checkedAllList(testimonialsList,all)" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="aller"></label> 
+                    </div>
+                </th>
+                <th>Seq. No.<i ng-click="SortingTestimonialsList('Sequence',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <th>Testimonials<i ng-click="SortingTestimonialsList('Testimonials',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <th>Positions<i ng-click="SortingTestimonialsList('Position',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+               <th>Date<i ng-click="SortingTestimonialsList('CompletionDate',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+               </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="t in testimonialsList">
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="{{t.id}}" name="check" class="flashadmin" ng-click="checkedTestimonialsList(t.id,t.sequence)" ng-checked="all">
+                      <label class="cstmchk_lbladmin" for="{{t.id}}"></label> 
+                    </div>
+                </td>
+                <td>{{t.sequence}}</td>
+                <td><a ng-click="testimonialData(t)" id="testimonialname">{{t.name}}</a></td>
+                <td>{{t.position}}</td>
+                <td>{{formatDate(t.createdDate)}}</td>
+              </tr>              
+            </tbody>
+          </table>
+          <div class="text-right">           
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+          </div>
+        </div>
+      </div>
+      
+      
+       <!----Modal delete-list---->
+<div id="deletelist" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ng-value="getCheckedId()"></div>
+        Are you sure want to delete {{getCheckedTestimonialsid.length}} records?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deletefromList('Testimonial')">Delete</button>
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+      
+      <div class="section-content" id="show-add-testimonial">
+      <div class="shadow-container">
+          <div class="inner-head">
+            <h4>Create Testimonial</h4>
+          </div>
+          <div class="inner-form">
+          <form id="myForm" name="" ng-submit="addTestimonialsDetails(testimonial)">              
+          <div class="row">
+          	<div class="col-md-6">
+          		<div class="form-group">
+                  <label>Sequence No.:</label>  
+                                                            
+                    <select class="form-control" style="width: 90px;" ng-model="testimonial.sequence" required>
+						       <option value="">Select</option>						          
+                                  <option data-ng-repeat="s in sequenceList" data-ng-value="{{s.sequence}}" ng-selected="s.sequence==testimonial.sequence">{{s.sequence}}</option>                              						     
+						        </select>
+<!--                  	<input type="number" name="" ng-model="testimonial.sequence" class="form-control flat-control-inner" style="width: 60px;" maxlength="2">
+ -->                </div>
+          		<div class="form-group">
+                  <label>Name:</label>
+                 	<input type="text" name="" ng-model="testimonial.name" class="form-control flat-control-inner" required>
+                </div>
+                <div class="form-group">
+                  <label>Designation:</label>
+                   	<input type="text" name="" ng-model="testimonial.position" class="form-control flat-control-inner" required>
+                </div> 
+                <div class="form-group">
+                  <label>Description:</label>
+                   	<textarea class="form-control flat-control-inner" ng-model="testimonial.description" rows="10" required></textarea>
+                </div> 
+          	</div>
+          	<div class="col-md-6">       
+          	   <img  id="image_upload_preview" src="resources/img/default-image.png" ng-if="!testimonial.profilePicPath"alt="your image" class="img-responsive image_upload_preview" style="min-height: 190px;max-width: 190px;"/>          	
+          		<img  id="image_upload_preview" ng-if=" testimonial.profilePicPath != '' " ng-src="{{testimonial.profilePicPath}}" alt="your image" class="img-responsive image_upload_preview" style="min-height: 190px;max-width: 190px;"/>
+                  <p class="logo_recomm">Recommended Size: 1280*455px</p>
+                  <div class="btn-default browse-btn">Browse
+                  <input type='file' id="input-image" ng-click="getindex()" class="input-image">
+                  </div>
+
+                  <button type="button" class="btn-default remove-btn" id="remove-img" ng-click="getremove();">Remove</button>
+          	</div>
+          </div>
+            
+
+        <div class="btn-cntnr" style="margin-top: 20px; margin-bottom: 20px; text-align: left!important;">
+              <button class="btn btn-default btn-bluer" id="update_slot-btn" type="submit">Save</button>
+              <a ng-click="cancel()">Cancel</a>
+            </div>
+      </form>      
+    </div>
+    </div>
+</div>
+      
+      
+    </div>
+    <script>
+    $("#id_of_textbox").keyup(function(event) {
+        if (event.keyCode === 13) {
+            $("#id_of_button").click();
+        }
+    });
+    
+    $(document).ready(function(){
+    	$("#show-add-testimonial").hide();
+    });
+    </script>
+    
+    <script type="text/javascript">
+
+ /*  $("#create-testimonial").click(function(g) {
+        g.preventDefault();
+         $("#show-add-testimonial").show();
+         $("#testimonialslist").hide();
+ }); */
+
+</script>

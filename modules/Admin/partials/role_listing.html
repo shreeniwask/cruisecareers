@@ -1,0 +1,106 @@
+<style>
+ [type="checkbox"]:checked:focus + label:before, [type="checkbox"]:not(:checked):focus + label:before{
+  border:1px solid !important}
+  .clamp-list{
+  	    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+  }
+  
+</style>
+
+<div id="create-user-btn" class="tab-pane fade in admin-page">
+      <div class="section-heading">
+        <h4>Roles</h4>
+        <!-- <p>Create new requisition for recruitment from customers.</p> -->
+      </div>
+      <div class="section-content">
+      <div id="home" class="tab-pane active in"><br>
+
+            <div class="table-cntnr" style="padding: 0 14px;">
+              <div class="upper-actions">
+          <div class="button-group">
+            <button class="btn btn-default btn-create" id="create-job-btn" ng-click="openCreatePageSetting(undefined)"><i class="icon-plus"></i></button>
+             <button class="btn btn-default btn-delete" ng-click="check();"><i class="icon-trash-2"  data-target="#deletelist" ></i></button>
+          </div>
+          <div class="search-cntnr">
+            <div class="form-group search-box inline-blck">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero ng-pristine ng-untouched ng-valid ng-empty" ng-model="search" >
+              <i class="icon-search" id="id_of_button" ng-click="fetchCreatedRoleList(0,10,search,null,null);getCreatedRoleCount(search)"></i>
+            </div>
+          </div>
+          
+          <div class="clearfix"></div>
+        </div>
+          <table class="table table-striped red-table" style="margin-bottom: 0px;">
+            <caption>Role Details</caption>
+            <thead>
+              <tr>
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(createdroleList,all);" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th>
+                <th>Role <i ng-click="sortingOfRolelisting('Role',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th>Description <i ng-click="sortingOfRolelisting('Description',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th style="vertical-align: middle; text-align:center;width: 14%;">Created On <i ng-click="sortingOfRolelisting('Created On',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="c in createdroleList">
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                  <input type="checkbox" id="{{c.id}}" name="check12" class="flashadmin" ng-click="checkedList(c.id)"  ng-checked="all">
+                     
+                      <label class="cstmchk_lbladmin" for="{{c.id}}"></label> 
+                    </div>
+                </td>
+                <td><a href="" ng-click="openCreatePageSetting(c)">{{c.name}}</a></td>
+                <td class="clamp-list">{{c.roleDescription}}</td>
+                <td style="text-align:center">{{dateformate(c.createdDate)}}</td>
+              </tr>
+             </tbody>
+          </table>
+          <div class="text-right">
+            <ul class="pagination" style="margin-top: 30px;">
+				<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+				<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+				<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+          </div>
+        </div>
+
+         </div>
+		</div>
+
+  </div>
+  <div id="deletelist" class="modal fade" role="dialog">
+  	<div class="modal-dialog modal-sm add-brand">
+
+    <!-- Modal content-->
+	    <div class="modal-content flat-modal">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">x</button>
+	        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+	      </div>
+	      <div class="modal-body flat-body">
+	          <div class="clearfix" ></div>
+	        Are you sure want to delete  {{getCheckedId.length}} records?
+	      <div class="modal-footer text-left">
+	        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deleteRoleFromList();">Delete</button>
+	        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+	      </div>
+	    </div>
+	   </div>
+    </div>
+   </div>
+   
+   <script type="text/javascript">
+ $("#id_of_textbox").keyup(function(event) {
+	    if (event.keyCode === 13) {
+	        $("#id_of_button").click();
+	    }
+	});
+	</script>

@@ -1,0 +1,327 @@
+<section id="jobs-main" style="padding: 5% 0;margin: 5% 0;">
+<div>
+<div id="assessment-player" class="container-fluid">
+	<div class="job-search-cntnr" style="display: inline-block;width: 100%;">
+        <div class="srch-head" ng-show="complianceFlag"><h4>Compliance List</h4></div>
+			<div ng-hide="sampleQuestionFlag == true || StartquestionFlag == true" id="start-assessment" class="" role="">
+  			<!-- <div class="assessment-player-header">
+  				<p>Please Read Following instructions carefully.</p>
+  			</div> -->
+  			<div ng-if="typeFlag == 1" class="instruction-list">
+  				<p>Dear {{userdetails.firstName +" "+userdetails.lastName}}</p>
+  				<p>Thank you for your interest in applying for an onboard position with CSSI As part of our evaluation process, please complete this online test. We have included a sample test to familiarize yourself with the types of questions that may be presented to you. Select the tab on the left bottom corner to being this test.</p>
+  				<p>Here are some do's and don'ts for taking the test:</p>
+  				<ol>
+  					<li>Choose a quiet place to take the test and ensure you have stable broadband internet connection. Mobile hotspots may be unstable.</li>
+  					<li>Please use headphones with microphone as some questions may require listening to voice prompts and others may ask you to speak your answer.</li>
+  					<li>Please close all other programs running on your computer while taking the test. Keep only your web browser on. Avoid leaving the test midway.</li>
+  					<li>Your computer must be connected to a working camera or have an in-built camera, without which the test will not progress. Your face should be within the range of the camera. If you move away from the camera during the test your test result will be invalid.</li>
+  					<li>Kindly answer the questions without any outside assistance (online or offline). No messaging or screen sharing software like Skype, Zoom, Google, etc. is permitted to be used during the test.</li>
+  					<li>The information displayed on the screen during the test should not be captured or saved at any point.</li>
+  					<li>Should you wish to go back to a question at any point during a test, click on the question number displayed on the left of the page. We recommend you check the answers to all questions before clicking Submit at the end of the test.</li>
+  					<!-- <li>Test Duration: {{selectedAssessment.assessmentTime}} minutes</li>  -->
+  				</ol>
+  				<p>You have limited time to complete the test. A timer will be displayed on the top right of the screen indicating the time remaining. If you are timed-out, the test will be automatically submitted</p>
+  				<p>By taking this test, you agree to be photographed during the test. This serves as part of our invigilation process and will be stored as part of your assessment on our secure servers.</p>
+  				<p>Please tick the box below before proceeding:</p>
+  				<p>
+  					 <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-model="startmytest" ng-click="StartTest(startmytest)" >
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                    <label style="margin:0px 10px;">I have understood the contents above and agree to abide by them.</label>
+  				</p>
+  				<p>We wish you the very best.</p>
+  				<p style="margin: 0px;">Cheerfully yours,</p> 
+  				<p style="margin: 0px;">Team <a href="https://cruisecareers.in/">Cruisecareers</a></p>
+  			</div>
+			
+			<div ng-if="typeFlag == 2" class="instruction-list">
+			
+				<p>Dear {{userdetails.firstName +" "+userdetails.lastName}}</p>
+  				<p>Many thanks for agreeing to take part in our survey. Your response will go a long way in improving our service standards and will help us to better serve you in the future.</p>
+  				<p>This survey should not take more than 10 minutes to complete and rest assured, your response will be kept completely confidential.</p>
+  				<p>Please click "Proceed" to begin. </p>
+
+  				 
+  				<p style="margin: 0px;">Team <a href="https://cruisecareers.in/">Cruisecareers</a></p>
+			
+			</div>
+			
+      <div class="row">
+      	<div class="button-part">
+	      	<button type="button" ng-if="typeFlag == 1" class="btn sample-btn" ng-click="openSampleQuestion();fetchSampleQuestion()">Sample Question</button>
+	        <button type="button" class="btn start-test" ng-if="StartFlag == true && typeFlag == 1" ng-click="openquestionModel();fetchqestn();">Start Test</button>
+	        <button type="button" class="btn start-test" ng-if="StartFlag == false && typeFlag == 1"  disabled>Start Test</button>
+	        <button type="button" ng-if="typeFlag == 2" class="btn start-test" ng-click="openquestionModel();fetchSurveyQue()">Proceed</button>
+	        
+	        <video onclick="snapshot(this);" hidden width=400 height=400 id="video" controls autoplay></video>
+      <canvas  id="myCanvas" width="400" height="350" hidden></canvas>  
+        </div>
+      </div> 
+  
+  
+   
+    </div>
+
+<div ng-show="sampleQuestionFlag == true || StartquestionFlag == true">
+
+<div ng-if="typeFlag == 1" class="assessment-player-header" style="display:inline-block;width:100%;">
+				<div class="col-md-7"></div>
+				<div class="col-md-5">
+  					<div class="timer-block">
+  					<span style="float:left;">Time left:</span>
+  					<div class="hours parent_time">
+		    		    <div class="text-center">HH</div>
+		        		<div id="hour" class="hours_0 child_time child_time0" >00</div>
+		        	</div>
+		    		<div class="minutes parent_time">
+		    		    <div class="text-center">MM</div>
+		        		<div id="minutes" class="minutes_0 child_time child_time0" >00</div>
+		        	</div>
+		    		<div class="seconds parent_time">
+		    		    <div class="text-center">SS</div>
+		        		<div id="seconds" class="seconds_0 child_time child_time0" >00</div>
+		        	</div>
+		        	</div>
+		    		</div>
+		    	</div>
+	<form> 
+              <div  class="col-md-1">
+              	<div ng-repeat="q in questionList" class="questions-pallet">
+              		
+              		<button type="button" ng-click="reachToquestion($index+1)" ng-if="currentQuestionFlag >= $index+1 && !checkSkip($index+1)"  class="attempt">{{$index+1}}</button>        	 	
+              		<button type="button" ng-click="reachToquestion($index+1)" ng-if="checkSkip($index+1)"  class="not-attempt">{{$index+1}}</button>
+              	    <button type="button"  ng-if="currentQuestionFlag <= $index && !checkSkip($index+1)" class="disabled-btn">{{$index+1}}</button>
+              	 
+              	</div>
+              </div>
+              
+              <div ng-if="LastPageFlag==false"  class="col-md-7">          
+              
+              <!-- Question with audio video and image-->
+                <div class="form-group">
+                <div class="question-set">
+                <label style="margin-left: 20px;"><span class="que-no" style="margin-left: -28px;position:absolute;">{{currentQuestionNo}}</span>{{question.questionText}}</label>
+       
+       			
+                    
+	                 <ul class="single-ans"> 
+	                         
+	                         <li ng-if="question.questionType == 1">	                     
+	                      	   <div class="input-group">
+                                <textarea ng-if="!question.isVoiceEnabled && !question.isvideoEnabled" type="text" class="form-control flat-control-inner ng-pristine ng-valid ng-empty ng-touched" id="transcript1" data-ng-model="question.shortAns" placeholder="Answer" style="width:100%;" cols="100" rows="4" ng-change="checkvalueSelected(question.shortAns)"></textarea>
+                           
+                            	<!-- <label ng-if="question.isVoiceEnabled" class="switch" style="padding-left: 8px;">
+			            			<input type="checkbox" id="ans-switch" ng-model="voice" ng-change="recordAudio(voice,currentQuestionNo-1);checkvalueSelected(audioRecorded)">
+			            			<span class="slider-switch round"></span>
+          						</label>-->
+          						
+          						
+          						
+          						 <button ng-if="question.isVoiceEnabled || question.isvideoEnabled" type="button" id="button_play" class="btn play-audio" title="Start Your Recording" ng-click="recordAudio(true,currentQuestionNo-1,question)">
+      								<i class="fa fa-play"></i>
+    							</button>
+    
+    							<button ng-if="question.isVoiceEnabled || question.isvideoEnabled" disabled type="button" id="button_stop" class="btn play-stop" title="Stop Your Recording" ng-click="recordAudio(false,currentQuestionNo-1,question);checkvalueSelected(audioRecorded)">
+      								<i class="fa fa-stop"></i> 
+    							</button>
+<!--           						<img src="resources/img/audio.png" ng-if="question.isVoiceEnabled==true && audioRecorded==true" class="audio-png"  ng-click="enabledAudioT=true;generatedSignUrl(question.audioAns)" alt="" style="display: block;">
+ -->          						
+           						<audio style=" margin: 15px 0 0; display: block;" ng-if="question.isVoiceEnabled==true && audioRecorded==true" src="{{question.audioAns}}" id="voice-respnce{{currentQuestionNo-1}}" type="audio/ogg" controls controlsList="nodownload"></audio>
+	          					<video ng-if="question.isvideoEnabled && audioRecorded==true" style="width: 411px;    margin-top: 17px; pointer-events: none;" id="video-respnce{{currentQuestionNo-1}}" src="{{question.audioAns}}"  class="img-responsive video-user" type="video/mp4" controls controlsList="nodownload" autoplay></video>
+                               </div>
+                               
+                                               
+	                         </li>
+	                                        		
+                  		<li data-ng-repeat="a in question.ans" ng-if="question.questionType==2" style="float: none;margin: 5px 35px;" ng-init="innerIndex = $index">
+	                      	<div class="radio-cntnr new-chc radio-quecheck-ans" >
+	                      	<input type="radio" name="redioAnsName" data-ng-value="true"  data-ng-model="a.isCorrect" id="option_{{outerIndex}}_{{innerIndex}}" ng-change="checkvalueSelected(a.isCorrect)">
+	                  		<label for="option_{{outerIndex}}_{{innerIndex}}"></label>
+	                  		</div>
+	                  		<label for="option_{{outerIndex}}_{{innerIndex}}" style="display:block !important;margin-left: 28px;">{{a.answerText}}</label>	                  		
+	                  	</li>
+                  	  
+                  	  <li ng-if="question.questionType==4" style="float: none;margin: 50px 0px 45px;" ng-init="innerIndex = $index">
+                  	  		<div class="form-group counting-show" style="display: inline-block;width: 15%;margin-bottom: 0px;">
+                   					<input type="text" name="brand-name" class="brand-name" ng-model="question.selectedAns" style="width: 60%;margin: 0px;" required disabled>
+                 				</div>	
+                  	  	 	 <div class="range-slider" style="float: right;margin: 0px;">
+                  	  	 	 	<div ng-if="(question.ans.length % 2) == 0" id="slidevalue" class="range-values">
+                  	  	 	 		<p class="range-min"></p>
+                  	  	 	 		<label ng-if="question.scaleAnsLabel.length>0"class="start">{{question.scaleAnsLabel[0].answerText}}</label>
+                  	  	 	 		<p ng-repeat="a in question.ans | limitTo: 1">{{a.answerText}}</p>
+                  	  	 	 		<p ng-repeat="a in question.ans" ng-if="$index < (question.ans.length)/2 && $index >= 1">{{a.answerText}}</p><label ng-if="question.scaleAnsLabel.length>0" class="mid">{{question.scaleAnsLabel[1].answerText}}</label>
+                  	  	 	 		<p ng-repeat="a in question.ans" ng-if="$index > ((question.ans.length)/2)-1">{{a.answerText}}</p><label ng-if="question.scaleAnsLabel.length>0" class="end">{{question.scaleAnsLabel[2].answerText}}</label>
+<!--                   	  	 	 		<p class="range-max">{{question.ans.length}}<label ng-if="question.scaleAnsLabel.length>0" class="end">{{question.scaleAnsLabel[2].answerText}}</label></p>
+ -->                  	  	 	 	  	<!-- <p class="range-min" ng-repeat="a in question.ans">{{a.answerText}}</p> -->
+                  	  	 	 	  	<!-- <p class="range-max">{{question.ans[(question.ans.length)-1].answerText}}</p> -->
+                  	  	 	 	  </div> 
+                  	  	 	 	  <div ng-if="(question.ans.length % 2) != 0" id="slidevalue" class="range-values">
+                  	  	 	 		<p class="range-min">0</p>
+                  	  	 	 		<label ng-if="question.scaleAnsLabel.length>0"class="start">{{question.scaleAnsLabel[0].answerText}}</label>
+                  	  	 	 		<p ng-repeat="a in question.ans | limitTo: 1">{{a.answerText}}</p>
+                  	  	 	 		<p ng-repeat="a in question.ans" ng-if="$index < (question.ans.length)/2 && $index >= 1">{{a.answerText}}</p><label ng-if="question.scaleAnsLabel.length>0" class="mid">{{question.scaleAnsLabel[1].answerText}}</label>
+                  	  	 	 		<p ng-repeat="a in question.ans" ng-if="$index > ((question.ans.length)/2)">{{a.answerText}}</p><label ng-if="question.scaleAnsLabel.length>0" class="end">{{question.scaleAnsLabel[2].answerText}}</label>
+<!--                   	  	 	 		<p class="range-max">{{question.ans.length}}<label ng-if="question.scaleAnsLabel.length>0" class="end">{{question.scaleAnsLabel[2].answerText}}</label></p>
+ -->                  	  	 	 	  	<!-- <p class="range-min" ng-repeat="a in question.ans">{{a.answerText}}</p> -->
+                  	  	 	 	  	<!-- <p class="range-max">{{question.ans[(question.ans.length)-1].answerText}}</p> -->
+                  	  	 	 	  </div> 
+                  	  	 	 	  <input class="range-slider__range" id="set-range" ng-model="question.selectedAns" type="range" value="0" min="0" max="{{question.ans.length}}" title="{{question.selectedAns}}" ng-change="rangeSlider(question.selectedAns)">
+                  	  	 	 	  <!-- <span class="range-slider__value" id="set-slider-value">{{question.selectedAns}}</span> -->
+                  	  	 									
+                  	  	 	 </div>
+ 
+                  	  	 	 
+                  	  	 	 
+							
+                      	<!--<div class="radio-cntnr new-chc radio-quecheck-ans" >
+                      	 <input type="radio" name="redioAnsName" data-ng-value="true"  data-ng-model="a.isCorrect" id="option_{{outerIndex}}_{{innerIndex}}" ng-change="checkvalueSelected(a.isCorrect)">
+                  			 
+                  			<label for="option_{{outerIndex}}_{{innerIndex}}"></label>
+                  		</div> -->
+                  		<!-- <label for="option_{{outerIndex}}_{{innerIndex}}" style="display:block !important;margin-left: 28px;">{{a.answerText}}</label> -->
+                  	  </li>
+                  	
+             <!-- <img id="covanceImg" src="{{fetchfiledata}}">  -->
+                   		
+                  		 <li data-ng-repeat="a in question.ans" ng-if="question.questionType == 3" style="float: none;margin: 5px 35px;">
+                          <div class="chckbx-cntnr" style="float: left;margin-right: 18px;">                          
+	                      <input type="checkbox" id="checkboxAns{{$index}}" class="flashadmin ng-pristine ng-untouched ng-valid" ng-model="a.isCorrect" ng-change="checkvalueSelected(a.isCorrect)">
+	                      <label class="cstmchk_lbladmin" for="checkboxAns{{$index}}"></label> 	                      
+                       	  </div>                         	                      
+                           <label class="cstmchk_lbl" for="checkboxAns{{$index}}" style="display:block !important;">{{a.answerText}}</label>                            
+                        </li> 
+                    
+                        
+                    </ul>  
+                    </div>
+                 </div>  
+                
+               </div>
+               <div  class="col-md-4" ng-if="question.questionMediaType == 1 && LastPageFlag == false">
+               		<img   src="{{question.questionMedia}}" class="img-responsive img-thumbnail question-file"> 
+               </div>
+               
+               <div   class="col-md-4"ng-if="question.questionMediaType == 3 && LastPageFlag == false ">
+               <video width="300" height="220" id="mediaVideo" src="{{question.questionMedia}}" type="video/mp4"  controls=""  controlslist="nodownload"></video> 
+               
+               </div>
+               
+                 <div   class="col-md-4" ng-if="question.questionMediaType == 2 && LastPageFlag == false">
+                 <audio width="300" height="220" id="audioMedia"  style="margin: 18% 10%;" controls="" controlslist="nodownload"><source src="{{question.questionMedia}}" type="audio/ogg"></audio> 
+               </div>
+                 
+                  <div ng-if="LastPageFlag == false"  class="row quea-row">
+                  	<div class="col-md-1"></div>
+                    <div class="col-md-7">
+                     		<p class="text-left que_count">{{currentQuestionNo}} of {{questionList.length}}</p> 
+                    </div>
+                    <div class="col-md-4">
+		                    <div class="btns-group">
+			                    <button class="btn skip-btn" id=""   data-ng-click="skip()" ng-if="AnsSelectedFlag == false">Skip</button>
+			                    <button class="btn skip-btn" id=""   data-ng-click="skip()" ng-if="AnsSelectedFlag == true" disabled>Skip</button>			                 
+			                    <button class="btn prevnext-btn" id=""  ng-if="reachToFirstFLag == false" data-ng-click="previous()">Previous</button>
+			            		 <button class="btn prevnext-btn" id=""  ng-if="reachToFirstFLag == true"  disabled>Previous</button> 
+			                    <button type="submit" class="btn prevnext-btn" id=""  ng-if="AnsSelectedFlag == true" ng-click="Next(ans)">Next</button>
+			                    <button type="submit" class="btn prevnext-btn" id=""  ng-if="AnsSelectedFlag == false" ng-click="Next(ans)" disabled>Next</button>
+		                    </div>
+                      </div> 
+                      
+                    </div> 
+                   
+                    
+                    <div ng-if="LastPageFlag==true">
+	                    <div class="col-md-1"></div>
+	                    <div class="col-md-7" ng-if="typeFlag == 1">
+			  				<ul class="instruction-list">
+			  					<li>Thank you for completing the on-line test.</li>
+			  					<li>The cruisecareers team will now evaluate your responses. If you meet the requirements, we will contact you.</li>
+			  					<li>Thank you once again for your interest in applying for a position with us.</li>  	
+			  					<p style="margin: 15px 0 0;">Cheerfully yours,</p> 
+  						    	<p style="margin: 0px !important;">Team <a href="https://cruisecareers.in/">Cruisecareers</a></p>			 
+			  				</ul>
+			  				 
+			  				
+			  			</div>
+<div class="col-md-7" ng-if="typeFlag == 2">
+			  				<ul class="instruction-list">
+			  					<li>Thank you for completing the survey. We appreciate your time.</li>
+			  						
+			  					<p style="margin: 15px 0 0;">Cheerfully yours,</p> 
+  						    	<p style="margin: 0px !important;">Team <a href="https://cruisecareers.in/">Cruisecareers</a></p>			 
+			  				</ul>
+			  				 
+			  				
+			  			</div>
+
+			  			
+			  			<div class="col-md-4" style="float:right;">
+		  				    <button ng-if="LastPageFlag==true && sampleQuestionFlag == true"class="btn-bluer" id="" type="submit" ng-click="SubmitSample()">Submit</button> 
+		                    <button ng-if="LastPageFlag==true && sampleQuestionFlag != true"class="btn-bluer" id="" type="submit" ng-click="Submit()">Submit</button> 
+	                	</div>
+  					</div>
+  					  </form> 
+                       </div>
+                   </div>
+                   </div> 
+     </div>
+     </section>   
+     
+               
+                 <!----Modal session over-list---->
+				<div id="session-over" class="modal fade" role="dialog">
+				  <div class="modal-dialog modal-md add-brand">
+				    <!-- Modal content-->
+				    <div class="modal-content flat-modal">
+				      <div class="modal-header">
+				        <!-- <button type="button" class="close" data-dismiss="modal" ng-click="sessionEnded()">X</button> -->
+				        <h4 class="modal-title common-title" style="margin-left: 0;">Session Over</h4>
+				      </div>
+				      <div class="modal-body flat-body">
+				          <div class="clearfix" ></div>
+				      <i class="fa fa-question-circle" id="que-mark1"></i>Your time is over, Assessment is auto-Submitted
+				      <div class="modal-footer text-left">
+				        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="sessionEnded()">OK</button>
+				        <!-- <a class="btn btn-link" data-dismiss="modal" >Cancel</a> -->
+				      </div>
+				    </div>
+				   </div>
+				    </div>
+				   </div>
+     
+ 
+<!-- <script>
+ var rangeSlider = function(){
+  var slider = $(".range-slider"),
+      range = $(".range-slider__range"),
+      value = $(".range-slider__value");
+    
+  	slider.each(function(){
+  		
+	  value.each(function(){
+	  var value = $(this).prev().attr("value");
+	  var val1= $('#set-slider-value').html();
+	  /* console.log(val1); */
+	  $(this).html(val1);
+	  value=val1;
+	 });
+
+    range.on("input", function(){
+    	
+      $(this).next(value).html(this.value);
+      	
+    });
+  });
+};
+
+rangeSlider();
+</script> -->
+
+<style>
+.range-slider__value { display: none; }
+.range-slider__range:hover .range-slider__value {
+    display: inline;
+}
+</style>

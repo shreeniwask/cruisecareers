@@ -1,0 +1,153 @@
+
+<div class="table-cntnr admin-page" >
+<div class="section-heading">
+        <h4>Requisition for recruitment </h4>
+        <p>Create new requisition for recruitment from customers.</p>
+</div>
+ <div class="section-content">
+ 	  <div class="upper-actions">
+ 	 <div class="container-fluid">
+ 	  <div class="row">
+ 	
+ 	  	 <div class="col-md-2">
+          <div class="button-group">
+            <button class="btn btn-default btn-create" id="create-req-btn" ng-click="createCustomerRequisitionPage()"><i class="icon-plus"> </i><a href=""></a></button>
+            <button class="btn btn-default btn-delete" ng-click="checkifRequisitionSelected()"><i class="icon-trash-2"></i></button>
+          </div>
+          </div>
+          <div class="col-md-6"></div>
+          <div class="col-md-3">
+          <div class="search-cntnr">
+            <div class="form-group search-box">
+              <input type="text" name=""  class="form-control flat-control-search" id="id_of_textbox" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="fetchCustRequisitionList(0,10,null,null,searchterm);getCustRequisitionCount(searchterm)"></i>
+            </div>
+           </div>
+           </div>
+           <div class="col-md-1">
+             <div class="button-group">
+          	<button class="btn-default btn-create icon-navigation1 dropdown-toggle" data-toggle="dropdown" id="create-req-btn"><i class="fa fa-check-square-o"></i></button>
+           <!--  <a class="dropdown-toggle select-drop" data-toggle="dropdown"></a>
+         	<span class="fa fa-filter"></span> -->
+	      <ul class="dropdown-menu selection-column" style="overflow:auto;width: 100%;left: -73px;">
+						 <li>
+						  	<div class="chckbx-cntnr zeromargin">
+						     <input type="checkbox" id="app11" name="check" class="flashadmin" ng-click="selectAllColoumns(colcheck);savesettings()" ng-model="colcheck">
+						     <label class="cstmchk_lbladmin"  for="app11"></label><label for="app11" class="table-label">Select All</label> 
+						   </div>
+						  </li>
+						   <li ng-repeat="c in columnlist">
+						   <div class="chckbx-cntnr zeromargin" ng-if="c.name=='Brand' || c.name=='Selected Candidates'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()" disabled>
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  	<div class="chckbx-cntnr zeromargin" ng-hide="c.name=='Brand' || c.name=='Selected Candidates'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()">
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  </li>
+						</ul>
+          </div>
+           </div>
+          
+           </div>
+           </div>
+        </div>
+       
+       <div class="table-responsive">
+          <table class="table table-striped red-table">
+            <caption>List of Requisitions</caption>
+            <thead>
+              <tr>
+                <th style="vertical-align: middle;">
+                   <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(customerrequisitionList,all)" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th>
+                <th style="min-width: 94px;vertical-align: middle;" ng-show="activeColumn('Req. No.')">Req. No.<i class="fa fa-sort" aria-hidden="true" ng-click="SortingPostedJobList('req_no',searchterm)"></th>
+				<th style="min-width: 100px;vertical-align: middle;" ng-show="activeColumn('Brand')">Brand <i class="fa fa-sort" aria-hidden="true" ng-click="SortingPostedJobList('Brand',searchterm)"></th>
+                <th ng-show="activeColumn('Position')" style="min-width: 150px;vertical-align: middle;" >Position <i class="fa fa-sort" aria-hidden="true"  ng-click="SortingPostedJobList('Position',searchterm)" ></th>
+                <th ng-show="activeColumn('Department')" style="min-width: 126px;vertical-align: middle;" >Department <i class="fa fa-sort" aria-hidden="true"ng-click="SortingPostedJobList('Department',searchterm)"></th>
+                <th ng-show="activeColumn('No. of Candidates')" style="min-width: 163px;vertical-align: middle;" >No. of Candidates <i class="fa fa-sort" aria-hidden="true" ng-click="SortingPostedJobList('Candidatecount',searchterm)"></th>
+                 <th ng-show="activeColumn('Selected Candidates')" style="min-width: 183px;vertical-align: middle;" >Selected Candidates <i class="fa fa-sort" aria-hidden="true" ng-click="SortingPostedJobList('SelectedCandidates',searchterm)"></th>
+                 <th ng-show="activeColumn('Remaining Candidates')" style="min-width: 120px;vertical-align: middle;" >Remaining Candidates <i class="fa fa-sort" aria-hidden="true" ng-click="SortingPostedJobList('remaining Users',searchterm)"></th>
+                <th ng-show="activeColumn('Date of Requisition')" style="min-width: 155px;vertical-align: middle;" >Date of Requisition <i class="fa fa-sort" aria-hidden="true" ng-click="SortingPostedJobList('RequisitionDate',searchterm)"></i></th>
+                <th ng-show="activeColumn('Expected date of closure')" style="min-width: 213px;vertical-align: middle;" >Expected date of closure <i class="fa fa-sort" aria-hidden="true" ng-click="SortingPostedJobList('ClosureDate',searchterm)"></i> </th>
+                <!-- <i class="fa fa-sort" aria-hidden="true" ng-click="SortingPostedJobList('ClosureDate',searchterm)"></i> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="j in customerrequisitionList">
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="{{j.id}}" name="check" class="flashadmin" ng-click="checkedList(j.id)" ng-checked="all">
+                      <label class="cstmchk_lbladmin" for="{{j.id}}"></label> 
+                    </div>
+                </td>
+                <td ng-show="activeColumn('Req. No.')">{{j.id}}</td>
+                <td ><a ng-click="fetchRequisitionById(j.id)" class="link_job" ng-show="activeColumn('Brand')">{{j.brand.brandName}}</a></td>
+                <td ng-show="activeColumn('Position')">{{j.position.name}}</td>
+                <td ng-show="activeColumn('Department')">{{j.category.name}}</td>
+                <td ng-show="activeColumn('No. of Candidates')">{{j.noOfCandidate}}</td>
+                <td ng-show="activeColumn('Selected Candidates')">{{j.selectedUsers}}</td>
+                <td ng-show="activeColumn('Remaining Candidates')">{{j.remainingUsers}}</td>
+                <td ng-show="activeColumn('Date of Requisition')">{{j.requisitiondate}}</td>
+                <td ng-show="activeColumn('Expected date of closure')">{{j.closuredate}}</td>
+              </tr>
+             </tbody>
+          </table>
+         </div>
+          
+
+        <div class="text-right">
+	            <ul class="pagination" style="margin-top: 15px;">
+				<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+				<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+				<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+				</ul>
+ 			</div> 
+</div> 			
+ 			
+<!----Modal delete-list---->
+<div id="deletelist" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm add-brand">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ng-value="getCheckedId()"></div>
+        Are you sure you want to delete {{getCheckedId.length}} record(s)?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deletefromListreq('Customer Requisition')">Delete</button>
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+</div>
+
+     <script type="text/javascript">
+$("document").ready(function() {
+
+	  $('.dropdown-menu').on('click', function(e) {
+	      if($(this).hasClass('selection-column')) {
+	          e.stopPropagation();
+	      }
+	  });
+	});
+</script>       
+       <script type="text/javascript">
+       
+       
+        $("#id_of_textbox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#id_of_button").click();
+            }
+        });
+        </script>

@@ -1,0 +1,458 @@
+<section class="tab-pane fade in active admin-page">
+
+<div id="todo" class="container-fluid">
+<div class="row">
+     <div class="">
+      <div class="" id="task-listing" class="tab-pane fade in">
+      	<div class="section-heading">
+        <h4>Ticket Listing</h4>
+      </div> 
+     <div class="section-content">
+     <a ng-click="getworkflowListTab();" style="cursor: pointer;float:right; display:block;">Back</a>
+     <div class="clearfix"></div>
+      <!-- <div class="job-search-cntnr">
+            <div class="srch-head tckt-listing">
+            	<h4>{{workflowName}}</h4> 
+            	<div style="text-align: right;padding-right: 10px;display: inline-block;float: right;">
+            		<a ng-click="getworkflowListTab();" style="cursor: pointer;">Back</a>
+            	</div>
+            </div>
+      <div> -->
+      <div class="upper-actions">
+          <div class="col-md-6" style="padding:0;">
+           
+          <!-- <div class="row">  --> 
+          <div class="col-md-5 col-lg-5">
+            <div class="form-group">
+              <label>From Date:</label>
+              <input type="text" id="fromdate" ng-model="fromDate" class="form-control flat-control-inner dateonly">
+            </div>
+          </div>
+
+          <div class="col-md-5 col-lg-5">
+            <div class="form-group">
+              <label>To Date:</label>
+              <input type="text" id="todate" ng-model="toDate" class="form-control flat-control-inner dateonly"  ng-change="validateDate('todate'+$index)">
+            </div>
+          </div>  
+
+          <div class="col-md-2">
+            <div class="filter-btn" style="margin-top: 20px;">
+            <button ng-if="filterFlag" class="btn btn-default btn-create" id="create-job-btn" ng-click="searchByDate(fromDate,toDate,'filter')"><i class="fa fa-filter"></i></button>
+            <!--<button ng-if="resetFlag" class="btn btn-default btn-create" id="create-job-btn" ng-click="resetFilterInput(true);"><i class="fa fa-undo"></i></button> -->
+             <!-- <button ng-if="!filterFlag" class="btn btn-default btn-create" id="create-job-btn" ng-click="searchByDate(null,null,true)"><i class="fa fa-filter"></i></button> -->
+            <button ng-if="!filterFlag" class="btn btn-default btn-create" id="create-job-btn" ng-click="searchByDate(null,null,'reset')"><i class="fa fa-undo"></i></button> 
+            
+          </div>
+          </div>
+       	</div>
+       		<div class="col-md-5 col-lg-5 ">
+			</div>
+		<div class="clearfix"></div>
+       	
+       	
+       	<div class="col-md-6">
+ 			<div class="form-group" style="display: inline-block;float: left;
+    			margin: 0px 8px 0px 0px;">
+              <button id="assignbtn" ng-click="assignSingleAndMultipleTicket()" class="btn btn-default btn-bluer"    type="button" style="margin-right:0px !important;padding: 7px 10px;" disabled>Assign </button>
+              </div>
+					<div>
+				<button class="btn btn-default btn-bluer"
+					ng-click="openClosureModal()"
+					ng-disabled="checkedTicketIds.length == 0">Pre-mature
+					Closure</button>
+			</div>
+		</div>
+		
+       	<div class="col-md-5">
+ 		 <div class="srch-uppr" style="float: right;">
+       		
+               <div class="button-group" style="text-align: right;display: inline-block;padding-left: 10px;">
+               <button class="btn btn-default btn-create" id="create-report-btn" style="background:#1fa67a;" ng-click="generateExcelPerTicket()"><i class="fa fa-file-excel-o"></i></button>
+            </div>
+           <!--  <div class="button-group" style="text-align: right;display: inline-block;padding-left: 10px;">
+               <button class="btn btn-default btn-create" id="create-report-btn" style="background:#1fa67a;" ng-click="generateExcel()"><i class="fa fa-file-excel-o"></i></button>
+            </div> -->
+          <div class="search-cntnr" style="float: initial;">
+            <div class="form-group search-box">
+              <input type="text" name="" class="form-control flat-control-search" ng-keyup="$event.keyCode == 13 ? searchByEnterKey(search) : null"   ng-model="search" ng-blur="fetchTicketList1(0,10,null,null,search);getTicketListCount1(search,null)">
+             <i class="icon-search"  ng-click="fetchTicketList1(0,10,null,null,search);getTicketListCount1(search,null)"></i>
+            </div>
+          </div>
+        </div>      
+        </div>
+        <div class="col-md-1 col-lg-1">
+          	<div class="button-group">
+			<button class="btn-default btn-create icon-navigation1 dropdown-toggle" data-toggle="dropdown" id="create-req-btn"><i class="fa fa-check-square-o"></i></button>
+           <!--  <a class="dropdown-toggle select-drop" data-toggle="dropdown"></a>
+         	<span class="fa fa-filter"></span> -->
+	      	<ul class="dropdown-menu selection-column" style="overflow:auto;">
+						 <li>
+						  	<div class="chckbx-cntnr zeromargin">
+						     <input type="checkbox" id="app1" name="check" class="flashadmin" ng-click="selectAllColoumns(colcheck);savesettings()" ng-model="colcheck">
+						     <label class="cstmchk_lbladmin"  for="app1"></label><label for="app1" class="table-label">Select All</label> 
+						   </div>
+						  </li>
+						  <li ng-repeat="c in columnlist">
+						  <div class="chckbx-cntnr zeromargin" ng-if="c.name=='Ticket Number' || c.name=='Created On'">
+						     <input type="checkbox" id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()" disabled>
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  	<div class="chckbx-cntnr zeromargin" ng-hide="c.name=='Ticket Number' || c.name=='Created On'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()">
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  </li>
+						</ul>         
+						 </div>
+						
+          </div>
+
+
+						
+
+
+
+						</div>
+       
+        
+        <div class="table-cntnr">
+          <table class="table table-striped red-table">
+            <caption>Workflow Name : {{workflowName}}</caption> 
+           <thead>
+              <tr>
+                <th style="text-align: center;">
+                  <div class="chckbx-cntnr zeromargin">  
+				     <input type="checkbox" id="rd" name="check" ng-click="checkedAllList(ticketList,all)" ng-model="all"  class="flashadmin" >
+                     <label class="cstmchk_lbladmin" for="rd"></label> 
+				 </div>
+                </th>
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Ticket Number')">Ticket Number <i ng-click="sortByName(searchterm,'ticketNumber')" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Identifier')">Identifier <i ng-click="sortByName(searchterm,'Identifier')" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <th style="vertical-align: middle;min-width: 135px;"ng-show="activeColumn('Created On')">Created On<i ng-click="sortByName(searchterm,'createdOn')" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <th style="vertical-align: middle;min-width: 145px;" ng-show="activeColumn('Ticket Status')">Ticket Status <i ng-click="sortByName(searchterm,'ticketStatus')" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <!-- <th style="vertical-align: middle;min-width: 95px;" >Action <i ng-click="SortingWorkflowsList('WorkflowCreatedBy',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <th style="vertical-align: middle;min-width: 80px;">Add Fields </th> -->
+                <!-- <th style="vertical-align: middle;min-width: 65px;"></th> -->
+                <!--<th style="vertical-align: middle;min-width: 65px;"></th>
+                <th style="vertical-align: middle;min-width: 65px;"></th>
+                <th style="vertical-align: middle;min-width: 65px;"></th>-->
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="t in ticketList" ng-init="currentIndex=$index; ">
+                  <td style="text-align:center;verical-align:middle;">
+                  <!-- <div class="chckbx-cntnr zeromargin">
+                      <input ng-model="checkTicket1" ng-click="checkTicket(t.ticketId,checkTicket1)" ng-model="all" type="checkbox" id="{{t.ticketId}}" name="check" class="flash">
+                      <label class="cstmchk_lbladmin" for="{{t.ticketId}}"></label> 
+                    </div> -->
+                    <div class="chckbx-cntnr zeromargin" ng-if="t.ticketStatusId==4" >
+                      <input type="checkbox" ng-model="false" ng-disabled="true" ng-model="all" type="checkbox" id="{{t.ticketId}}" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="{{t.ticketId}}"></label> 
+                    </div>
+                    <div class="chckbx-cntnr zeromargin" ng-if="t.ticketStatusId==2" >
+                      <input type="checkbox" ng-checked="all" ng-click="getCheckedTicketid(t.ticketId);taskStatus(t.ticketStatusId)"  type="checkbox" id="{{t.ticketId}}" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="{{t.ticketId}}"></label> 
+                    </div>
+                    <div class="chckbx-cntnr zeromargin" ng-if="t.ticketStatusId==1" >
+                      <input type="checkbox" ng-checked="all" ng-click="getCheckedTicketid(t.ticketId);taskStatus(t.ticketStatusId)"  type="checkbox" id="{{t.ticketId}}" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="{{t.ticketId}}"></label> 
+                    </div> 
+                    <div class="chckbx-cntnr zeromargin" ng-if="t.ticketStatusId==6" >
+                      <input type="checkbox" ng-model="false" ng-disabled="true" ng-model="all" type="checkbox" id="{{t.ticketId}}" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="{{t.ticketId}}"></label> 
+                    </div>
+              </td>
+                
+               <td style="vertical-align: middle;">
+               <span ng-if="t.ticketStatusId != 2">{{t.ticket_number}}</span>
+               <a ng-if="t.ticketStatusId == 2" ng-click="openTicketDetailsPage(t)" style="cursor: pointer;">{{t.ticket_number}}
+               </a></td>
+               <td ng-show="activeColumn('Identifier')" >
+                                 <p ng-repeat="pf in t.identifierFields">{{pf.fieldValue}}</p>
+                                 <!-- <p>deepesh@mailinator.com</p>
+                                 <p>12-12-1995</p> -->
+                                 </td> 
+                <td style="vertical-align: middle;">{{dateformate(t.createdAt)}}</td>
+                 <td style="vertical-align: middle"  ng-show="activeColumn('Ticket Status')" >
+                 	<span ng-if="t.ticketStatusId==2" class="label label-info" style="background-color: #f3d300;font-size:14px; ">{{t.ticketStatus}}</span>
+                	<!-- <span ng-if="t.ticketStatusId==3" class="label label-info" style="background-color: #f3d300;font-size:14px; ">{{t.ticketStatus}}</span> -->
+                	<span ng-if="t.ticketStatusId==1" class="label label-info" style="background-color: #1f3a93;font-size:14px; ">{{t.ticketStatus}}</span>
+                	<span ng-if="t.ticketStatusId==4" class="label label-info" style="background-color: #5cb85c;font-size:14px; ">{{t.ticketStatus}}</span>
+                	<span ng-if="t.ticketStatusId==6" class="label label-info" style="background-color: #5cb85c;font-size:14px; ">{{t.ticketStatus}}</span>
+                	
+                </td>
+                <!-- <td style="vertical-align: middle;"><button class="btn btn-default btn-bluer" id="cancel-req-btn">Assign</button></td>
+              <td style="vertical-align: middle; text-align:center;">  <a ng-click="editTicket(t.ticketId)"><i  class="fa fa-pencil write"></i></a></td> -->
+             
+             
+              </tr>
+              
+              </tbody>
+           
+          </table>
+           <div class="text-right">
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+ 
+          </div>
+        </div>
+        
+           <div class="text-right" style="display: block;" >
+            <button ng-click="addNewTicket()" class="btn btn-default btn-round-add" id="new-ticket" style="margin-right: 5px;"><i class="icon-plus"></i></button>
+            <p ng-click="addNewTicket()" class="expense-heading">Add Ticket</p>
+           </div>
+</div>
+</div>
+</div>
+    </div>
+  	</div>
+  
+
+  
+
+   </div>
+ </div>
+</section>
+<div class="modal fade" id="assignnment-details" role="dialog">
+          <div class="modal-dialog modal-md add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Assignment</h4>
+              </div>
+              <div class="modal-body"> 
+                <div class="row">
+                <div class="assign-main" ng-repeat="j in ticketListWithTicket">
+                	<div class="col-md-3">
+                	  <div class="chckbx-cntnr zeromargin" style="margin-top: 10px !important;">
+	                    <input type="checkbox" id="tsk-{{j.taskId}}" ng-model="j.checkTaskStatus" name="task-{{j.id}}" type="checkbox" class="flashadmin">
+	                    <label class="cstmchk_lbladmin" for="tsk-{{j.taskId}}" style="left: 0px !important;"></label> 
+	                     &nbsp;&nbsp;&nbsp;<p class="task-type-modal">{{j.name}}</p>
+	                  </div>
+	                  
+                  	</div>
+                  
+                  <div class="col-md-4" style="padding: 0px;">
+	                <div class="form-group workflow-frm" ng-show="ownerFlag" style="width: 100%;">
+	                  <!-- <label>Select Owner Type*</label> -->
+	                  <select class="form-control flat-control-inner"  ng-model="usertypeid1" ng-options="owner.id as owner.name for owner in ownersList" ng-change="changeOwnersList(usertypeid1);j.userTypeId=usertypeid1">
+	                    <option value="">--Select Owner Type--</option>
+	                    <option> </option>             
+	                  </select>
+	                </div>
+	                </div>
+	                
+                <div class="col-md-5">	
+                  <div class="form-group workflow-frm" ng-show="ownerFlag" style="width: 100%;padding: 0px;">
+                
+                  <!-- <label ng-if="j.userTypeId != 0 && j.userTypeId != undefined">Select Owner*</label> -->
+                  
+                  <select ng-if="usertypeid1 == 2"    class="form-control flat-control-inner" ng-model="j.groupId" ng-options="g.id as g.name for g in groupsList">
+                    <option value="">--Select Group--</option>                
+                  </select>
+                                                    
+                  <input ng-if="usertypeid1 == 1"  
+                  class="form-control flat-control-inner" 
+                  id="userdetail{{j.taskId}}" 
+                  ng-blur="validateUser($index)" 
+                  placeholder="employee email" 
+                  ng-model="userName"
+                  ng-change="fetchEmployeeDetails(userName)" list="userDetails-{{$index}}"/>
+				  <input type="hidden" id="userId-{{$index}}" ng-value="529" ng-model="j.userid">
+				  <datalist id="userDetails-{{$index}}">
+						<option data-ng-repeat="u in EmployeeNumberList" value="{{u.detail}}"   ng-click="" data-id="{{u.id}}" > 
+				  </datalist>
+				  				  
+				  <select ng-if="usertypeid1 == 3"  class="form-control flat-control-inner" ng-model="j.departmentId" ng-options="c.id as c.name for c in categoryList">
+                    <option value="">--Select Department--</option>                
+                  </select>
+                  </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  
+                  </div>
+                </div>
+
+                <!-- <div class="btn-cntnr" style="margin-left: 60%">
+                  <button class="btn btn-default btn-bluer" id="cancel-req-btn" ng-click="assignTaskUserGroupDepartment()">Save</button>
+                  <button class="btn" data-dismiss="modal">Cancel</button>
+                </div> -->
+                <div class="btn-cntnr" style="margin: 0px 0 10px;text-align: right;">
+              		<button class="btn btn-default btn-bluer" id="cancel-req-btn" ng-click="assignTaskUserGroupDepartment()">Save</button>
+              		<a data-dismiss="modal">Cancel</a>
+            	</div>
+
+              </div>
+            </div>  
+          </div>  
+        </div> 
+
+
+ <div id="pre-closure" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-sm add-brand">
+
+		<!-- Modal content-->
+		<div class="modal-content flat-modal">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h4 class="modal-title common-title" style="margin-left: 0;">pre-closure</h4>
+			</div>
+			<div class="modal-body flat-body">
+				<div class="clearfix"></div>
+				Are you sure want to close this {{checkedTicketIds.length}} tickets?
+				<div class="modal-footer text-left">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="show_ass" ng-click="changeTicketStatus()">OK</button>
+					<a class="btn btn-link" data-dismiss="modal">Cancel</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+ 
+
+ 
+<script>
+$(document).ready( function() {
+    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+       
+    });
+    
+   
+});
+
+$("#id_of_searchbox").keyup(function(event) {
+    if (event.keyCode === 13) {    	
+        $("#id_of_searchbutton").click();
+    }
+});
+
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
+ <script>
+
+$('#todo').on('focus',".dateonly", function(){  
+	$('.dateonly').datetimepicker({
+  format: 'DD-MM-YYYY',
+    useCurrent: false, //Important! See issue #1075
+    
+}).on('dp.change', function (e) { $(this).change()});
+});
+ 
+$('#req-list-ticket').on('focus',".dateonly", function(){  
+	$('.dateonly').datetimepicker({
+  format: 'DD-MM-YYYY',
+    useCurrent: false, //Important! See issue #1075
+    
+}).on('dp.change', function (e) { $(this).change()});
+});
+
+$(document).ready(function() {
+$("input[type='file'].demo").filepicker({
+style: 'bootstrap' // default, bootstrap or jquery-ui
+});
+});
+
+</script> 
+
+ <script>
+ 
+ document.getElementById('getval').addEventListener('change', readURL, true);
+ function readURL(){
+    var file = document.getElementById("getval").files[0];
+    var reader = new FileReader();
+    reader.onloadend = function(){
+       document.getElementById('clock').style.backgroundImage = "url(" + reader.result + ")";        
+    }
+    if(file){
+       reader.readAsDataURL(file);
+     }else{
+     }
+ }
+ 
+ </script>
+ 
+<script>
+ 
+ 	$(function () {
+	    
+                $('.dateonly').datetimepicker({
+                  format: 'DD-MM-YYYY',
+                	  maxDate:new Date(),
+                	  useCurrent: false
+                });
+ </script>
+ <script>
+   /*  $(function () {
+        $("#fromdate").datepicker({
+            numberOfMonths: 1,
+            onSelect: function (selected) {
+                var dt = new Date(selected);
+                dt.setDate(dt.getDate() + 1);
+                $("#todate").datepicker("option", "minDate", dt);
+            }
+        });
+        $("#todate").datepicker({
+            numberOfMonths: 1,
+            onSelect: function (selected) {
+                var dt = new Date(selected);
+                dt.setDate(dt.getDate() - 1);
+                $("#fromdate").datepicker("option", "maxDate", dt);
+            }
+        });
+    }); */
+    </script>
+  
+
+
+
+ <script type="text/javascript">
+  $(document).on('change', '.btn-file :file', function() {
+  var input = $(this),
+      numFiles = input.get(0).files ? input.get(0).files.length : 1,
+      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+  input.trigger('fileselect', [numFiles, label]);
+  
+  var input = $(this).parents('.input-group').find(':text'),
+  log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+if( input.length ) {
+  input.val(log);
+} else {
+  if( log ) alert(log);
+}
+});
+
+$(document).ready( function() {
+    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+       
+    });     
+});
+
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#astatus-set").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue){
+                $(".abox").not("." + optionValue).hide();
+                $("." + optionValue).show();
+            } else{
+                $(".abox").hide();
+            }
+        });
+    }).change();
+});
+</script>

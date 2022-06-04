@@ -1,0 +1,3316 @@
+<link rel="stylesheet" href="resources/css/style_player.css">
+<style>
+.not_success_box{
+    display: flex;
+    align-items: center;
+/*  	justify-content: center;	*/
+}
+.not_success_box .tooltips{
+	
+    position: relative;
+    margin-right: 5px;
+}
+.not_success_box .label{
+    line-height: initial;
+}
+.range-slider__value { display: none; }
+.range-slider__range:hover .range-slider__value {
+    display: inline;
+}
+.present_flag_info{
+	display: inline-block;
+    width: 100%;
+    background: #f9f9f9;
+    padding: 10px 0px;
+    border-bottom: 1px solid #e0dddd;
+}
+.adv_srch{
+	background: #fd5e53;
+}
+.update_mod p{
+	font-size:13px !important;
+}
+.know_more{
+	text-align: right;
+    display: block;
+    text-decoration: none!important;
+    cursor:pointer;
+}
+.history_flag {
+	display: inline-block;
+    width: 100%;
+}
+.history_flag ul{
+	padding-left: 11px;
+    overflow-y: scroll;
+    max-height: 450px;
+}
+.present_flag_info i {
+	font-size:18px;
+	position: absolute;
+    height: 20px;
+    width: 20px;
+    line-height: 23px;
+}
+.flag_comm {
+	margin-left: 28px;
+	display: inline-block;
+    font-weight: 500 !important;
+}
+.flag_comm1{
+	margin-left: 10px;
+	display: inline-block;
+    font-weight: 500 !important;
+}
+
+/**** Video Comment Css Start Here ****/
+
+.vid_0{
+width:100%;
+}
+
+.video_controls button {
+    margin: 20px auto 15px auto;
+}
+.video_controls button i {  
+    margin: 10px 0 0 4px;
+}
+.video_controls #stop_timer_button i {  
+    margin: 10px 0 0 1px;
+}
+.comment_boxcss {
+    margin-bottom: 15px;
+}
+.comment_main_boxcss {
+    display: inline-block;
+    height: 155px;
+    overflow: auto;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.comment_boxcss p:nth-child(1) {
+    margin-bottom: 0px;
+}
+.comment_boxcss p:nth-child(2) {
+    margin-bottom: 0;
+    font-size: 13px;
+}
+.comment_boxcss p:nth-child(3) {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.tooltips {
+  display: inline;
+  position: relative;
+}
+.tooltips:hover:after{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background: #444;
+  border-radius: 8px;
+  color: #fff;
+  content: attr(title);
+  margin: -65px auto 0;
+  padding: 10px;
+  position: absolute;
+  width: max-content;
+}
+.tooltips:hover:before{
+  border: solid;
+  border-color: #444 transparent;
+  border-width: 12px 6px 0 6px;
+  content: "";
+  left: 45%;
+  bottom: 95%;
+  position: absolute;
+}
+
+.tooltips i{
+	font-size: 16px;
+}
+</style>
+
+<style>
+/****Give Interview Assessment btn css ****/
+.giveinterview_asses_btn{
+	background-color: #00aeef;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    height: 30px;
+    text-align: center;
+    line-height: initial;
+}
+.giveinterview_asses_btn:hover, .giveinterview_asses_btn:focus, .giveinterview_asses_btn:active{
+	background-color: #009ad4 !important;
+    color: #fff;
+}
+.ques-list .ans-label{
+margin: 0 30px;
+}
+
+
+/*interviwe assesment log ans img css */
+.questn-type > div{
+    display: inline-block;
+}
+
+.manager-comment i{
+	padding-left: 10px;
+    font-size: 14px;
+    color: #ffa400;
+}
+.us-box-right:hover:after{
+	margin: -60px auto 0px;
+}
+</style>
+
+
+<style>
+
+.tooltip-element:hover .tooltiptext
+{
+position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltiptext {
+  display:none;
+  width: 240px;
+  background-color: #444;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -100px;
+    left: 147px;
+    font-size: 12px !important;
+  
+}
+p.tooltip-element {
+    margin-bottom: 0px;
+}
+
+/*.tooltip-element .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent black;
+}*/
+.tooltip-element:hover .tooltiptext {
+  visibility: visible;
+}
+.tooltiptext:before{
+  border: solid;
+    border-color: #444 #0a0a0a08;
+    border-width: 12px 6px 0 6px;
+    content: "";
+    left: 100px;
+    top: 27px;
+    position: absolute;
+}
+
+.tooltip-element:hover .tooltiptext1
+{
+position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltiptext1 {
+  display:none;
+  background-color: #444;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -40px;
+    left: 330px;
+    font-size: 12px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+  
+}
+
+/*.tooltip-element .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent black;
+}*/
+.tooltip-element .disabled-button:hover .tooltiptext1 {
+  visibility: visible;
+}
+.tooltiptext1:before{
+  border: solid;
+    border-color: #444 #0a0a0a08;
+    border-width: 12px 6px 0 6px;
+    content: "";
+    left: 75px;
+    top: 27px;
+    position: absolute;
+}
+#btn-tooltip .tooltips:hover:before {
+    border: solid;
+    border-color: #444 transparent;
+    border-width: 12px 6px 0 6px;
+    content: "";
+    left: 45%;
+    bottom: 30px;
+    position: absolute;
+}
+#btn-tooltip .tooltips:hover:after {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    background: #444;
+    border-radius: 8px;
+    color: #fff;
+    content: attr(title);
+    margin: -64px auto 0;
+    padding: 8px;
+    position: inherit;
+}
+#btn-tooltip .tooltips
+{
+font-size:12px !important;
+}
+
+#btn-tooltip .tooltips:hover
+{
+	padding: 6px 0px !important;
+}
+
+</style>
+
+<div  id="candidates" class="tab-pane fade in admin-page">
+      <div class="section-heading">
+        <h4>Applied for jobs11</h4>
+        <p>List of candidates who have applied for jobs.</p>        
+      </div> 
+      <div class="section-content">
+      <div class="upper-actions">
+   
+       <div class="col-md-5" style="padding: 0;">
+          <div class="button-group" data-toggle="tooltip" title="Communication">
+            <button class="btn btn-default btn-create icon-navigation" id="create-req-btn" ng-click="checkUserformodal()" style="padding: 0px!important;"></button>
+          </div>
+           <div class="button-group">
+              <button class="btn btn-default btn-create" id="create-job-btn" style="background:#1fa67a;" ng-click="generateExcel()"  data-toggle="tooltip" title="Excel Download"><i class="fa fa-file-excel-o"></i></button>
+              <button class="btn btn-default btn-create" id="resetpassword-btn" style="background:#009ad4;" ng-click="openResetPasswordModal()"  data-toggle="tooltip" title="Reset Password">
+              <i class="fa fa-lock"></i></button>
+          </div>
+          
+	          <!-- <div class="button-group"  data-toggle="tooltip" title="Disabled">
+	            <button class="btn btn-create" id="create-req-btn" style="padding: 0px!important;background:#f11a1a;" ng-click="checkDisableAccount()"><i class="fa fa-ban"></i></button>
+	          </div>   -->
+	           <div class="button-group"  data-toggle="tooltip" title="Assign Flag">
+	            <button class="btn btn-create" id="create-req-btn" style="padding: 0px!important;background:#ff9800;" data-toggle="modal" ng-click="checkInsertUserFlag(j.userid);clear()"><i class="icon-flag"></i></button>
+	          </div>
+	          <div class="button-group"  data-toggle="tooltip" title="Remove Flag">
+	         	 <button class="btn btn-default remove_flag" id="create-req-btn" ng-click="checkRemoveUserFlag()"><img src="resources/img/flag_ban.svg" style="width:18px;"></button>
+	          </div>
+	          <!-- <div class="button-group"  data-toggle="tooltip" title="Remove Flag">
+	            <button class="btn btn-default remove_flag" id="create-req-btn" ng-click="checkRemoveUserFlag()"><img src="resources/img/flag_ban.png"></button>
+	          </div> -->
+		  	<div class="button-group">
+            	<button class="btn btn-default btn-assign" ng-click="fetchAssessmentMaster(0,1000,null,null,null,0,0,0,0);checkUserforAssessmentModal()" type="button" style="margin-right:0px !important;padding: 7px 10px;">Assign Assessment</button>
+            </div> 
+            </div>
+            <div class="col-md-6" style="padding: 0;text-align:right;">
+          <div class="form-group" style="display:inline-block;width:35%!important;">
+	            <select class="form-control flat-control-search mar-bottom-zero" id="openinterview" ng-change="openModalForInterview()" ng-model="selectedEvent" ng-options="cl.schedulerName for cl in schedulernameList">
+	              <option value="">--Select Actions--</option>           
+	            </select>
+          	</div>
+	       
+	      
+           <div class="form-group search-box" style="display:inline-block;width:35%!important;">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="fetchAppliedJobs(0,10,null,null,searchterm,advancesearch,activefilter);getAppliedJobcount(searchterm,advancesearch,activefilter)"></i>
+           </div>
+          
+           <div class="button-group">
+            <button class="btn btn-default btn-assign adv_srch" id="create-req-btn" data-target="#advance_search" data-toggle="modal" ng-click="clearfilteredcount()">Advanced Search</button>
+          </div> 
+           </div>
+           <div class="col-md-1">
+           <div class="button-group" style="float:right;margin-top: 4px;">
+          	<button class="btn-default btn-create icon-navigation1 dropdown-toggle" data-toggle="dropdown" id="create-req-btn"><i class="fa fa-check-square-o"></i></button>
+           <ul class="dropdown-menu selection-column" style="overflow:auto;left: -73px;">
+						 <li>
+						  	<div class="chckbx-cntnr zeromargin">
+						     <input type="checkbox" id="app1" name="check" class="flashadmin" ng-click="selectAllColoumns(colcheck);savesettings()" ng-model="colcheck">
+						     <label class="cstmchk_lbladmin"  for="app1"></label><label for="app1" class="table-label">Select All</label> 
+						   </div>
+						  </li>
+						  <li ng-repeat="c in columnlist">
+						  <div class="chckbx-cntnr zeromargin" ng-if="c.name=='Ref. No.' || c.name=='Name' || c.name=='User Status'">
+						     <input type="checkbox" id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()" disabled>
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  	<div class="chckbx-cntnr zeromargin" ng-hide="c.name=='Ref. No.' || c.name=='Name' || c.name=='User Status'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()">
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  </li>
+			</ul>
+          </div>
+      </div>
+      
+      
+      	<div class="clearfix"></div>
+      	<div class="row">
+      		<div class="col-md-8">
+      			<div class="">		      		
+		      		Selected candidate : <a href="" ng-click="selectedcandinate()">{{Userdata.length}}</a>
+	      		</div>
+      		</div>
+      		<div class="col-md-4">
+	      		<div class="form-group">
+			    <div class="radio-cntnr marg_top8">
+			      <input type="radio" id="onlyactive" name="radiobtn" value="onlyactive" ng-model="actradio" ng-click="toggleactivejobs(actradio)" ng-checked="true" >
+			      <label for="onlyactive">Only Active Jobs</label>
+			    </div>
+			    <div class="radio-cntnr marg_top8">
+			      <input type="radio" id="all" name="radiobtn" value="all" ng-model="actradio" ng-click="toggleactivejobs(actradio)">
+			      <label for="all">Show All Jobs</label>
+			    </div>
+			  </div>
+	      	</div>
+           </div>
+          <div class="table-cntnr table-responsive">
+          
+          <table class="table table-striped red-table" style="margin-top:10px;">
+		<caption>Applied Jobs</caption>
+            <thead>
+              <tr>
+                <th style="vertical-align: middle;">
+                  <div class="chckbx-cntnr zeromargin">  
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-model="all" ng-click="checkedall(all);checkedAllList(appliedJobs,all)">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th>
+             
+             	<th></th>
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Ref. No.')">Ref. No. <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('user_id',searchterm)"></i></th>
+                <th style="vertical-align: middle; min-width: 145px;" ng-show="activeColumn('Name')">Name <i class="fa fa-sort" aria-hidden="true"  ng-click="sortByColumn('name',searchterm)"></i></th>
+                <th style="vertical-align: middle; min-width: 145px;" ng-show="activeColumn('User Status')">User Status <i class="fa fa-sort" aria-hidden="true"  ng-click="sortByColumn('Status',searchterm)"></i></th>
+                <th style="vertical-align: middle; min-width: 145px;" ng-show="activeColumn('Email')">Email <i class="fa fa-sort" aria-hidden="true"  ng-click="sortByColumn('Email',searchterm)"></i></th>
+                <th style="vertical-align: middle; min-width: 118px;" ng-show="activeColumn('Date of Birth')">Date of Birth</th>
+                <th style="vertical-align: middle;min-width: 100px;" ng-show="activeColumn('Location')" >Location&nbsp; <i class="fa fa-sort" aria-hidden="true"  ng-click="orderByLocation(searchterm)"></i></th>
+                <th style="vertical-align: middle;min-width: 118px;" ng-show="activeColumn('Experience')">Experience&nbsp; <i class="fa fa-sort" aria-hidden="true" ng-click="orderByExperiance(searchterm)"></i></th>
+               	<th style="min-width: 126px;" ng-show="activeColumn('Applied Brand')" ><div>Applied</div><div>Brand&nbsp; <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('applied_brand',searchterm)"></i></div></th>
+               	<th style="min-width: 126px;" ng-show="activeColumn('Applied Department')" ><div>Applied</div><div>Department&nbsp; <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('applied_category',searchterm)"></i></div></th>                
+                <th style="min-width: 126px;" ng-show="activeColumn('Applied Position')" ><div>Applied</div><div>Position&nbsp; <i class="fa fa-sort" aria-hidden="true" ng-click="orderByPosition(searchterm)"></i></div></th>
+               	<th style="vertical-align: middle; min-width: 70px;" ng-show="activeColumn('Rating')" >Rating <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('userRating',searchterm)"></i></th>                
+				<th style="vertical-align: middle; min-width: 165px;" ng-show="activeColumn('Status')">Status <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('status_name',searchterm)"></i></th>
+                <th style="vertical-align: middle;" ng-show="activeColumn('Interview')" class="text-center">Interview</th>
+               
+               
+                <th style="min-width: 126px;" ng-show="activeColumn('Selected Brand')" ><div>Selected</div><div>Brand&nbsp; <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('selected_brand',searchterm)"></i></div></th>
+               	<th style="min-width: 126px;" ng-show="activeColumn('Selected Department')" ><div>Selected</div><div>Department&nbsp; <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('selected_catogory',searchterm)"></i></div></th>                
+                <th  style="min-width: 126px;"ng-show="activeColumn('Selected Position')" ><div>Selected</div><div>Position&nbsp; <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('selected_position',searchterm)"></i></div></th>
+                
+   			  	<th style="min-width: 126px;" ng-show="activeColumn('Short Listed Brand')" ><div>Short Listed</div><div>Brand&nbsp; <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('shortlist_brand',searchterm)"></i></div></th>
+              	<th style="min-width: 126px;" ng-show="activeColumn('Short Listed Department')" ><div>Short Listed</div><div>Department&nbsp; <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('shortlist_catogory',searchterm)"></i></div></th>                
+                <th  style="min-width: 126px;"ng-show="activeColumn('Short Listed Position')" ><div>Short Listed</div><div>Position&nbsp; <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('shortlist_position',searchterm)"></i></div></th>
+                
+                <th style="vertical-align: middle;min-width: 113px;" ng-show="activeColumn('Source of info')">Source of info <i class="fa fa-sort" aria-hidden="true"  ng-click="sortByColumn('source_of_info',searchterm)"></i></th>     
+                
+                <th style="vertical-align: middle;min-width: 113px;" ng-show="activeColumn('Created Date')">Created Date <i class="fa fa-sort" aria-hidden="true"  ng-click="sortByColumn('created_date',searchterm)"></i></th>             
+<!--                 <th  style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Employee Number')" ><div>Employee Number <i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('employee_number',searchterm)"></i></div></th>
+ --><!--                 <!-- <th  style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Passport Number')" ><div>Passport Number<i class="fa fa-sort" aria-hidden="true" ng-click="sortByColumn('document_no',searchterm)"></i></div></th>
+                -->
+              </tr>
+            </thead>
+             <tbody>
+             <tr ng-repeat="j in appliedJobs">
+				<td>
+                      <div class="chckbx-cntnr zeromargin" >
+                      <input type="checkbox" id="{{j.referNumber}}" name="check" class="flashadmin" ng-model="answers" ng-click="stateChanged(answers,j.userid,j.id,j.name,j.status,j.user.roleId,j.referNumber);saveuserlist(j.userid,answers,j.user.roleId,j.referNumber,j.user.STATUS,j.requisition.assignassessflag);addCheckedcandidateId(j.userid)" ng-checked="all;checkIds(j.referNumber,j.userid,j.status)">
+                      <label class="cstmchk_lbladmin" for="{{j.referNumber}}"></label>                    
+                     
+                    </div>
+                </td>
+                <td>
+                	<i ng-if="j.userflag.flagName=='' " class="fa fa-flag" style="font-size:18px;color:#c4d0c4" data-toggle="modal" ng-click="changeFlagForUser(j.userid);fetchUpdatedUserFlag(j.userid);clear()"  data-toggle="tooltip" title="No Flag"></i>
+                	<i ng-if="j.userflag.flagName=='Red flag' " class="fa fa-flag" style="font-size:18px;color:#FF0000" data-toggle="modal" ng-click="changeFlagForUser(j.userid);fetchUpdatedUserFlag(j.userid);clear()" data-toggle="tooltip" ng-attr-title="{{j.userflag.flagStatus}}"></i>
+                	<i ng-if="j.userflag.flagName=='Green flag' " class="fa fa-flag" style="font-size:18px;color:#008000" data-toggle="modal" ng-click="changeFlagForUser(j.userid);fetchUpdatedUserFlag(j.userid);clear()" data-toggle="tooltip" ng-attr-title="{{j.userflag.flagStatus}}"></i>
+                	<i ng-if="j.userflag.flagName=='Black flag' " class="fa fa-flag" style="font-size:18px;color:#000000" data-toggle="modal" ng-click="changeFlagForUser(j.userid);fetchUpdatedUserFlag(j.userid);clear()" data-toggle="tooltip" ng-attr-title="{{j.userflag.flagStatus}}"></i>
+                	<i ng-if="j.userflag.flagName=='Yellow flag' " class="fa fa-flag" style="font-size:18px;color:#FFFF00" data-toggle="modal" ng-click="changeFlagForUser(j.userid);fetchUpdatedUserFlag(j.userid);clear()" data-toggle="tooltip" ng-attr-title="{{j.userflag.flagStatus}}"></i>
+                	
+               	</td>
+				<td ng-show="activeColumn('Ref. No.')">{{j.referNumber}} </td>
+				 <td ng-show="activeColumn('Name')"><a ng-click="openUserDetailPage(j);enableDisableToDo(id,jobId);fetchUserRatingValue(j.userid,j.jobId)"  ng-if="setCandidateProfile"> {{j.name}}</a>
+                <!-- <td ng-show="activeColumn('Name')"><a data-target="#user-detail-modal" data-toggle="modal" ng-if="setCandidateProfile" ng-click="userdata(j);enableDisableToDo(id,jobId);fetchUserRatingValue(j.userid,j.jobId)"> {{j.name}}</a> -->
+                <span ng-if="!setCandidateProfile">{{j.name}}</span>
+                </td>
+                <td ng-show="activeColumn('User Status')">
+                <div class="user_status_box_lign" style="display: flex;">
+                	 <span ng-show="j.user.STATUS=='Applied'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Applied" default>
+					    &nbsp;<i class="fa fa-bookmark" style="color:#5bc0de; cursor:pointer"></i>
+					</span>
+					 <span ng-show="j.user.STATUS=='Closed'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Closed" default>
+					    &nbsp;<i class="fa fa-window-close" style="color: #000000;cursor:pointer;"></i>
+					</span>
+					
+					<span  ng-show="j.user.STATUS=='Shortlisted'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Shortlisted" default>
+					    &nbsp;<i class="fa fa-info-circle" style="color:#2a745c; cursor:pointer"></i>
+					</span>
+					<span ng-if="j.user.STATUS=='Shortlisted' &&  j.requisition.assignassessflag==true"class="label label-default d-inline-block tooltips us-box-right" tabindex="0" data-toggle="tooltip" title="Assign Assessment" default style="background: none; font-size: 100%; cursor:pointer;"
+					ng-click="assignReqMappAssessment(j)"><i class="fa fa-files-o" style="color: #b0b302;"></i></span>							
+					
+					
+					<span  ng-show="j.user.STATUS=='inactive'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Inactive" default>
+					    &nbsp;<i class="fa fa-minus-circle" style="color:#e7505a; cursor:pointer"></i>
+					</span>
+					<span  ng-show="j.user.STATUS=='Hold'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Hold" default>
+					    &nbsp;<i class="fa fa-pause-circle-o" style="color: gray;cursor:pointer;"></i>
+					</span>
+					<span  ng-show="j.user.STATUS=='Assessment Assigned'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Assessment Assigned" default>
+					    &nbsp;<i class="fa fa-files-o" style="color: #183153;cursor:pointer;"></i>
+					</span>
+					<span  ng-show="j.user.STATUS=='Assessment Completed'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Assessment Completed" default>
+					    &nbsp;<i class="fa fa-check-square-o" style="color: #183153;cursor:pointer;"></i>
+					</span>
+					<span  ng-show="j.user.STATUS=='Failed Assessment'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Failed Assessment" default>
+					    &nbsp;<i class="fa fa-window-close-o" style="color: red;cursor:pointer;"></i>
+					</span>
+					<span ng-show="j.user.STATUS=='Interview Scheduled'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Interview Scheduled" default>
+						&nbsp;<i class="fa fa-pencil-square-o" style="color: #39afef;cursor:pointer;"></i>
+					</span>  
+					<span ng-show="j.user.STATUS=='Interview Completed'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Interview Completed" default>
+						&nbsp;<i class="fa fa-check" style="color: #1fa67a;cursor:pointer;"></i>
+					</span>
+					
+					<span ng-show="j.user.STATUS=='Abandoned'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Abandoned" default>
+						&nbsp;<i class="fa fa-ban" style="color: #ff0000;cursor:pointer;"></i>
+					</span>
+					<span ng-show="j.user.STATUS=='Not Suitable'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Not Suitable" default>
+						&nbsp;<i class="fa fa-user-times" style="color: #d9534f;cursor:pointer;"></i>
+					</span>					
+					
+					<span ng-show="j.user.STATUS=='Peer Review Ready'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Peer Review Ready" default>
+						&nbsp;<i class="fa fa-step-forward" style="color: #f57c00;cursor:pointer;"></i>
+					</span>
+					<span ng-show="j.user.STATUS=='Peer Review Started'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Peer Review Started" default>
+						&nbsp;<i class="fa fa-play" style="color: #0bbb00;cursor:pointer;"></i>
+					</span>
+					
+					<div class="not_success_box">
+						<span ng-show="j.user.STATUS=='Not Successful'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Not Successful" default>
+							&nbsp;<i class="fa fa-times" style="color: #f00;cursor:pointer;"></i>
+						</span>
+						<span ng-show="j.user.STATUS=='No Show'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="No Show" default>
+						&nbsp;<i class="fa fa-eye-slash" style="color: #1000ff;cursor:pointer;"></i>
+						</span>
+						<span  ng-show="j.user.STATUS=='Selected'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Selected" default>
+					    &nbsp;<i class="fa fa-check-square" style="color:#1fa67a; cursor:pointer"></i>
+						</span>
+						<span  ng-show="j.user.STATUS=='Pending Brand Approval'" class="d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Pending Board Approval" default>
+					    &nbsp;<i class="fa fa-exclamation-triangle" style="color:#f0ad4e; cursor:pointer"></i>
+					</span>
+						<span ng-if="(j.status=='Not Successful' || j.status=='Hold' || j.status=='No Show' || j.status=='Pending Brand Approval' || j.status=='Selected' )  && j.mgr_reviewer_id==0"class="label label-default d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Start Manager Review" default style="background: none; font-size: 100%; cursor:pointer;"
+						ng-click="startManagerReview(j)"><i class="fa fa-share-square" style="color: #b0b302;"></i></span>
+						<span ng-if="(j.status=='Not Successful' || j.status=='Hold' || j.status=='No Show' || j.status=='Pending Brand Approval' || j.status=='Selected') && j.mgr_reviewer_id!=0 && j.mgr_review_comment == null" class="label label-default d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Under Manager Review" default style="background: none; font-size: 100%; cursor:pointer;"
+						ng-click="underManagerReview(j)"><i class="fa fa-magnet" style="color: #b0b302;"></i></span>
+						<a  ng-if="(j.status=='Not Successful' || j.status=='Hold' || j.status=='No Show' || j.status=='Pending Brand Approval' || j.status=='Selected')  && j.mgr_reviewer_id!=0 && j.mgr_review_comment != null"  ng-click="showmanagercomment(j)" class="manager-comment d-inline-block tooltips" tabindex="0" data-toggle="tooltip" title="Manager Comment" default><i class="fa fa-comment manager-comment" aria-hidden="true"></i></a>
+					</div>
+
+					</div>	
+                </td>
+                <td ng-show="activeColumn('Email')">{{j.user.email}}</td>
+                <td ng-show="activeColumn('Date of Birth')">{{j.dob}} </td>
+                <td ng-show="activeColumn('Location')" >{{j.location}} </td>
+                <td ng-show="activeColumn('Experience')">{{j.experience}} </td>
+                <td ng-show="activeColumn('Applied Brand')">{{j.brands.brandName}} </td>
+                <td ng-show="activeColumn('Applied Department')">{{j.category.categoryName}} </td>
+                <td ng-show="activeColumn('Applied Position')">{{j.position}} </td>
+                <td ng-show="activeColumn('Rating') && j.rating>=0" >{{j.rating}} %</td><td ng-show="activeColumn('Rating') && j.rating<0" >NA</td>
+                 <td ng-show="activeColumn('Status')">
+                 <span class="label label-info" ng-if="j.status=='Applied'" style="background-color: #39afef;">{{j.status}}</span>
+                <span class="label label-success" ng-if="j.status=='Selected'" style="background-color: #1fa67a;">{{j.status}}</span>
+                <span class="label label-danger" ng-if="j.status=='Not Successful'" style="background-color: red;">{{j.status}} </span>
+                <span class="label label-danger" ng-if="j.status=='Not Suitable'" style="background-color: #da695d;">{{j.status}} </span>
+                <span class="label label-warning" ng-if="j.status=='Hold'">{{j.status}} </span>     
+                <span class="label label-warning short-listed" ng-if="j.status=='Shortlisted'" style="background-color: #2a745c;">{{j.status}} </span>            
+                <span class="label label-default closed-status-man" ng-if="j.status=='Closed'" style="background-color: #777;">{{j.status}} </span>     
+                 <span class="label label-default" ng-if="j.status=='No Show'" style="background-color:#777;">{{j.status}} </span>     
+                  <span class="label label-default" ng-if="j.status=='Pending Brand Approval'" style="background-color: #f0ad4e;">{{j.status}} </span> 
+				 <span class="label label-warning short-listed" ng-if="j.status=='Assessment Assigned'" style="background-color: #183153;">{{j.status}} </span>  
+                  <span class="label label-warning short-listed" ng-if="j.status=='Assessment Completed'" style="background-color: #183153;">{{j.status}} </span>
+                  <span class="label label-warning short-listed" ng-if="j.status=='Failed Assessment'" style="background-color: #ff2323;">{{j.status}} </span>
+                  <span class="label label-warning short-listed" ng-if="j.status=='Interview Scheduled'" style="background-color: #64ceff;">{{j.status}} </span>
+                  <span class="label label-warning short-listed" ng-if="j.status=='Interview Completed'" style="background-color: #1fa67a;">{{j.status}} </span>      
+                  <span class="label label-warning short-listed" ng-if="j.status=='Peer Review Ready'" style="background-color: #d28d12;">{{j.status}} </span>      
+                  <span class="label label-warning short-listed" ng-if="j.status=='Peer Review Started'" style="background-color: #5dd212;">{{j.status}} </span>      
+                </td>		  
+                <td ng-show="activeColumn('Interview')"><i class="fa fa-handshake-o" id="inte-icon"  ng-if="setInterview" ng-click="fetchInterviewTemplates(j)" data-toggle="modal"></i>
+                <i class="fa fa-handshake-o" id="inte-icon" data-target="#interview-sch" ng-if="!setInterview"></i></td>
+                <td ng-show="activeColumn('Selected Brand')">{{j.selectedBrand}} </td>
+                <td ng-show="activeColumn('Selected Department')">{{j.selectedDepartment}} </td>
+                <td ng-show="activeColumn('Selected Position')">{{j.selectedPosition}} </td>
+                
+                <td ng-show="activeColumn('Short Listed Brand')">{{j.shortListedBrand.brandName}} </td>
+                <td ng-show="activeColumn('Short Listed Department')">{{j.shortListedCategory.categoryName}} </td>
+                <td ng-show="activeColumn('Short Listed Position')">{{j.shortListedPosition.positonname}} </td>
+                <!-- <td>{{j.qualification}} </td> --> 
+                <td ng-show="activeColumn('Source of info')">{{j.user.sourceOfInfo.name}} </td>
+                <td ng-show="activeColumn('Created Date')">{{j.createdDate}} </td>
+<!--                 <td ng-show="activeColumn('Employee Number')">{{j.user.employeeId}} </td>
+ -->                <!--  <td ng-show="activeColumn('Passport Number')">{{j.passportId}} </td> -->
+               <!--  <td>{{j.rating}} </td> -->
+               
+                
+                <!-- <td class="text-center"><button class="btn btn-default btn-delete"><i  class="icon-briefcase"></i></button></td> -->
+               
+              </tr>
+      
+             </tbody>  
+             
+        </table>
+          
+        </div>
+        <div class="text-right" style="margin: 12px 0;">
+            
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+ 
+            </div>
+        </div>
+      </div>
+      <!-- Modal Mapping ---------------------------------------------------------------------------------------->
+<div id="user-detail-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" style="width: 90%;">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-body flat-body" style="padding-bottom: 0;">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="user_details_pop">
+              <div class="pop-pic inline-blck" style="background-image: url({{picpath}});"></div>
+              <div class="pop-name inline-blck" >
+                <h3>{{username}}</h3>
+                <h4 class="designation">{{position}}</h4>
+                <h4>{{location}}</h4>
+                <h4>{{refNo}}</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-5 text-center">
+                <div class="chart profile-charts"><span>{{percent}}%</span></div>
+                <div>Profile Completed</div>
+              </div>
+              
+              <div ng-show="ratingPercent>=0" class="col-md-5 text-center" >
+                <div class="chartnew profile-charts" data-percent="0" data-target="#user-rating-modal" data-toggle="modal"><span style="color: #ef1e25;" >{{ratingPercent}}%</span></div>
+                <div>Rating</div>
+              </div>
+              
+               <div class="col-md-5 text-center" ng-show="ratingPercent<0">
+                <div  style="font-size: 50px;margin: 20px 0;">NA</div>
+                <div>Rating</div>
+              </div>
+              
+            </div>
+            </div>
+             
+           <div class="col-md-2 text-right">
+            <button type="button" class="btn bigblue-btn" id="" ng-click="download(cvpath)" ng-disabled="buttondisable(cvpath)"><i class="fa fa-file-text-o" aria-hidden="true"></i> Download CV </button>
+          </div>
+          
+        </div>
+
+        <div class="lower-tabs">
+          <div class="row" style="display: flex;">
+            <div class="col-md-2" style="border-right: 1px solid #e0e0e0;">
+          <ul class="nav nav-pills nav-stacked">
+  <li class="" id="list1"><a data-toggle="tab" href="" ng-click="showFlag(1)">Professional Info</a></li>
+  <li class="" id="list2"><a href="" ng-click="showFlag(2);appliedJobContactInfo(id)">Contact Info</a></li>
+  <li class="" id="list3"><a href="" ng-click="showFlag(3);appliedJobEducationalInfo(id)">Educational Info</a></li>
+  <li class="" id="list4"><a href="" ng-click="showFlag(4);appliedJobComplianceLog(id)">Compliance Log </a></li>
+  <li class="" id="list5"><a href="" ng-click="showFlag(5);appliedJobAssessmentLog(jobId);AssessmentFlag(1)">Assessment Log </a></li>
+  <li class="" id="list6"><a href="" ng-click="showFlag(6)">Communication Log </a></li>
+  <li class="" id="list7"><a href="" ng-click="showFlag(7);getUserActivityList(id);">Activity Log </a></li>
+  <li class="" id="list8"><a href="" ng-click="showFlag(8)">Decision Log</a></li>
+  <li class="" id="list9"><a href="" ng-click="showFlag(9)">Scheduler Log </a></li>
+  <li class="" id="list11"><a href="" ng-click="showFlag(11)" ng-if=flag==true>To Do List</a></li>  
+</ul>
+        </div>
+<div class="col-md-10">
+<div class="tab-content">
+  <div id="prof" class="tab-pane fade in active" ng-show="showflag == 1" >
+    <table class="table table-bordered">
+    	<thead>
+    		<tr>
+    			<th>Position</th>
+    			<th>Employer's Name</th>
+    			<th>Rating</th>
+    			<th>From Date</th>
+    			<th>To Date</th>
+    			<th>Download</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		 <tr ng-repeat="x in userworklist">
+    			<td>{{x.position}}</td>
+    			<td>{{x.employerName}}</td> 
+    			<td>{{x.rating}}</td>
+    			<td>{{formatDate(x.fromDate) | date:'dd-MM-yyyy'}}</td> 
+    			<td>{{formatDate(x.toDate) | date:'dd-MM-yyyy'}}</td> 
+    			<td class="text-center"><button class="btn bigblue-btn new-btn-dwn" ng-click="download(x.certificatePath)" ng-if="x.certificatePath != null || x.certificatePath != undefined"><i class="fa fa-download" aria-hidden="true"></i></button></td>
+    		</tr>
+    	</tbody>
+    </table>   
+  </div>  
+  <div class="tab-pane fade in active" ng-show="showflag == 2" ng-repeat="x in contactInfo">  
+    <ul type="none" class="detailed-ul"  >
+      <li>
+        <div class="row" >
+          <div class="col-md-3">
+            <h4>Flat/House No.:</h4>
+            <p>{{x.houseNo}}</p>
+          </div>
+          <div class="col-md-4">
+            <h4>Building/House:</h4>
+            <p>{{x.houseName}}</p>
+          </div>
+          <div class="col-md-4">
+            <h4>Society:</h4>
+            <p>{{x.society}}</p>
+          </div>
+          
+          </div>
+          </li>
+          <li>
+           <div class="row" >
+           <div class="col-md-3">
+            <h4>PIN/ZIP Code:</h4>
+            <p>{{x.pincode}}</p>
+          </div>
+           <div class="col-md-9">
+            <h4>Street/Road:</h4>
+            <p>{{x.street}}</p>
+          </div>
+          
+        </div>
+      </li> 
+      <li>
+        <div class="row">
+          <div class="col-md-3">
+            <h4>City:</h4>
+            <p>{{x.city.cityName}}</p>
+          </div>
+          <div class="col-md-3">
+            <h4>State:</h4>
+            <p>{{x.state.stateName}}</p>
+          </div>
+          <div class="col-md-3">
+            <h4>Country:</h4>
+            <p>{{x.countryName}}</p>
+          </div>         
+        </div>
+      </li>
+      <li>
+	      <div class="row">
+	        <div class="col-md-3">
+	            <h4>Mobile Number:</h4>
+	            <p>{{x.phoneNumber}}</p>
+	          </div>
+	         <div class="col-md-3">
+	            <h4>Email:</h4>
+	            <p>{{x.email}}</p>
+	          </div>            
+	        </div>
+      </li>
+    </ul> 
+  </div> 
+  <div id="edu" class="tab-pane fade in active" ng-show="showflag == 3">
+    <table class="table table-bordered">
+    <tr>
+    	<th>Qualification</th>
+    	<th>Year of Passing</th>
+    	<th>Issuing Authority</th>
+    	<th>Grade/Score/Percentage</th>
+    </tr>
+    <tr ng-repeat="x in educationalInfo">
+	    <td>{{x.qualificationObj.qualificationName}}</td>
+	    <td>{{x.yearOfPassing}}</td> 
+	  	<td>{{x.board}}</td>
+	    <td>{{x.gradeScore}}</td>
+    </tr>
+    </table>
+    </div>    
+  
+  <div id="comp" class="tab-pane fade in active" ng-show="showflag == 4" >
+    <table class="table table-striped red-table">
+            <caption>List of Compliances</caption>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Expiry Date</th>
+                <th class="text-center">Download</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="x in compliancelog" > 
+              <tr>
+                <td>{{x.compliance.complianceName}}</td>            
+                
+                <td>{{formatDate(x.expiryDate) |  date:'dd-MM-yyyy hh:mm a'}}</td>
+                
+                <td class="text-center" >
+                
+            <label ng-if="buttondisable(x.path) == true" class="btn bigblue-btn new-btn-dwn" ng-disabled="true"><i class="fa fa-download" aria-hidden="true"></i></label>
+            <label ng-if="buttondisable(x.path) == false" class="btn bigblue-btn new-btn-dwn" ng-click="download(x.path)" ng-disabled="false"><i class="fa fa-download" aria-hidden="true"></i></label>
+              
+                </td>   
+                            
+              </tr>           
+            </tbody>
+          </table>
+  </div>
+  <div id="assess" class="tab-pane fade in active"  ng-show="showflag == 5">
+  
+  <div id="exTab2" > 
+          <ul  class="nav nav-pills cur-point">
+                <li id="activetab11" class="active" style="cursor: pointer;" >
+                  <a ng-click="AssessmentFlag(1)">Job Assessment</a>
+                </li>
+                <li id="activetab21" style="cursor: pointer;">
+                	<a ng-click="AssessmentFlag(2);fetchAssignAssessment(id,roleId)" >Assigned Assessment</a>
+                </li>       
+                <li id="activetab31" style="cursor: pointer;">
+                	<a>User Answers</a>
+                </li>
+              </ul>
+              
+           <div ng-if="assessmentFlag==3 && assessmentobjectforuserclickpic.statusId==1" class="user-click"><a href="" ng-click="AssessmentFlag(4);getAssessmentTestImages(assessmentobjectforuserclickpic)">View User Pictures.</a></div>   
+              
+            
+            <div class="tab-content clearfix" style="padding: 20px 0px;">
+            
+     <div class="tab-pane active" id="" ng-show="assessmentFlag == 1">
+              	<table class="table table-striped red-table">
+            <caption>List of Job Assessments</caption>
+            <thead>
+              <tr>             
+                <th>Assessment</th>
+                <th >Score</th>
+                <th>Comment(if any)</th>
+                <th>Assess by</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+      <tbody>
+              <tr ng-repeat="x in assessments">                       
+                <td ng-model="assessments[$index].name" >{{x.assessmentName}}</td>
+                <td>
+                <div class="form-group" style="margin-bottom: 0">
+                    <input type="text" ng-model="assessments[$index].score" ng-change="myFunc(x)" class="form-control flat-control-inner" style="margin-bottom: 0" required>
+                  </div></td>   
+                  <td><div class="form-group" style="margin-bottom: 0">
+                    <input type="text" ng-model="assessments[$index].comment" ng-change="myFunc(x)" class="form-control flat-control-inner" style="margin-bottom: 0" required>                    
+                 </div></td>    
+                  <td><div class="form-group" style="margin-bottom: 0">
+                  <input type="text" ng-if="assessments[$index].score != null || assessments[$index].comment != null" ng-model="assessments[$index].name" class="form-control flat-control-inner"  disabled style="margin-bottom: 0">
+                  <input type="text" ng-if="assessments[$index].score == null && assessments[$index].comment == null" class="form-control flat-control-inner" disabled style="margin-bottom: 0">
+                  </div></td>
+                   <td> 
+                   <div class="form-group" style="margin-bottom: 0">
+	               <input type="text" id="date{{$index}}" ng-model="assessments[$index].completedon" class="dateonly form-control flat-control-inner" style="margin-bottom: 0">
+                   	</div>                	
+                   </td>    
+              </tr>           
+      
+        </tbody>            
+          </table>         
+          	  <button ng-if="savFlage" class="btn btn-default btn-bluer" ng-click="" disabled>Save</button> 
+               <button ng-if="!savFlage" class="btn btn-default btn-bluer" ng-click="saveassessmentslog()">Save</button> 
+      </div>
+              
+  <div class="tab-pane active" id="" ng-show="assessmentFlag == 2">
+  <div class="table-responsive" style="overflow-y: scroll;height: 400px">
+              <table class="table table-striped red-table">
+            <caption>List of Assigned Assessments</caption>
+            <thead>
+              <tr>             
+                <th>Assessment</th>
+                <th style="width:85px;">Score</th>
+                <th style="width:170px;">Comment (if any)</th>
+                <th style="width:170px;">Assessed by</th>                
+                <th>Is Self</th>
+                <th>Completed Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr ng-repeat="x in AssignAssessmentList">                         
+                <td ng-model="AssignAssessmentList[$index].name" ng-click="switchTab(x);setSaveButtonFlag(x)" ><a href="">{{x.assessmentName}}</a></td>              
+              
+               <td ng-if="x.statusId != 2 && x.statusId != 3">    
+                  <div class="form-group" style="margin-bottom: 0">
+                  <label ng-change="myFunc(x)" style="margin-bottom: 0" >{{AssignAssessmentList[$index].score}}/{{AssignAssessmentList[$index].questionCount}}</label>
+                  </div>
+               </td>  
+               <!-- <td ng-if="x.isAutoAssess != true && x.statusId != 2">
+                  <div class="form-group" style="margin-bottom: 0">
+                  <label   ng-change="myFunc(x)"  style="margin-bottom: 0" >{{AssignAssessmentList[$index].score}}/{{AssignAssessmentList[$index].questionCount}}</label>
+                  </div>
+               </td> -->
+               
+                <td ng-if="x.statusId == 2 || x.statusId == 3">    
+                  <div class="form-group" style="margin-bottom: 0">
+                  <label    ng-change="myFunc(x)" style="margin-bottom: 0" ></label>
+                  </div>
+               </td>  
+               
+               <td ng-if="x.statusId == 2">
+              	  <div class="form-group" style="margin-bottom: 0">
+                  <input type="text" ng-model="AssignAssessmentList[$index].comment" ng-change="myFunc(x)" class="form-control flat-control-inner" style="margin-bottom: 0" disabled>                    
+                  </div>
+              </td>
+              <td ng-if="x.statusId != 2">
+              	  <div class="form-group" style="margin-bottom: 0">
+                  <input type="text" ng-model="AssignAssessmentList[$index].comment" ng-change="myFunc(x)" class="form-control flat-control-inner" style="margin-bottom: 0">                    
+                  </div>
+              </td>
+              
+               
+               <td ng-if="x.isAutoAssess != true">
+                  <div class="form-group" style="margin-bottom: 0">
+                  <input type="text" ng-if="AssignAssessmentList[$index].score != null || AssignAssessmentList[$index].comment != null" ng-model="AssignAssessmentList[$index].assessbyName" class="form-control flat-control-inner"  disabled style="margin-bottom: 0">
+                  <input type="text" ng-if="AssignAssessmentList[$index].score == null && AssignAssessmentList[$index].comment == null" class="form-control flat-control-inner" disabled style="margin-bottom: 0">
+                  </div>               
+              </td>   <!-- ng-if="x.isAutoAssess != true || x.statusId ==2"   ng-if="x.isAutoAssess == true || x.statusId !=2"-->
+            
+            <td ng-if="x.isAutoAssess == true">
+                  <div class="form-group" style="margin-bottom: 0">
+                  <input type="text" ng-if="AssignAssessmentList[$index].score != null || AssignAssessmentList[$index].comment != null" value="Auto" class="form-control flat-control-inner"  disabled style="margin-bottom: 0">
+                  <input type="text" ng-if="AssignAssessmentList[$index].score == null && AssignAssessmentList[$index].comment == null && x.statusId ==2" value="" class="form-control flat-control-inner" disabled style="margin-bottom: 0">
+                  </div>               
+              </td>                    
+        
+               <td ng-model="AssignAssessmentList[$index].isSelfAssessment"> 
+                <span ng-if="x.isSelfAssessment == true" >Yes</span>    
+                <span ng-if="x.isSelfAssessment == false" >No</span>        
+               </td>
+               
+               <td ng-if="x.statusId == 1">{{AssessmentdateFormat(x.assessmentDate) | date:'dd-MM-yyyy'}}</td>
+                <td ng-if="x.statusId != 1"></td>
+               
+              <td ng-model="AssignAssessmentList[$index].statusName">
+                <span ng-if="x.statusId == 2" class="label label-danger">{{x.statusName}}</span>    
+                <span ng-if="x.statusId == 3" class="label label-info">{{x.statusName}}</span>
+                <span ng-if="x.statusId == 1" class="label label-success" >{{x.statusName}} </span> 
+                <span ng-if="x.statusId == 1" style="display:block;float:right;"><!-- <i class="fa fa-folder-open folder-opn" aria-hidden="true" ng-click="AssessmentFlag(4);getAssessmentTestImages(x)" style="font-size:20px;    color: #f8ce25;"></i>  --> </span>      
+              </td> 
+              </tr>                 
+            </tbody>            
+          </table>
+          </div>
+          
+           <button ng-if="assignAssessmentSave" class="btn btn-default btn-bluer" ng-click="" style="margin-top: 20px;" disabled>Save</button> 
+           <button ng-if="!assignAssessmentSave" class="btn btn-default btn-bluer" style="margin-top: 20px;" ng-click="saveAssignAssessment()" >Save</button> 
+   </div> 
+   
+   
+   
+     <div class="tab-pane active" id="" ng-show="assessmentFlag == 3">    
+       
+       <div class="table-responsive">
+       <form ng-submit="SaveScore()">
+       <table class="table table-striped red-table">
+            <caption>User Answer</caption>             
+            <tbody >
+              <tr ng-repeat="q in QuestionAnsList" ng-init="outerIndex12 = $index">                         
+                
+               <td>                  
+                  {{q.questionText}} <label ng-if="q.questionMediaType == 1"><i class="fa fa-file-image-o"></i></label>
+						                   <label ng-if="q.questionMediaType == 2"><i class="fa fa-file-audio-o" ></i></label>
+						                   <label ng-if="q.questionMediaType == 3"><i class="fa fa-video-camera que-file"></i></label>
+						                   <label ng-if="q.questionMediaType == 4"><i class="fa fa-video-camera que-file"></i></label>
+                    <ul class="single-ans">
+                    
+                    	<li ng-if="q.questionType==1 && q.isVoiceEnabled == false && q.isvideoEnabled==false" ng-bind="q.shortAns"></li>  
+                                    	                   	
+                    	<div ng-if="q.questionType==1 && q.isVoiceEnabled == true" id="media{{$index}}"> 
+                    		 <!-- <i  class="fa fa-file-audio-o que-file" ng-click="enabledVoice=true"></i>  -->
+                    		<img src="resources/img/updated-audio.png" style="    width: 95px;" class="audio-png"  ng-click="enabledVoice=true;displayUserAssessmentMedia();generatedSignUrl($index)" alt="img_May23201814-21-41GMT" style="display: block;">
+               				<audio ng-if="enabledVoice"  width="568" id="audioMedia{{$index}}" height="240" controls controlsList="nodownload" style="margin: 10px 0px;"><source src="{{q.audioAns}}" type="audio/ogg" ></audio>
+               			</div>	
+               			<div ng-if="q.questionType==1 && q.isvideoEnabled == true" id="media{{$index}}"> 
+                    		 <!-- <i  class="fa fa-file-audio-o que-file" ng-click="enabledVoice=true"></i>  -->
+                    		<img src="resources/img/updated-video.png" style="    width: 95px;margin-right: 10px;" class="audio-png"  ng-click="enabledVoice=true;displayUserAssessmentMedia();generatedSignUrl($index)" alt="img_May23201814-21-41GMT" style="display: block;">
+               				<video ng-if="enabledVoice"  width="568" id="audioMedia{{$index}}" height="240" controls controlsList="nodownload" style="margin: 10px 0px;"><source src="{{q.audioAns}}" type="video/mp4" ></video>
+               			</div>									             
+                 
+                        <li data-ng-repeat="a in q.ans" ng-if="q.questionType==2"  ng-init="innerIndex55 = $index">
+                      	<div class="radio-cntnr new-chc radio-quecheck-ans" >
+                      	<input type="hidden"  ng-value="checkedUserAns(a.id,q.userAns)">
+                      	<input type="radio" name="option_{{outerIndex12}}_{{innerIndex55}}"  data-ng-value="true" data-ng-model="setRedioFlag" id="option_{{outerIndex12}}_{{innerIndex55}}" disabled>
+                  			<label for="option_{{outerIndex12}}_{{innerIndex55}}"></label>
+                  		</div>
+                  		<label style="display:block !important;margin-left: 28px;">{{a.answerText}}</label>
+                  		</li>   
+                  		
+                  		 <li ng-repeat="a in q.ans" ng-if="q.questionType==3">
+                          <div class="chckbx-cntnr que-check-box">
+	                      <input type="checkbox" id="checkoption{{$index}}" name="check" ng-checked="checkedUserAns(a.id,q.userAns)" class="flashadmin ng-pristine ng-untouched ng-valid" disabled>
+	                      <label class="cstmchk_lbladmin" for="checkoption{{$index}}"></label> 
+                       	  </div>                       
+                           <label class="cstmchk_lbl que-ans-check" for="checkoption{{$index}}">{{a.answerText}}</label> 
+                        </li>                   
+                    </ul>
+                  
+               </td>  
+               
+               <td ng-if="q.questionType==1" style="vertical-align: top !important;">
+               	 <div class="form-group" style="margin-bottom: 0">																						 
+                  <input type="number" id="" class="form-control flat-control-inner" style="margin-bottom: 0;width: 69px !important;height: 36px;" min="0" max="1" step=".01" ng-model="q.shortAnsScore" required>
+                  </div>                  
+               </td>  
+                            
+               <td ng-if="q.questionType==2 || q.questionType==3" style="width: 80px;vertical-align: top !important;text-align:center;">
+               	 <!-- Ans status 1=right 2=wrong -->  	
+               	  <i ng-if="q.ansStatus == 2" class="fa fa-times" style="text-align: center;font-size: 22px;color: #e7505a;"></i>
+               	  <i ng-if="q.ansStatus == 1" class="fa fa-check" style="text-align: center;font-size: 22px;color: #21b524;"></i>
+               </td>    
+                         
+              </tr>                 
+            </tbody>            
+          </table>
+          
+           <button ng-if="AnsSaveFlag==true" type="submit" class="btn bigblue-btn">Save</button>
+       </form>
+     
+       </div>
+       
+       
+   
+   </div>
+   
+   <div class="tab-pane active" id="" ng-show="assessmentFlag == 4">  
+     <div ng-if="assessmentTestImages.length>0">
+    <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                    <th>Start Time: <h5 style="display: inline-block;margin-left: 5px;"> {{dateformate(assessmentTestImages[0].assessment.startTime)}}</h5></th>
+                    <th>End Time: <h5 style="display: inline-block;margin-left: 5px;">{{dateformate(assessmentTestImages[0].assessment.endTime)}}</h5></th>
+                  	
+                  </tr>
+                  </thead>
+                </table>
+  	<span ng-repeat="assImg in assessmentTestImages"> 
+  	
+  	<div class="col-md-3">
+ 	<a class="thumbnail" href="" ng-click="showThisBigImage(assImg.filePath)"> 
+ 	<img ng-src="{{assImg.filePath}}" alt="{{assImg.name}}">{{assImg.name}}</a>
+<!--  	<img src="https://s3.ap-south-1.amazonaws.com/cruisecareer/userProfile/9afeb180-1a28-40be-967e-63fa38894565ship_2.jpg" alt="{{assImg.name}}" >{{assImg.name}}</a>
+ --> 	</div>
+ 	</span> 
+ 	</div>
+ 	<div ng-if="assessmentTestImages.length==0"><h4 class="no-data">No Images found</h4></div>
+ 	</div>
+ 	<!-- <img src="https://s3.ap-south-1.amazonaws.com/cruisecareer/userProfile/9afeb180-1a28-40be-967e-63fa38894565ship_2.jpg" class="img-responsive" alt="{{assImg.name}}"></a>{{assImg.name}}</span> -->
+<!--     	<span ng-repeat="assImg in assessmentTestImages" ><img src="{{assImg.filePath}}" alt="{{assImg.name}}">{{assImg.name}}</span>
+ -->   
+<div id="lightbox-new" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="height: 475px;">
+    <div class="modal-dialog">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">ï¿½</button>
+        <div class="modal-content">
+            <div class="modal-body">
+                <span><img ng-src="{{bigImage}}" style="width: 570px;height: 406px;" alt="" /></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+   
+   
+   
+            
+ </div>
+ </div>      
+          
+ </div>
+  
+  <div id="comm" class="tab-pane fade in active inner-popup-tabs1" ng-show="showflag == 6">
+    <ul type="none" class="detailed-ul"  ng-repeat="j in comLogList"> 
+      <li>
+        <!-- <h4>{{j.templeteName}} {{j.mode}}</h4> -->
+        <h4 class="communi-temp-mode">{{j.templeteName}}</h4>
+        <p>{{dateformate(j.dateTime) |  date:'dd-MM-yyyy hh:mm a'}}</p>
+        <h4>Mode: {{j.mode}}</h4>
+         
+       <!--  <p>{{j.dateTime}}</p> -->
+      </li>
+    </ul>
+  </div>
+  <div id="act" class="tab-pane fade in active inner-popup-tabs1" ng-show="showflag == 7">
+  <ul type="none" class="detailed-ul" ng-repeat="a in useractivityList">
+      <li>
+    
+    <h4>{{a.activityDescription}}</h4>
+       <p> {{a.createdDate}}</p>
+      </li>
+    </ul>
+    
+    
+    <ul type="none" class="detailed-ul" ng-repeat="a in useractivityList">
+      <li>
+    
+    <h4>{{a.activityDescription}}</h4>
+       <p> {{a.createdDate}}</p>
+      </li>
+    </ul>
+    
+    
+  </div>
+  <div id="des" class="tab-pane fade in active" ng-show="showflag == 8" >
+  <div class="col-md-1" style="padding: 0px;">
+	<div class="text-left" style="float:left;">
+		 <span > <button class="btn btn-primary" ng-click="showFlag(10);LoglistForUser();" >Log</button></span>
+	</div>
+  </div>
+   <div class="col-md-5" style="padding: 0px;" >
+    <div class="status-log">
+    	<p style="margin: 6px 0 0;"><strong>Status:</strong> {{status}} <strong ng-if="decisionDate != 'No action' " style="margin-left:15px;">Decision Date: </strong><span ng-if="decisionDate != 'No action'">{{formatDate3(decisionDate)}}</span></p>
+    	
+    </div>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3" style="padding: 0px;">	
+    <div class="form-group search-box" >
+         <input type="text" name="" id="id_of_textbox1" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm1" >
+         <i class="icon-search" id="id_of_button1" ng-click="fetchrequisitionListForUser(0,100,null,null,searchterm1,jobId)"></i>    	
+    </div>
+    </div>
+   <!--  <div class="text-right" style="margin-bottom: 5px;">
+    <span > <button class="btn btn-info short-listed" ng-click="selectUserRequisition('Short List')" ng-if="applicationStatus==true && status!='Closed'" >Short List</button>
+    <button class="btn btn-info short-listed" ng-click="selectUserRequisition('Short List')" ng-if="applicationStatus==false || status=='Closed'" disabled>Short List</button></span>
+      <button class="btn btn-danger"data-target="#rejectbutton" data-toggle="modal" ng-if="status!='Not Successful' && status!='Closed'">Not Successful</button>
+      <button class="btn btn-danger"data-target="#rejectbutton" data-toggle="modal" ng-if="status=='Not Successful' || status=='Closed'" disabled>Not Successful</button>
+      <button class="btn btn-warning" ng-click="selectUserRequisition('Hold')" ng-if="status!='Hold' && status!='Closed'">Keep On Hold</button>
+      <button class="btn btn-warning" ng-click="selectUserRequisition('Hold')" ng-if="status=='Hold' || status=='Closed'" disabled>Keep On Hold</button>
+       <button class="btn btn-warning" ng-click="selectUserRequisition('No Show')" ng-if="status!='Hold' && status!='Closed'" style="background-color: #8e44ad;border-color: #8e44ad;">No Show</button>
+     <button class="btn btn-warning" ng-click="selectUserRequisition('No Show')" ng-if="status=='Hold' || status=='Closed'" style="background-color: #8e44ad;border-color: #8e44ad;">No Show</button>
+      <button class="btn btn-warning" ng-click="selectUserRequisition('Pending Brand Approval')" ng-if="status!='Hold' && status!='Closed'" style="background-color: #00d2d3;border: #00d2d3;">Pending Brand Approval</button>
+  <button class="btn btn-warning" ng-click="selectUserRequisition('Pending Brand Approval')" ng-if="status=='Hold' || status=='Closed'" style="background-color: #00d2d3;border: #00d2d3;">Pending Brand Approval</button>
+ 
+    </div>  -->
+    
+    
+    <!-- <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+   		 <input type="text" class="form-control flat-control" style="margin:5px;float:left;">
+    </div>
+   	 </div> -->
+    
+    <div class="clearfix"></div>
+     
+  
+   <!-- <div class="col-md-6"></div> -->
+   
+    
+    <div ng-if="requisitionList.length!=0">
+   <div class="table-responsive inner-popup-tabs" >
+    <table class="table table-striped red-table" >
+
+            <caption>List of Requisitions</caption>
+            <thead>
+              <tr>
+                <th>
+                </th>
+                <th style="min-width: 116px;">Brand <i ng-click="SortingReqList('Brand',searchterm1)" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th style="min-width: 137px;" >Department <i ng-click="SortingReqList('Department',searchterm1)" class="fa fa-sort" aria-hidden="true"></i></th>                
+                <th style="min-width: 160px;">Position <i ng-click="SortingReqList('Position',searchterm1)" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th style="min-width: 165px;">No. of Candidates <i  ng-click="SortingReqList('Candidatecount',searchterm1)" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th style="min-width: 165px;">Selected Candidates <i  ng-click="SortingReqList('SelectedCandidates',searchterm1)" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th style="min-width: 180px;" >Date of Requisition <i ng-click="SortingReqList('RequisitionDate',searchterm1)" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th style="min-width: 220px;" >Expected date of closure <i ng-click="SortingReqList('ClosureDate',searchterm1)" class="fa fa-sort" aria-hidden="true"></i> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="j in requisitionList" class="bg-success" ng-if="j.id==selectedRequisitionId">
+                <td class="bg-success">
+                  <div class="radio-cntnr zeromargin">
+                      <input type="radio" id="{{j.id}}" name="radio-group" class="" ng-click="checkedReqId(j.id,j.noOfCandidate,j.selectedUsers)" >
+                      <label class="cstmchk_lbladmin" for="{{j.id}}"></label> 
+                    </div>
+                </td>
+                <td class="bg-success" >{{j.brand.brandName}}</td>                
+                <td class="bg-success">{{j.category.name}}</td>
+                <td class="bg-success">{{j.position.name}}</td>
+                <td class="bg-success">{{j.noOfCandidate}}</td>
+                <td class="bg-success">{{j.selectedUsers}}</td>
+                <td class="bg-success"> {{j.requisitiondate}}</td>
+                <td class="bg-success">{{j.closuredate}}</td>
+              </tr>
+                <tr ng-repeat="j in requisitionList" ng-if="j.id!=selectedRequisitionId">
+                <td>
+                  <div class="radio-cntnr zeromargin">
+                      <input type="radio" id="{{j.id}}" name="radio-group" class="" ng-click="checkedReqId(j.id,j.noOfCandidate,j.selectedUsers)"  >
+                      <label class="cstmchk_lbladmin" for="{{j.id}}"></label> 
+                    </div>
+                </td>
+                <td >{{j.brand.brandName}}</td>                
+                <td>{{j.category.name}}</td>
+                <td >{{j.position.name}}</td>
+                <td>{{j.noOfCandidate}}</td>
+                <td>{{j.selectedUsers}}</td>
+                <td> {{j.requisitiondate}}</td>
+                <td>{{j.closuredate}}</td>
+              </tr>
+            </tbody>
+          </table>      
+          </div>
+          <div style="height: 20px;"></div>
+          <div class="row">
+    	  <div class="col-md-8">
+   		    <input type="text" class="form-control flat-control" ng-model="selectReq.decisionComment" style="float:left;padding-left:5px;" placeholder="Comment">
+    	  </div>
+    	  <div class="col-md-4">
+    	  	  <div class="form-group">
+                  <input type="text" placeholder="Select Date" name="" data-ng-init="onloadFun(this)" id="decisionDate" class="form-control flat-control-inner dateonly2p">                     
+            </div>
+    	  </div>
+   	 </div> 
+          <div class="row" style="margin:4px 5px;">
+          
+          <div class="all-foot-btns">
+           
+		    <button class="btn btn-danger"  ng-if="status!='Closed' && status!='Not Suitable'" ng-click="showDecisionModal(1);decisionSuitable('Not Suitable')" ng-disabled="!isEnabledButton('Not Suitable')" data-toggle="modal" style="background-color:#d9534f;border-color:#d43f3a;">Not Suitable</button>
+		    <button class="btn btn-danger"  ng-click="decisionSuitable()" ng-if="status=='Closed' || status=='Not Suitable'" data-toggle="modal" style="background-color:#d9534f;border-color:#d43f3a;" disabled>Not Suitable</button>
+		    <span> <button class="btn btn-info short-listed" ng-click="selectUserRequisition('Shortlisted')" ng-if="applicationStatus==true && status!='Closed'" ng-disabled="!isEnabledButton('Short List')" >Short List</button>
+		    <button class="btn btn-info short-listed" ng-click="selectUserRequisition('Shortlisted')" ng-if="applicationStatus==false || status=='Closed'" disabled>Short List</button></span>
+		      <button class="btn btn-danger"   ng-click="showDecisionModal(2);decisionSuccess('Not Successful')" data-toggle="modal" ng-if="status!='Not Successful' && status!='Closed'" ng-disabled="!isEnabledButton('Not Successful')">Not Successful</button>
+		      <button class="btn btn-danger"  data-toggle="modal" ng-if="status=='Not Successful' || status=='Closed'" disabled>Not Successful</button>
+		      <button class="btn btn-warning"   ng-click="selectUserRequisition('Hold')" ng-if="status!='Hold' && status!='Closed'" ng-disabled="!isEnabledButton('Keep On Hold')">Keep On Hold</button>
+		      <button class="btn btn-warning" ng-click="selectUserRequisition('Hold')" ng-if="status=='Hold' || status=='Closed'"  disabled> Keep On Hold</button>
+		      <button class="btn btn-warning" data-target="#dateselection" ng-click="selectUserRequisition('No Show')" ng-if="status!='No Show' && status!='Closed'" ng-disabled="!isEnabledButton('No Show')" style="background-color: #777;border-color: #777;">No Show</button>
+		     <button class="btn btn-warning" ng-click="selectUserRequisition('No Show')" ng-if="status=='No Show' || status=='Closed'" style="background-color: #777;border-color: #777;" disabled>No Show</button>
+		     <button class="btn btn-warning"  ng-click="selectUserRequisition('Pending Brand Approval')" ng-if="status!='Pending Brand Approval' && status!='Closed'" ng-disabled="!isEnabledButton('Pending Brand Approval')" style="background-color: #f0ad4e;border: #f0ad4e;">Pending Brand Approval</button>
+		  	<button class="btn btn-warning" ng-click="selectUserRequisition('Pending Brand Approval')" ng-if="status=='Pending Brand Approval' || status=='Closed'" style="background-color: #f0ad4e;border: #f0ad4e;" disabled>Pending Brand Approval</button>
+           <button class="btn btn-success"  ng-click="selectUserRequisition('Selected')" ng-if="applicationStatus==true && status!='Closed'" ng-disabled="!isEnabledButton('Select this Candidate')">Select this Candidate</button>
+           <button class="btn btn-success" ng-click="alreadySelected()" ng-if="applicationStatus==false && status!='Closed'">Select this Candidate</button>
+           <button class="btn btn-success" ng-if="status=='Closed'" disabled>Select this Candidate</button>
+           
+   
+          
+           </div>
+           </div>
+            
+  </div><div ng-if="requisitionList.length==0">No Requisition Found</div>
+  </div>
+  <div id="comm" class="tab-pane fade in active inner-popup-tabs1" ng-show="showflag == 9">
+										<ul type="none" class="detailed-ul"
+											ng-repeat="j in scheLogList">
+											<li>
+												<h4>{{j.name}}</h4>
+												<p>{{dateformate(j.startTimeDate) |  date:'dd-MM-yyyy hh:mm a'}}</p>
+											</li>
+										</ul>
+									</div>
+									
+									
+		<div id="todo" class="tab-pane fade in active"  ng-show="showflag == 11">
+    <table class="table table-striped red-table">
+            <caption>Compliance Status List</caption>
+            <thead>
+              <tr>
+              <!--   <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="all" name="check" class="flash">
+                      <label class="cstmchk_lbl" for="all"></label> 
+                    </div>
+                </th> -->
+                <th>Document Name</th>
+                <th>Expected Date</th>
+                <th>Completion Date</th>
+                <th>Status</th>
+                <th>Download Document</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="cd in compliancesDetails" >
+                         
+                <td>{{cd.compliance.complianceName}}</td>
+                <td>
+                   <div class="form-group" style="margin-bottom: 0 !important;">
+                    <input type="text" class="form-control flat-control-inner dateonly" placeholder="{{formatDate1(cd.updatedDate)}}" disabled style="margin-bottom: 0 !important;">
+                  </div>
+                </td>   
+                <td>
+                    <div class="form-group" style="margin-bottom: 0 !important;">
+                     <input type="text" class="form-control flat-control-inner enterDate" ng-if="getflag(cd.compliance.id)==true" placeholder="{{formatDate1(cd.createdDate) | date:'dd-MM-yyyy'}}" disabled style="margin-bottom: 0 !important;"> 
+                      <input type="text" class="form-control flat-control-inner enterDate" ng-if="getflag(cd.compliance.id)==false" placeholder="" disabled style="margin-bottom: 0 !important;">                                                                                                    
+                    </div>
+                </td> 
+                
+                <td class="text-center">
+                  <!-- <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="todayBox" name="check" class="flash todate-date">
+                      <label class="cstmchk_lbl" for="todayBox"></label> 
+                    </div> -->
+                    <div class="chckbx-cntnr zeromargin">  
+                      <input type="checkbox" id="{{cd.compliance.id}}" ng-if="getflag(cd.compliance.id)==true" ng-checked="true" onclick="return false;" name="check" class="flashadmin">
+                      <input type="checkbox" id="{{cd.compliance.id}}" ng-if="getflag(cd.compliance.id)==false" onclick="return false;" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="{{cd.compliance.id}}"></label> 
+                    </div>
+                </td>  
+
+                <td class="text-center">               
+                <label ng-if="buttondisable(cd.path)==false" class="btn bigblue-btn new-btn-dwn" ng-disabled="false">
+                  <i class="fa fa-download" aria-hidden="true" ng-click="download(cd.path)"  ng-disabled="false" id="download-doc"></i></label>
+				 <label ng-if="buttondisable(cd.path)==true" class="btn bigblue-btn new-btn-dwn" ng-disabled="true"> <i class="fa fa-download" aria-hidden="true" id="download-doc" ></i></label>                                                   
+                </td> 
+              </tr>                       
+             </tbody>
+          </table>     
+  </div>							
+																		
+	<div id="act" class="tab-pane fade in active" ng-show="showflag == 10">
+  <div class="inner-popup-tabs1" ng-if="decisionLoglist.length!=0"><ul type="none" class="detailed-ul" ng-repeat="d in decisionLoglist">
+      <li>
+    
+    <h4 ng-if="d.status=='Selected' || d.status=='Shortlisted'" style="float: left;width: 25%;">{{d.status}} by {{d.name}}</h4>
+    <h4 ng-if="d.status=='Selected' || d.status=='Shortlisted'" style="margin: 0px 10px;float: left;width: 25%;"><b>Date:</b> {{ formatDate2(d.updatedDate) | date:'dd-MM-yyyy'}}</h4>
+        <h4 ng-if="d.status=='Selected' || d.status=='Shortlisted'" style="margin: 0px 10px;float: left;width: 25%;"><b>Decision Date:</b>{{dateformodalstd(d.requisition.decisionDate)}}</h4>
+    
+    <h4 ng-if="d.status=='Selected' || d.status=='Shortlisted'"> <b>Requisition No.:</b> {{d.requisition.id}}</h4>
+    <h4 ng-if="(d.status=='Selected' || d.status=='Shortlisted') && d.requisition.decisionComment != null " style="margin: 0px 0px 10px;float: left;width: 100%;"><b>Comment:</b> {{d.requisition.decisionComment}}</h4>
+    <div class="tbl" ng-if="d.status=='Selected' || d.status=='Shortlisted' ">
+    
+                <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                    <th>Brand</th>
+                    <th>Department</th>
+                  	<th>Position</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>{{d.requisition.brand.brandName}}</td>
+                    <td>{{d.requisition.category.categoryName}}</td>
+                  	<td>{{d.requisition.position.positonname}}</td>
+                  </tr>
+                </tbody>
+                </table>
+    </div>
+    <h4 ng-if="d.status!='Selected' && d.status!='Shortlisted'">{{d.status}} by {{d.name}} &nbsp; &nbsp; &nbsp; &nbsp;</h4>
+       <p ng-if="(d.status!='Selected' && d.status!='Shortlisted') && d.requisition.decisionComment != null"><b>Comment: </b>{{d.requisition.decisionComment}}</p>
+       <p ng-if="d.status!='Selected' && d.status!='Shortlisted'"><b>Date:</b> {{ formatDate2(d.updatedDate) | date:'dd-MM-yyyy'}}</p>	
+       <p ng-if="d.status!='Selected' && d.status!='Shortlisted'"><b>Decision Date:</b> {{dateformate(d.requisition.decisionDate)}}</p>	
+              
+      </li>
+    </ul>
+    </div>
+    <div ng-if="decisionLoglist.length<1"><h2>No Action Taken !!</h2></div>
+     <div style="height: 20px;"></div>
+     <button class="btn btn-primary" ng-click="showFlag(8)">Back</button>
+  </div>
+</div>
+</div>
+</div>
+        </div>
+      </div>
+       
+      <div class="modal-footer text-right" style="text-align: right;border-top: 1px solid #e0e0e0;">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="" ng-click="refreshModal()">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+  
+    
+    
+<div id="user-rating-modal" class="modal fade" role="dialog">
+<div class="modal-dialog modal-lg" style="width: 50%;">
+<div class="modal-content flat-modal">
+      <div class="modal-body flat-body" style="padding-bottom: 0;">
+       <table class="table table-striped red-table">
+       <thead>
+       <tr>
+       <th>Rating type</th>
+       <th>Required Value</th>
+       <th>Weightage</th>
+       <th>Candidate Value</th>
+       <th>Match %</th>
+       <th>Points</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr ng-repeat=" r in ratingValueList">
+       <td>{{r.ratingName}}</td>       
+       <td>{{r.requiredValue}}</td>
+       <td>{{r.weightage}}%</td>
+       <td>{{r.candidateValue}}</td>
+       <td>{{r.percentageMatched | number: 2}}%</td>
+       <td>{{r.ratingValue | number: 2}}</td>
+       </tr>
+       </tbody>
+       </table>
+	</div>
+</div>
+</div>
+</div>
+</div>  
+    
+    
+    <!----Modal Communication Manager---->
+    <form id="communicationmanager" ng-submit="sendEmailtoUsers(communicationmanager.subTemplateType,communicationmanager.type,communicationmanager.mode)" name="communicationmanager">
+<div id="comm-manager" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg ">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+    
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="reload()">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Communication Manager</h4>
+      </div>
+     
+      <div class="modal-body flat-body">             
+        <div class="row">
+          <div class="col-md-4">
+        <label>Select communication mode:</label>
+        <div class="form-group">
+          <select id="mode" class="form-control flat-control-inner" ng-model="communicationmanager.mode" ng-options="q.id as q.mode for q in modesList" ng-change="fetchTmplttypeslist(communicationmanager.mode)" required>
+           <option value="">--Select--</option>        
+          </select>
+        </div>
+      </div>
+       <div class="col-md-4">
+        <label>Category</label>
+        <div class="form-group">
+          <select id="category" class="form-control flat-control-inner" ng-change="getsubtemplateTypeList(communicationmanager.type)"  ng-model="communicationmanager.type" ng-options="c.id as c.type for c in temptypelist" required>
+           <option value="">--Select--</option>          
+          </select>         
+        </div>        
+      </div> 
+     
+      <div class="col-md-4">
+        <label>Template</label>
+        <div class="form-group">
+          <select  id="template" class="form-control flat-control-inner" ng-model="communicationmanager.subTemplateType" ng-options="s.id as s.type for s in SubTemplateTypeList" ng-change="fetchTmpltpreview(communicationmanager.subTemplateType)" required>
+           <option value="">--Select--</option>        
+          </select>
+        </div>
+      </div>     
+    </div>
+  
+    <div class="row">
+       <div class="col-md-4">
+        <label ng-if="Slotflag">Event Slot</label>
+        <div class="form-group">
+          <select class="form-control flat-control-inner" ng-if="Slotflag" ng-model="communicationmanager.eventslot" ng-options="s as s for s in EventSolts" ng-change="changealias(communicationmanager.eventslot)"required>
+           <option value="">--Select--</option>        
+          </select>
+        </div>
+      </div>
+      </div> 
+      
+
+      <div>
+        <div class="form-group">
+          <label>Template Preview:</label>
+          <textarea  id="templatepreview" class="form-control flat-control-inner" cols="7" rows="7" id="preview-text" ng-bind="tmptpreview[0].Body" disabled></textarea>
+                
+        </div>
+      </div> 
+      </div>
+      <div class="modal-footer text-left">
+        <button type="submit" class="btn btn-default">Send</button>
+       <!--  <a class="btn btn-link" data-dismiss="modal">Cancel</a> -->
+        <a class="btn btn-link" ng-click="reload()">Cancel</a>        
+      </div>
+    </div>
+  </div>
+</div>
+ </form>
+ 
+<!-- Modal Disable Account -->
+ <div id="disable_user" class="modal fade" role="dialog">
+<div class="modal-dialog modal-sm add-brand">
+
+<div class="modal-content flat-modal">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">X</button>
+<h4 class="modal-title common-title" style="margin-left: 0;">Disable Users</h4>
+</div>
+<div class="modal-body flat-body">
+<div class="clearfix" ng-value="getCheckedId()"></div>
+Are you sure you want to disable {{checkedcandidateids.length}} users?
+<div class="modal-footer text-left">
+<button type="button" class="btn btn-default" data-dismiss="modal"
+ng-click="disableAccount()" >Disable</button>
+<a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+
+<!-- <a class="btn btn-link" data-dismiss="modal">Cancel</a> -->
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Modal Remove Flag -->
+ <div id="remove_Flag" class="modal fade" role="dialog">
+<div class="modal-dialog modal-sm add-brand">
+
+<div class="modal-content flat-modal">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">X</button>
+<h4 class="modal-title common-title" style="margin-left: 0;">Remove Users Flag</h4>
+</div>
+<div class="modal-body flat-body">
+<div class="clearfix" ng-value="getCheckedId()"></div>
+Are you sure you want to remove users flag?
+<div class="modal-footer text-left">
+<button type="button" class="btn btn-default" data-dismiss="modal"
+ng-click="removeUserFlag()" >Remove</button>
+<a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+
+<!-- <a class="btn btn-link" data-dismiss="modal">Cancel</a> -->
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Modal Update Remove Flag -->
+ <div id="remove_UpdateFlag" class="modal fade" role="dialog">
+<div class="modal-dialog modal-sm add-brand">
+
+<div class="modal-content flat-modal">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">X</button>
+<h4 class="modal-title common-title" style="margin-left: 0;">Remove Users Flag</h4>
+</div>
+<div class="modal-body flat-body">
+<div class="clearfix" ng-value="getCheckedId()"></div>
+Are you sure you want to remove users flag?
+<div class="modal-footer text-left">
+<button type="button" class="btn btn-default" data-dismiss="modal"
+ng-click="removeUpdatedUserFlag()" >Remove</button>
+<a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+
+<!-- <a class="btn btn-link" data-dismiss="modal">Cancel</a> -->
+</div>
+</div>
+</div>
+</div>
+</div>
+ 
+<!-- Modal Interview Schedule -->
+<div id="interview_schedule" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">{{selectedEvent.schedulerName}}</h4>
+      </div>
+      <div class="modal-body flat-body">
+
+        <div class="table-cntnr">
+          <table class="table table-striped red-table">
+            <caption>List of All created slots</caption>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Selected No.</th>
+                <th>Total No.</th>
+                <th>Balance No.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat ="i in slotsListById">
+              
+                <td>
+                
+                  <div class="radio-cntnr"><input type="radio" ng-click ="setEventId(i)"  id="slot{{i.id}}" name="radio-group" class="flashadmin">
+                  <label for="slot{{i.id}}" class="cstmchk_lbladmin" ></label></div>
+                </td>
+
+        
+           
+                 <td>{{dateformodalstd(i.dateTime) | date:'dd-MM-yyyy'}}</td>
+                <td>{{i.dateTime.split(" ")[1]}} {{i.dateTime.split(" ")[2]}}</td>       
+                <td><a data-toggle="modal" ng-click="fetchusersBysltId(i.id,i.dateTime)" >{{i.assignedUsers}}</a></td>
+                <td >{{i.candidates}}</td>
+                <td>{{i.candidates-i.assignedUsers}}</td>
+              </tr>
+             
+
+            </tbody>
+          </table>
+        </div>
+         
+      </div>
+      <div class="modal-footer text-right" style="text-align: right;">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="assignslotstouser()" id="">Schedule</button>
+        <a class="btn btn-link" data-dismiss="modal" ng-click="cancelAssignment()">Cancel</a>
+      </div>
+     
+    </div>
+
+  </div>
+</div>
+<!-- Modal Candidates -->
+<div id="candidates_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Selected Candidates</h4>
+      </div>
+      <div class="modal-body flat-body">
+      
+      <div class="header-inform-select">
+          <div class="col-md-5">
+             <div class="type-re">
+                <label style="font-size: 14px;">Scheduler name:</label>
+              <div class="reg-head-2">
+                <p style="font-size: 14px;" class="ng-binding">{{selectedEvent.schedulerName}}</p>
+              </div>  
+            </div>          
+       </div>
+        <div class="col-md-4">
+          <div class="type-re">
+          <label style="font-size: 14px;">Date:</label>
+            <div class="reg-head-2">
+              <p style="font-size: 14px;" class="ng-binding" ng-bind="dateformodal(selectedSlotDateTime) |  date:'dd-MM-yyyy'"></p>
+              <!-- <td ng-modal="date" ng-bind="formatDate(x.dateTime) |  date:'dd-MM-yyyy'"></td> -->
+            </div> 
+          </div>  
+        </div>
+        <div class="col-md-3">
+          <div class="type-re">
+          <label style="font-size: 14px;">Time:</label>
+            <div class="reg-head-2">
+              <p style="font-size: 14px;" class="ng-binding">{{(selectedSlotDateTime).split(" ")[1]}} {{(selectedSlotDateTime).split(" ")[2]}}</p>
+            </div> 
+          </div>  
+        </div>
+       </div>      
+      
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="n in userlistBySlotId">
+              <td>{{n.firstName}} {{n.lastName}}</td>
+              <td><span class="cross-mark" ng-click="removeselectedcandidate(n)"><i class="icon-x-circle"></i></span></td>
+            </tr>
+           
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" ng-click="deleteuserbySlotId()" data-dismiss="modal" id="">Save</button>
+        <a class="btn btn-link" data-dismiss="modal">Cancel</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+ <div id="act" class="tab-pane fade">
+    <ul type="none" class="detailed-ul">
+      <li>
+        <h4>Aditya Updated his profile</h4>
+        <p>23-11-2017, 10:15PM </p>
+      </li> 
+      <li>
+        <h4>Aditya Registered with cruisecareers.in</h4>
+        <p>23-11-2017, 09:30PM </p>
+      </li>
+    </ul>
+  </div>  
+   
+  
+ <div id="checkuserinslot" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="clearEvent()">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">{{selectedEvent.schedulerName}}</h4>
+      </div>
+      <div class="modal-body flat-body">
+        <div class="table-cntnr">
+          <table class="table table-striped red-table">
+            <caption>Selected user(s) already assigned for this schedule, do you still want to continue?</caption>
+            <thead>
+              <tr>               
+                <th>Name</th>
+                <th>Slot</th>              
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="x in slotresult"> 
+    <td>{{x.name}}</td>
+    <td>{{dateformate(x.dateTime) |  date:'dd-MM-yyyy hh:mm a'}}</td>    
+    </tr>  
+            </tbody>
+          </table>
+        </div>
+         
+      </div>
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="sure()">Continue</button>        
+        <a class="btn btn-link" data-dismiss="modal"  ng-click="clearEvent()">Cancel</a>
+      </div>     
+    </div>
+  </div>
+</div> 
+  
+  
+  
+  <!--Interview Modal-->
+<div id="interview-sch" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg big-modal" style="width:80% !important;">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal interview-modal" style="min-height: 320px !important;">
+    
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" onclick="stop()" ng-click="clearInterviewlog(1)">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Interview </h4>
+      </div>
+      <div class="modal-body flat-body">
+       <div id="exTab1"> 
+          <ul  class="nav nav-pills interview-tabs">
+                <li id="activetab1" class="active">
+                  <a  ng-click="interviewShowFlag=1;clearInterviewlog(2);toggleQuestnDiv(1);Activeflag()">Interview</a>
+                </li>
+                <li id="activetab2">
+                	<a ng-click="interviewShowFlag=2;clearInterviewlog(3);toggleQuestnDiv(2);Activeflag()">Interview Log</a>
+                </li>
+                <li id="activetab6">
+                	<a ng-click="interviewShowFlag=6;clearInterviewlog(7);toggleQuestnDiv(6);Activeflag();fetchInterviewAssessmentTabData()">Interview Assessment Log</a>
+                </li> 
+                <li id="activetab3">
+                	<a ng-click="interviewShowFlag=4;Activeflag()">Video Interview Log</a>
+                </li>
+              </ul>
+              
+            <div class="tab-content clearfix">
+              <div class="tab-pane active" id="1a" ng-show="interviewShowFlag==1">
+                <div class="user-details">
+
+
+    <div class="interview-header">
+    
+    <div class="row">
+          <div class="col-md-12">
+     <div class="row top-header">
+        
+        <div class="col-md-9"><h4><strong>Hello, {{nameOfInterviewer}}</strong></h4></div>  
+        <div class="col-md-3" id="btn-tooltip">
+        	<a ng-if="isinterviewschdulepossible==true" ng-click="fetchInterviewAssessmentTemplates();" class="btn btn-default giveinterview_asses_btn pull-right">Interview Assessment</a>
+        	<a ng-if="isinterviewschdulepossible==false" ng-click="fetchInterviewAssessmentTemplates();"   class="btn btn-default giveinterview_asses_btn pull-right d-inline-block tooltips" data-toggle="tooltip" title="No Interview Scheduled" disabled>Interview Assessment</a></div>        
+      
+       <!-- <a href="#!user_Interview_Assessment" target="_blank" ng-click="fetchInterviewAssessmentTemplates();" class="btn btn-default giveinterview_asses_btn pull-right">Interview Assessment</a></h4> -->
+      
+        <!-- <span>Interview for the Position, </span>
+        {{positionNameInterview}} -->
+      </div>
+           
+    </div>
+    </div>
+    
+      
+    <div class="row">
+    	<div class="col-md-7 col-sm-12">
+    	<form id="fromtemp">
+    	
+     <div class="form-group" style="margin-bottom: 0">
+      <label for="select-template" class="label-temp">Select Template:</label>
+          <select ng-if="isinterviewschdulepossible==true" class="form-control flat-control-inner" id="examselector" ng-model="temp" ng-options="it as (it.position.name + ' - ' + it.name) for it in interviewTemplates" ng-click="OnChangeTemplate(temp)" ng-change="fetchTemplateQuestion(temp)" style="width: 50% !important;">
+        <option value="">Select Template</option>     
+       </select>
+       <p class="tooltip-element">
+       <select ng-if="isinterviewschdulepossible==false"  id="examselector" ng-model="temp" ng-options="it as (it.position.name + ' - ' + it.name) for it in interviewTemplates" ng-click="OnChangeTemplate(temp)" ng-change="fetchTemplateQuestion(temp)"  class="form-control flat-control-inner   " style="width: 50% !important;" disabled>
+        <option value="">Select Template</option>     
+       </select>
+       <span class="tooltiptext">No Interview Scheduled </span>
+       </p>
+    </div>
+    
+    </form> 
+    	</div>
+         <div class="col-md-5 col-sm-12" id="video-part">
+            	<div class="video">
+
+            		<!-- <i class="fa fa-close" id="close-vedio"></i> -->
+            		<!-- <img src="resources/img/male-user.png" class="img-responsive video-user"> -->
+            		<video id='video' autoplay  class="img-responsive video-user"></video>
+            	</div>
+            	<div class="video-icons text-center">
+            		<button id='request'></button>
+		            		<button id='stop' class="fa fa-circle stop-vedio"></button>
+		            		<button id='store' class="fa fa-stop" ng-click="" style="display: none;" ></button>
+		            		<input type="file"  name="image-file" id="imgInp" style="display: none;">
+		            		<button id='start'class="fa fa-circle start-vedio"></button>
+		            		<!-- <i class="fa fa-expand" id="zoom"></i> -->
+		            		<ul id='ul'><i class="fa fa-download" style="display:none !important;"></i></ul>
+		            		
+            	    
+            	</div>
+            </div>
+    </div>
+
+    
+    </div>
+    </div>
+    </div>
+    
+    
+   <div class="tab-pane active" id="2a" ng-show="interviewShowFlag==2" >
+    <div class="table-cntnr" >
+		<div class="table-responsive" style="overflow-y: scroll;height: 400px;margin-bottom: 20px;" ng-if="interviewListForUser.length>0">
+          <table class="table table-striped red-table">
+           <caption>Interview Log</caption>
+            <thead>
+              <tr>
+    
+                <th>Interview Date <i class="fa fa-sort" aria-hidden="true" ng-click="SortinginterviewList('Interview Date')"></i></th>
+                <th>Interview Template <i class="fa fa-sort" aria-hidden="true" ng-click="SortinginterviewList('Interview Template')"></i></th>
+                <th>Position <i class="fa fa-sort" aria-hidden="true" ng-click="SortinginterviewList('Position')"></i></th>
+                
+               </tr>
+            </thead>
+            <tbody >
+              <tr ng-repeat="j in interviewListForUser">
+        
+                <td  class="clickable" ng-click="fetchInterviewAns(j)"><a>{{dateformodal(j.createdDate) | date:'dd-MM-yyyy'}}</a>
+              
+                </td>
+                <td>{{j.name}}</td>
+                <td>{{j.position.name}}</td>
+                
+               
+              </tr>
+             
+
+            </tbody>
+          </table>
+          
+          
+	
+	
+          
+          </div> 
+          <div  style="overflow-y: scroll; height: 200px; margin-bottom: 20px;" ng-if="interviewListForUser.length==0">
+          		<i class="fa fa-handshake-o" id="no-inter"></i>
+          <h4 class="no-data">No interview taken !</h4>
+    
+    
+    		
+          </div>
+          
+        </div>
+              </div> 
+              
+              <div class="tab-pane active" id="6a" ng-show="interviewShowFlag==6">
+				  <div class="table-cntnr">
+				    <div class="table-responsive" style="overflow-y: scroll;height: 400px;margin-bottom: 20px;" ng-if="fetchInterviewAssessmentListForUser.length>0">
+				      <table class="table table-striped red-table">
+				        <caption> Interview Assessment Log </caption>
+				        <thead>
+				          <tr>
+				            <th>Interview Assessment Date <i class="fa fa-sort" aria-hidden="true" ng-click="SortinginterviewassessmentList('Interview Assessment Date')"></i></th>
+				            <th>Interview Template <i class="fa fa-sort" aria-hidden="true" ng-click="SortinginterviewassessmentList('Interview Template')"></i></th>
+				            <th>Position <i class="fa fa-sort" aria-hidden="true" ng-click="SortinginterviewassessmentList('Position')"></i></th>
+				            <th>Interviewer Name <i class="fa fa-sort" aria-hidden="true" ng-click="SortinginterviewassessmentList('Interviewer Name')"></i></th>
+				          </tr>
+				        </thead>
+				        <tbody >
+              <tr ng-repeat="j in fetchInterviewAssessmentListForUser">
+        
+                <td  class="clickable" ng-click="switchTab(j)"><a>{{dateformodal(j.AssessmentDateTime) | date:'dd-MM-yyyy'}}</a>
+              
+                </td>
+                <td>{{j.name}}</td>
+                <td>{{j.position.name}}</td>
+                <td>{{j.InterviewerName}}</td>
+               
+              </tr>
+             
+
+            </tbody>
+				      </table>
+				       </div>
+				      <div  style="overflow-y: scroll; height: 200px; margin-bottom: 20px;" ng-if="fetchInterviewAssessmentListForUser.length==0">
+          		<i class="fa fa-handshake-o" id="no-inter"></i>
+          <h4 class="no-data">No interview taken !</h4>
+    
+    
+    		
+          </div>
+				   
+				  </div>
+				  </div>
+				  
+				  <div class="tab-pane active" id="7a" ng-show="interviewShowFlag==7">
+					  <div class="" id="accordion" >
+					    <div>
+					      <p style="font-size: 16px!important; font-weight:bold !important;"><strong>Jobseeker Name :</strong> {{nameOfInterviewer}}</p>      
+					    </div>
+					    <div id="" class="">
+						  <ul class="nav nav-pills sec-tab-sys">
+						    <li id="showvidolist_1" class="active"> <a href="">Questions</a> </li>
+						  </ul>
+					<div class="innr-level" ng-if="QuestionAnsList.length>0">              
+                  <div class="questn-type" ng-repeat="q in QuestionAnsList" ng-init="outerIndex12 = $index" style="border-bottom: 1px solid #ccc;margin:10px 0; padding-bottom:25px;">
+                      <span style="font-size: 16px!important; font-weight:bold !important;">Q{{$index+1}}.</span> 
+                      <p style="font-size: 16px!important; font-weight:bold !important;">{{q.questionText}}</p>
+                    <ul class="questn-type" style="width: 80%;position: relative;">     
+    
+                      <li ng-if="q.questionType==1 && q.isVoiceEnabled == false && q.isvideoEnabled==false" ng-bind="q.shortAns"></li>  
+                                    	                   	
+                    	<div ng-if="q.questionType==1 && q.isVoiceEnabled == true" id="media{{$index}}"> 
+                    		<img src="resources/img/updated-audio.png" style="    width: 95px;" class="audio-png"  ng-click="enabledVoice=true;displayUserAssessmentMedia();generatedSignUrl($index)" alt="img_May23201814-21-41GMT" style="display: block;">
+               				<audio ng-if="enabledVoice"  width="568" id="audioMedia{{$index}}" height="240" controls controlsList="nodownload" style="margin: 10px 0px;"><source src="{{q.audioAns}}" type="audio/ogg" ></audio>
+               			</div>	
+               			<div ng-if="q.questionType==1 && q.isvideoEnabled == true" id="media{{$index}}"> 
+                    		<img src="resources/img/updated-video.png" style="    width: 95px;margin-right: 10px;" class="audio-png"  ng-click="enabledVoice=true;displayUserAssessmentMedia();generatedSignUrl($index)" alt="img_May23201814-21-41GMT" style="display: block;">
+               				<video ng-if="enabledVoice"  width="568" id="audioMedia{{$index}}" height="240" controls controlsList="nodownload" style="margin: 10px 0px;"><source src="{{q.audioAns}}" type="video/mp4" ></audio>
+               			</div>									             
+                 
+                         <li class="ques-list" data-ng-repeat="a in q.ans" ng-if="q.questionType==2"  ng-init="innerIndex55 = $index">
+	                      	<div class="form-group radio-cntnr new-chc radio-quecheck-ans" >
+		                      	<input type="hidden"  ng-value="checkedUserAns(a.id,q.userAns)">
+		                      	<input type="radio" name="option_{{outerIndex12}}_{{innerIndex55}}"  data-ng-value="true" data-ng-model="setRedioFlag" id="option_{{outerIndex12}}_{{innerIndex55}}" disabled>
+	                  			<label for="option_{{outerIndex12}}_{{innerIndex55}}"></label>
+	                  		</div>
+	                  		<label class="ans-label">{{a.answerText}}</label>
+                  		</li>   
+                  		
+                  		 <li class="ques-list" ng-repeat="a in q.ans" ng-if="q.questionType==3">
+                          <div class="form-group chckbx-cntnr que-check-box">
+	                      <input type="checkbox" id="checkoption{{$index}}" name="check" ng-checked="checkedUserAns(a.id,q.userAns)" class="flashadmin ng-pristine ng-untouched ng-valid" disabled>
+	                      <label class="cstmchk_lbladmin" for="checkoption{{$index}}"></label> 
+                       	  </div>                       
+                           <label class="cstmchk_lbl que-ans-check ans-label" for="checkoption{{$index}}">{{a.answerText}}</label> 
+                        </li>
+              
+							<li ng-if="q.questionType==4" style="text-align: -webkit-match-parent;margin: 20px 0px;width: 100%;" ng-init="innerIndex = $index">
+                  	  		
+							<div class="range-slider" style="margin: 0px;text-align: r;">
+                  	  	 	 	<div ng-if="(q.ans.length % 2) == 0" id="slidevalue" class="range-values" style="position: relative;">
+                  	  	 	 		<p class="range-min"></p>
+                  	  	 	 		<label ng-if="q.scaleAnsLabel.length>0"class="start" style="position: absolute;margin-top: 5rem;top: 30px;left: 24%;">{{q.scaleAnsLabel[0].answerText}}</label>
+                  	  	 	 		<p ng-repeat="a in q.ans | limitTo: 1">{{a.answerText}}</p>
+                  	  	 	 		<p ng-repeat="a in q.ans" ng-if="$index < (q.ans.length)/2 && $index >= 1">{{a.answerText}}</p>
+                  	  	 	 		<label ng-if="q.scaleAnsLabel.length>0" class="mid" style="position: absolute;margin-top: 5rem;top: 30px;left: 48%;">{{q.scaleAnsLabel[1].answerText}}</label>
+                  	  	 	 		<p ng-repeat="a in q.ans" ng-if="$index > ((q.ans.length)/2)-1">{{a.answerText}}</p>
+                  	  	 	 		<label ng-if="q.scaleAnsLabel.length>0" class="end" style="position: absolute;margin-top: 5rem;top: 30px;left: 79%;">{{q.scaleAnsLabel[2].answerText}}</label>
+								</div> 
+                  	  	 	 	  <div ng-if="(q.ans.length % 2) != 0" id="slidevalue" class="range-values">
+                  	  	 	 		<p class="range-min">0</p>
+                  	  	 	 		<label ng-if="q.scaleAnsLabel.length>0" class="start" style="position: absolute;margin-top: 5rem;top: 30px;left: 24%;">{{q.scaleAnsLabel[0].answerText}}</label>
+                  	  	 	 		<p ng-repeat="a in q.ans | limitTo: 1">{{a.answerText}}</p>
+                  	  	 	 		<p ng-repeat="a in q.ans" ng-if="$index < (q.ans.length)/2 && $index >= 1">{{a.answerText}}</p>
+                  	  	 	 		<label ng-if="q.scaleAnsLabel.length>0" class="mid" style="position: absolute;margin-top: 5rem;top: 30px;left: 48%;">{{q.scaleAnsLabel[1].answerText}}</label>
+                  	  	 	 		<p ng-repeat="a in q.ans" ng-if="$index > ((q.ans.length)/2)">{{a.answerText}}</p>
+                  	  	 	 		<label ng-if="q.scaleAnsLabel.length>0" class="end" style="position: absolute;margin-top: 5rem;top: 30px;left: 79%;">{{q.scaleAnsLabel[2].answerText}}</label>
+								</div> 
+								
+                  	  	 	 	   <input ng-if="q.linearAns.length>0" class="range-slider__range" id="set-range" type="range"  min="0" 
+                  	  	 	 	  max="{{q.ans.length}}" ng-value="q.linearAns[0].ansLabel" disabled>
+                  	  	 	 	  
+                  	  	 	 	  
+<!--                  	  	 	 	   <input class="range-slider__range" id="set-range" ng-bind="q.answerText" type="range"  min="0"  -->
+<!--                   	  	 	 	  max="{{q.ans.length}}" disabled>  -->
+<!--                   	  	 	 	  <span class="range-slider__value" id="set-slider-value">{{question.selectedAns}}</span>  -->
+                  	  	 					
+                  	  	 	 </div>
+</li>
+                    </ul>  
+                  </div>               
+                </div>
+                <div  style="overflow-y: scroll; height: 200px; margin-bottom: 20px;" ng-if="QuestionAnsList.length==0">
+          		<i class="fa fa-handshake-o" id="no-inter"></i>
+          <h4 class="no-data">No interview taken !</h4>
+          </div>
+                  </div>               
+                </div>
+          
+        </div>
+
+					  </div>
+				</div>
+				
+				
+								              
+   
+		  <div class="tab-pane active" id="3a" ng-show="interviewShowFlag==3">
+		 <div class="" id="accordion" >
+		 
+		                  	<div><p class="top-job"><strong>Jobseeker Name :</strong> {{nameOfInterviewer}}</p>
+<!-- 		                  	<span ng-repeat="x in InterViewVideoPath"><video width=400 controls><source src="{{x.filepath}}" type="video/webm"></video></span>
+ -->		                  	<table class="table table-bordered que-ans-list1" style="margin: 20px 0px;">
+		                  		<tr>
+		                  			<td>Interview Date : <strong>{{dateformodal(createdDate) | date:'dd-MM-yyyy'}}</strong></td>
+		                  			<td>Interview Template : <strong>{{tempName}}</strong></td>
+		                  			<td>Position  : <strong>{{positionNamefordetail}}</strong></td>
+		                  		</tr>
+		                  	</table>
+		                  	
+		                  	<!-- <span ng-repeat="x in InterViewVideoPath">
+		           
+		                  	<i ng-click="download(x.filepath)" class="fa fa-caret-square-o-right down-video"></i></span> -->
+		                  		
+		                  	</div>
+		                  	
+		                  	
+		                  	<div id="difftab" class="">	
+								<ul  class="nav nav-pills sec-tab-sys">
+										<li id="showvidolist1" class="active">
+							        		<a  ng-click="showvidolist(1)">Video-list</a>
+										</li>
+										<li id="showvidolist2"><a ng-click="showvidolist(2)">Questions</a>
+										</li>
+										<li id="showvidolist3"><a>Share Link</a>
+										</li>
+								</ul>
+
+									<div class="tab-content clearfix" style="display:inline-block;width:100%;">
+									  	<div class="tab-pane active" id="record-video" ng-show="vedioflag==1">
+									  		<div class="container-fluid">
+									  		<div ng-if="InterViewVideoPath.length>0" class="row">
+									  		<div class="col-md-6 col-sm-6 col-lg-6">
+									  		<ol class="video-listing">		
+									  									  		
+						          				<div ng-repeat="x in InterViewVideoPath track by x.id">
+						          						<li><a ng-click="showvideopath(x,$index)">Video-Recording-0{{$index+1}}</a><i class="fa fa-share-square-o" style="margin: 0px 10px;cursor:pointer" ng-click="showvidolist(3);getpath(x);setLinkVariable()"></i></li>
+						          	      		</div>					          	      			 
+						          	      				  		          				 
+						          			</ol>
+						          			  <div class="" id="list-uploaded-files">
+        <form id="fileupload" method="POST" enctype="multipart/form-data">
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-upload" style="font-size: 20px;"></i>
+                    <span >Upload video files</span>
+                    <input  type="file" id="uservideo"  accept="video/*" onchange="thisFileUpload();" />
+                </span>
+                <p class="uploaded-file-names">
+                </p>
+                
+                	<div class="btn-cntnr1">
+                        <input type="hidden" class="btn btn-default btn-bluer" id="cancel-req-btn" ng-click="uploadLocalvideo()">
+                       <!--  <a href="" ng-click="closeCurrentTab()">Cancel</a> -->
+                    </div>
+            </form>
+            
+        </div>
+						          			</div> 
+											  
+						          			<div class="col-md-6 col-sm-6 col-lg-6">
+						          			<!-- <video width=500 controls><source src="{{InterViewVideoPath[0].filepath}}" type="video/webm"></video> -->
+						          			<span ng-repeat="x in xpath"><video width="100%" ng-show="x.flag==1"  id="interview-video{{$index}}" controls controlsList="nodownload" ><source ng-src="{{x.filepathsigned}}" type="video/webm"></video></span>
+										</div>
+										 
+										</div>
+										</div>
+										<div  style=" height: 200px; margin-bottom: 20px;" ng-if="InterViewVideoPath.length==0">
+          		<i class="fa fa-handshake-o" id="no-inter"></i>
+          <h4 class="no-data">No recordings found !</h4>
+          
+          </div>
+ 											</div>	
+
+										<div class="tab-pane active" id="int-que"  ng-show="vedioflag==2">
+						          			 <ul class="que-ans-list">
+						                        <div class="que-ans" ng-repeat="q in interviewQuesAns">
+						                          <li style="font-size: 16px!important; font-weight:bold !important;"><span class="que-part-new">{{q.squence}}.</span> <p style="display: block;">{{q.question}} </p></li>
+						                          <li class="ans-sec"><span style="position:relative !important;margin:10px 0px !important;float:left !important;">Ans:</span> <p class="ans-part">{{q.answer}}</p> </li>
+						                        </div>
+		                       				 </ul>
+										</div>
+						       			
+									</div>
+									
+									
+									<div ng-show="vedioflag == 3">	
+									<form ng-submit="getSharableLink(time)">		
+									<!-- Enter Time in min. <input type="number" min="0" ng-model="time" required> -->
+									<p class="expiry">Please set expiry time for sharable link:</p>
+									<strong class="hrs">Hours</strong> : <input type="number" class="hrs-input"   min="0" max="12"   ng-model="time.hours" required >
+									<strong class="hrs">Minutes</strong> : <input type="number" class="hrs-input" min="0" max="60"   ng-model="time.minute" required >
+									<!-- <br> -->
+									<strong class="hrs">Email</strong> : <input type="email" class="hrs-input" ng-model="time.email" required  >
+									
+									<button type="submit" class="expry-create">Create</button>
+									</form> 
+									<!-- <span ng-if="showspanFlag==true" class="url-link" ng-bind="sharableLink"></span> 	
+									<span  ng-if="showspanFlag==false"></span>  -->
+									 					 	
+									<!-- <button ng-if="showspanFlag==true" class="btn btn-bluer" ng-click-copy="{{sharableLink}}">Copy</button>	 -->			
+									</div>
+									
+  						</div> 
+							
+		             </div>
+		             
+		 </div>
+		 
+		 
+<div class="tab-pane active" id="4a" ng-show="interviewShowFlag==4">
+    <div class="table-cntnr" >
+		<div class="table-responsive" style="overflow-y: scroll;height: 400px;margin-bottom: 20px;" ng-if="jobFairInterviewLog.length>0">
+          <table class="table table-striped red-table">
+           <caption>Video Interview Log</caption>
+            <thead>
+              <tr>  
+                <th>Interview Date </th>
+                <th>Event Name </th>
+                <th>Interviewer Name</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr ng-repeat="jobfair in jobFairInterviewLog">      
+                <td class="clickable">
+	                <a ng-click="showVideoList(jobfair)">{{dateformate(jobfair.interviewLog.interviewDate)}}</a>
+                </td>
+                <td>{{jobfair.event.name}}</td>
+                <td>{{jobfair.interviewLog.interviewerName}}</td>                               
+              </tr>           
+           </tbody>
+          </table>
+          </div> 
+          <div  style="overflow-y: scroll; height: 200px; margin-bottom: 20px;" ng-if="jobFairInterviewLog.length==0">
+          		<i class="fa fa-handshake-o" id="no-inter"></i>
+          <h4 class="no-data">No interview taken !</h4>
+    
+          </div>
+          
+        </div>
+      </div>  
+      
+      
+      <div class="tab-pane active" id="5a" ng-show="interviewShowFlag==5">
+			<!-- <div class="container-fluid">
+				<div class="row" style="margin: 0 !important;">
+						<div>
+						This line is commented <ol class="video-listing">		
+							
+						        This line is commented <li><a href="" ng-click="showvideopath1(video,$index)"><span ng-if="candidateOrInterviewer(video) == 'candidate'">Candidate </span><span ng-if="candidateOrInterviewer(video) == 'interviewer'">Interviewer </span>Video-Recording</a></li>
+						 
+						  
+						  <div ng-repeat="video in videopath" id="startstopvideo" class="col-md-6" style="">
+						   <video class="vid_0" ontimeupdate="my(this)" id="video_upload_preview_u{{$index}}" width="100%" ng-src="{{video}}" type="video/mp4">
+							<source>
+							</video>
+							<p>{{video}}</p>
+							<p>{{$index}}</p>
+						    </div>		
+						</div> 
+						 
+											  
+	</div>
+			<div class="video_controls">
+							 <button id='start_timer_button' ng-click="startVideo()" class="video_con"><i class="fa fa-play"></i></button>
+							 <button id='stop_timer_button' ng-click="stopVideo()" class="video_con"><i class="fa fa-pause"></i></button> 
+			 </div>
+								
+								<div><p class="top-job"><strong>Communication Notes :</strong></p>	
+									 
+								<div class="comment_main_boxcss">
+						            <div class="comment_boxcss"  ng-repeat="jobfair in jobFairInterviewLog">
+						               <p>{{jobfair.interviewLog.interviewerName}}</p>
+						                 <p>{{jobfair.interviewLog.communicationnotes.createdTime}}</p>
+						                <p>{{jobfair.interviewLog.communicationnotes.notes}}</p>
+						            </div>
+						            <div class="comment_boxcss">
+						                <p>Ramesh Ray</p>
+						                <p>25-11-2020 03:00 pm</p>
+						                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+						            </div>
+						
+						    	</div>
+						    	
+			 </div> 		     -->	
+						    	
+				<div id="difftab" class="" >	
+								<ul  class="nav nav-pills sec-tab-sys">
+										<li id="showvidointerviewlist1" class="active">
+							        		<a  ng-click="showvidointerviewlist(1)">Video-list</a>
+										</li>
+									<!-- <li id="showvidointerviewlist2">Questions</a>
+										</li>  -->
+										<li id="showvidointerviewlist3"><a>Share Link</a>
+										</li>
+								</ul>
+
+									<div class="tab-content clearfix" style="display:inline-block;width:100%;">
+									  	<div class="tab-pane active" id="record-video" ng-show="vedioflag==1">
+									  		<div class="container-fluid">
+									  		<div ng-if="InterViewVideoPath.length>0" class="row">
+									  		<div class="col-md-6 col-sm-6 col-lg-6">
+									  		<ol class="video-listing">		
+									  									  		
+						          			<div ng-repeat="x in InterViewVideoPath track by x.id">
+						          						<li><a ng-click="showvideopath(x,$index)">Video-Recording-0{{$index+1}}</a><i class="fa fa-share-square-o" style="margin: 0px 10px;cursor:pointer" ng-click="showvidointerviewlist(3);getpath(x);setLinkVariable()"></i></li>
+						          	      		</div>	 
+						          	      		      	      			 
+						          	      				  		
+						          	      <!-- 	<div ng-repeat="video in videopath">
+						          				<li><a ng-click="showinterviewvideopath(video,$index)">Video-Recording-0{{$index+1}}</a><i class="fa fa-share-square-o" style="margin: 0px 10px;cursor:pointer" ng-click="showvidointerviewlist(3);getpath(video);setLinkVariable()"></i></li>
+						          	   
+						          	      	</div>	     -->      				 
+						          			</ol>
+						          			
+						          			</div> 
+						          			
+						          			
+						          			
+						          			<div class="col-md-6 col-sm-6 col-lg-6">
+						          			<span ng-repeat="x in xpath">
+						          			<video ng-show="x.flag==1" width="100%" id="interview-video{{$index}}" controls controlsList="nodownload" ><source ng-src="{{x.filepathsigned}}" type="video/mp4"></video>
+						          			</span>
+										
+										
+						          			
+						          			<!-- <span ng-repeat="v in vpath">
+						          			<video width="100%" id="interview-video{{$index}}" controls controlsList="nodownload" ><source ng-src="{{v}}" type="video/mp4"></video>
+						          			</span> -->
+										</div>
+											
+										 
+										</div>
+										</div>
+					<div  style=" height: 200px; margin-bottom: 20px;" ng-if="InterViewVideoPath.length==0"><i class="fa fa-handshake-o" id="no-inter"></i>
+          				<h4 class="no-data">No recordings found !</h4>
+          
+          </div>
+ 											</div>	
+
+										
+						       			
+									</div>
+									
+									
+									<div ng-show="vedioflag == 3">	
+									<form ng-submit="getSharableLink(time)">		
+									<!-- Enter Time in min. <input type="number" min="0" ng-model="time" required> -->
+									<p class="expiry">Please set expiry time for sharable link:</p>
+									<strong class="hrs">Hours</strong> : <input type="number" class="hrs-input"   min="0" max="12"   ng-model="time.hours" required >
+									<strong class="hrs">Minutes</strong> : <input type="number" class="hrs-input" min="0" max="60"   ng-model="time.minute" required >
+									<!-- <br> -->
+									<strong class="hrs">Email</strong> : <input type="email" class="hrs-input" ng-model="time.email" required  >
+									
+									<button type="submit" class="expry-create">Create</button>
+									</form> 
+									<!-- <span ng-if="showspanFlag==true" class="url-link" ng-bind="sharableLink"></span> 	
+									<span  ng-if="showspanFlag==false"></span>  -->
+									 					 	
+									<!-- <button ng-if="showspanFlag==true" class="btn btn-bluer" ng-click-copy="{{sharableLink}}">Copy</button>	 -->			
+									</div>
+									
+  						</div> 			    	
+						    	
+						    	
+						    	
+						    	
+								
+
+<!-- 	<div  style=" height: 200px; margin-bottom: 20px;" ng-if="jobfairInterviewVideoList.length==0">
+         <i class="fa fa-handshake-o" id="no-inter"></i>
+      <h4 class="no-data">No recordings found !</h4>
+    </div> -->
+ </div>
+    
+    
+   <!-- --------------------------------------------------------------------------------- -->
+   
+</div>
+
+
+      
+       
+    </div>
+   
+    
+
+
+ 
+
+  <div class="show Interview-que" id="interview-que" ng-hide="interviewquestion" ng-if="templateQuestion.length>0">
+  <div class="row">
+    <div class="col-md-12">
+     
+          <form ng-submit="disableSubmit=true;saveInteriewAns(templateQuestion[currentPage-1])">
+            <div class="job-search-cntnr" style="padding:0px !important; border:none;box-shadow:none !important;">
+              <div class="srch-head" style="padding: 8px 20px !important;background: #e7505a !important;color: #fff!important;"><h4>Scheduled Questions for <strong>{{sel_position}}</strong> Position</h4></div>
+              <div class="inner-details"> 
+              
+                <div class="row" >
+                  <div class="col-md-10">
+                    <div class="form-group">
+                           <label><span class="que-no">{{templateQuestion[currentPage-1].squence}}</span>{{templateQuestion[currentPage-1].question}}</label>
+                            <div class="input-group" style="display: block !important;">
+                                <textarea class="form-control flat-control-inner" id="transcript{{templateQuestion[currentPage-1].squence}}" ng-model="templateQuestion[currentPage-1].answer" placeholder="Answer" style="width:100%;" cols="100" rows="4"></textarea>
+                            </div>
+                   </div>
+                  </div>
+                  <div class="col-md-2" style="margin: 4% 0;">
+                    <label class="switch">
+			            <input type="checkbox" id="ans-switch{{templateQuestion[currentPage-1].squence}}" ng-click="transalate(templateQuestion[currentPage-1].squence)">
+			            <span class="slider-switch round"></span>
+          			</label>
+          			<img class="speak speaker{{currentPage-1}}" src="resources/img/sound-wave.gif">
+          			<i class="fa fa-trash-o" id="erase" ng-click="deleteAns(templateQuestion[currentPage-1].squence)" ng-if="recognizing==false"></i>
+          			<i class="fa fa-trash-o" id="erase"  ng-if="recognizing==true"></i>
+          			
+         </div>
+                </div>
+              
+        <div class="row">
+        <div class="col-md-5">
+          <p class="text-left que_count">{{currentPage}} of {{templateQuestion.length}}</p>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-4">
+          <div class="control_btn text-right">
+           <button type="button" ng-disabled="currentPage == 1" ng-click="currentPage=currentPage-1;checkboxstatus()" class="action_btn_page"><i class="fa fa-chevron-circle-left" ></i></button>
+          <button type="button" ng-disabled="currentPage >= templateQuestion.length " ng-click="currentPage=currentPage+1;checkboxstatus()" class="action_btn_page"><i class="fa fa-chevron-circle-right"></i></button>
+          </div>
+          </div>
+        </div> 
+             <div class="btn-cntnr">
+              <button class="btn btn-default btn-bluer" ng-disabled="disableSubmit" ng-click="submitInteview()" type="submit">Submit</button>
+              <a data-dismiss="modal" ng-click="clearInterviewlog(1)">Cancel</a>
+            </div>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+      </div>
+
+ </div>
+</div>
+</div>
+
+</div>
+
+
+
+  
+
+  
+ 
+      <!----Modal Date Selection---->
+<div id="dateselection" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <!-- <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" style="color:black !important;" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Date</h4>
+      </div>
+      <div class="modal-body flat-body">
+           <div class="form-group">
+                  <input type="text" name="" id="decisionDate" class="form-control flat-control-inner dateonly">                     
+           </div>
+    </div> -->
+    <!-- <div class="modal-footer text-left">
+        <button data-toggle="modal" ng-click="selectUserRequisition()" type="button" class="btn btn-default btn-assign" data-dismiss="modal"  id="show_ass">Save</button>       
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div> -->
+   </div>
+    </div>
+    </div>      
+      
+      
+      
+<div id="rejectbutton" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" style="color:black !important;" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Reject User</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ng-value="getCheckedId()"></div>
+        <span ng-if="rejectFlag == 1">Are you sure you want to change the status of this user to Not Suitable?</span>
+        <span ng-if="rejectFlag == 2">Are you sure you want to change the status of this user to Not Successful?</span>
+        
+      <div class="modal-footer text-left">
+        <button ng-if="rejectFlag == 2" type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="selectUserRequisition('Not Successful')" >Not Successful</button>
+        <button ng-if="rejectFlag == 1" type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="selectUserRequisition('Not Suitable')" >Not Suitable</button>       
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+    
+    <!-- -------"changeTemplateList"------ -->
+  <div id="changeTemplate" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" style="color:black !important;" ng-click="changetemp=0;enabledTemp()" onclick="bodyclass()">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Change Template</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix" ></div>
+        Are you sure want to change template ?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default" id="show_ass" ng-click="changetemp=1;enabledTemp()" onclick="bodyclass()">OK</button>
+        <a class="btn btn-link"  ng-click="changetemp=0;enabledTemp()" onclick="bodyclass()">Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+    
+    <!-- assigned assessments modal -->
+  
+<div id="assigned-assessments-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" style="color:#fff !important;" ng-click="clearmodal()">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Assign Assessments</h4>
+      </div>
+      <div class="modal-body flat-body">
+      <div class="clearfix" ></div>
+      <div class="filteret-area">
+     <!--  <label style="margin-left: 14px;">Filter</label>  -->
+      <form ng-submit="applyFilter(data)">
+      
+      <div class="col-md-3">
+      	<div class="form-group">  
+      	 <label>Select Brand</label>
+                <select class="form-control flat-control-search mar-bottom-zero" id="openinterview" ng-model="data.brand">               
+                <option value = "">Select Brand</option>
+                <option data-ng-repeat="q in brandlist" value="{{q.id}}" ng-selected="q.id==data.brand">{{q.brandName}}</option>
+                </select>
+        </div>
+      </div>
+       <div class="col-md-3">
+      	<div class="form-group">
+               <label>Select Department</label>
+               <select class="form-control flat-control-search mar-bottom-zero" id="openinterview" ng-model="data.department" ng-change="fetchpositionlist(data.department)">               
+               <option value = "">Select Department</option>
+               <option data-ng-repeat="q in departmentlist" value="{{q.id}}" ng-selected="q.id==data.department">{{q.categoryName}}</option>
+               </select>
+               
+        </div>
+      </div>
+       <div class="col-md-3">
+      	<div class="form-group">
+      	 <label>Select Position</label>
+                <select class="form-control flat-control-search mar-bottom-zero" id="openinterview" ng-model="data.position">                 
+                <option value = "">Select Position</option>
+                <option data-ng-repeat="q in positionlist" value="{{q.id}}" ng-selected="q.id==data.position">{{q.positonname}}</option>
+                </select>
+        </div>
+      </div>
+       <div class="col-md-1">
+       <label  >Filter</label>
+      	<button type="submit" class="btn btn-default btn-create" id=""><i class="fa fa-filter"></i></button>
+      </div>
+      
+      </form>
+      </div>
+      
+      
+      <div class="clearfix"></div>      
+      <form>
+      <div class="col-md-3">
+      <div class="form-group">
+      <label>Select Date*</label>       	  
+               <input type="text" id="assessDate" ng-model="date" class="form-control flat-control-inner dateonly" required>
+        </div>
+      </div>
+              
+      
+      <div class="clearfix"></div>
+      <div class="table-cntnr table-responsive inner-popup-tabs">
+      <table class="table table-striped red-table list-of-ass">
+      	<caption>List of Assessment</caption>
+      	<thead>
+      		<tr>          		 	
+      		<th>Assessment Name <i ng-click="SortingAssessmentMasterList('assessment',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>      		
+      		<th>Scoring</th>
+      		<th>No of questions</th>
+      		</tr>
+      	</thead>
+      	<tbody>
+      		<tr ng-repeat="a in assessmentList" ng-click="selected(a,a.id)" id="back-tr{{a.id}}">  
+      		 		
+      		 <td><a href=""  class="profile-tabs">{{a.assessmentName}}</a></td>
+            <!--  <td>{{a.assessmentName}}</td>  -->          
+             <td>{{a.score}}</td>
+             
+             <td>{{a.questionCount}}</td>
+      		</tr>
+      		
+      	</tbody>
+      </table>
+      </div>
+       <div class="modal-footer text-left">
+        <button type="submit" class="btn btn-default" id="show_ass" ng-click="assignAssessment()" ng-disabled="disabled">Assign</button>
+        <a class="btn btn-link" ng-click="clearmodal()">Cancel</a>
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+</div> 
+  </div>
+     
+     
+ <!-- Print Candidates -->
+<div id="print_candidates" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Selected Candidates</h4>
+      </div>
+      <div class="modal-body flat-body" style="overflow-y: scroll;height: 283px;">
+        <div class="text-right">
+        
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+            <th>Ref. No</th>
+              <th>Name</th>
+               <th>Remove</th> 
+            </tr>
+          </thead>
+          <tbody ng-repeat="s in selectedUserData">
+          
+            <tr>
+            <td>{{s.refNo}}</td>
+              <td>{{s.firstName}} {{s.lastName}}</td>
+              <td><span class="cross-mark" id="$index"><i class="icon-x-circle" ng-click="removefromlist($index,s.refNo)"></i></span></td>
+            </tr>       
+             
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer text-left">       
+        <a class="btn btn-link" data-dismiss="modal" style="float:right;">Cancel</a>
+      </div>
+    </div>
+
+  </div>
+</div> 
+
+
+<div id="checkcheckedid" class="modal fade" role="dialog">
+<div class="modal-dialog modal-sm add-brand">
+
+<!-- Modal content-->
+<div class="modal-content flat-modal">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">X</button>
+<h4 class="modal-title common-title" style="margin-left: 0;"></h4>
+</div>
+<div class="modal-body flat-body">
+<div class="clearfix"></div>
+Please Select record.
+<div class="modal-footer text-left">
+<button type="button" class="btn btn-default" data-dismiss="modal"
+>ok</button>
+<!-- <a class="btn btn-link" data-dismiss="modal">Cancel</a> -->
+</div>
+</div>
+</div>
+</div>
+</div> 
+
+
+<div id="resetpasswordmodal" class="modal fade" role="dialog">
+<div class="modal-dialog modal-sm add-brand">
+
+<!-- Modal content-->
+<div class="modal-content flat-modal">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">X</button>
+<h4 class="modal-title common-title" style="margin-left: 0;"></h4>
+</div>
+<div class="modal-body flat-body">
+<div class="clearfix"></div>
+Are you sure you want to reset password.
+<div class="modal-footer text-left">
+<button type="button" class="btn btn-default" data-dismiss="modal"
+ng-click="adminResetPassword()" >ok</button>
+<!-- <a class="btn btn-link" data-dismiss="modal">Cancel</a> -->
+</div>
+</div>
+</div>
+</div>
+</div> 
+
+<div id="successresetpasswordmodal" class="modal fade" role="dialog">
+<div class="modal-dialog modal-sm add-brand">
+
+<!-- Modal content-->
+<div class="modal-content flat-modal">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">X</button>
+<h4 class="modal-title common-title" style="margin-left: 0;"></h4>
+</div>
+<div class="modal-body flat-body">
+<div class="clearfix"></div>
+Reset password email has been sent successfully.
+<div class="modal-footer text-left">
+<button type="button" class="btn btn-default" data-dismiss="modal"
+ng-click="reload()" >ok</button>
+<!-- <a class="btn btn-link" data-dismiss="modal">Cancel</a> -->
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="errorresetpasswordmodal" class="modal fade" role="dialog">
+<div class="modal-dialog modal-sm add-brand">
+
+<!-- Modal content-->
+<div class="modal-content flat-modal">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">X</button>
+<h4 class="modal-title common-title" style="margin-left: 0;"></h4>
+</div>
+<div class="modal-body flat-body">
+<div class="clearfix"></div>
+Email id does not exist.
+<div class="modal-footer text-left">
+<button type="button" class="btn btn-default" data-dismiss="modal"
+>ok</button>
+<!-- <a class="btn btn-link" data-dismiss="modal">Cancel</a> -->
+</div>
+</div>
+</div>
+</div>
+</div> 
+
+
+
+ <div class="modal" id="assign_Flag" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Assign Flag</h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="insertUserFlag(flag)" >
+                <p>Flag:</p>   
+                <div class="form-group">           
+               <select name='state' style='font-family:Arial, FontAwesome;' ng-model="flag.flagId" >
+				    <option value ="Select Flag">Select Flag</option>
+				    <option data-ng-repeat="uf in userFlag" data-ng-value="{{uf.id}}" ng-selected="uf.id==uf.flagStatus" ng-style="{'color':uf.flagStyle}">&#xf024; &nbsp;{{uf.flagStatus}}</option>
+				     <!-- <option value='Select Flag'>Select Flag</option> -->
+				     <!-- <option value='Confirmed' style='color:green;'>&#xf024; &nbsp; Confirmed</option>
+				    <option value='Pending' style='color:orange;'>&#xf024; &nbsp; Pending</option>
+				    <option value=Uncertified' style='color:red;'>&#xf024; &nbsp; Uncertified</option>  -->
+				</select>
+                </div>
+           
+           		 <p>Comments:</p>
+                  <div class="form-group">
+                    <textarea name="brand-name" class="brand-name" ng-model="flag.flagComment" required></textarea>
+                 </div>
+                
+                <div class="form-group text-right">
+                  <input type="submit" class="btn-info add_brand" value="Save">               
+                </div>
+               </form>
+              </div>              
+            </div>            
+          </div>
+      </div>
+      
+      <div class="modal" id="assign1_Flag" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Assign Flag</h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="updateUserFlag(flag)" >
+                <p>Flag:</p>   
+                <div class="form-group">           
+               <select name='state' style='font-family:Arial, FontAwesome;' ng-model="flag.flagId" >
+				    <option value ="Select Flag">Select Flag</option>
+				    <option data-ng-repeat="uf in userFlag" data-ng-value="{{uf.id}}" ng-selected="uf.id==uf.flagStatus" ng-style="{'color':uf.flagStyle}">&#xf024; &nbsp;{{uf.flagStatus}}</option>
+				     <!-- <option value='Select Flag'>Select Flag</option> -->
+				     <!-- <option value='Confirmed' style='color:green;'>&#xf024; &nbsp; Confirmed</option>
+				    <option value='Pending' style='color:orange;'>&#xf024; &nbsp; Pending</option>
+				    <option value=Uncertified' style='color:red;'>&#xf024; &nbsp; Uncertified</option>  -->
+				</select>
+                </div>
+           
+           		 <p>Comments:</p>
+                  <div class="form-group">
+                    <textarea name="brand-name" class="brand-name" ng-model="flag.flagComment" required></textarea>
+                 </div>
+                
+                <div class="form-group text-right">
+                  <input type="submit" class="btn-info add_brand" value="Save">               
+                </div>
+               </form>
+              </div>              
+            </div>            
+          </div>
+      </div>
+ 
+ 
+ 	<div class="modal fade" id="update_Flag" role="dialog">
+          <div class="modal-dialog modal-sm add-brand update_mod" style="width: 400px;">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Edit/Remove Flag</h4>
+              </div>
+              <div class="modal-body" style="padding:0;">
+              <div class="present_flag_info">
+              	<div class="col-md-12">
+              		<!-- <p><i class="fa fa-flag" style="font-size:18px;color:#000000"></i><b class="flag_comm">Lorem Ipsum is simply dummy text of the printing and typesetting industry</b></p> -->
+              	
+              	
+              	   <p ng-if="noflag =='noflag' "><i class="fa fa-flag" style="color:#c4d0c4"></i><b class="flag_comm">{{uflag.flagStatus}}</b></p>
+              	
+              		<p ng-if="uflag.flagName=='Red flag' "><i class="fa fa-flag" style="color:#FF0000"></i><b class="flag_comm">{{uflag.flagStatus}}</b></p>
+              		<p ng-if="uflag.flagName=='Green flag' "><i class="fa fa-flag" style="color:#008000"></i><b class="flag_comm">{{uflag.flagStatus}}</b></p>
+              		<p ng-if="uflag.flagName=='Yellow flag' "><i class="fa fa-flag" style="color:#FFFF00"></i><b class="flag_comm">{{uflag.flagStatus}}</b></p>
+              		<p ng-if="uflag.flagName=='Black flag' "><i class="fa fa-flag" style="color:#000000"></i><b class="flag_comm">{{uflag.flagStatus}}</b></p>  
+              	</div>
+              	<div class="col-md-12">
+              		<p>Added by : <b>{{uflag.name}}</b></p>
+              	</div>
+              	<div class="clearfix"></div>
+              	<div class="col-md-12">
+              		<p>Added on : <b>{{uflag.createdDate}}</b></p>
+              	</div>
+              	<div class="clearfix"></div>
+              	<div class="col-md-12">
+              		<p>Comment : <b>{{uflag.flagComment}}</b></p>
+              	</div>  
+              	<div class="clearfix"></div>
+              	<!-- <div class="col-md-12">
+              		<a data-toggle="modal" data-target="#history_flag" class="know_more" data-dismiss="modal">Know More...</a>
+              	</div> -->
+              </div>
+              
+              <div class="clearfix"></div>
+              <div style="padding:15px;">
+                <form ng-submit="updateUserFlag(flag)" >
+                <p>Flag:</p>   
+                <div class="form-group">  
+                 <select name='state' style='font-family:Arial, FontAwesome;' ng-model="flag.flagId" onchange="this.className=this.options[this.selectedIndex].className"   class="text_color" >
+				    <option value ="Select Flag" selected>Select Flag</option> 
+				    <option class="fa text_color"  data-ng-repeat="uf in userFlag" data-ng-value="{{uf.id}}"  ng-style="{'color':uf.flagStyle}">&#xf024; &nbsp;{{uf.flagStatus}}</option>			           
+               </select>
+                </div>
+               
+           		 <p>Comments:</p>
+                  <div class="form-group">
+                    <textarea name="brand-name" class="brand-name" ng-model="flag.flagComment" required></textarea>
+                 </div>
+                 
+	              <div class="button_group">
+	                 <div class="pull-left">
+	                  <input type="button" class="btn-info add_brand remove_flag1" ng-if="noflag != 'noflag' " value="Remove Flag" ng-click="checkRemoveUpdateUserFlag()">               
+	                </div>
+	                
+	                <div class="pull-right">
+	                  <input type="submit" class="btn-info add_brand" value="Save">               
+	                </div>
+                </div>
+               </form>
+               </div>
+              </div>              
+            </div>            
+          </div>
+      </div>
+ 
+ <div class="modal" id="advance_search" role="dialog">
+          <div class="modal-dialog modal-md add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Advanced Search</h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="fetchAppliedJobs(0,10,null,null,null,advancesearch,activefilter);getAppliedJobcount(null,advancesearch,activefilter)" >
+      	 		<div class="col-md-6">
+      	 		<div class="form-group">
+                  <label>Name:</label>
+                 	<input type="text" name="name" ng-model="advancesearch.name" class="form-control flat-control-inner" >
+                </div>
+                </div>
+                <div class="col-md-6">
+                   <div class="form-group">
+                  <label>Email:</label>
+                   	<input type="text" name="location" ng-model="advancesearch.email" class="form-control flat-control-inner">
+                </div> 
+                </div>
+                <div class="col-md-6">
+                <div class="form-group">
+                  <label>Date of Birth:</label>
+					 <input type="text" name="" id="dob" ng-model="advancesearch.dob"  class="form-control flat-control-inner dateonly" >
+				  
+                   	<!-- <input type="text" name="location" ng-model="advancesearch.dob" class="form-control flat-control-inner"> -->
+                </div>
+                </div>
+                <!-- <div class="col-md-6">
+                <div class="form-group">
+                  <label>Passport Number:</label>
+                   	<input type="text" name="experience" ng-model="advancesearch.passportId" class="form-control flat-control-inner">
+                </div> 
+                </div> -->
+                <div class="col-md-6">
+                <div class="form-group">
+                  <label>Reference Number:</label>
+                   	<input type="text" name="location" ng-model="advancesearch.referNumber" class="form-control flat-control-inner">
+                </div>
+                </div>
+                <div class="clearfix"></div>
+                
+                <div class="col-md-6"></div>
+                <div class="clearfix"></div>
+                <div class="form-group text-right">
+                  <input type="submit" class="btn-info add_brand" value="Search">               
+                </div>
+               </form>
+              </div>              
+            </div>            
+          </div>
+      </div>
+
+
+<div class="modal fade" id="history_flag" role="dialog">
+          <div class="modal-dialog modal-md add-brand update_mod">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">History</h4>
+              </div>
+              <div class="modal-body" style="padding:0;">
+              <div class="history_flag">
+              	<ul class="detailed-ul" style="padding-left: 11px;">
+              			<li>
+              				<p><i class="fa fa-flag" style="font-size:18px;color:#008000"></i><b class="flag_comm1">High Potential</b></p>
+              				<p>Added by : <b>Admin</b></p>
+              				<p>Added on : <b>2020-03-03 17:36:42.0</b></p>
+              				<p>Comment : <b>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</b></p>
+              			</li>
+              			<li>
+              				<p><i class="fa fa-flag" style="font-size:18px;color:#FF0000"></i><b class="flag_comm1">No Documents Submit</b></p>
+              				<p>Added by : <b>Admin</b></p>
+              				<p>Added on : <b>2019-07-11 17:36:42.0</b></p>
+              				<p>Comment : <b>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</b></p>
+              			</li>
+              			<li>
+              				<p><i class="fa fa-flag" style="font-size:18px;color:#000000"></i><b class="flag_comm1">Person of concern</b></p>
+              				<p>Added by : <b>Admin</b></p>
+              				<p>Added on : <b>2019-03-11 11:36:42.0</b></p>
+              				<p>Comment : <b>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</b></p>
+              			</li>
+              			<li>
+              				<p><i class="fa fa-flag" style="font-size:18px;color:#c4d0c4"></i><b class="flag_comm1">No Flag</b></p>
+              				<p>Added by : <b>Admin</b></p>
+              				<p>Added on : <b>2019-01-11 11:36:42.0</b></p>
+              				<p>Comment : <b>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</b></p>
+              			</li>
+              		
+              	</ul>
+              	
+              </div>
+              
+             
+              </div>              
+            </div>            
+          </div>
+      </div> 
+<div id="yassessment-modal" class="modal fade in" role="dialog" style="">
+		<div class="modal-dialog assessment-modal">	
+		  <!-- Modal content-->
+			<div class="modal-content flat-modal" style="height: 200px;">
+				<div class="modal-header">
+				  	<button type="button" class="close" data-dismiss="modal">x</button>
+				  	<h4 class="modal-title common-title" style="">Manager Comment</h4>
+				</div>
+				<div class="modal-body flat-body">
+				<p>{{managerComment}}</p>
+				</div>
+			</div>
+		 </div>
+	</div>   
+	
+	<div class="modal fade" id="Manager_comment_modal" role="dialog">
+								  <div class="modal-dialog modal-md add-brand">
+								    <div class="modal-content">
+								    <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal">X</button>
+								        <h4 class="modal-title">Manager Comment</h4>
+								      </div> 
+								      <div class="modal-body">
+								        <div class="row">
+								            <div class="col-md-8">
+								                <div class="comment_css">
+								                    <!-- <lable>Manager Comments:</lable> -->
+								                    <textarea class="form-control" rows="8" id="mng_comment" style="width: 560px"></textarea>
+								                </div>
+								                <div class="proceed_btnbox" style="margin-top: 20px;">
+							                        <button type="button" class="btn btn-default proceed_btn" ng-click="saveManagerComment()"> Proceed </button>
+							                        <button type="button" class="btn btn-default comment_cancel" data-dismiss="modal"> Cancel </button>
+							                    </div>
+								            </div>
+								        </div>        
+								      </div>
+								    </div>
+ </div>
+ </div>
+	
+	<div id="invaliduserselected" class="modal fade in" role="dialog" style="">
+		<div class="modal-dialog ">	
+		  <!-- Modal content-->
+			<div class="modal-content flat-modal" style="height: 200px;">
+				<div class="modal-header">
+				  	<button type="button" class="close" data-dismiss="modal">x</button>
+				  	<h4 class="modal-title common-title" style="">Alert</h4>
+				</div>
+				<div class="modal-body flat-body">
+				<p>You have selected one or more candidate who are not eligible for the selected operation. Please reselect</p>
+				</div>
+				<div class="modal-footer text-left">
+				<button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+				<!-- <a class="btn btn-link" data-dismiss="modal">Cancel</a> -->
+				</div>
+			</div>
+		 </div>
+	</div> 
+	
+	<div id="nointerviewscheduled" class="modal fade in" role="dialog" style="">
+		<div class="modal-dialog ">	
+		  <!-- Modal content-->
+			<div class="modal-content flat-modal" style="height: 200px;">
+				<div class="modal-header">
+				  	<button type="button" class="close" data-dismiss="modal">x</button>
+				  	<h4 class="modal-title common-title" style="">Alert</h4>
+				</div>
+				<div class="modal-body flat-body">
+				<p>No interview has been scheduled for you</p>
+				</div>
+				<div class="modal-footer text-left">
+				<button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+				<!-- <a class="btn btn-link" data-dismiss="modal">Cancel</a> -->
+				</div>
+			</div>
+		 </div>
+	</div> 
+ 
+<script type="text/javascript">
+$("document").ready(function() {
+
+	  $('.dropdown-menu').on('click', function(e) {
+	      if($(this).hasClass('selection-column')) {
+	          e.stopPropagation();
+	      }
+	  });
+	});
+</script>
+    <script>
+    $(function () {
+        $('.dateonly').datetimepicker({   
+        	format : 'DD-MM-YYYY',
+           //useCurrent: true,        
+         
+        });
+    });
+    </script>
+    
+           <script type="text/javascript">  
+        
+        
+     /*    
+        $("#comm-manager").on('hidden.bs.modal', function () {        	        	
+			document.getElementById('communicationmanager').reset();			
+    }); */
+       
+        
+          /*     $('#comm-manager').on('hidden.bs.modal', function() {        	   
+        	$(this).find("input,textarea,select").val('').end().find("input[type=checkbox], input[type=radio]").prop("checked", "").end();
+         	$("#mode")[0].selectedIndex = 0; 
+         	$("#template")[0].selectedIndex = 0;
+              })   */ 
+              
+/* Apply Modal open to body */
+ $('#changeTemplate').on('hidden.bs.modal', function () {
+    $('body').addClass('modal-open');
+});         
+        	
+$(function() {
+	 
+    $('.chart').easyPieChart({    	
+        barColor: '#00aaef',        
+
+    });
+    $('.chartnew').easyPieChart({
+       
+    });   
+    
+    $('#assess').on('focus',".dateonly", function(){  
+      $('.dateonly').datetimepicker({
+      format: 'DD-MM-YYYY',
+       useCurrent: false, 
+       //minDate:new Date() 
+        	
+        	});
+    });    
+    
+   //$(".dateonly").datepicker().datepicker("setDate", new Date());   
+    
+    
+});
+
+$("#id_of_textbox").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#id_of_button").click();
+    }
+});
+
+$("#id_of_textbox1").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#id_of_button1").click();
+    }
+});
+
+
+</script>
+
+<!--interview part-->
+<script type="text/javascript">
+
+ $(".speak").hide();
+ /* $("#ans-switch").click(function() {
+	 alert();
+     if($(this).is(":checked")) {
+         $(".speaker").show();
+     } else {
+         $(".speaker").hide();
+     }
+ });
+ 
+ $(".speaker1").hide();
+ $("#ans-switch1").click(function() {
+     if($(this).is(":checked")) {
+         $(".speaker1").show();
+     } else {
+         $(".speaker1").hide();
+     }
+ });
+ $(".speaker2").hide();
+ $("#ans-switch2").click(function() {
+     if($(this).is(":checked")) {
+         $(".speaker2").show();
+     } else {
+         $(".speaker2").hide();
+     }
+ });
+ $(".speaker3").hide();
+ $("#ans-switch3").click(function() {
+     if($(this).is(":checked")) {
+         $(".speaker3").show();
+     } else {
+         $(".speaker3").hide();
+     }
+ }); */
+
+ </script>
+
+<!--Exam Selection-->
+<script type="text/javascript">
+$(document).ready(function(){
+	var vidDiv =$('#video-part');
+	
+	
+    $("#examselector").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue!=""){
+                $(".Interview-que").not("." + optionValue).hide();
+                $("." + optionValue).show();
+                vidDiv.show();
+            } else{
+                $(".Interview-que").hide();
+                vidDiv.hide();
+            }
+        });
+    }).change();
+});
+</script>
+
+<script>
+/* var video, reqBtn, startBtn, stopBtn, ul, stream, recorder;
+video = document.getElementById('video');
+reqBtn = document.getElementById('request');
+startBtn = document.getElementById('start');
+stopBtn = document.getElementById('stop');
+storeBtn = document.getElementById('store');
+ul = document.getElementById('ul');
+reqBtn.onclick = requestVideo;
+startBtn.onclick = startRecording;
+stopBtn.onclick = stopRecording;
+startBtn.disabled = true;
+ul.style.display = 'none';
+stopBtn.disabled = true;
+
+function requestVideo() {
+  navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: true
+    })
+    .then(stm => {
+      stream = stm;
+      reqBtn.style.display = 'none';
+      startBtn.removeAttribute('disabled');
+      video.src = URL.createObjectURL(stream);
+    }).catch(e => console.error(e));
+}
+
+function startRecording() {
+  recorder = new MediaRecorder(stream, {
+    mimeType: 'video/webm'
+  });
+  recorder.start();
+  stopBtn.removeAttribute('disabled');
+  startBtn.disabled = true;
+}
+
+
+function stopRecording() {
+  recorder.ondataavailable = e => {
+    ul.style.display = 'block';
+    var a = document.createElement('a'),
+      li = document.createElement('li');
+    var input = document.getElementById('imgInp');
+    a.download = ['video_', (new Date() + '').slice(4, 28), '.webm'].join('');
+    console.log(e);
+    
+    a.href = URL.createObjectURL(e.data);
+    //input.value = a.download;
+    a.id = 'videoId';
+    a.textContent = a.download;
+    video.src=e.data;
+    li.appendChild(a);
+    ul.appendChild(li);
+    document.getElementById('videoId').click();
+    storeBtn.click();
+  };
+  recorder.stop();
+  startBtn.removeAttribute('disabled');
+  stopBtn.disabled = true;
+  
+}
+ */
+
+
+</script>
+<script>
+var tab1=document.getElementById('activetab1');
+var tab2=document.getElementById('activetab2');
+var tab3=document.getElementById('activetab3');
+var tab6=document.getElementById('activetab6');
+
+tab1.onclick = activeTab1;
+tab2.onclick = activeTab2;
+tab3.onclick = activeTab3;
+tab6.onclick = activeTab6;
+
+function activeTab1()
+{
+	document.getElementById("activetab1").setAttribute("class", "active"); 
+	document.getElementById("activetab2").setAttribute("class", ""); 
+	document.getElementById("activetab3").setAttribute("class", "");
+	document.getElementById("activetab6").setAttribute("class", "");
+	var el=document.getElementById("interview-que").setAttribute("style", "display: block !important;");
+	}
+ function activeTab2()
+{
+	document.getElementById("activetab1").setAttribute("class", ""); 
+	document.getElementById("activetab2").setAttribute("class", "active");
+	document.getElementById("activetab3").setAttribute("class", "");
+	document.getElementById("activetab6").setAttribute("class", "");
+	var el=document.getElementById("interview-que").setAttribute("style", "display: none !important;");
+	} 
+ function activeTab3()
+ {
+ 	document.getElementById("activetab1").setAttribute("class", ""); 
+ 	document.getElementById("activetab2").setAttribute("class", "");
+ 	document.getElementById("activetab3").setAttribute("class", "active");
+ 	document.getElementById("activetab6").setAttribute("class", "");
+ 	var el=document.getElementById("interview-que").setAttribute("style", "display: none !important;");
+ 	} 
+ function activeTab6()
+ {
+ 	document.getElementById("activetab1").setAttribute("class", ""); 
+ 	document.getElementById("activetab2").setAttribute("class", "");
+ 	document.getElementById("activetab3").setAttribute("class", "");
+ 	document.getElementById("activetab6").setAttribute("class", "active");
+ 	var el=document.getElementById("interview-que").setAttribute("style", "display: none !important;");
+ 	} 
+ 
+/*  var zoom==document.getElementById('zoom');
+ zoom.onclick=zoomIn;
+ function zoomIn()
+ {
+	 document.getElementById("video").setAttribute("style", "width:100%;hight=100%"); 
+ } */
+ 
+ var tab11=document.getElementById('activetab11');
+ var tab21=document.getElementById('activetab21');
+
+ tab11.onclick = activeTab11;
+ tab21.onclick = activeTab21;
+ 
+ 
+ function activeTab11()
+ {
+ 	document.getElementById("activetab11").setAttribute("class", "active"); 
+ 	document.getElementById("activetab21").setAttribute("class", ""); 
+ 	document.getElementById("activetab31").setAttribute("class", ""); 
+ 	}
+ 
+ function activeTab21()
+ {
+ 	document.getElementById("activetab21").setAttribute("class", "active"); 
+ 	document.getElementById("activetab11").setAttribute("class", ""); 
+ 	document.getElementById("activetab31").setAttribute("class", ""); 
+ 	/* var el=document.getElementById("interview-que").setAttribute("style", "display: block !important;"); */
+ 	}
+ 
+   
+ 
+</script>
+<script type="text/javascript"> 
+
+$('.close').click(function(){
+    $("#video_recording")[0].pause();       // Tag name used as a selector
+});
+</script>
+ <script>
+ $('.modal').on('hidden.bs.modal', function (e) {
+	    if($('.modal').hasClass('in')) {
+	    $('body').addClass('modal-open');
+	    }    
+	});	
+  </script>
+  <script>
+$('#uservideo').change(function (event) {
+    window.console && console.log(this.files);
+    var files = [];
+    if (this.files) {
+        Array.prototype.slice.call(this.files).forEach(function (file) {
+            files.push(file.name);
+        });
+    } else { // IE or Old browser
+        files.push(this.value.split('\\').pop().split('/').pop());
+    }
+    $('p').html(files.join('<br/>'));
+    $('<br/>').css("border-bottom","1px solid #ccc")
+});    
+function thisFileUpload() {
+    document.getElementById("cancel-req-btn").click();
+};
+
+
+
+$('.modal').on('hidden.bs.modal', function (e) {
+    {    
+    $('video').trigger('pause');
+    }
+   });
+</script>
+
+
+
+<script>
+/* $('#start_timer_button').on('click', function (e) {
+    e.preventDefault();
+    $(this).text(function (_, text) {
+        return text === 'stop' ? 'Start Timer' : 'stop';
+    }).toggleClass('fa fa-play');
+}); */
+
+$('#start_timer_button').click(function() {
+	$('#start_timer_button').hide();
+	$('#stop_timer_button').show();
+    //$("i", this).toggleClass("fa fa-play fa fa-pause");
+});
+$('#stop_timer_button').click(function() {
+	$('#stop_timer_button').hide();
+	$('#start_timer_button').show();
+    //$("i", this).toggleClass("fa fa-play fa fa-pause");
+});
+</script>
+
+<!-- <script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+ -->
+ <script src="modules/internetCalling/js/player.js"></script> 
+
+
+

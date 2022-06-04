@@ -1,0 +1,1911 @@
+<div id="questionnaire-master" class="admin-page tab-pane fade in">
+	<div class="section-heading">
+		<h4>Question Bank</h4>
+		<!--  <p>Organize events & trainings according to date, time and no. of candidates. </p> -->
+	</div>
+	<div class="section-content" id="questionnaire-tabel">
+		<div class="upper-actions">
+			<div class="button-group">
+				<!-- <button class="btn btn-default btn-edit"><i class="icon-edit-2"></i></button> -->
+				<button class="btn btn-default btn-create" id="questionnaire-add"
+					ng-click="clearData()">
+					<i class="icon-plus"></i>
+				</button>
+				<button class="btn btn-default btn-delete" ng-click="check()">
+					<i class="icon-trash-2"></i>
+				</button>
+			</div>
+			<div class="search-cntnr">
+				<div class="form-gadd-interviewroup search-box">
+					<input type="text" name="" id="id_of_textbox"
+						class="form-control flat-control-search" ng-model="searchterm">
+					<i class="icon-search" id="id_of_button"
+						ng-click="getquestionbanklistcount(searchterm,true);fetchquestionbank(0,10,null,null,searchterm,0,questionTags,true)"></i>
+				</div>
+			</div>
+
+			<div class="clearfix"></div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Select Brand</label> <select
+						class="form-control flat-control-inner" ng-model="brandId"
+						ng-change="fetchshiplist(brandId);fetchlist(1,brandId);getquestionbanklistcount(searchterm,false);fetchquestionbank(0,10,null,null,searchterm,0,questionTag,false)">
+						<option value="">--Select Brand--</option>
+						<option data-ng-repeat="b in brandlist" value="{{b.id}}"
+							ng-selected="b.id==brandId">{{b.brandName}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Select Ship</label> <select
+						class="form-control flat-control-inner" ng-model="shipId"
+						ng-change="fetchlist(2,shipId);getquestionbanklistcount(searchterm,false);fetchquestionbank(0,10,null,null,searchterm,0,questionTag,false)">
+						<option value="">--Select Ship--</option>
+						<option data-ng-repeat="s in shiplist" value="{{s.id}}"
+							ng-selected="s.id==shipId">{{s.name}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Select Department</label> <select
+						class="form-control flat-control-inner" ng-model="deptId"
+						ng-change="fetchpositionlist(deptId);fetchlist(3,deptId);getquestionbanklistcount(searchterm,false);fetchquestionbank(0,10,null,null,searchterm,0,questionTag,false)">
+						<option value="">--Select Department--</option>
+						<option data-ng-repeat="d in departmentlist" value="{{d.id}}"
+							ng-selected="d.id==deptId">{{d.categoryName}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Select Position</label> <select
+						class="form-control flat-control-inner" ng-model="posId"
+						ng-change="fetchlist(4,posId);getquestionbanklistcount(searchterm,false);fetchquestionbank(0,10,null,null,searchterm,0,questionTag,false)">
+						<option value="">--Select Position--</option>
+						<option data-ng-repeat="p in positionlist" value="{{p.id}}"
+							ng-selected="p.id==posId">{{p.positonname}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Select Category</label> <select
+						class="form-control flat-control-inner" ng-model="catId"
+						ng-change="fetchlist(5,catId);getquestionbanklistcount(searchterm,false);fetchquestionbank(0,10,null,null,searchterm,0,questionTag,false)">
+						<option value="">--Select Category--</option>
+						<option data-ng-repeat="p in questionCategory" value="{{p.id}}"
+							ng-selected="p.id==catId">{{p.categoryName}}</option>
+					</select>
+				</div>
+			</div>
+
+		</div>
+		<div class="clearfix"></div>
+		<div class="table-cntnr">
+			<table class="table red-table quet-tab">
+				<caption>Questions</caption>
+				<thead>
+					<tr>
+						<th>
+							<div class="chckbx-cntnr zeromargin">
+								<input type="checkbox" id="rd" name="check" class="flashadmin"
+									ng-click="checkedAllList(questionList,all)" ng-model="all">
+								<label class="cstmchk_lbladmin" for="rd"></label>
+							</div>
+						</th>
+						<th style="min-width: 50px; vertical-align: middle;">Seq No.
+						</th>
+						<th style="min-width: 200px; vertical-align: middle;">Questions
+							<i class="fa fa-sort" aria-hidden="true"
+							ng-click="sortingQuestionlist('question',searchterm)"></i>
+						</th>
+						<th style="min-width: 129px; vertical-align: middle;">Question
+							For <i class="fa fa-sort" aria-hidden="true"
+							ng-click="sortingQuestionlist('question_for',searchterm)"></i>
+						</th>
+						<th style="min-width: 139px; vertical-align: middle;">Question
+							Type <i class="fa fa-sort" aria-hidden="true"
+							ng-click="sortingQuestionlist('question type',searchterm)"></i>
+						</th>
+						<th style="min-width: 100px; vertical-align: middle;">Difficulty
+							Level <i class="fa fa-sort" aria-hidden="true"
+							ng-click="sortingQuestionlist('level',searchterm)"></i>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="q in questionList" ng-init="outerIndex = $index">
+						<td>
+							<div class="chckbx-cntnr zeromargin">
+								<input type="checkbox" id="check{{q}}" name="check"
+									class="flashadmin" ng-click="getCheckedQuestions(q.id)"
+									ng-checked="all"> <label class="cstmchk_lbladmin"
+									for="check{{q}}"></label>
+							</div>
+						</td>
+						<td>{{$index+1+10*pageNumber}}</td>
+						<td><p class="que-big" data-toggle="tooltip"
+								data-placement="top" title="{{q.questionText}}">
+								{{q.questionText}} <i style="font-size: 16px; margin-left: 5px;"
+									class="fa fa-video-camera" ng-if="q.isvideoEnabled"></i><i
+									class="fa fa-microphone" ng-if="q.isVoiceEnabled"
+									style="font-size: 16px; margin-left: 5px;"></i>
+							</p> <label
+							ng-if="q.questionMediaType == 1 && q.questionMedia != null"
+							style="cursor: pointer;"><i
+								class="fa fa-file-image-o que-file" ng-click="openmodal(q)"></i></label>
+							<label
+							ng-if="q.questionMediaType == 2 && q.questionMedia != null"
+							style="cursor: pointer;"><i
+								class="fa fa-file-audio-o que-file" ng-click="openmodal(q)"></i></label>
+							<label
+							ng-if="q.questionMediaType == 3 && q.questionMedia != null"
+							style="cursor: pointer;"><i
+								class="fa fa-video-camera que-file" ng-click="openmodal(q)"></i></label>
+							<ul class="single-ans">
+
+								<li data-ng-repeat="a in q.ans" class="big-ques-ans"
+									ng-if="q.questionType==2 || q.questionType==4"
+									ng-init="innerIndex = $index">
+									<div class="radio-cntnr new-chc"
+										style="margin-top: -10px; position: absolute;">
+										<input type="radio"
+											name="option_{{outerIndex}}_{{innerIndex}}"
+											data-ng-value="true" data-ng-model="a.isCorrect"
+											id="option_{{outerIndex}}_{{innerIndex}}" disabled>
+										<!-- <input type="radio" name="radio-group"  value="true" id="option{{$index}}{{q.id}}" disabled> -->
+										<label for="option_{{outerIndex}}_{{innerIndex}}"></label>
+									</div> <label class="answers-single" data-toggle="tooltip"
+									data-placement="top" title="{{a.answerText}}"
+									style="display: block; position: relative; margin-left: 25px; font-weight: 500 !important;">{{a.answerText}}</label>
+								</li>
+
+								<li ng-repeat="a in q.ans" class="big-ques-ans"
+									ng-if="q.questionType==3">
+									<div class="chckbx-cntnr new-chc"
+										style="float: left; margin-right: 18px; position: absolute;">
+										<input type="checkbox" id="checkoption{{$index}}" name="check"
+											ng-model="a.isCorrect"
+											class="flashadmin ng-pristine ng-untouched ng-valid" disabled>
+										<label class="cstmchk_lbladmin" for="checkoption{{$index}}"></label>
+									</div> <label class="cstmchk_lbl answers-single"
+									for="checkoption{{$index}}" data-toggle="tooltip"
+									data-placement="top" title="{{a.answerText}}"
+									style="display: block; position: relative; margin-left: 25px; font-weight: 500 !important;">{{a.answerText}}</label>
+								</li>
+							</ul></td>
+						<td ng-if="q.assessmentCategoryId==1">Assessment</td>
+						<td ng-if="q.assessmentCategoryId==2">Survey</td>
+						<td ng-if="q.assessmentCategoryId==0">Assessment</td>
+						<td ng-if="q.assessmentCategoryId==3">Interview Assessment</td>
+						<td>{{q.questionTypeName}}</td>
+						<td><span ng-if="q.assessmentCategoryId==1 || q.assessmentCategoryId==0">{{q.level}}</span>
+							<span></span></td>
+					</tr>
+
+
+				</tbody>
+			</table>
+			<div class="text-right">
+
+				<ul class="pagination" style="margin-top: 0;">
+					<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+					<li ng-repeat="i in navButtons"
+						ng-class="$parent.offset == i * $parent.limit && 'active'"><a
+						class="" ng-click="current(i)">{{i+1}}</a></li>
+					<li><a ng-hide="(((start+5)*10) + 10) >= count"
+						ng-click="next()">&raquo;</a></li>
+				</ul>
+
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+	<div class="section-content" id="create-questionair"
+		style="display: none;">
+		<div class="shadow-container">
+			<div class="inner-head" style="padding: 34px 20px 40px;">
+				<div class="col-md-4 col-sm-12">
+					<h4>Add Questions</h4>
+				</div>
+				<div class="col-md-4"></div>
+				<div class="col-md-4 col-sm-12">
+					<div class="form-group" style="margin-top: -18px; display: block;">
+						<label for="select-template" class="label-temp">Question
+							For:</label> <select class="form-control flat-control-inner"
+							style="width: 50%;" id="select-ques-type_id"
+							ng-model="questionTypeId" ng-change="changeQuestionFor()">
+							<option ng-value="1">Assessment</option>
+							<option ng-value="2">Survey</option>
+							<option ng-value="3">Interview Assessment</option>
+						</select>
+					</div>
+
+
+
+					<!-- <div class="form-group" style="margin-bottom: 0">
+           		<label for="select-template" class="label-temp">Question For: </label>
+	            <select class="formontrol flat-control-inner" id="select-ques-type_id" ng-model="questionTypeId" ng-change="changeQuestionFor(questionTypeId)">
+	                 <option ng-value="1">Asseement</option>
+	                 <option ng-value="2">Survey</option>
+	            </select>
+            </div> -->
+
+				</div>
+			</div>
+			<div class="col-md-3"></div>
+			<div class="inner-form">
+				<form>
+					<div class="first-phase ques-mar" ng-show="questionTypeId==1">
+						<div class="col-md-6 col-sm-12">
+							<div class="form-group" style="margin-bottom: 0">
+								<label for="select-template" class="label-temp">Select
+									Type of Question*:</label> <select
+									class="form-control flat-control-inner" style="width: 50%;"
+									id="select-que-type" required ng-model="question.questionType"
+									onchange="angular.element(this).scope().changeTemplateType()">
+									<option value="">Type of Question</option>
+									<option value="2">MCQ Single Answer Question</option>
+									<option value="3">MCQ Multi Answer Question</option>
+									<option value="1">Short Answer Question</option>
+								</select>
+							</div>
+						</div>
+
+
+						<div class="col-md-6 col-sm-12">
+							<div class="form-group" style="margin-bottom: 0">
+								<label for="select-template" class="label-temp">Select
+									Difficulty Level:</label> <select
+									class="form-control flat-control-inner" style="width: 50%;"
+									ng-model="question.level">
+									<option value="">Difficulty Level</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+								</select>
+
+
+							</div>
+						</div>
+
+					</div>
+					<div class="first-phase ques-mar" ng-show="questionTypeId==2">
+						<div class="col-md-6 col-sm-12">
+							<div class="form-group" style="margin-bottom: 0">
+								<label for="select-template" class="label-temp">Select
+									Type of Question*:</label> <select
+									class="form-control flat-control-inner" style="width: 50%;"
+									id="select-que-type-survey" required
+									ng-model="question.questionType"
+									onchange="angular.element(this).scope().changeSurvayTemplateType()">
+									<option value="">Type of Question</option>
+									<option value="5">MCQ Single Answer Question</option>
+									<option value="4">Linear Scale Question</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- Start drop down for Interview Assessment -->
+
+					<div class="first-phase ques-mar" ng-show="questionTypeId==3">
+						<div class="col-md-6 col-sm-12">
+							<div class="form-group" style="margin-bottom: 0">
+								<label for="select-template" class="label-temp">Select
+									Type of Question*:</label> <select
+									class="form-control flat-control-inner" style="width: 50%;"
+									id="select-que-type-interview_assessment" required
+									ng-model="question.questionType"
+									onchange="angular.element(this).scope().changeInterviewAssementTemplateType()">
+									<option value="">Type of Question</option>
+									<option value="6">MCQ Single Answer Question</option>
+									<option value="7">MCQ Multi Answer Question</option>
+									<option value="8">Short Answer Question</option>
+									<option value="9">Linear Scale Question</option>
+									</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- End drop down for Interview Assessment -->
+
+
+					<div class="1 box" id="type-ui" style="margin: 0px;"
+						ng-if="question.questionType==1 && questionTypeId==1">
+
+						<div class="row">
+
+							<div class="col-md-6">
+								<!-- <div class="chckbx-cntnr zeromargin-1">
+                      <input type="radio" data-ng-value="false" id="checkVoice" name="check" class="flashadmin" data-ng-model="question.isVoiceEnabled" ng-click="checkRadiobutton(1)>
+                     <input type="radio" id="checkVoice" name="check" class="flashadmin" ng-model="question.isVoiceEnabled" disabled ng-if="question.isvideoEnabled">
+                      <label class="cstmchk_lbladmin" for="checkVoice"></label> 
+                      <p class="voice-head">Voice Response</p>
+                    </div> 
+
+    
+                    <div class="chckbx-cntnr zeromargin-1">
+                      <input type="radio" data-ng-value="false" id="checkVideo" name="check" class="flashadmin" data-ng-model="question.isvideoEnabled" ng-click="checkRadiobutton(2)">
+                    <input type="radio" id="checkVideo" name="check" class="flashadmin" ng-model="question.isvideoEnabled" disabled ng-if="question.isVoiceEnabled">
+                      
+                      <label class="cstmchk_lbladmin" for="checkVideo"></label> 
+                      <p class="voice-head">Video Response</p>
+                    </div>    -->
+								<label style="margin: 0px 18px;" for="select-template"
+									class="label-temp">Select Response:</label> <select
+									class="form-control flat-control-inner" ng-model="response"
+									ng-change="checkResponse(response)" style="width: 166px;">
+									<option value="">Text</option>
+									<option value="1">Voice</option>
+									<option value="2">Video</option>
+
+								</select>
+
+							</div>
+
+							<!--         	      <div class="1 box" id="type-ui">
+
+          <div class="row">
+            <div class="col-md-1" style="margin: 16px 0px;">
+              <input type="number" class="form-control flat-control-inner seq-input" value="{{count+1}}" disabled>
+            </div>
+            <div class="col-md-4" style="margin: 16px 0px;width:35%;">
+			<textarea class="form-control flat-control-inner" ng-model="question.questionText">
+              </textarea>            
+              </div>
+              <div class="col-md-2" style="margin: 20px 0px;width: 10%;">
+              		<div class="micro-toggle">
+	              		<i class="fa fa-microphone phone" aria-hidden="true" ng-if="question.isVoiceEnabled" style="font-size: 20px;"></i>
+	               		<i class="fa fa-microphone-slash phone" aria-hidden="true" ng-if="!question.isVoiceEnabled" style="font-size: 20px;"></i>
+	               		<label class="switch adjust" style="padding-left: 8px;">
+				            <input type="checkbox" id="ans-switch" ng-model="question.isVoiceEnabled">
+				            <span class="slider-switch round checkclick adj-right"></span>
+	          			</label>
+	              </div>
+              </div> -->
+
+							<div class="col-md-3" style="margin: 0px 0px;">
+								<select class="form-control flat-control-inner"
+									ng-model="question.questionMediaType" ng-change="clearFile()">
+									<option value="">Select File Type</option>
+									<option value="1">Image</option>
+									<option value="2">Audio</option>
+									<option value="3">Video</option>
+								</select>
+							</div>
+							<div ng-if="question.questionMediaType>0" class="col-md-3"
+								style="margin: 0px 0px;">
+								<div class="form-group">
+									<input ng-if="question.questionMediaType==1" type="file"
+										name="img[]" class="file" id="que-file-upload7"
+										accept="image/x-png,image/gif,image/jpeg"
+										onchange="angular.element(this).scope().previewMedia(1,7)">
+									<input ng-if="question.questionMediaType==3" type="file"
+										name="img[]" class="file" id="que-file-upload8"
+										accept="video/*"
+										onchange="angular.element(this).scope().previewMedia(3,8)">
+									<input ng-if="question.questionMediaType==2" type="file"
+										name="img[]" class="file" id="que-file-upload9"
+										accept="audio/*"
+										onchange="angular.element(this).scope().previewMedia(2,9)">
+
+									<div class="input-group col-xs-12">
+										<input type="text" class="form-control flat-control-inner"
+											disabled placeholder="Upload File"> <span
+											class="input-group-btn">
+											<button class="browse btn btn-primary input-lg brws_btn_height" type="button">Browse</button>
+										</span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="row">
+							<!--  <div class="col-md-1" style="margin: 16px 0px;">
+              <input type="number" class="form-control flat-control-inner seq-input" value="{{count+1}}" disabled>
+            </div> -->
+							<div class="col-md-12" style="margin: 0px 0px;">
+								<input autocomplete="false" title="{{question.questionText}}"
+									class="form-control flat-control-inner ques-height"
+									ng-model="question.questionText"
+									placeholder="Enter your Question" id="queslist1"
+									ng-change="fetchQuestionList(question.questionText,question.questionType)"
+									list="queLists">
+
+								<datalist id="queLists">
+									<option data-ng-repeat="u in queList" class="{{u.id}}"
+										value="{{u.detail}}">
+								</datalist>
+							</div>
+							<!-- 
+							$("#queslist1").val($("questionId").val());
+							<select id="SelectEntityPrimaryNames">
+    <option id="1">india</option>
+    <option id="2">US</option>
+    <option id="3"></option>
+</select>
+
+<input type="text" class="form-control" id="SelectEntityPrimaryName" style="width: 75%;" placeholder="Title" />
+
+$("#SelectEntityPrimaryName").val($("#SelectEntityPrimaryNames").val());
+							
+							
+							
+							<div class="col-md-2" style="margin: 20px 0px;width: 10%;">
+              		<div class="micro-toggle">
+	              		<i class="fa fa-microphone phone" aria-hidden="true" ng-if="question.isVoiceEnabled" style="font-size: 20px;"></i>
+	               		<i class="fa fa-microphone-slash phone" aria-hidden="true" ng-if="!question.isVoiceEnabled" style="font-size: 20px;"></i>
+	               		<label class="switch adjust" style="padding-left: 8px;">
+				            <input type="checkbox" id="ans-switch" ng-model="question.isVoiceEnabled">
+				            <span class="slider-switch round checkclick adj-right"></span>
+	          			</label>
+	              </div>
+              </div> -->
+
+							<!-- <div class="col-md-1" style="margin: 19px 0px;">
+             <button type="button" class="btn btn-default btn-delete" ng-click="clearQuestion()"><i class="icon-trash-2"></i></button>
+            </div> -->
+							<!--  <div class="col-md-2">
+              <div id="image-container" style="text-align: center;margin: 5px 0;"><p style="margin:25px 0px;">Image</p></div>
+            </div> -->
+
+						</div>
+
+						<div class="clearfix"></div>
+						<div class="col-md-7"></div>
+						<div ng-if="question.questionMediaType>0" class="col-md-5">
+							<div id="image-container"
+								style="text-align: center; margin: 5px -52px; width: 360px;">
+								<img ng-if="showpreview==1" ng-src="{{mediaPath}}"
+									class="img-thumbnail">
+								<audio ng-if="showpreview==2" controls controlsList="nodownload">
+									<source src="{{mediaPath}}" type="audio/ogg">
+								</audio>
+								<!--               	 <video ng-if="showpreview==3" controls controlsList="nodownload" ><source src="{{mediaPath}}" type="video/mp4"></video>   
+ -->
+								<video ng-if="showpreview==3" src="{{mediaPath}}"
+									type="video/mp4" controls controlsList="nodownload"></video>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- <-- done -->
+
+					<div class="3 box" id="type-ui"
+						ng-if="question.questionType==3 && questionTypeId==1">
+						<div class="row">
+							<!--  <div class="col-md-1">
+              <input type="number" class="form-control flat-control-inner seq-input" value="1">
+            </div> -->
+							<div class="col-md-5">
+								<form autocomplete="off">
+									<input autocomplete="off" title="{{question.questionText}}"
+										id="quedetail1" class="form-control flat-control-inner"
+										ng-model="question.questionText"
+										placeholder="Enter your Question" name="quedetail1"
+										ng-blur="selectedQuetionAns()"
+										ng-change="fetchQuestionList(question.questionText,question.questionType)"
+										list="queLists">
+
+
+
+									<datalist id="queLists">
+
+										<option data-ng-repeat="u in queList" value="{{u.detail}}">
+									</datalist>
+								</form>
+							</div>
+
+							<div class="col-md-3">
+
+								<select class="form-control flat-control-inner"
+									ng-model="question.questionMediaType" ng-change="clearFile()">
+									<option value="">Select File Type</option>
+									<option value="1">Image</option>
+									<option value="2">Audio</option>
+									<option value="3">Video</option>
+								</select>
+							</div>
+							<div ng-if="question.questionMediaType>0" class="col-md-3">
+								<div class="form-group">
+									<input ng-if="question.questionMediaType==1" type="file"
+										name="img[]" class="file" id="que-file-upload4"
+										accept="image/x-png,image/gif,image/jpeg"
+										onchange="angular.element(this).scope().previewMedia(1,4)">
+									<input ng-if="question.questionMediaType==3" type="file"
+										name="img[]" class="file" id="que-file-upload5"
+										accept="video/*"
+										onchange="angular.element(this).scope().previewMedia(3,5)">
+									<input ng-if="question.questionMediaType==2" type="file"
+										name="img[]" class="file" id="que-file-upload6"
+										accept="audio/*"
+										onchange="angular.element(this).scope().previewMedia(2,6)">
+
+									<div class="input-group col-xs-12">
+										<input type="text" class="form-control flat-control-inner"
+											disabled placeholder="Upload File"> <span
+											class="input-group-btn">
+											<button class="browse btn btn-primary input-lg brws_btn_height" type="button">Browse</button>
+										</span>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="col-md-1" style="margin: 6px 0px;">
+             <button type="button" class="btn btn-default btn-delete" ng-click="clearQuestion()"><i class="icon-trash-2"></i></button>
+            </div> -->
+
+						</div>
+						<div class="clearfix"></div>
+						<div class="row">
+							<div class="col-md-7">
+								<table class="table editing-tabel">
+									<tr>
+										<td>
+											<div class="chckbx-cntnr"
+												style="float: left; margin-right: 18px; margin-top: 10px;">
+												<input type="checkbox" id="rd0" name="check"
+													class="flashadmin" ng-model="question.ans[0].isCorrect">
+												<label class="cstmchk_lbladmin" for="rd0"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[0].answerText"
+											placeholder="Enter Answer">
+										</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>
+											<div class="chckbx-cntnr"
+												style="float: left; margin-right: 18px; margin-top: 10px;">
+												<input type="checkbox" id="rd1" name="check"
+													class="flashadmin" ng-model="question.ans[1].isCorrect">
+												<label class="cstmchk_lbladmin" for="rd1"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[1].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="chckbx-cntnr"
+												style="float: left; margin-right: 18px; margin-top: 10px;">
+												<input type="checkbox" id="rd2" name="check"
+													class="flashadmin" ng-model="question.ans[2].isCorrect">
+												<label class="cstmchk_lbladmin" for="rd2"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[2].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="chckbx-cntnr"
+												style="float: left; margin-right: 18px; margin-top: 10px;">
+												<input type="checkbox" id="rd3" name="check"
+													class="flashadmin" ng-model="question.ans[3].isCorrect">
+												<label class="cstmchk_lbladmin" for="rd3"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[3].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+
+								</table>
+							</div>
+							<div class="col-md-3">
+
+								<div ng-if="question.questionMediaType>0" class="col-md-5">
+									<div id="image-container"
+										style="text-align: center; margin: 5px -52px; width: 360px;">
+										<img ng-if="showpreview==1" ng-src="{{mediaPath}}"
+											class="img-thumbnail">
+										<audio ng-if="showpreview==2" controls
+											controlsList="nodownload">
+											<source src="{{mediaPath}}" type="audio/ogg">
+										</audio>
+										<video ng-if="showpreview==3" controls
+											controlsList="nodownload">
+											<source src="{{mediaPath}}" type="video/mp4">
+										</video>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="2 box" id="type-ui"
+						ng-if="question.questionType==2 && questionTypeId==1">
+						<div class="row">
+							<!--  <div class="col-md-1">
+              <input type="number" class="form-control flat-control-inner seq-input" value="1">
+            </div> -->
+							<div class="col-md-5">
+								<form autocomplete="off">
+									<input autocomplete="off" title="{{question.questionText}}"
+										class="form-control flat-control-inner" id="quedetail1"
+										name="quedetail1" ng-model="question.questionText"
+										placeholder="Enter your Question"
+										ng-blur="selectedQuetionAns()"
+										ng-change="fetchQuestionList(question.questionText,question.questionType)"
+										list="queLists">
+
+									<datalist id="queLists">
+										<option data-ng-repeat="u in queList" value="{{u.detail}}">
+									</datalist>
+
+								</form>
+								<!--  <input  class="form-control flat-control-inner" id="userdetail" placeholder="employee email" ng-model="searchemployee" ng-change="fetchEmployeeDetails(searchemployee)" list="userDetails">
+				  				<datalist id="userDetails">
+									<option  data-ng-repeat="u in EmployeeNumberList" value="{{u.detail}}"> 
+				  				</datalist> -->
+							</div>
+
+							<div class="col-md-3">
+
+								<select class="form-control flat-control-inner"
+									ng-model="question.questionMediaType" ng-change="clearFile()">
+									<option value="">Select File Type</option>
+									<option value="1">Image</option>
+									<option value="2">Audio</option>
+									<option value="3">Video</option>
+								</select>
+							</div>
+							<div ng-if="question.questionMediaType>0" class="col-md-3">
+								<div class="form-group">
+									<input ng-if="question.questionMediaType==1" type="file"
+										name="img[]" class="file" id="que-file-upload1"
+										accept="image/x-png,image/gif,image/jpeg"
+										onchange="angular.element(this).scope().previewMedia(1,1)">
+									<input ng-if="question.questionMediaType==3" type="file"
+										name="img[]" class="file" id="que-file-upload2"
+										accept="video/*"
+										onchange="angular.element(this).scope().previewMedia(3,2)">
+									<input ng-if="question.questionMediaType==2" type="file"
+										name="img[]" class="file" id="que-file-upload3"
+										accept="audio/*"
+										onchange="angular.element(this).scope().previewMedia(2,3)">
+
+									<div class="input-group col-xs-12">
+										<input type="text" class="form-control flat-control-inner"
+											disabled placeholder="Upload File"> <span
+											class="input-group-btn">
+											<button class="browse btn btn-primary input-lg brws_btn_height" type="button">Browse</button>
+										</span>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="col-md-1" style="margin: 6px 0px;">
+             <button type="button" class="btn btn-default btn-delete" ng-click="clearQuestion()"><i class="icon-trash-2"></i></button>
+            </div> -->
+
+						</div>
+
+						<div class="clearfix"></div>
+						<div class="row">
+							<div class="col-md-7">
+								<table class="table editing-tabel">
+									<tr>
+										<td>
+											<div class="radio-cntnr new-chc" style="float: left;">
+												<input type="radio" id="test1" name="radio-group"
+													data-ng-value="true"
+													data-ng-model="question.ans[0].isCorrect"
+													ng-click="toSetSingleCorrectvalue(0)"> <label
+													for="test1"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[0].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="radio-cntnr new-chc" style="float: left;">
+												<input type="radio" id="test2" name="radio-group"
+													data-ng-value="true"
+													data-ng-model="question.ans[1].isCorrect"
+													ng-click="toSetSingleCorrectvalue(1)"> <label
+													for="test2"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[1].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="radio-cntnr new-chc" style="float: left;">
+												<input type="radio" id="test3" name="radio-group"
+													data-ng-value="true"
+													data-ng-model="question.ans[2].isCorrect"
+													ng-click="toSetSingleCorrectvalue(2)"> <label
+													for="test3"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[2].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="radio-cntnr new-chc" style="float: left;">
+												<input type="radio" id="test4" name="radio-group"
+													data-ng-value="true"
+													data-ng-model="question.ans[3].isCorrect"
+													ng-click="toSetSingleCorrectvalue(3)"> <label
+													for="test4"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[3].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+								</table>
+
+							</div>
+							<div class="col-md-3">
+								<div ng-if="question.questionMediaType>0" class="col-md-5">
+									<div id="image-container"
+										style="text-align: center; margin: 5px -52px; width: 360px;">
+										<img ng-if="showpreview==1" ng-src="{{mediaPath}}"
+											class="img-thumbnail">
+										<audio ng-if="showpreview==2" controls
+											controlsList="nodownload">
+											<source src="{{mediaPath}}" type="audio/ogg">
+										</audio>
+										<video ng-if="showpreview==3" controls
+											controlsList="nodownload">
+											<source src="{{mediaPath}}" type="video/mp4">
+										</video>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				<!-- Interview Assessment > liner question que Start  -->
+				
+						<div class="4 box1" id="type-ui"
+						ng-if="question.questionType==9 && questionTypeId==3">
+						<div class="row">
+							<div class="col-md-8">
+								<form autocomplete="off">
+									<input autocomplete="off" title="{{question.questionText}}"
+										class="form-control flat-control-inner ques-height"
+										id="quedetail1" ng-model="question.questionText"
+										placeholder="Enter your Question"
+										ng-blur="selectedQuetionAns()" name="quedetail1"
+										ng-change="fetchQuestionList(question.questionText,question.questionType)"
+										list="queLists">
+
+									<datalist id="queLists">
+										<option data-ng-repeat="u in queList" value="{{u.detail}}">
+									</datalist>
+								</form>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group" style="margin-bottom: 0">
+									<label for="select-template" class="label-temp">Number
+										of Options*:</label> <select class="form-control flat-control-inner"
+										ng-model="numberOfAns"
+										ng-change="changeNumberOfAnswers(numberOfAns)"
+										style="width: 40%;">
+										<option ng-value="">Number of Answers</option>
+										<option ng-value="5">5</option>
+										<option ng-value="6">6</option>
+										<option ng-value="7">7</option>
+										<option ng-value="8">8</option>
+										<option ng-value="9">9</option>
+										<option ng-value="10">10</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="clearfix"></div>
+						<div class="row">
+							<div class="col-md-6">
+								<table class="table editing-tabel">
+									<tr ng-repeat="a in question.ans">
+										<td>
+											<div class="radio-cntnr new-chc" style="float: left;">
+												<input type="radio" id="test1" name="radio-group"
+													data-ng-value="true" disabled data-ng-model="a.isCorrect">
+												<label for="test1"></label>
+											</div> <input type="text" disabled
+											class="form-control flat-control-inner" style="width: 80%;"
+											ng-model="a.answerText" placeholder="Enter Answer">
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div class="col-md-6">
+								<table class="table editing-tabel">
+									<tr>
+										<td>
+											<!-- <label for="test1"></label> --> <input type="text"
+											class="form-control flat-control-inner" style="width: 80%;"
+											ng-model="question.scaleAnsLabel[0].ansLabel"
+											placeholder="Enter Label For Initial Value"> <input
+											type="text" class="form-control flat-control-inner"
+											style="width: 80%;"
+											ng-model="question.scaleAnsLabel[1].ansLabel"
+											placeholder="Enter Label For Middle Value"> <input
+											type="text" class="form-control flat-control-inner"
+											style="width: 80%;"
+											ng-model="question.scaleAnsLabel[2].ansLabel"
+											placeholder="Enter Label For End Value">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				<!-- Interview Assessment > liner question que End  -->
+
+					<!-- Interview Assessment > MCQ Single ans que Start  -->
+
+					<div class="2 box" id="type-ui"
+						ng-if="question.questionType==6 && questionTypeId==3">
+						<div class="row">
+							<div class="col-md-5">
+								<form autocomplete="off">
+									<input autocomplete="off" title="{{question.questionText}}"
+									class="form-control flat-control-inner" id="quedetail1"
+										name="quedetail1" ng-model="question.questionText"
+										placeholder="Enter your Question"ng-blur="selectedQuetionAns()"
+										ng-change="fetchQuestionList(question.questionText,question.questionType)"
+										list="queLists">
+
+									<datalist id="queLists">
+										<option data-ng-repeat="u in queList" value="{{u.detail}}">
+									</datalist>
+								</form>
+							</div>
+
+							<div class="col-md-3">
+							<!-- <select class="form-control flat-control-inner" 
+								ng-model="question.questionMediaType" ng-change="clearFile()">
+									<option value="">Select File Type</option>
+									<option value="1">Image</option>
+									<option value="2">Audio</option>
+									<option value="3">Video</option>
+								</select> -->
+							</div>
+							<div ng-if="question.questionMediaType>0" class="col-md-3">
+								<div class="form-group">
+									<input ng-if="question.questionMediaType==1" type="file"
+										name="img[]" class="file" id="que-file-upload1"
+										accept="image/x-png,image/gif,image/jpeg"
+										onchange="angular.element(this).scope().previewMedia(1,1)">
+									<input ng-if="question.questionMediaType==3" type="file"
+										name="img[]" class="file" id="que-file-upload2"
+										accept="video/*"
+										onchange="angular.element(this).scope().previewMedia(3,2)">
+									<input ng-if="question.questionMediaType==2" type="file"
+										name="img[]" class="file" id="que-file-upload3"
+										accept="audio/*"
+										onchange="angular.element(this).scope().previewMedia(2,3)">
+									<div class="input-group col-xs-12">
+										<input type="text" class="form-control flat-control-inner"
+											disabled placeholder="Upload File"> <span
+											class="input-group-btn">
+											<button class="browse btn btn-primary input-lg" type="button">Browse</button>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="clearfix"></div>
+						<div class="row">
+							<div class="col-md-7">
+								<table class="table editing-tabel">
+									<tr>
+										<td>
+											<div class="radio-cntnr new-chc" style="float: left;">
+												<input type="radio" id="test1" name="radio-group"
+												data-ng-value="true" disabled
+													data-ng-model="question.ans[0].isCorrect"
+													ng-click="toSetSingleCorrectvalue(0)"> <label
+													for="test1"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[0].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+									
+									<tr>
+										<td>
+											<div class="radio-cntnr new-chc" style="float: left;">
+												<input type="radio" id="test2" name="radio-group"
+												 data-ng-value="true" disabled
+													data-ng-model="question.ans[1].isCorrect"
+													ng-click="toSetSingleCorrectvalue(1)"> <label
+													for="test2"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[1].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="radio-cntnr new-chc" style="float: left;">
+												<input type="radio" id="test3" name="radio-group"
+												 data-ng-value="true" disabled
+													data-ng-model="question.ans[2].isCorrect"
+													ng-click="toSetSingleCorrectvalue(2)"> <label
+													for="test3"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[2].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="radio-cntnr new-chc" style="float: left;">
+												<input type="radio" id="test4" name="radio-group"
+												 data-ng-value="true" disabled
+													data-ng-model="question.ans[3].isCorrect"
+													ng-click="toSetSingleCorrectvalue(3)"> <label
+													for="test4"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[3].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+								</table>
+
+							</div>
+							<div class="col-md-3">
+								<div ng-if="question.questionMediaType>0" class="col-md-5">
+									<div id="image-container"
+										style="text-align: center; margin: 5px -52px; width: 360px;">
+										<img ng-if="showpreview==1" ng-src="{{mediaPath}}"
+											class="img-thumbnail">
+										<audio ng-if="showpreview==2" controls
+											controlsList="nodownload">
+											<source src="{{mediaPath}}" type="audio/ogg">
+										</audio>
+										<video ng-if="showpreview==3" controls
+											controlsList="nodownload">
+											<source src="{{mediaPath}}" type="video/mp4">
+										</video>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Interview Assessment > MCQ Single ans que End  -->
+
+
+					<!-- Interview Assessment > MCQ Multi ans que Start  -->
+
+					<div class="2 box" id="type-ui"
+						ng-if="question.questionType==7 && questionTypeId==3">
+						<div class="row">
+
+							<div class="col-md-5">
+								<form autocomplete="off">
+									<input autocomplete="off" title="{{question.questionText}}"
+										id="quedetail1" 
+										class="form-control flat-control-inner"
+										ng-model="question.questionText"
+										placeholder="Enter your Question"name="quedetail1"
+										ng-blur="selectedQuetionAns()"
+										ng-change="fetchQuestionList(question.questionText,question.questionType)"
+										list="queLists">
+
+									<datalist id="queLists">
+										<option data-ng-repeat="u in queList" value="{{u.detail}}">
+									</datalist>
+								</form>
+
+							</div>
+
+							<div class="col-md-3">
+
+								<!-- <select class="form-control flat-control-inner"
+								ng-model="question.questionMediaType" ng-change="clearFile()">
+									<option value="">Select File Type</option>
+									<option value="1">Image</option>
+									<option value="2">Audio</option>
+									<option value="3">Video</option>
+								</select> -->
+							</div>
+							<div ng-if="question.questionMediaType>0" class="col-md-3">
+								<div class="form-group">
+									<input ng-if="question.questionMediaType==1" type="file"
+										name="img[]" class="file" id="que-file-upload4"
+										accept="image/x-png,image/gif,image/jpeg"
+										onchange="angular.element(this).scope().previewMedia(1,4)">
+									<input ng-if="question.questionMediaType==3" type="file"
+										name="img[]" class="file" id="que-file-upload5"
+										accept="video/*"
+										onchange="angular.element(this).scope().previewMedia(3,5)">
+									<input ng-if="question.questionMediaType==2" type="file"
+										name="img[]" class="file" id="que-file-upload6"
+										accept="audio/*"
+										onchange="angular.element(this).scope().previewMedia(2,6)">
+
+									<div class="input-group col-xs-12">
+										<input type="text" class="form-control flat-control-inner"
+											disabled placeholder="Upload File"> <span
+											class="input-group-btn">
+											<button class="browse btn btn-primary input-lg" type="button">Browse</button>
+										</span>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+
+						<div class="clearfix"></div>
+						<div class="row">
+							<div class="col-md-7">
+								<table class="table editing-tabel">
+									<tr>
+										<td>
+											<div class="chckbx-cntnr"
+												style="float: left; margin-right: 18px; margin-top: 10px;">
+												<input type="checkbox" name="check" id="rd0" disabled
+													class="flashadmin" ng-model="question.ans[0].isCorrect">
+												<label class="cstmchk_lbladmin" for="rd0"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[0].answerText" 
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+									
+									<tr>
+										<td>
+											<div class="chckbx-cntnr"
+												style="float: left; margin-right: 18px; margin-top: 10px;">
+												<input type="checkbox" name="check" id="rd1" disabled
+													class="flashadmin" ng-model="question.ans[1].isCorrect">
+												<label class="cstmchk_lbladmin" for="rd1"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[1].answerText" 
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="chckbx-cntnr"
+												style="float: left; margin-right: 18px; margin-top: 10px;">
+												<input type="checkbox" name="check" id="rd2" disabled
+													class="flashadmin" ng-model="question.ans[2].isCorrect">
+												<label class="cstmchk_lbladmin" for="rd2"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;"	 ng-model="question.ans[2].answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="chckbx-cntnr"
+												style="float: left; margin-right: 18px; margin-top: 10px;">
+												<input type="checkbox" name="check" id="rd3" disabled
+													class="flashadmin" ng-model="question.ans[3].isCorrect">
+												<label class="cstmchk_lbladmin" for="rd3"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="question.ans[3].answerText" 
+											 placeholder="Enter Answer">
+										</td>
+									</tr>
+								</table>
+
+							</div>
+							<div class="col-md-3">
+								<div ng-if="question.questionMediaType>0" class="col-md-5">
+									<div id="image-container"
+										style="text-align: center; margin: 5px -52px; width: 360px;">
+										<img ng-if="showpreview==1" ng-src="{{mediaPath}}"
+											class="img-thumbnail">
+										<audio ng-if="showpreview==2" controls
+											controlsList="nodownload">
+											<source src="{{mediaPath}}" type="audio/ogg">
+										</audio>
+										<video ng-if="showpreview==3" controls
+											controlsList="nodownload">
+											<source src="{{mediaPath}}" type="video/mp4">
+										</video>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Interview Assessment > MCQ Multi ans que End  -->
+
+					<!-- Interview Assessment > Short ans que Start  -->
+
+					<div class="1 box" id="type-ui" style="margin: 0px;"
+						ng-if="question.questionType==8 && questionTypeId==3">
+
+						<div class="row">
+
+							<div class="col-md-6">
+
+								<label style="margin: 0px 18px;" for="select-template"
+									class="label-temp">Select Response:</label> <select
+									class="form-control flat-control-inner" ng-model="response"
+									ng-change="checkResponse(response)" style="width: 166px;">
+									<option value="">Text</option>
+									<option value="1">Voice</option>
+									<option value="2">Video</option>
+								</select>
+							</div>
+							<!-- <div class="col-md-3" style="margin: 0px 0px;">
+								<select class="form-control flat-control-inner"
+									ng-model="question.questionMediaType" ng-change="clearFile()">
+									<option value="">Select File Type</option>
+									<option value="1">Image</option>
+									<option value="2">Audio</option>
+									<option value="3">Video</option>
+								</select>
+							</div> -->
+							<div ng-if="question.questionMediaType>0" class="col-md-3"
+								style="margin: 0px 0px;">
+								<div class="form-group">
+									<input ng-if="question.questionMediaType==1" type="file"
+										name="img[]" class="file" id="que-file-upload7"
+										accept="image/x-png,image/gif,image/jpeg"
+										onchange="angular.element(this).scope().previewMedia(1,7)">
+									<input ng-if="question.questionMediaType==3" type="file"
+										name="img[]" class="file" id="que-file-upload8"
+										accept="video/*"
+										onchange="angular.element(this).scope().previewMedia(3,8)">
+									<input ng-if="question.questionMediaType==2" type="file"
+										name="img[]" class="file" id="que-file-upload9"
+										accept="audio/*"
+										onchange="angular.element(this).scope().previewMedia(2,9)">
+
+									<div class="input-group col-xs-12">
+										<input type="text" class="form-control flat-control-inner"
+											disabled placeholder="Upload File"> <span
+											class="input-group-btn">
+											<button class="browse btn btn-primary input-lg" type="button">Browse</button>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12" style="margin: 0px 0px;">
+								<input autocomplete="false" title="{{question.questionText}}"
+									class="form-control flat-control-inner ques-height"
+									ng-model="question.questionText"
+									placeholder="Enter your Question" id="queslist1"
+									ng-change="fetchQuestionList(question.questionText,question.questionType)"
+									list="queLists">
+
+								<datalist id="queLists">
+									<option data-ng-repeat="u in queList" class="{{u.id}}"
+										value="{{u.detail}}">
+								</datalist>
+							</div>
+						</div>
+
+						<div class="clearfix"></div>
+						<div class="col-md-7"></div>
+						<div ng-if="question.questionMediaType>0" class="col-md-5">
+							<div id="image-container"
+								style="text-align: center; margin: 5px -52px; width: 360px;">
+								<img ng-if="showpreview==1" ng-src="{{mediaPath}}"
+									class="img-thumbnail">
+								<audio ng-if="showpreview==2" controls controlsList="nodownload">
+									<source src="{{mediaPath}}" type="audio/ogg">
+								</audio>
+								<video ng-if="showpreview==3" src="{{mediaPath}}"
+									type="video/mp4" controls controlsList="nodownload"></video>
+							</div>
+						</div>
+					</div>
+
+					<!-- Interview Assessment > Short ans que End  -->
+
+					<!-- Interview Assessment > Voice Recorded Start  -->
+
+					<!-- <div class="1 box" style="margin: 0px;"
+						ng-if="question.questionType==5 && questionTypeId==3">
+
+						<div class="row">
+							<div class="col-md-12" style="margin: 0px 0px;">
+								<input class="form-control flat-control-inner ques-height"
+									placeholder="Enter your Question">
+							</div>
+						</div>
+					</div>
+ -->
+					<!-- Interview Assessment > Voice Recorded End  -->
+
+					<!-- Interview Assessment > Video Recorded Start  -->
+
+					<!-- <div class="1 box" style="margin: 0px;"
+						ng-if="question.questionType==6 && questionTypeId==3">
+
+						<div class="row">
+							<div class="col-md-12" style="margin: 0px 0px;">
+								<input class="form-control flat-control-inner ques-height"
+									placeholder="Enter your Question">
+							</div>
+						</div>
+					</div>
+ -->
+
+					<!-- Interview Assessment > Video Recorded End  -->
+
+					<div class="4 box1" id="type-ui"
+						ng-if="question.questionType==4 && questionTypeId==2">
+						<div class="row">
+							<!--  <div class="col-md-1">
+              <input type="number" class="form-control flat-control-inner seq-input" value="1">
+            </div> -->
+							<div class="col-md-8">
+								<form autocomplete="off">
+									<input autocomplete="off" title="{{question.questionText}}"
+										class="form-control flat-control-inner ques-height"
+										id="quedetail1" ng-model="question.questionText"
+										placeholder="Enter your Question"
+										ng-blur="selectedQuetionAns()" name="quedetail1"
+										ng-change="fetchQuestionList(question.questionText,question.questionType)"
+										list="queLists">
+
+
+									<datalist id="queLists">
+										<option data-ng-repeat="u in queList" value="{{u.detail}}">
+									</datalist>
+								</form>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group" style="margin-bottom: 0">
+									<label for="select-template" class="label-temp">Number
+										of Options*:</label> <select class="form-control flat-control-inner"
+										ng-model="numberOfAns"
+										ng-change="changeNumberOfAnswers(numberOfAns)"
+										style="width: 40%;">
+										<option ng-value="">Number of Answers</option>
+
+										<option ng-value="5">5</option>
+										<option ng-value="6">6</option>
+										<option ng-value="7">7</option>
+										<option ng-value="8">8</option>
+										<option ng-value="9">9</option>
+										<option ng-value="10">10</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="clearfix"></div>
+						<div class="row">
+							<div class="col-md-6">
+								<table class="table editing-tabel">
+									<tr ng-repeat="a in question.ans">
+										<td>
+											<div class="radio-cntnr new-chc" style="float: left;">
+												<input type="radio" id="test1" name="radio-group"
+													data-ng-value="true" disabled data-ng-model="a.isCorrect">
+												<label for="test1"></label>
+											</div> <input type="text" disabled
+											class="form-control flat-control-inner" style="width: 80%;"
+											ng-model="a.answerText" placeholder="Enter Answer">
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div class="col-md-6">
+								<table class="table editing-tabel">
+									<tr>
+										<td>
+											<!-- <label for="test1"></label> --> <input type="text"
+											class="form-control flat-control-inner" style="width: 80%;"
+											ng-model="question.scaleAnsLabel[0].ansLabel"
+											placeholder="Enter Label For Initial Value"> <input
+											type="text" class="form-control flat-control-inner"
+											style="width: 80%;"
+											ng-model="question.scaleAnsLabel[1].ansLabel"
+											placeholder="Enter Label For Middle Value"> <input
+											type="text" class="form-control flat-control-inner"
+											style="width: 80%;"
+											ng-model="question.scaleAnsLabel[2].ansLabel"
+											placeholder="Enter Label For End Value">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<div class="5 box1" id="type-ui"
+						ng-if="question.questionType==5 && questionTypeId==2">
+						<div class="row">
+							<!--  <div class="col-md-1">
+              <input type="number" class="form-control flat-control-inner seq-input" value="1">
+            </div> -->
+							<div class="col-md-12">
+								<form autocomplete="off">
+									<input autocomplete="off" title="{{question.questionText}}"
+										class="form-control flat-control-inner ques-height"
+										id="quedetail1" ng-model="question.questionText"
+										placeholder="Enter your Question"
+										ng-blur="selectedQuetionAns()"
+										ng-change="fetchQuestionList(question.questionText,question.questionType)"
+										list="queLists">
+
+									<datalist id="queLists">
+										<option data-ng-repeat="u in queList" value="{{u.detail}}">
+									</datalist>
+								</form>
+							</div>
+
+						</div>
+
+						<div class="clearfix"></div>
+						<div class="row">
+							<div class="col-md-7">
+								<table class="table editing-tabel">
+									<tr ng-repeat="a in question.ans">
+										<td>
+											<div class="radio-cntnr new-chc" style="float: left;">
+												<input type="radio" id="test1" name="radio-group"
+													data-ng-value="true" disabled data-ng-model="a.isCorrect">
+												<label for="test1"></label>
+											</div> <input type="text" class="form-control flat-control-inner"
+											style="width: 60%;" ng-model="a.answerText"
+											placeholder="Enter Answer">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+
+
+					<div ng-if="questionTypeId == 1" id="TagAll" class="row">
+						<div class="head-applicable">
+							<h4>Add Question for the following</h4>
+						</div>
+						<div class="col-md-3 col-sm-12">
+							<div class="form-group">
+								<label for="status" class=''>Select Brand*</label>
+								<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Brand <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="allbrands" name="check"
+													class="flashuser" ng-model="selectAllbrands"
+													ng-click="selectAllTags(selectAllbrands,1)"> <label
+													class="cstmchk_lbluser" for="allbrands">Select All</label>
+											</div>
+										</li>
+										<li ng-repeat="br in brandlist">
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="brand{{$index}}" name="check"
+													class="flashuser" ng-model="checkedbrand"
+													ng-change="addToTag(checkedbrand,br.id,1)"
+													ng-checked="selectAllbrands"> <label
+													class="cstmchk_lbluser" for="brand{{$index}}">{{br.brandName}}</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-12">
+							<div class="form-group">
+								<label for="status" class=''>Select Ship*</label>
+								<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Ship <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="allships" name="check"
+													class="flashuser" ng-model="selectAllShips"
+													ng-click="selectAllTags(selectAllShips,2)" disabled>
+												<label class="cstmchk_lbluser" for="allships">Select
+													All</label>
+											</div>
+										</li>
+										<li ng-repeat="s in shiplist">
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="ship{{$index}}" name="check"
+													class="flashuser" ng-model="checkedship"
+													ng-change="addToTag(checkedship,s.id,2)"
+													ng-checked="selectAllShips" disabled> <label
+													class="cstmchk_lbluser" for="ship{{$index}}">{{s.name}}</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-12">
+							<div class="form-group">
+								<label for="status" class=''>Select Department*</label>
+								<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Department <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="alldept" name="check"
+													class="flashuser" ng-model="selectAlldept"
+													ng-change="selectAllTags(selectAlldept,3);filterpositionlist(selectAlldept,0)">
+												<label class="cstmchk_lbluser" for="alldept">Select
+													All</label>
+											</div>
+										</li>
+										<li ng-repeat="d in departmentlist">
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="dept{{$index}}" name="check"
+													class="flashuser" ng-model="checkeddept"
+													ng-change="addToTag(checkeddept,d.id,3);filterpositionlist(checkeddept,d.id)"
+													ng-checked="selectAlldept"> <label
+													class="cstmchk_lbluser" for="dept{{$index}}">{{d.categoryName}}</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-sm-12">
+							<div class="form-group">
+								<label for="status" class=''>Select Position*</label>
+								<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Position <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="allposition" name="check"
+													class="flashuser" ng-model="selectAllPosition"
+													ng-click="selectAllTags(selectAllPosition,4)"> <label
+													class="cstmchk_lbluser" for="allposition">Select
+													All</label>
+											</div>
+										</li>
+										<li ng-repeat="p in filterPosition">
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="postion{{$index}}" name="check"
+													class="flashuser" ng-model="checkedpos"
+													ng-change="addToTag(checkedpos,p.id,4)"
+													ng-checked="selectAllPosition"> <label
+													class="cstmchk_lbluser" for="postion{{$index}}">{{p.positonname}}</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div ng-show="questionTypeId == 1" class="col-md-3 col-sm-12">
+							<div class="form-group">
+								<label for="status" class=''>Select Category*</label>
+								<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Category <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="allCategory" name="check"
+													class="flashuser" ng-model="selectAllCategories"
+													ng-click="selectAllTags(selectAllCategories,5)"> <label
+													class="cstmchk_lbluser" for="allCategory">Select
+													All</label>
+											</div>
+										</li>
+										<li ng-repeat="p in questionCategory">
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="category{{$index}}" name="check"
+													class="flashuser" ng-model="checkedcat"
+													ng-change="addToTag(checkedcat,p.id,5)"
+													ng-checked="selectAllCategories"> <label
+													class="cstmchk_lbluser" for="category{{$index}}">{{p.categoryName}}</label>
+											</div>
+										</li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div ng-if="questionTypeId == 3" id="TagAll" class="row">
+						<div class="head-applicable">
+							<h4>Add Question for the following</h4>
+						</div>
+						<div class="col-md-3 col-sm-12">
+							<div class="form-group">
+								<label for="status" class=''>Select Brand*</label>
+								<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Brand <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="allbrands" name="check"
+													class="flashuser" ng-model="selectAllbrands"
+													ng-click="selectAllTags(selectAllbrands,1)"> <label
+													class="cstmchk_lbluser" for="allbrands">Select All</label>
+											</div>
+										</li>
+										<li ng-repeat="br in brandlist">
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="brand{{$index}}" name="check"
+													class="flashuser" ng-model="checkedbrand"
+													ng-change="addToTag(checkedbrand,br.id,1)"
+													ng-checked="selectAllbrands"> <label
+													class="cstmchk_lbluser" for="brand{{$index}}">{{br.brandName}}</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-12">
+							<div class="form-group">
+								<label for="status" class=''>Select Ship*</label>
+								<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Ship <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="allships" name="check"
+													class="flashuser" ng-model="selectAllShips"
+													ng-click="selectAllTags(selectAllShips,2)" disabled>
+												<label class="cstmchk_lbluser" for="allships">Select
+													All</label>
+											</div>
+										</li>
+										<li ng-repeat="s in shiplist">
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="ship{{$index}}" name="check"
+													class="flashuser" ng-model="checkedship"
+													ng-change="addToTag(checkedship,s.id,2)"
+													ng-checked="selectAllShips" disabled> <label
+													class="cstmchk_lbluser" for="ship{{$index}}">{{s.name}}</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-12">
+							<div class="form-group">
+								<label for="status" class=''>Select Department*</label>
+								<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Department <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="alldept" name="check"
+													class="flashuser" ng-model="selectAlldept"
+													ng-change="selectAllTags(selectAlldept,3);filterpositionlist(selectAlldept,0)">
+												<label class="cstmchk_lbluser" for="alldept">Select
+													All</label>
+											</div>
+										</li>
+										<li ng-repeat="d in departmentlist">
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="dept{{$index}}" name="check"
+													class="flashuser" ng-model="checkeddept"
+													ng-change="addToTag(checkeddept,d.id,3);filterpositionlist(checkeddept,d.id)"
+													ng-checked="selectAlldept"> <label
+													class="cstmchk_lbluser" for="dept{{$index}}">{{d.categoryName}}</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-sm-12">
+							<div class="form-group">
+								<label for="status" class=''>Select Position*</label>
+								<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Position <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="allposition" name="check"
+													class="flashuser" ng-model="selectAllPosition"
+													ng-click="selectAllTags(selectAllPosition,4)"> <label
+													class="cstmchk_lbluser" for="allposition">Select
+													All</label>
+											</div>
+										</li>
+										<li ng-repeat="p in filterPosition">
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="postion{{$index}}" name="check"
+													class="flashuser" ng-model="checkedpos"
+													ng-change="addToTag(checkedpos,p.id,4)"
+													ng-checked="selectAllPosition"> <label
+													class="cstmchk_lbluser" for="postion{{$index}}">{{p.positonname}}</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div ng-show="questionTypeId == 3" class="col-md-3 col-sm-12">
+							<div class="form-group">
+								<label for="status" class=''>Select Category*</label>
+								<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Category <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="allCategory" name="check"
+													class="flashuser" ng-model="selectAllCategories"
+													ng-click="selectAllTags(selectAllCategories,5)"> <label
+													class="cstmchk_lbluser" for="allCategory">Select
+													All</label>
+											</div>
+										</li>
+										<li ng-repeat="p in questionCategory">
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="category{{$index}}" name="check"
+													class="flashuser" ng-model="checkedcat"
+													ng-change="addToTag(checkedcat,p.id,5)"
+													ng-checked="selectAllCategories"> <label
+													class="cstmchk_lbluser" for="category{{$index}}">{{p.categoryName}}</label>
+											</div>
+										</li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="btn-cntnr"
+						style="margin-top: 20px; margin-bottom: 20px; text-align: left !important;">
+						<button type="button" class="btn btn-default btn-bluer"
+							ng-click="saveQustionbank(question)" id="update_slot-btn">Save</button>
+						<a id="cancelToAddQuestion" ng-click="cancelToAddQuestion()">Cancel</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!----Modal delete-list---->
+	<div id="deletelist" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm add-brand">
+
+			<!-- Modal content-->
+			<div class="modal-content flat-modal">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">x</button>
+					<h4 class="modal-title common-title" style="margin-left: 0;">Delete
+						Record</h4>
+				</div>
+				<div class="modal-body flat-body">
+					<div class="clearfix" ng-value="getCheckedId()"></div>
+					Are you sure want to delete {{getCheckedQuesid.length}} records?
+					<div class="modal-footer text-left">
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							id="show_ass" ng-click="deletefromList()">Delete</button>
+						<a class="btn btn-link">Cancel</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="media" role="dialog">
+	<div class="modal-dialog add-brand">
+
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">X</button>
+			</div>
+			<div class="modal-body">
+
+
+				<div class="media-popup" ng-if="MediaType == 1">
+					<img src="{{MediaLink}}" class="img-responsive question-file">
+				</div>
+
+				<div class="media-popup" ng-if="MediaType == 3">
+					<video width="568" id="mediaVideo" height="240" src="{{MediaLink}}"
+						type="video/mp4" controls controlsList="nodownload"></video>
+				</div>
+
+				<div class="media-popup" ng-if="MediaType == 2">
+					<audio width="568" id="audioMedia" height="240" controls
+						controlsList="nodownload">
+						<source src="{{MediaLink}}" type="audio/ogg">
+					</audio>
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="row"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$("#questionnaire-add").click(function(g) {
+		g.preventDefault();
+		$("#create-questionair").show();
+		$("#questionnaire-tabel").hide();
+	});
+
+	$("#cancelToAddQuestion").click(function(g) {
+		g.preventDefault();
+		$("#create-questionair").hide();
+		$("#questionnaire-tabel").show();
+	});
+</script>
+
+
+
+<!--new image upload part-->
+<script type="text/javascript">
+	/* $("#que-file-upload1").on('change', function() {
+
+	 if (typeof(FileReader) == "undefined") {
+	   alert("Your browser doesn't support HTML5, Please upgrade your browser");
+	 } else {
+
+	   var container = $("#image-container");
+
+	   //remove all previous selected files
+	   container.empty();
+
+	   //create instance of FileReader
+	   var reader = new FileReader();
+	   reader.onload = function(e) {
+	     $("<img />", {
+	       "src": e.target.result
+	     }).appendTo(container).width(100).height(100).addClass('img-thumbnail');
+	   }
+	   
+	   reader.readAsDataURL($(this)[0].files[0]);
+	 }
+	});  */
+</script>
+
+
+<script type="text/javascript">
+	$(document).on('click', '.browse', function() {
+		var file = $(this).parent().parent().parent().find('.file');
+		file.trigger('click');
+	});
+	$(document).on(
+			'change',
+			'.file',
+			function() {
+				$(this).parent().find('.form-control').val(
+						$(this).val().replace(/C:\\fakepath\\/i, ''));
+			});
+</script>
+
+
+<script type="text/javascript">
+	/* $(document).ready(function(){
+	 $("#select-que-type").change(function(){
+	 $("#type-ui").remove();
+	 $(this).find("option:selected").each(function(){
+	 var optionValue = $(this).attr("value");
+	 if(optionValue){
+	 $(".box").not("." + optionValue).hide();
+	 $("." + optionValue).show();
+	 } else{
+	 $(".box").hide();
+	 }
+	 });
+	 }).change();
+	 }); */
+</script>
+<script type="text/javascript">
+	/*  $("#select-que-type-survey").change(function(){
+	 	$("#type-ui").remove();
+	     $(this).find("option:selected").each(function(){
+	         var optionValue = $(this).attr("value");
+	         if(optionValue){
+	             $(".box1").not("." + optionValue).hide();
+	             $("." + optionValue).show();
+	         } else{
+	             $(".box1").hide();
+	         }
+	     });
+	 }).change();
+	}); */
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#add-que-bk").click(function() {
+			$(".first-phase").toggle();
+		});
+	});
+</script>
+
+<script>
+	$('body').on("click", ".dropdown-menu", function(e) {
+		$(this).parent().is(".open") && e.stopPropagation();
+	});
+</script>
+<script type="text/javascript">
+	$("#id_of_textbox").keyup(function(event) {
+		if (event.keyCode === 13) {
+			$("#id_of_button").click();
+		}
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$(this).tooltip();
+
+	});
+
+	function enableField() {
+
+		$("#quedetail1").attr('readonly', false);
+	}
+</script>

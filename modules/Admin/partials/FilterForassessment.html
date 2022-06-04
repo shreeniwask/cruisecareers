@@ -1,0 +1,251 @@
+<div class="tab-pane fade in admin-page">
+     
+      <div class="section-heading">
+        <h4 ng-if="newcreation == true && surveyFlag == false && interviewassesmentFlag == false">Assessment Master</h4>
+        <h4 ng-if="newcreation == true && surveyFlag == true && interviewassesmentFlag == false">Survey Master</h4>
+        <h4 ng-if="newcreation == true && surveyFlag == false && interviewassesmentFlag == true">Interview Assessment Master</h4>
+        <p></p>
+      </div>
+ <div class="section-content " id="create-assessment" >
+      <div class="shadow-container">
+          <div class="inner-head">
+            <h4 ng-if="newcreation == true && surveyFlag == false && interviewassesmentFlag == false">Add Assessment</h4>
+            <h4 ng-if="newcreation == true && surveyFlag == true && interviewassesmentFlag == false">Add Survey</h4>
+            <h4 ng-if="newcreation == true && surveyFlag == false && interviewassesmentFlag == true">Add Interview Assessment</h4>
+            <h4 ng-if="newcreation == false && surveyFlag == false && interviewassesmentFlag == false">Update Assessment</h4>
+            <h4 ng-if="newcreation == false && surveyFlag == true && interviewassesmentFlag == false">Update Survey</h4>
+            <h4 ng-if="newcreation == false && surveyFlag == false && interviewassesmentFlag == true">Update Interview Assessment</h4>
+          </div>
+          <form ng-submit="filter(data);">
+          <div class="inner-form" style="display:inline-block;width:100%;">
+           <div class="first-phase" style="display:inline-block;width:100%;">
+           
+              <div ng-if="surveyFlag == false && interviewassesmentFlag == false" class="col-md-3 col-sm-12">
+                  <p >Assessment Name* :</p>
+                  
+                  <div class="form-group">
+                    <input type="text" name="brand-name" class="brand-name" ng-model="data.assessmentName" required>
+                 </div>
+              </div>
+              
+              
+              <!-- <div class="col-md-1"></div> -->
+              <div ng-if="surveyFlag == true && interviewassesmentFlag == false" class="col-md-7 col-sm-12">
+               	<div class="form-group" style="display: inline-block;">
+                	<label>Survey Name* :</label>
+                </div>
+                    <input type="text" name="brand-name" placeholder="Enter Survey Name" class="brand-name" style="width: 60%;" ng-model="data.assessmentName" required>
+              </div>
+              <div ng-if="surveyFlag == false && interviewassesmentFlag == true" class="col-md-7 col-sm-12">
+               	<div class="form-group" style="display: inline-block;">
+                	<label> Interview Assessment Name* :</label>
+                </div>
+                    <input type="text" name="brand-name" placeholder="Enter Interview Assessment Name" class="brand-name" style="width: 60%;" ng-model="data.assessmentName" required>
+              </div>
+              
+              <div ng-if="surveyFlag == true && interviewassesmentFlag == false" class="col-md-4 col-sm-12">
+              	<div class="next-btn text-right">
+                    	<button type="submit" ng-if="!offlineFlage" class="btn btn-default btn-bluer" id="update_slot-btn" style="margin-bottom: 10px;">Next</button>
+                    	
+                    	<span ng-click="saveOfflineAssessment(data)" ng-if="offlineFlage == true && newcreation == true" class="buttonTospan" id="update_slot-btn" style="margin-bottom: 10px;" >Save</span>
+                    	<span ng-click="UpdateOfflineAssessment(data)" ng-if="offlineFlage == true && newcreation == false" class="buttonTospan" id="update_slot-btn" style="margin-bottom: 10px;" >Update</span>
+               			<a href="" ng-click="BackFromFilterAssessment()" class="ng-scope">Back</a>
+                    </div>
+              
+              </div>
+              
+              <!-- <div class="col-md-3 col-sm-12">
+                  <p>Create Assessment for* :</p>
+                  <div class="form-group">
+                  
+                    <select class="form-control flat-control-inner" id="select-assessment-type" ng-model="data.assessmentFor" ng-change="setFlag(data.assessmentFor)" require>
+                      <option value="" > --Please Select-- </option>
+                      <option value="1">Employee</option>
+                      <option value="2">Candidate</option>
+                    </select>
+                    
+                  </div> -->
+                  
+                  
+                   <div ng-if="surveyFlag == false && interviewassesmentFlag == false" class="col-md-3 col-sm-12">
+                  <p ng-if="surveyFlag == false && interviewassesmentFlag == false">Create Assessment for* :</p>
+                  <p ng-if="surveyFlag == true && interviewassesmentFlag == false">Create Survey for* :</p>
+                  <div class="form-group">
+                  
+                    <select class="form-control flat-control-inner" id="" ng-model="data.assessmentFor" ng-change="setFlag(data.assessmentFor)" required>
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="q in AssessmentforList" ng-value="{{q.id}}" ng-selected="q.id==data.assessmentFor">{{q.name}}</option>
+                          </select>
+                    
+                  </div>  
+                  
+              </div>
+              
+              
+
+              <div ng-if="surveyFlag == false && interviewassesmentFlag == false" class="col-md-3 col-sm-12">
+                  <p>Select Assessment Type* :</p>
+                  <div class="form-group">                  
+                     <select class="form-control flat-control-inner" id="" ng-model="data.assessmentType" ng-change="setAssessmentTypeFlag(data.assessmentType)" required>
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="q in assessmenttype" ng-value="{{q.id}}" ng-selected="q.id==data.assessmentType">{{q.assessmentType}}</option>
+                          </select>
+                  </div>
+              </div>  
+              <!-- <div ng-if="surveyFlag == true" class="">
+                   
+                  <div class="form-group">                  
+                     <select class="form-control flat-control-inner" id="" ng-model="data.assessmentType" ng-change="setAssessmentTypeFlag(data.assessmentType)" required>
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="q in assessmenttype" ng-value="{{q.id}}" ng-selected="q.id==data.assessmentType">{{q.assessmentType}}</option>
+                          </select>
+                           <input type="hidden" ng-model="data.assessmentType" value="1">   
+                          
+                  </div>
+              </div>  --> 
+			
+              <div class="col-md-2 col-sm-12" ng-if="data.assessmentType != 3 && surveyFlag == false && interviewassesmentFlag == false">
+              	<p style="font-size: 14px;">Self Assessment <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="top" title="Self Assessment can not be assigned to user.It is auto assigned depends on applied job by user."></i></p>
+                     <div class="chckbx-cntnr" style="margin: 0px 32%;">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="data.selfAssessment">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                 
+                    <!-- <label>Self <p>Assessment</p> <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="top" title="Self Assessment can not be assigned to user.It is auto assigned depends on applied job by user."></i></label> --> 
+                     
+              </div>
+               <div class="col-md-1 col-sm-12" ng-if="data.assessmentType != 3 && surveyFlag == false && interviewassesmentFlag == false" style="padding: 0;">
+               <p style="font-size:14px;">Duration <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="top" title="Please enter test duration in minutes"></i></p>
+               <div class="form-group">
+                    <input type="number" name="brand-name" class="brand-name ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" min="1" required ng-model="data.assessmentTime" style="text-align: right;">
+                 </div>
+                    
+                     <!--  <input type="number" id="rd" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="data.selfAssessment"> -->
+                     
+                    </div>
+
+             
+              
+              <div class="clearfix"></div>
+                <div ng-if="surveyFlag == false && interviewassesmentFlag == false" class="col-md-3">
+                      <div class="form-group">
+                        <label>Select Brand* :</label>
+                        
+                        <select class="form-control flat-control-inner" id="" ng-model="data.brand" ng-change="fetchshiplist(data.brand)" required>
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="q in brandlist" ng-value="{{q.id}}" ng-selected="q.id==data.brand">{{q.brandName}}</option>
+                          </select>
+                          
+                        </div>
+                    </div>
+                    <div ng-if="shipListFlag && surveyFlag == false && interviewassesmentFlag == false" class="col-md-3">
+                      <div class="form-group">
+                        <label>Select Ship* :</label>
+                        
+                          <select class="form-control flat-control-inner" id="select-assessment-type" ng-model="data.ship" required>
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="q in shiplist" ng-value="{{q.id}}" ng-selected="q.id==data.ship">{{q.name}}</option>
+                          </select>
+                          
+                        </div>
+                    </div>
+                    <div  ng-if="surveyFlag == false && interviewassesmentFlag == false" class="col-md-3">
+                      <div class="form-group">
+                        <label>Select Department* :</label>                          
+
+ 						 <select class="form-control flat-control-inner" id="select-assessment-type" ng-model="data.department" ng-change="fetchpositionlist(data.department)" required>
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="q in departmentlist" ng-value="{{q.id}}" ng-selected="q.id==data.department">{{q.categoryName}}</option>
+                          </select>
+                          
+                        </div>
+                    </div>
+                    <div ng-if="surveyFlag == false && interviewassesmentFlag == false" class="col-md-3">
+                      <div class="form-group">
+                        <label>Select Position* :</label>
+                          <select class="form-control flat-control-inner" id="select-assessment-type" ng-model="data.position" required>
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="p in positionlist" ng-value="{{p.id}}" ng-selected="p.id==data.position">{{p.positonname}}</option>
+                          </select>
+                        </div>
+                    </div>
+                    
+                    <div class="clearfix"></div>
+                    <div ng-if="surveyFlag == false && interviewassesmentFlag == false" class="next-btn text-right">
+                    	<button type="submit" ng-if="!offlineFlage" class="btn btn-default btn-bluer" id="update_slot-btn" style="margin-bottom: 10px;">Next</button>
+                    	
+                    	<span ng-click="saveOfflineAssessment(data)" ng-if="offlineFlage == true && newcreation == true" class="buttonTospan" id="update_slot-btn" style="margin-bottom: 10px;" >Save</span>
+                    	<span ng-click="UpdateOfflineAssessment(data)" ng-if="offlineFlage == true && newcreation == false" class="buttonTospan" id="update_slot-btn" style="margin-bottom: 10px;" >Update</span>
+               			<a href="" ng-click="BackFromFilterAssessment()" class="ng-scope">Back</a>
+                    </div>
+                    
+                    
+                    <!-- Interview assessment modal Start-->
+                     <div class="clearfix"></div>
+                	<div ng-if="surveyFlag == false && interviewassesmentFlag == true" class="col-md-3">
+                      <div class="form-group">
+                        <label>Select Brand* :</label>
+                        
+                        <select class="form-control flat-control-inner" id="" ng-model="data.brand" ng-change="fetchshiplist(data.brand)" required>
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="q in brandlist" ng-value="{{q.id}}" ng-selected="q.id==data.brand">{{q.brandName}}</option>
+                          </select>
+                          
+                        </div>
+                    </div>
+                    <div ng-if="shipListFlag && surveyFlag == false && interviewassesmentFlag == true" class="col-md-3">
+                      <div class="form-group">
+                        <label>Select Ship* :</label>
+                        
+                          <select class="form-control flat-control-inner" id="select-assessment-type" ng-model="data.ship" required>
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="q in shiplist" ng-value="{{q.id}}" ng-selected="q.id==data.ship">{{q.name}}</option>
+                          </select>
+                          
+                        </div>
+                    </div>
+                    <div  ng-if="surveyFlag == false && interviewassesmentFlag == true" class="col-md-3">
+                      <div class="form-group">
+                        <label>Select Department* :</label>                          
+
+ 						 <select class="form-control flat-control-inner" id="select-assessment-type" ng-model="data.department" ng-change="fetchpositionlist(data.department)" required>
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="q in departmentlist" ng-value="{{q.id}}" ng-selected="q.id==data.department">{{q.categoryName}}</option>
+                          </select>
+                          
+                        </div>
+                    </div>
+                    <div ng-if="surveyFlag == false && interviewassesmentFlag == true" class="col-md-3">
+                      <div class="form-group">
+                        <label>Select Position* :</label>
+                          <select class="form-control flat-control-inner" id="select-assessment-type" ng-model="data.position" required>
+                            <option value = ""> --Please Select-- </option>
+                             <option data-ng-repeat="p in positionlist" ng-value="{{p.id}}" ng-selected="p.id==data.position">{{p.positonname}}</option>
+                          </select>
+                        </div>
+                    </div>
+                    
+                    <div class="clearfix"></div>
+                    <div ng-if="surveyFlag == false && interviewassesmentFlag == true" class="next-btn text-right">
+                    	<button type="submit" ng-if="!offlineFlage" class="btn btn-default btn-bluer" id="update_slot-btn" style="margin-bottom: 10px;">Next</button>
+                    	
+                    	<span ng-click="saveOfflineAssessment(data)" ng-if="offlineFlage == true && newcreation == true" class="buttonTospan" id="update_slot-btn" style="margin-bottom: 10px;" >Save</span>
+                    	<span ng-click="UpdateOfflineAssessment(data)" ng-if="offlineFlage == true && newcreation == false" class="buttonTospan" id="update_slot-btn" style="margin-bottom: 10px;" >Update</span>
+               			<a href="" ng-click="BackFromFilterAssessment()" class="ng-scope">Back</a>
+                    </div>
+                    <!-- Interview assessment modal End-->
+                    
+            </div>
+            </div>
+            </form>
+            </div>
+            </div>
+            </div>
+            
+           
+           
+<script>          
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});   
+</script>

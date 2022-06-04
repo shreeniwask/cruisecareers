@@ -1,0 +1,182 @@
+ <div class="table-cntnr admin-page"  ng-controller="CreateRequistion_Ctrl">
+<div class="section-heading">
+<h4>Requisition for recruitment </h4>
+        <p>Create new requisition for recruitment from customers.</p>
+            
+          </div>
+          <div class="inner-form">
+           <form ng-submit="saveOrUpdateCustomerRequisition(cstmrrequisitionstn)">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Brand*</label>
+                  <select class="form-control flat-control-inner with-caret"  ng-model="cstmrrequisitionstn.brand.id"  
+                    ng-options="cl.id as cl.brandName for cl in brandsList" required>
+                    <option value="">--Select--</option>
+                    
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Department*</label>
+                  <select class="form-control flat-control-inner" ng-change="fetchpositonbydipartment(cstmrrequisitionstn.category.id)"
+                    ng-model="cstmrrequisitionstn.category.id" ng-options="cl.id as cl.name for cl in categoryList" required>
+                   <option value="">--Select--</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Position*</label>
+                   <select class="form-control flat-control-inner" ng-model="cstmrrequisitionstn.position.id"  
+                  ng-options="cl.id as cl.positonname for cl in positionbydepartment" ng-change="fetchassessmentlist(cstmrrequisitionstn.brand.id,cstmrrequisitionstn.category.id,cstmrrequisitionstn.position.id,null)"  required>                  
+                    <option value="">--Select--</option>
+                    </select>
+                </div>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>No. of Candidates*</label>
+                  <input type="number" min="1"  class="form-control flat-control-inner" value="0" ng-model="cstmrrequisitionstn.noOfCandidate" required oninvalid="this.setCustomValidity('Please enter information in this field')" oninput="setCustomValidity('')">
+             
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Date of requisition*</label>
+                  <input type="text" id="requisitiondate" class="form-control flat-control-inner dateonly" 
+                  ng-model="cstmrrequisitionstn.requisitiondate" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Expected date of closure*</label>
+                  <input type="text" id="closuredate" class="form-control flat-control-inner dateonly" 
+                  ng-model="cstmrrequisitionstn.closuredate" ng-click="checkErr(cstmrrequisitionstn.requisitiondate,cstmrrequisitionstn.closuredate)" required>
+                </div>
+              </div>
+            </div>
+            
+<!-- ---------------------ADD ASSESSMENT START----------------------------------- -->
+				<div class="row">
+					<div class="col-md-12 req-add-assessment">
+						<h4 class="form-heading">Assessment Requirement</h4>
+						  
+						<div class="ass-list">                 		                 
+			                <div class="table-cntnr add-assess-table">
+								<table class="table red-table">
+									<thead>
+										<tr>
+									    	<th style="vertical-align: middle;">Name of Assessment <i class="fa fa-sort" aria-hidden="true" style="font-size:12px;" ng-click="SortingReqAssessmentList('AssessmentName')"></i></th>
+											<th style="vertical-align: middle; width: 300px;">Passing Percentage <i class="fa fa-sort" aria-hidden="true" style="font-size:12px;" ng-click="SortingReqAssessmentList('score')"></i></th>
+											<th style="vertical-align: middle; width: 300px;">Action</i></th>
+									    </tr>
+									</thead>
+									<tbody>
+										
+										<tr ng-repeat="x in newassessmentlist">  
+											<td>{{x.assessments}}</td>
+											<td><input name="input" min="1" max=100 id="score{{$index}}" ng-model="x.score" class="form-control" type="number" numbers-only="numbers-only" required 
+											oninvalid="this.setCustomValidity('Please enter valid value')" oninput="setCustomValidity('')"></td>
+											<td>
+												<div class="button-group">
+										          <button class="btn btn-default ass-table-delete" ng-click="removeassessment(x.assessments)">Delete</button>
+										        </div>
+											</td>									
+										</tr>
+								    </tbody>
+								</table>        
+							</div>         
+		                </div>
+						
+						<div class="text-left" style="margin-bottom:30px;">
+							<button type="button" ng-disabled="!customerAssessmentRequisitionFlag" class="btn btn-default btn-blue" data-target="#assessment-modal" data-toggle="modal" ng-click="setAssessment()"><i class="icon-plus"></i> Add Assessments</button>					
+						</div>
+					</div>
+				</div>
+				
+
+<!-- ---------------------ADD ASSESSMENT end----------------------------------- -->
+
+            <div class="btn-cntnr">
+              <button class="btn btn-default btn-bluer" ng-if="!customerRequisitionFlag" type="submit" id="save-req-btn">Save</button>
+              <button class="btn btn-default btn-bluer" ng-if="customerRequisitionFlag" type="submit" id="save-req-btn" >Update</button>
+              <a href="" ng-click="cancelRequisition()">Cancel</a>
+            </div>
+           </form>
+         </div>
+         
+         
+<!-- ----------------ADD ASSESSMENTS modal----------------------------- -->  
+	
+	<div id="assessment-modal" class="modal fade in" role="dialog" style="">
+		<div class="modal-dialog mmodal-lg assessment-modal">	
+		  <!-- Modal content-->
+			<div class="modal-content flat-modal">
+				<div class="modal-header">
+				  	<button type="button" class="close" data-dismiss="modal">x</button>
+				  	<h4 class="modal-title common-title" style="">List of Assessments</h4>
+				</div>
+				<div class="modal-body flat-body">
+				    <div class="search-cntnr">
+				        <div class="form-group search-box">
+				          	<input type="text" name="" class="form-control flat-control-search" id="id_textbox" ng-model="searchterm">
+				          	<i class="icon-search" id="id_button" ng-click="fetchassessmentSearch(null,null,null,searchterm)"></i>
+				        </div>
+				    </div>
+				    <div class="clearfix"></div>
+					<div class="row">	
+					   <div  id="assessmentList" class="col-md-6" ng-if="searchassessmentlist.length>0" ng-repeat="x in searchassessmentlist">
+					    	<div class="col-md-4">
+							    <div class="checkbox-cntnr">
+							      	<input type="checkbox" id="{{x.assessments}}" ng-checked="x.checked">
+							      	<label for="{{x.assessments}}" class="label-text marbot-20">{{x.assessments}}</label>
+							    </div>
+						    </div>
+					    </div>	
+					    <div ng-if="searchassessmentlist.length==0"><h4 class="no-data">No Data Found.</h4></div>
+					</div>
+					<div class="modal-footer text-left">
+					  	<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="getassessmentchecklist()">Add</button>
+					  	<a class="btn btn-link" data-dismiss="modal">Cancel</a>
+					</div>
+				</div>
+			</div>
+		 </div>
+	</div>         
+         
+<script type="text/javascript">
+	$(function () {
+	            $('.dateonly').datetimepicker({
+	               format: 'DD-MM-YYYY',
+	               useCurrent: false
+	            });
+	        });
+</script>
+
+<script>
+$(document).ready(function() {
+	$('.inner-form input').on('keyup', function() {
+		let empty = false;
+	
+		$('.inner-form input').each(function() {
+	    empty = $(this).val().length == 0;
+	});
+	
+	if (empty)
+	    $('.assess-btn button').attr('disabled', 'disabled');
+	else
+	    $('.assess-btn button').attr('disabled', false);
+	});
+});
+
+$("#id_textbox").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#id_button").click();
+    }
+});
+</script>

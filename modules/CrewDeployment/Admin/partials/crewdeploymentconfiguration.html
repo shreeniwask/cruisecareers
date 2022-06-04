@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Configuration</title>
+
+
+<style>
+.config-content {
+    margin-left: 250px;
+}
+.conf-heading{
+	padding-left:20px;
+}
+.dash-line{
+	border-top: 1px dashed #303030;
+	padding-top: 20px;
+}
+.paratype input{
+	display: inline-block;
+	width: 7%;
+	margin-bottom: 10px;
+}
+</style>
+</head>
+<body  ng-controller="CrewDeploymentConfiguration_Ctrl">
+	<div class="config-content">
+		<div class="tab-content">			
+			<div class="section-heading conf-heading">
+				<h4>Configuration</h4>
+			</div>
+			<div class="section-content">
+			<form ng-submit="saveOrUpdateCrewDeployConfig(CD_Config)">
+				<div class="config-brand" style="padding: 25px 20px;">
+
+					<div class="row">            
+		              	<div class="col-md-4">   
+			               	<div class="form-group">
+			                    <label>Brand*</label>                    
+			                   
+			                    <select class="form-control flat-control-inner" 
+			                    id="brandId" ng-model="CD_Config.brand_id" ng-options="b.id as b.brandName for b in brandsList "
+			                     ng-change="fetchCrewDeployConfigbyBrand(CD_Config.brand_id)" required="">
+			                    	<option value="">--Select--</option>
+				                    			                  
+			                    </select>
+			              	</div>
+		              	</div>
+					</div>
+					
+										
+					<div class="paratype dash-line">
+						<p>Leave calculation: For every <input type="number" min="1"  class="form-control flat-control-inner" id="days_on_board" value="CD_Config.days_on_board"  ng-model="CD_Config.days_on_board" required oninvalid="this.setCustomValidity('Please enter information in this field')" oninput="setCustomValidity('')"> days on board: <input type="number" min="1"  class="form-control flat-control-inner" id="days_on_leave" value="CD_Config.days_on_leave" ng-model="CD_Config.days_on_leave" required oninvalid="this.setCustomValidity('Please enter information in this field')" oninput="setCustomValidity('')"> leave.</p>
+
+						<p>For every unplanned vacancy, contact <input type="number" min="1"  class="form-control flat-control-inner" id="batch_size" value="CD_Config.batch_size"  ng-model="CD_Config.batch_size" required oninvalid="this.setCustomValidity('Please enter information in this field')" oninput="setCustomValidity('')"> crew on leave at one time.</p>
+
+						<p>Time interval between sending alerts to consecutive batches: <input type="number" min="1"  class="form-control flat-control-inner" min="0" max="60" id="time_interval" value="CD_Config.time_interval"  ng-model="CD_Config.time_interval" required oninvalid="this.setCustomValidity('Please enter information in this field')" oninput="setCustomValidity('')"> in minutes.</p>
+					</div>				
+	
+	
+	
+					<div class="btn-cntnr">
+			            <button class="btn btn-default btn-bluer" type="submit">Save</button>
+			            <a ng-click="cancelCD_Config()">Cancel</a>
+			        </div>
+				</div> 
+				</form>
+			</div>
+		</div>	
+	</div>
+</body>
+</html>

@@ -1,0 +1,483 @@
+<style>
+.info-title-can {
+	border-bottom: 1px solid #ccc; 
+	padding:10px 0px;
+}
+.candidate-modal {
+	display:inline-block;
+	width:100%;
+}
+.modallist ul{
+	padding: 0px;
+    margin: 8px 0px;
+    list-style-type:none;
+}
+.modallist ul li {
+	padding: 5px 5px;
+    font-size: 14px;
+    margin: 10px 0px;
+}
+.info_title_candidates{
+	padding:10px 0px;
+	font-weight: bold;
+    font-size: 19px;
+	/* border-bottom:1px solid #ccc; */
+}
+.info_candidate {
+	border-left:0px!important ;
+	border-top:0px !important;
+}
+.video_icon_css a{
+	background-color: #4AA7F1;
+    padding: 8px;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+    text-decoration: none;
+    font-size: 15px !important;
+    color: #fff;
+}
+.video_icon_css a i{
+	color: #fff;
+	font-size: 15px !important;
+}
+.video_icon_css a:hover{
+	background-color: #6eb7f1;
+}
+.file_upload_css a{
+	background-color: #b384ba;
+    padding: 8px;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+    text-decoration: none;
+    font-size: 15px !important;
+}
+.file_upload_css a i{
+	color: #fff;
+	font-size: 15px !important;
+}
+.file_upload_css a:hover{
+	background-color: #cc9ed3;
+}
+#meeting_link .modal-dialog{
+	width:450px;
+}
+.meeting_link_modal_body lable{
+	margin-bottom:10px;
+	display: block;
+}
+#file_upload .modal-dialog{
+	width:450px;
+}
+.file_upload_modal_body lable{
+	margin-bottom:10px;
+	display: block;
+}
+.complete_now_td{
+display: flex;
+    justify-content: center;
+}
+.complete_now_td a{
+display: flex;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgb(0 0 0 / 0%);
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    /* margin: 0.4em; */
+    padding: 5px 10px;
+    font-weight: 600;
+    width: 135px;
+    align-items: center;
+    cursor: pointer;
+    background: #5cb85c;
+    text-decoration: none;
+    color: #fff;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-font-smoothing: antialiased;
+    font-size: 10px;
+    
+}
+.complete_now_td a:hover{
+    background: #7ff15d;
+}
+.complete_now_td a i{
+margin-left: 8px;
+    color: #fafafa;
+}
+.interviewloglist{
+
+word-wrap: break-word;
+height: 250px;
+    overflow: auto;
+    margin-bottom:15px;
+
+}
+</style>
+
+<br>
+<div class="table-cntnr" style="padding: 0 14px;">
+	<table class="table table-striped red-table internet-calling-table"
+		style="margin-bottom: 0px;">
+		<caption>Connected Candidates</caption>
+		<thead>
+			<tr>
+			    <th style="width: 120px;">Candidate Ref No <i ng-click="SortingfetchCallList('refno',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+				<th style="width: 110px;">Candidate Name <i ng-click="SortingfetchCallList('name',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+				<th>Event Name <i ng-click="SortingfetchCallList('eventname',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+ 				<!-- <th>Date of Interview<i class="fa fa-sort" aria-hidden="true"></i></th> -->
+ 				<th>Connected Time <i ng-click="SortingfetchCallList('datetime',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+				<!-- <th>Description <i class="fa fa-sort" aria-hidden="true" ng-click="SortingfetchCallList('SubSupportGroup.name',searchterm)" ></i></th> -->
+				<!-- <th style="vertical-align: middle; text-align: center">Call Durations <i ng-click="SortingfetchCallList('callduration',searchterm)" class="fa fa-sort" aria-hidden="true"></i>
+				</th> -->
+				<th style="vertical-align: middle;">Meeting Links</th>
+				<th style="vertical-align: middle;">Status <i class="fa fa-sort" ng-click="SortingfetchCallList('status',searchterm)" class="fa fa-sort" aria-hidden="true" aria-hidden="true"></i>
+				</th>
+				<th>Upload Interview Files</th>
+				<th>Complete Interview</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="callLog in callLogs"
+				ng-class="{'call-green':!callLog.callLog.agentId&&!callLog.missedCall}"
+				class="font-20 ">
+				<td>{{callLog.user.refNo}}</td>
+				<td><a ng-click="fetchUserProfile(callLog.user.id)">{{callLog.user.firstName}} {{callLog.user.lastName}}</a></td>
+				<td>{{callLog.eventname}}</td>
+ 				<!-- <td>{{dateformate(callLog.createdTimestamp)}}</td> -->
+				<td>{{dateformate(callLog.candidateConnectedTime)}}</td>
+			<!-- 	<td style="text-align: center;">{{msToTime(callLog.callDuration)}}</td> -->
+				<td style="text-align: center;" ng-show="test"><a
+					ng-click="initiateCommunication(callLog.id,callLog.userid)"
+					id="task-flow" data-toggle="tooltip" data-placement="top"
+					title="Missed Call" style="font-weight: 500 !important;"><img
+						src="resources/img/missed-call.png"
+						class="img-responsive workfow-img"
+						style="cursor: pointer; height: 25px; margin: 0 auto;"></a></td>
+				<td style="text-align: center;"
+					ng-show="!callLog.callLog.agentId&&callLog.communicationOption.id==2&&!callLog.missedCall"><a
+					ng-click="generateInterview(callLog.id,callLog.userid,false,$index)"
+					id="task-flow" data-toggle="tooltip" data-placement="top"
+					title="Incoming Call" style="font-weight: 500 !important;"><img
+						src="resources/img/incoming-phone.png"
+						class="img-responsive workfow-img"
+						style="cursor: pointer; height: 25px; margin: 0 auto;"></a></td>
+				<td style="text-align: center;"
+					ng-show="callLog.callLog.agentId&&callLog.communicationOption.id==2"><a
+					id="task-flow" data-toggle="tooltip" data-placement="top"
+					title="Answered Call" style="font-weight: 500 !important;"><img
+						src="resources/img/call.png" class="img-responsive workfow-img"
+						style="cursor: pointer; height: 25px; margin: 0 auto;"></a></td>
+				<td
+					ng-show="!callLog.callLog.agentId&&callLog.communicationOption.id==2&&callLog.missedCall"><a
+					id="task-flow" data-toggle="tooltip" data-placement="top"
+					title="Missed Call" style="font-weight: 500 !important;"><img
+						src="resources/img/missed-call.png"
+						class="img-responsive workfow-img"
+						style="cursor: pointer; height: 25px; margin: 0 auto;"></a></td>
+				<!-- <td style="text-align: center;"
+					ng-show="callLog.communicationOption.id==1&&!callLog.missedCall"><a
+					ng-click="initiateCommunication(callLog.id,callLog.userid,true)"
+					id="task-flow" data-toggle="tooltip" data-placement="top"
+					title="Incoming Call" style="font-weight: 500 !important;"><img
+						src="resources/img/video-icon.png"
+						class="img-responsive workfow-img"
+						style="cursor: pointer; height: 25px; margin: 0 auto;"></a></td> -->
+				<!-- <td style="text-align: center;"
+					ng-show="callLog.callLog.agentId&&callLog.communicationOption.id==1"><a
+					id="task-flow" data-toggle="tooltip" data-placement="top"
+					title="Answered Video Call" style="font-weight: 500 !important;"><img
+						src="resources/img/facetime-button.png"
+						class="img-responsive workfow-img"
+						style="cursor: pointer; height: 25px; margin: 0 auto;"></a></td> -->
+			<!-- 	<td
+					ng-show="callLog.communicationOption.id==1&&callLog.missedCall"><a
+					id="task-flow" data-toggle="tooltip" data-placement="top"
+					title="Missed Call" style="font-weight: 500 !important;"><img
+						src="resources/img/missed-call.png"
+						class="img-responsive workfow-img"
+						style="cursor: pointer; height: 25px; margin: 0 auto;"></a></td>
+ -->
+				<td style="text-align: center;"
+					ng-show="callLog.communicationOption.name=='Voice Message'"><a
+					ng-click="showAudioMessage(callLog)" id="task-flow"
+					data-toggle="tooltip" data-placement="top" title="Voice Message"
+					style="font-weight: 500 !important;"><i
+						class="fa fa-microphone" style="color: #333;"></i></a></td>
+				<!--  <td style="text-align: center;" ng-show="callLog.communicationOption.name=='Voice Message'"><a  id="task-flow" data-toggle="tooltip" data-placement="top" title="Voice Message" style="font-weight: 500 !important;"><i class="fa fa-microphone" data-target="#audio-details" data-toggle="modal" style="color: #333;"></i></a></td>  -->
+				<td style="text-align: center;"
+					ng-show="callLog.communicationOption.name=='Text Message'"><a
+					ng-click="showTxtMessage(callLog) " id="task-flow"
+					data-toggle="tooltip" data-placement="top" title="Text Message"
+					style="font-weight: 500 !important;"><i class="fa  fa-envelope"
+						style="color: #333;"></i></a></td>
+				<!-- <td style="text-align: center;" ng-show="callLog.communicationOption.name=='Answered Call'"><a  ng-click="textCommunicationid(callLog.id,callLog.userid)" id="task-flow" data-toggle="tooltip" data-placement="top" title="Answered Call" style="font-weight: 500 !important;"><i class="img/call.png" class="img-responsive workfow-img" style="cursor: pointer;height: 25px;margin: 0 auto;"></a> -->
+			
+			
+			<td class="video_icon_css"> 
+			<a data-toggle="modal" ng-click="storeuserdetails(callLog.id,callLog.userid,callLog.slotid,callLog.videoCallDetails.url
+			,callLog.videoCallDetails.password,callLog.jobFairId,callLog.eventid,callLog.interviewLog.filename)" data-target="#meeting_link" >
+			<i class="fa fa-video-camera" aria-hidden="true" ></i> </a>
+			</td>
+			
+				
+			
+				<td ng-if="callLog.statusId==1">
+			<span class="label label-success">{{callLog.statusName}}</span>
+			 </td>
+			
+			<td ng-if="callLog.statusId == 2">
+			<span class="label label-warning">{{callLog.statusName}}: {{callLog.user.name}}</span>
+			 </td>
+			 
+			<td ng-if="callLog.statusId==3">
+			 <span class="label label-danger">{{callLog.statusName}}</span> 
+			 </td>
+		
+		
+			
+			
+			<td class="file_upload_css"> <a data-toggle="modal" ng-click="storeuserdetails(callLog.id,callLog.userid,callLog.slotid,callLog.videoCallDetails.url,
+			callLog.videoCallDetails.password,callLog.jobFairId,callLog.eventid,callLog.interviewLog.filename);" data-target="#file_upload"> <i class="fa fa-upload" aria-hidden="true"></i> </a></td>
+			
+			<td class="complete_now_td"><a class="btn btn_complete" ng-click="updateInterviewComplete(callLog.id,callLog.userid,callLog.slotid,callLog.jobFairId)">Click Here To Complete
+			</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="text-right">
+		<br>
+		<ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons"
+				ng-class="$parent.offset == i * $parent.limit && 'active'"><a
+				class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count"
+				ng-click="next()">&raquo;</a></li>
+		</ul>
+	</div>
+	
+	<div id="candidate-info" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg add-brand">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Candidate Information</h4>
+      </div>
+      <div class="modal-body flat-body candidate-modal" style="display:inline-flex;width:100%;">
+          <div class="col-md-3" style="border-right: 1px solid #e0e0e0;">
+          <ul class="nav nav-pills nav-stacked">
+		  <li class="active" id="list1"><a data-toggle="tab" href="" ng-click="showFlag(1)">Personal Details</a></li>
+		  <li class="" id="list2"><a href="" ng-click="showFlag(2)">Contact Info</a></li>
+		  <li class="" id="list3"><a href="" ng-click="showFlag(3)">Work Experience</a></li>  
+		  <li class="" id="list4"><a href="" ng-click="showFlag(4)">Compliances</a></li>  
+		  <li class="" id="list5"><a href="" ng-click="showFlag(5)">Applied Jobs </a></li>
+		</ul>
+     </div>
+        <div class="col-md-9">
+        
+        <div ng-show="menuFlag == 1">
+	        <h4 class="panel-title info_title_candidates">Personal Details</h4>
+	        
+	        <button type="button" class="btn bigblue-btn" id="" style="float: right;margin-top : 0px;" 
+					ng-click="download(profile.userCV.cvPath)" ng-disabled="buttondisable(profile.userCV.cvPath)">
+					<i class="fa fa-file-text-o" aria-hidden="true"></i> Download CV
+				</button>
+	        <div class="modallist">
+		         <ul class="list-info info_candidate">
+					<li><b>Name :</b> {{profile.firstName}} {{profile.lastName}}</li>
+					<li><b>Date of Birth :</b> {{profile.dob}}</li>
+					<li><b>Gender :</b> {{profile.gender}}</li>
+				 </ul>
+			 </div>
+		 </div>
+		 
+		 <div ng-show="menuFlag == 2">
+			 <h4 class="panel-title info_title_candidates">Contact Info:</h4>
+	       	 <div class="modallist">
+		         <ul class="list-info info_candidate">
+					<li><b>Flat/House No.:</b> {{profile.userContact.houseNo}}</li>
+					<li><b>Building/House: </b>{{profile.userContact.houseName}}</li>
+					<li><b>Society:</b> {{profile.userContact.society}}</li>
+					<li><b>PIN/ZIP Code:</b> {{profile.userContact.pincode}}</li>
+					<li><b>Street/Road:</b> {{profile.userContact.street}}</li>
+				</ul>
+			 </div>
+		 </div>
+		 
+		 <div ng-show="menuFlag == 3">
+			 <h4 class="panel-title info_title_candidates">Work Experience:</h4>
+	       	 <div class="modallist">
+		         <ul ng-repeat="work in profile.userWorkList" class="list-info info_candidate">
+					<li><b>Employer's Name:</b> {{work.employerName}} </li>
+					<li><b>Position:</b> {{work.position}}</li>
+					<li><b>Location:</b> {{work.location}}</li>
+					<li><b>Salary: </b>{{work.salary}}</li>
+					<li><b>From Date: </b>{{work.fromDate}}</li>
+					<li><b>To Date: </b>{{work.toDate}}</li>
+				</ul>
+			 </div>
+		 </div>
+		 
+		 <div ng-show="menuFlag == 4">
+			 <h4 class="panel-title info_title_candidates">Compliances:</h4>
+	       	 <div class="modallist">
+		         <ul ng-repeat="compliance in profile.userComplianceList" class="list-info info_candidate">
+					<li><b>Compliance Name:</b> {{compliance.compliance.complianceName}}</li>
+					<li><b>Doc No.: </b>{{compliance.documentNumber}}</li>
+					<li><b>Country Of Issue:</b> {{compliance.countryOfIssue}}</li>
+					<li><b>Issue Date:</b> {{compliance.issueDate}}</li>
+					<li><b>Expiry Date:</b> {{compliance.expiryDate}}</li>
+ 				</ul>
+			 </div>
+		 </div>
+		 
+		 <div ng-show="menuFlag == 5">
+			 <h4 class="panel-title info_title_candidates">Applied Jobs:</h4>
+	       	 <div class="modallist">
+		         <ul ng-repeat="job in appliedJobs" class="list-info info_candidate">
+					<li>{{job.brand.brandName}},{{job.category.name}},{{job.position.name}}</li>								 						 
+ 				</ul>
+			 </div>
+		 </div>
+		 
+		 <!-- <h4 class="panel-title">Contact Info:</h4>
+		 
+		 <ul class="list-info">
+			<li><b>Flat/House No.:</b> {{profile.userContact.houseNo}}</li>
+			<li><b>Building/House: </b>{{profile.userContact.houseName}}</li>
+			<li><b>Society:</b> {{profile.userContact.society}}</li>
+			<li><b>PIN/ZIP Code:</b> {{profile.userContact.pincode}}</li>
+			<li><b>Street/Road:</b> {{profile.userContact.street}}</li>
+		</ul>
+		 
+		 <h4 class="panel-title">Work Experience:</h4>
+		 
+		 <ul ng-repeat="work in profile.userWorkList" class="list-info">
+			<li><b>Employer's Name:</b> {{work.employerName}} </li>
+			<li><b>Position:</b> {{work.position}}</li>
+			<li><b>Location:</b> {{work.location}}</li>
+			<li><b>Salary: </b>{{work.salary}}</li>
+			<li><b>From Date: </b>{{work.fromDate}}</li>
+			<li><b>To Date: </b>{{work.toDate}}</li>
+		</ul>
+		 
+		 <h4 class="panel-title">Compliances:</h4>
+		 <ul ng-repeat="compliance in profile.userComplianceList" class="list-info">
+			<li><b>Compliance Name:</b> {{compliance.compliance.complianceName}}</li>
+			<li><b>Doc No.: </b>{{compliance.documentNumber}}</li>
+			<li><b>Country Of Issue:</b> {{compliance.countryOfIssue}}</li>
+			<li><b>Issue Date:</b> {{compliance.issueDate}}</li>
+			<li><b>Expiry Date:</b> {{compliance.expiryDate}}</li>
+ 		</ul>
+ 		
+ 		<h4 class="panel-title">Applied Jobs:</h4>
+		 
+		 <ul ng-repeat="job in appliedJobs" class="list-info">
+			<li>{{job.brand.brandName}},{{job.category.name}},{{job.position.name}}</li>								 						 
+ 		</ul> -->
+        </div>
+         
+         
+		 
+    </div>
+   </div>
+    </div>
+    </div>
+	
+</div>
+
+<!-- meeting link modal start here -->
+<div class="modal fade" id="meeting_link" role="dialog">
+	<div class="modal-dialog modal-sm add-brand">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal">X</button>
+	      <h4 class="modal-title">Meeting Link</h4>
+	    </div>
+	    <div class="modal-body meeting_link_modal_body"> 
+	        <div class="form-group">
+        	   <label>Enter Recording Link:</label>
+	           <textarea type="text" rows="8" ng-model="urldata" class="myInt-brand-name form-control" placeholder="https://www.google.com"></textarea>
+	       </div>
+	       <div class="form-group">
+	        <label>Password:</label>
+             <input type="text" name="brand-name" class="brand-name" ng-model="passworddata">
+             </div>
+                 
+	      <div class="form-group text-right">
+	        <button type="submit" class="btn-info add_brand" 
+					ng-click="sendLinkToCandidate(urldata,passworddata)">Send to Candidate</button>
+	      </div>
+	    </div>
+	  </div>
+	  
+	</div>
+</div>
+
+<!-- file Upload modal start here -->
+<div class="modal fade" id="file_upload" role="dialog">
+	<div class="modal-dialog modal-sm add-brand">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal">X</button>
+	      <h4 class="modal-title">Upload Interview File</h4>
+	    </div>
+	    <div class="modal-body file_upload_modal_body">
+	     <form ng-submit="uploadInterviewFile(recordinglink)">
+	       <div class="form-group width-200">
+	       <label>Upload File:</label>
+	        <div class="form-group">
+                          <input type="file" name="" class="file que-file-upload">   
+			<div class="input-group">				
+				<input type="text" id="filepath" class="form-control flat-control-inner" readonly="">
+				<span class="input-group-btn">
+				<span class="btn btn-primary btn-file"> Browse 
+				<input type="file"  id="mp4file" onchange="angular.element(this).scope().fileNameChanged(this)" single=""  accept="video/mp4,video/webm"  multiple> </span>
+			</span>
+			
+		   </div>
+			</div>
+		  </div>
+	       <div class="form-group" style="text-align:center;">
+	           <label>OR</label>	           
+	       </div>
+	        <div class="form-group">
+	           <label>Enter Recording Link:</label>
+	           <textarea type="text" rows="8" class="myInt-brand-name form-control" ng-model="recordinglink" placeholder="https://www.google.com"></textarea>
+	       </div>
+	    
+	       <div class="interviewloglist">
+	    <label>History of uploaded File or Link will be shown below:</label>
+	     
+	       
+	       <ul type="none" class="detailed-ul" id=filesdetails >
+			</ul>
+	   
+	       </div>
+	       
+	       
+	      <div class="form-group text-right">
+	        <button type="submit" class="btn-info add_brand" >Save</button>
+	      </div>
+	      </form>
+	    </div>
+	  </div>
+	  
+	</div>
+</div>

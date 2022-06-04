@@ -1,0 +1,2072 @@
+<style>
+.new-input-fatter {
+	padding: 0px !important;
+}
+</style>
+<div id="" class="tab-pane fade in admin-page" >
+<div class="section-content" id="email-listsec">
+         <!-- <div class="dropdown">
+        <select class="form-control input-flater new-input-fatter" id="select1" ng-model="selectedtype" style="width:20%" ng-change="userType(selectedtype)">   
+         <ul class="nav nav-tabs assessment-tabs1" style="border-bottom: 1px solid #ddd !important;">
+             	 <li ng-class="{'active': freeQueryFlag === 1}" ><a ng-click="freeQueryFlag = 1">Candidate</a></li>
+             	  <li ng-class="{'active': freeQueryFlag === 2}"><a ng-click="freeQueryFlag = 2">Employee</a></li> 
+             	 
+        </ul>  
+       <option value="">Select Type</option>  
+    <option value="1"> Candidate</option>
+          <option value="2"> Employee </option>
+           	 
+        </select> 
+    </div> -->
+        <div class="tab-content active" id="divtext">
+            <div id="candidate" class="tab-pane fade in active" >
+            	<div class="clearfix">
+            		<div class="col-md-2 no-pads">
+          		  <ul class="nav nav-pills nav-stacked info-li" id="menuhide">
+          		  	<li class="active" id="menu1" >
+          		  		<a data-toggle="pill" ng-click="showMenu(1)"   href="">Basic Information</a>
+          		   </li>
+			        <li id="menu2"><a data-toggle="pill" ng-click="showMenu(2)"  href="">Personal Information</a></li>
+			        <li id="menu3"><a data-toggle="pill" ng-click="showMenu(3)" href="">Educational Information</a></li>
+			        <li id="menu4"><a data-toggle="pill" ng-click="showMenu(4)" href="">Work Experience</a></li>
+			        <li id="menu5"><a data-toggle="pill" ng-click="showMenu(5)" href="">Contact Information</a></li>
+			        <li id="menu6"><a data-toggle="pill" ng-click="showMenu(6)" href="">Compliance Information</a></li>
+
+			        <li id="menu7"><a data-toggle="pill" ng-click="showMenu(7)" href="">Current Assessment</a></li>
+			        <li id="menu8"><a data-toggle="pill" ng-click="showMenu(8)" href="">Survey</a></li>
+			        <li id="menu9"><a data-toggle="pill" ng-click="showMenu(9)" href="">Documents</a></li>
+			       <li id="menu10"><a data-toggle="pill" ng-click="showMenu(10)"  href="">Job Posting</a></li>
+			        
+			      </ul>
+            	</div>
+            	<div class="tab-content">
+            		<div id="basicInfo" class="tab-pane fade in active" ng-show="menuFlag == 1">
+            			<div class="col-md-8 no-pads">
+            			<div class="query-head">
+            				<h5> Basic Information</h5>
+            			</div>
+            			<div  class="query-blue clearfix">
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label>
+            			 			Query Name*
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-6">
+            			 		<input type="text" ng-model="freeQueryCandidateData.name" class="form-control input-flater">
+            			 	</div>
+            			 	
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label>
+            			 			Query Description*
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-6">
+            			 		<input type="text" ng-model="freeQueryCandidateData.description" class="form-control input-flater">
+            			 	</div>
+            			 	
+            			 	</div>
+            			</div>
+	            	</div>
+            		</div>
+            		<div id="" class="tab-pane fade in active" ng-show="menuFlag == 2">
+            			<div class="col-md-8 no-pads">
+            			<div class="query-head">
+            				<h5> Personal Information</h5>
+            			</div>
+            			<div  class="query-blue clearfix">
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			First Name
+								  <input type="checkbox" ng-model="configList[0].freeQueryDataList[0].selected" ng-click="addInSelectedFieldsList(configList[0].freeQueryDataList[0].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" ng-model="configList[0].freeQueryDataList[0].value" class="form-control input-flater" allow2>
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude00" ng-style="{'color':configList[0].freeQueryDataList[0].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(0,0)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Last Name
+								  <input type="checkbox" ng-model="configList[0].freeQueryDataList[1].selected" ng-click="addInSelectedFieldsList(configList[0].freeQueryDataList[1].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" ng-model="configList[0].freeQueryDataList[1].value" class="form-control input-flater" allow2>
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude01" ng-style="{'color':configList[0].freeQueryDataList[1].exclude?'red':'#00aeef'}"  ng-click="setExcludeFlag(0,1)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Date of Birth
+									  <input type="checkbox" ng-model="configList[0].freeQueryDataList[2].selected" ng-click="addInSelectedFieldsList(configList[0].freeQueryDataList[2].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[0].freeQueryDataList[2].compareId">
+            			 				<option value="">Select</option>
+            			 				<option ng-value="1"> > </option>
+            			 				<option ng-value="2"> = </option>
+            			 				<option ng-value="3"> < </option>
+            			 				<option ng-value="4"> >= </option>
+            			 				<option ng-value="5"> <= </option>
+            			 				<option ng-value="7"> <> </option>
+            			 				<option ng-value="6"> between </option>
+            			 			</select>
+            			 		</div>
+            			 		<div class="col-md-1 no-pads" ng-show="configList[0].freeQueryDataList[2].compareId == 6">
+            			 			<label>From</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[0].freeQueryDataList[2].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="birthFromDate" ng-model="configList[0].freeQueryDataList[2].fromField" ng-blur="setDate(configList[0].freeQueryDataList[2],'birthFromDate',1)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[0].freeQueryDataList[2].compareId == 6">
+            			 			<label>To</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[0].freeQueryDataList[2].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="birthToDate" ng-model="configList[0].freeQueryDataList[2].toField" ng-blur="setDate(configList[0].freeQueryDataList[2],'birthToDate',2)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[0].freeQueryDataList[2].compareId != 6">
+            			 			<label>Date</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[0].freeQueryDataList[2].compareId != 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="birthDateValue" ng-model="configList[0].freeQueryDataList[2].value" ng-blur="setDate(configList[0].freeQueryDataList[2],'birthDateValue',3)">
+            			 		</div>
+            			 		<!-- <div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude02" ng-click="setExcludeFlag(0,2)" aria-hidden="true" title="Exclude"></i>
+            			 	</div> -->
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Gender
+									  <input type="checkbox" ng-model="configList[0].freeQueryDataList[3].selected" ng-click="addInSelectedFieldsList(configList[0].freeQueryDataList[3].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+	            			 	<div class="col-md-5">
+	            			 		<div class="radio-cntnr new-radio">
+					          			<input type="radio" class="flashadmin" ng-click="setAction(1,configList[0].freeQueryDataList[3])" value="male" ng-model="configList[0].freeQueryDataList[3].value"  id="slot21" name="radio-group" >
+		                  				<label for="slot21" class="cstmchk_lbladmin">Male</label>
+		                  			</div>
+		                  			<div class="radio-cntnr new-radio"> 
+					          			<input type="radio"  class="flashadmin" ng-click="setAction(2,configList[0].freeQueryDataList[3])" value="female" ng-model="configList[0].freeQueryDataList[3].value" id="slot22" name="radio-group">
+		                  				<label for="slot22" class="cstmchk_lbladmin">Female</label>
+		                  			</div>
+		                  			<div class="radio-cntnr new-radio">
+					          			<input type="radio" class="flashadmin" ng-click="setAction(3,configList[0].freeQueryDataList[3])" value="both" ng-model="configList[0].freeQueryDataList[3].value" id="slot23" name="radio-group">
+		                  				<label for="slot23" class="cstmchk_lbladmin">Both</label>
+		                  			</div>
+	            			 	</div>
+	            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude03" ng-style="{'color':configList[0].freeQueryDataList[3].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(0,3)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Email ID
+									  <input type="checkbox" ng-model="configList[0].freeQueryDataList[5].selected" ng-click="addInSelectedFieldsList(configList[0].freeQueryDataList[5].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+	            			 	<div class="col-md-5">
+	            			 		<input type="text" class="form-control input-flater" ng-model="configList[0].freeQueryDataList[5].value">
+	            			 	</div>
+	            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude05" ng-style="{'color':configList[0].freeQueryDataList[5].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(0,5)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	
+            			 	<div class="margin-box clearfix" ng-if="sourceIds.length > 0 ">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{sourceIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			</div>
+	            	</div>
+	            	
+            		</div>
+            		<div id="" class="tab-pane fade in active " ng-show="menuFlag == 3">
+            			<div class="col-md-8 no-pads">
+            			<div class="query-head">
+            				<h5>Educational Information</h5>
+            			</div>
+            			<div  class="query-blue clearfix">
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Qualification
+								  <input type="checkbox" ng-model="configList[1].freeQueryDataList[0].selected" ng-click="addInSelectedFieldsList(configList[1].freeQueryDataList[0].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Qualification <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allquali" name="check"
+														class="flashuser" ng-model="selectAllQuali"
+														ng-click="selectAllQualifi(selectAllQuali);"> <label
+														class="cstmchk_lbluser" for="allquali">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="q in qualificationsList">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="quali{{$index}}" name="check"
+														class="flashuser" ng-model="checkedQuali"
+														
+														ng-checked="q.isSelected || selectAllQuali" ng-click="addQuali(q.id,checkedQuali)"> <label
+														class="cstmchk_lbluser" for="quali{{$index}}">{{q.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude10" ng-style="{'color':configList[1].freeQueryDataList[0].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(1,0)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="qualiIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{qualiIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Board / University
+								  <input type="checkbox" ng-model="configList[1].freeQueryDataList[2].selected" ng-click="addInSelectedFieldsList(configList[1].freeQueryDataList[2].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater" ng-model="configList[1].freeQueryDataList[2].value" allow3>
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude12" ng-style="{'color':configList[1].freeQueryDataList[2].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(1,2)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" id="yearofpassing">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Passing Year
+									  <input type="checkbox" ng-model="configList[1].freeQueryDataList[1].selected" ng-click="addInSelectedFieldsList(configList[1].freeQueryDataList[1].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[1].freeQueryDataList[1].compareId">
+            			 				<option value="">Select</option>
+            			 				<option ng-value="1"> > </option>
+            			 				<option ng-value="2"> = </option>
+            			 				<option ng-value="3"> < </option>
+            			 				<option ng-value="4"> >= </option>
+            			 				<option ng-value="5"> <= </option>
+            			 				<option ng-value="7"> <> </option>
+            			 				<option ng-value="6"> between </option>
+            			 			</select>
+            			 		</div>
+            			 		<div class="col-md-1 no-pads" ng-show="configList[1].freeQueryDataList[1].compareId == 6">
+            			 			<label>From</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[1].freeQueryDataList[1].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonlyyear" id="passingFromDate" ng-model="configList[1].freeQueryDataList[1].fromField" ng-blur="setDate(configList[1].freeQueryDataList[1],'passingFromDate',1)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[1].freeQueryDataList[1].compareId == 6">
+            			 			<label>To</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[1].freeQueryDataList[1].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonlyyear" id="passingToDate" ng-model="configList[1].freeQueryDataList[1].toField" ng-blur="setDate(configList[1].freeQueryDataList[1],'passingToDate',2)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[1].freeQueryDataList[1].compareId != 6">
+            			 			<label>Date</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[1].freeQueryDataList[1].compareId != 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonlyyear" id="passingDateValue" ng-model="configList[1].freeQueryDataList[1].value" ng-blur="setDate(configList[1].freeQueryDataList[1],'passingDateValue',3)">
+            			 		</div>
+            			 		<!-- <div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude11" ng-click="setExcludeFlag(1,1)" aria-hidden="true" title="Exclude"></i>
+            			 	</div> -->
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Grade / Score / Percentage
+									  <input type="checkbox" ng-model="configList[1].freeQueryDataList[3].selected" ng-click="addInSelectedFieldsList(configList[1].freeQueryDataList[3].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			 <input type="text" class="form-control" ng-model="configList[1].freeQueryDataList[3].value" allow3>
+            			 		</div>
+            			 		 
+            			 		<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude13" ng-style="{'color':configList[1].freeQueryDataList[3].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(1,3)" aria-hidden="true" title="Exclude"></i>
+            			 	</div>
+            			 	</div>
+            			</div>
+	            	</div>
+	            	
+            		</div>
+            		<div id="" class="tab-pane fade in active" ng-show="menuFlag == 4">
+            			<div class="col-md-8 no-pads">
+            			<div class="query-head">
+            				<h5>Work Experience</h5>
+            			</div>
+            			<div  class="query-blue clearfix">
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Employer's Name
+								  <input type="checkbox" ng-model="configList[2].freeQueryDataList[0].selected" ng-click="addInSelectedFieldsList(configList[2].freeQueryDataList[0].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater" ng-model="configList[2].freeQueryDataList[0].value" allow2>
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude20" ng-style="{'color':configList[2].freeQueryDataList[0].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(2,0)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Position
+								  <input type="checkbox" ng-model="configList[2].freeQueryDataList[1].selected" ng-click="addInSelectedFieldsList(configList[2].freeQueryDataList[1].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater" ng-model="configList[2].freeQueryDataList[1].value">
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude21" ng-style="{'color':configList[2].freeQueryDataList[1].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(2,1)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Location
+								  <input type="checkbox" ng-model="configList[2].freeQueryDataList[2].selected" ng-click="addInSelectedFieldsList(configList[2].freeQueryDataList[2].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater" ng-model="configList[2].freeQueryDataList[2].value" allow3>
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude22" ng-style="{'color':configList[2].freeQueryDataList[2].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(2,2)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Years Of Experience
+									  <input type="checkbox" ng-model="configList[2].freeQueryDataList[3].selected" ng-click="addInSelectedFieldsList(configList[2].freeQueryDataList[3].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[2].freeQueryDataList[3].compareId">
+            			 				<option value="">Select</option>
+            			 				<option ng-value="1"> > </option>
+            			 				<option ng-value="2"> = </option>
+            			 				<option ng-value="3"> < </option>
+            			 				<option ng-value="4"> >= </option>
+            			 				<option ng-value="5"> <= </option>
+            			 				<option ng-value="7"> <> </option>
+            			 				<option ng-value="6"> between </option>
+            			 			</select>
+            			 		</div>
+            			 		<div class="col-md-1 no-pads" ng-show="configList[2].freeQueryDataList[3].compareId == 6">
+            			 			<label>Between</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[2].freeQueryDataList[3].compareId == 6">
+            			 			<input type="text" class="form-control input-flater input-info" ng-model="configList[2].freeQueryDataList[3].fromField"  id="experiFromDate" allow1>
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[2].freeQueryDataList[3].compareId == 6">
+            			 			<label>And</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[2].freeQueryDataList[3].compareId == 6">
+            			 			<input type="text" class="form-control input-flater input-info" id="experiToDate" ng-model="configList[2].freeQueryDataList[3].toField" allow1>
+            			 		</div>
+            			 		<div class="col-md-1 no-pads" ng-show="configList[2].freeQueryDataList[3].compareId != 6">
+            			 			<label>Number of years</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[2].freeQueryDataList[3].compareId != 6">
+            			 			<input type="text" class="form-control input-flater input-info" id="experiDateValue" ng-model="configList[2].freeQueryDataList[3].value" allow1>
+            			 		</div>
+            			 		<!-- <div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude23" ng-click="setExcludeFlag(2,3)" aria-hidden="true" title="Exclude"></i>
+            			 	</div> -->
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Salary P.A
+									  <input type="checkbox" ng-model="configList[2].freeQueryDataList[5].selected" ng-click="addInSelectedFieldsList(configList[2].freeQueryDataList[5].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[2].freeQueryDataList[5].compareId">
+            			 				<option value="">Select</option>
+            			 				<option ng-value="1"> > </option>
+            			 				<option ng-value="2"> = </option>
+            			 				<option ng-value="3"> < </option>
+            			 				<option ng-value="4"> >= </option>
+            			 				<option ng-value="5"> <= </option>
+            			 				<option ng-value="7"> <> </option>
+            			 				<option ng-value="6"> between </option>
+            			 			</select>
+            			 		</div>
+            			 		<div class="col-md-1 no-pads" ng-show="configList[2].freeQueryDataList[5].compareId == 6">
+            			 			<label>From</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[2].freeQueryDataList[5].compareId == 6">
+            			 			<input type="text" id="salaryFrom" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control input-flater input-info" ng-change="formatCurrency('salaryFrom')" ng-model="configList[2].freeQueryDataList[5].fromField">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[2].freeQueryDataList[5].compareId == 6">
+            			 			<label>To</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[2].freeQueryDataList[5].compareId == 6">
+            			 			<input type="text" id="salaryTo" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control input-flater input-info" ng-change="formatCurrency('salaryTo')" ng-model="configList[2].freeQueryDataList[5].toField">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[2].freeQueryDataList[5].compareId != 6">
+            			 			<label>Salary</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[2].freeQueryDataList[5].compareId != 6" ng-init="setDatePicker()">
+            			 			<input type="text" id="salaryValue" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control input-flater input-info" ng-change="formatCurrency('salaryValue')" ng-model="configList[2].freeQueryDataList[5].value">
+            			 		</div>
+            			 		<!-- <div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude25" ng-click="setExcludeFlag(2,5)" aria-hidden="true" title="Exclude"></i>
+            			 	</div> -->
+            			 	</div>
+            			</div>
+	            	</div>
+	            	
+            		</div>
+            		<div id="" class="tab-pane fade in active" ng-show="menuFlag == 5">
+            			<div class="col-md-8 no-pads">
+            			<div class="query-head">
+            				<h5>Contact Information</h5>
+            			</div>
+            			<div  class="query-blue clearfix">
+            			 	            			 	            			 	            			 	
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			PIN / ZIP Code
+								  <input type="checkbox" ng-model="configList[3].freeQueryDataList[0].selected" ng-click="addInSelectedFieldsList(configList[3].freeQueryDataList[0].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater" maxlength="6" numbers-only="numbers-only" ng-model="configList[3].freeQueryDataList[0].value" allow1>
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude30" ng-style="{'color':configList[3].freeQueryDataList[0].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(3,0)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			City
+								  <input type="checkbox" ng-model="configList[3].freeQueryDataList[1].selected" ng-click="addInSelectedFieldsList(configList[3].freeQueryDataList[1].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<!-- <input autocomplete="off" class="form-control flat-control-inner" id="city" placeholder="employee email" ng-model="searchcity" ng-change="fetchSuggestionList('city',searchcity,'citylist')" list="cityList">
+				  					<datalist id="cityList">
+										<option  data-ng-repeat="city in citylist" value="{{city.detail}}"> 
+				  					</datalist> -->			
+				  				
+				  				<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select City <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allcity" name="check"
+														class="flashuser" ng-model="selectAllCities"
+														ng-click="selectAllCity(selectAllCities)"> <label
+														class="cstmchk_lbluser" for="allcity">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="c in freeQueryCandidateData.cityList">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="city{{$index}}" name="check"
+														class="flashuser" ng-model="checkedcity"
+														ng-change="addCity(c.id,checkedcity)"
+														ng-checked="c.isSelected ||selectAllCities"> <label
+														class="cstmchk_lbluser" for="city{{$index}}">{{c.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+				  					            			 		
+          			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude31" ng-style="{'color':configList[3].freeQueryDataList[1].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(3,1)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="cityIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{cityIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			State
+								  <input type="checkbox" ng-model="configList[3].freeQueryDataList[2].selected" ng-click="addInSelectedFieldsList(configList[3].freeQueryDataList[2].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<!-- <input autocomplete="off" class="form-control flat-control-inner" id="state" placeholder="employee email" ng-model="searchstate" ng-change="fetchSuggestionList('state',searchstate,'statelist')" list="stateList">
+				  					<datalist id="stateList">
+										<option  data-ng-repeat="state in statelist" value="{{state.detail}}"> 
+				  					</datalist> -->
+				  				
+				  				<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select State <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allstate" name="check"
+														class="flashuser" ng-model="selectAllstate"
+														ng-click="selectAllState(selectAllstate)">
+														
+													<label class="cstmchk_lbluser" for="allstate">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="s in freeQueryCandidateData.stateList">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="state{{$index}}" name="check"
+														class="flashuser" ng-model="checkedstate"
+														ng-change="cityList(s.id)"
+														ng-click="addState(s.id,checkedstate)"
+														ng-checked="s.isSelected || selectAllstate"> <label
+														class="cstmchk_lbluser" for="state{{$index}}">{{s.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+				  					
+								
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude32" ng-style="{'color':configList[3].freeQueryDataList[2].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(3,2)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="stateIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{stateIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Mobile Number
+								  <input type="checkbox" ng-model="configList[3].freeQueryDataList[3].selected" ng-click="addInSelectedFieldsList(configList[3].freeQueryDataList[3].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater" maxlength="10" numbers-only="numbers-only" ng-model="configList[3].freeQueryDataList[3].value" allow1>
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude33" ng-style="{'color':configList[3].freeQueryDataList[3].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(3,3)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Country
+								  <input type="checkbox" ng-model="configList[3].freeQueryDataList[4].selected" ng-click="addInSelectedFieldsList(configList[3].freeQueryDataList[4].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Country <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allcountrys" name="check"
+														class="flashuser" ng-model="selectAllcountry"
+														ng-click="selectAllCountry(selectAllcountrys)"> <label
+														class="cstmchk_lbluser" for="allcountrys">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="c in freeQueryCandidateData.countryList">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="country{{$index}}" name="check"
+														class="flashuser" ng-model="checkedcountry"
+														ng-change="stateList(c.id);"
+														ng-checked="c.isSelected || selectAllcountry" ng-click="addCountry(c.id,checkedcountry)"> <label
+														class="cstmchk_lbluser" for="country{{$index}}">{{c.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude34" ng-style="{'color':configList[3].freeQueryDataList[4].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(3,4)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="countryIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{countryIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			</div>
+	            	</div>
+	            	
+            		</div>
+            		<div id="" class="tab-pane fade in active " ng-show="menuFlag == 6">
+            			<div class="col-md-8 no-pads">
+            			<div class="query-head">
+            				<h5>Compliance Information</h5>
+            			</div>
+            			<div  class="query-blue clearfix">
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Document Name
+								  <input type="checkbox" ng-model="configList[4].freeQueryDataList[3].selected" ng-click="addInSelectedFieldsList(configList[4].freeQueryDataList[3].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Compliance <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allcompliance" name="check"
+														class="flashuser" ng-model="selectAllcompliance"
+														ng-click="selectAllCompliances(selectAllcompliance)"> <label
+														class="cstmchk_lbluser" for="allcompliance">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="cm in compliancelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="compliance{{$index}}" name="check"
+														class="flashuser" ng-model="checkedcom"
+														ng-change="addCompliance(cm.id,checkedcom)"
+														ng-checked="cm.isSelected || selectAllcompliance"> <label
+														class="cstmchk_lbluser" for="compliance{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude43" ng-style="{'color':configList[4].freeQueryDataList[3].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(4,3)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="complianceIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{complianceIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Document No.
+								  <input type="checkbox" ng-model="configList[4].freeQueryDataList[4].selected" ng-click="addInSelectedFieldsList(configList[4].freeQueryDataList[4].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater" ng-model="configList[4].freeQueryDataList[4].value" allow2>
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude44" ng-style="{'color':configList[4].freeQueryDataList[4].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(4,4)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Issue Date
+									  <input type="checkbox" ng-model="configList[4].freeQueryDataList[0].selected" ng-click="addInSelectedFieldsList(configList[4].freeQueryDataList[0].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[4].freeQueryDataList[0].compareId">
+            			 				<option value="">Select</option>
+            			 				<option ng-value="1"> > </option>
+            			 				<option ng-value="2"> = </option>
+            			 				<option ng-value="3"> < </option>
+            			 				<option ng-value="4"> >= </option>
+            			 				<option ng-value="5"> <= </option>
+            			 				<option ng-value="7"> <> </option>
+            			 				<option ng-value="6"> between </option>
+            			 			</select>
+            			 		</div>
+            			 		<div class="col-md-1 no-pads" ng-show="configList[4].freeQueryDataList[0].compareId == 6">
+            			 			<label>From</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[4].freeQueryDataList[0].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="issueDateFrom" ng-model="configList[4].freeQueryDataList[0].fromField" ng-blur="setDate(configList[4].freeQueryDataList[0],'issueDateFrom',1)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[4].freeQueryDataList[2].compareId == 6">
+            			 			<label>To</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[4].freeQueryDataList[0].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="issueDateTo" ng-model="configList[4].freeQueryDataList[0].toField" ng-blur="setDate(configList[4].freeQueryDataList[0],'issueDateTo',2)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[4].freeQueryDataList[0].compareId != 6">
+            			 			<label>Date</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[4].freeQueryDataList[0].compareId != 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="issueDateValue" ng-model="configList[4].freeQueryDataList[0].value" ng-blur="setDate(configList[4].freeQueryDataList[0],'issueDateValue',3)">
+            			 		</div>
+            			 		<!-- <div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude40" ng-click="setExcludeFlag(4,0)" aria-hidden="true" title="Exclude"></i>
+            			 	</div> -->
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Expiry Date
+									  <input type="checkbox" ng-model="configList[4].freeQueryDataList[1].selected" ng-click="addInSelectedFieldsList(configList[4].freeQueryDataList[1].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[4].freeQueryDataList[1].compareId">
+            			 				<option value="">Select</option>
+            			 				<option ng-value="1"> > </option>
+            			 				<option ng-value="2"> = </option>
+            			 				<option ng-value="3"> < </option>
+            			 				<option ng-value="4"> >= </option>
+            			 				<option ng-value="5"> <= </option>
+            			 				<option ng-value="7"> <> </option>
+            			 				<option ng-value="6"> between </option>
+            			 			</select>
+            			 		</div>
+            			 		<div class="col-md-1 no-pads" ng-show="configList[4].freeQueryDataList[1].compareId == 6">
+            			 			<label>From</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[4].freeQueryDataList[1].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="expiryDateFrom" ng-model="configList[4].freeQueryDataList[1].fromField" ng-blur="setDate(configList[4].freeQueryDataList[1],'expiryDateFrom',1)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[4].freeQueryDataList[1].compareId == 6">
+            			 			<label>To</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[4].freeQueryDataList[1].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="expiryDateTo" ng-model="configList[4].freeQueryDataList[1].toField" ng-blur="setDate(configList[4].freeQueryDataList[1],'expiryDateTo',2)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[4].freeQueryDataList[1].compareId != 6">
+            			 			<label>Date</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[4].freeQueryDataList[1].compareId != 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="expiryDateValue" ng-model="configList[4].freeQueryDataList[1].value" ng-blur="setDate(configList[4].freeQueryDataList[1],'expiryDateValue',3)">
+            			 		</div>
+            			 		<!-- <div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude41" ng-click="setExcludeFlag(4,1)" aria-hidden="true" title="Exclude"></i>
+            			 	</div> -->
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Country Of Issue
+								  <input type="checkbox" ng-model="configList[4].freeQueryDataList[2].selected" ng-click="addInSelectedFieldsList(configList[4].freeQueryDataList[2].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Country <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allcountryfor" name="check"
+														class="flashuser" ng-model="selectAllcountrys"
+														ng-click="selectAllComplianceCountry(selectAllcountrys)"> <label
+														class="cstmchk_lbluser" for="allcountrys">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="c in freeQueryCandidateData.countryListForCompliances">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="countryfor{{$index}}" name="check"
+														class="flashuser" ng-model="checkedcountrys"														 
+														ng-checked="c.isSelected || selectAllcountrys" ng-click="addComplianceCountry(c.id,checkedcountrys)"> <label
+														class="cstmchk_lbluser" for="countryfor{{$index}}">{{c.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude42" ng-style="{'color':configList[4].freeQueryDataList[2].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(4,2)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="complianceCountryIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{complianceCountryIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			</div>
+	            	</div>
+	            	
+            		</div>
+            		
+            		
+            		<div id="" class="tab-pane fade in active" ng-show="menuFlag == 7">
+            			<div class="col-md-8 no-pads ">
+            			<div class="query-head">
+            				<h5>Current Assessment</h5>
+            			</div>
+            			<div  class="query-blue clearfix">
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Brand
+								  <input type="checkbox" ng-model="configList[7].freeQueryDataList[0].selected" ng-click="addInSelectedFieldsList(configList[7].freeQueryDataList[0].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Brand <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allAssbrands" name="check"
+														class="flashuser" ng-model="selectAllAssbrands"
+														ng-click="selectAllAssBrands(selectAllAssbrands)"> <label
+														class="cstmchk_lbluser" for="allAssbrands">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="br in brandlistForAssessment">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="Assbrand{{$index}}" name="check"
+														class="flashuser" ng-model="checkedAssbrand"
+														
+														ng-checked="br.isSelected || selectAllAssbrands" ng-click="addAssBrand(br.id,checkedbrand)"> <label
+														class="cstmchk_lbluser" for="Assbrand{{$index}}">{{br.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude70" ng-style="{'color':configList[7].freeQueryDataList[0].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(7,0)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="assbrandIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{assbrandIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Department
+								  <input type="checkbox" ng-model="configList[7].freeQueryDataList[1].selected" ng-click="addInSelectedFieldsList(configList[7].freeQueryDataList[1].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Department <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allAssdept" name="check"
+														class="flashuser" ng-model="selectAllAssdept"
+														ng-click="selectAllAssDept(selectAllAssdept)"
+														ng-change="filterpositionlist(selectAllAssdept,0)">
+													<label class="cstmchk_lbluser" for="allAssdept">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="d in departmentlistForAssessment">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="Assdept{{$index}}" name="check"
+														class="flashuser" ng-model="checkedAssdept"
+														ng-change="filterpositionlist(checkedAssdept,d.id)"
+														ng-click="addAssDept(d.id,checkeddept)"
+														ng-checked="d.isSelected || selectAllAssdept"> <label
+														class="cstmchk_lbluser" for="Assdept{{$index}}">{{d.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude71" ng-style="{'color':configList[7].freeQueryDataList[1].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(7,1)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="assdepIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{assdepIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Position
+								  <input type="checkbox" ng-model="configList[7].freeQueryDataList[2].selected" ng-click="addInSelectedFieldsList(configList[7].freeQueryDataList[2].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Position <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allAssposition" name="check"
+														class="flashuser" ng-model="selectAllAssPosition"
+														ng-click="selectAllAssPositions(selectAllAssPosition)"> <label
+														class="cstmchk_lbluser" for="allAssposition">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="p in positionlistforassessment">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="Asspostion{{$index}}" name="check"
+														class="flashuser" ng-model="checkedAsspos"
+														ng-change="addAssPosi(p.id,checkedpos)"
+														ng-checked="p.isSelected || selectAllAssPosition"> <label
+														class="cstmchk_lbluser" for="Asspostion{{$index}}">{{p.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude72" ng-style="{'color':configList[7].freeQueryDataList[2].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(7,2)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="assposiIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{assposiIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Name Of Assessments
+								  <input type="checkbox" ng-model="configList[7].freeQueryDataList[3].selected" ng-click="addInSelectedFieldsList(configList[7].freeQueryDataList[3].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater" ng-model="configList[7].freeQueryDataList[3].value" allow2>
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude73" ng-style="{'color':configList[7].freeQueryDataList[3].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(7,3)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Completion Date
+									  <input type="checkbox" ng-model="configList[7].freeQueryDataList[4].selected" ng-click="addInSelectedFieldsList(configList[7].freeQueryDataList[4].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[7].freeQueryDataList[4].compareId">
+			            			 				<option value="">Select</option>
+			            			 				<option ng-value="1"> > </option>
+			            			 				<option ng-value="2"> = </option>
+			            			 				<option ng-value="3"> < </option>
+			            			 				<option ng-value="4"> >= </option>
+			            			 				<option ng-value="5"> <= </option>
+			            			 				<option ng-value="7"> <> </option>
+            			 							<option ng-value="6"> between </option>
+            			 						</select>
+            			 				</div>
+			            			 		<div class="col-md-1 no-pads" ng-show="configList[7].freeQueryDataList[4].compareId == 6">
+			            			 			<label>From</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[7].freeQueryDataList[4].compareId == 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="assessDateFrom" ng-model="configList[7].freeQueryDataList[4].fromField" ng-blur="setDate(configList[7].freeQueryDataList[4],'assessDateFrom',1)">
+			            			 		</div>
+			            			 		<div class="col-md-1" ng-show="configList[7].freeQueryDataList[4].compareId == 6">
+			            			 			<label>To</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[7].freeQueryDataList[4].compareId == 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="assessDateTo" ng-model="configList[7].freeQueryDataList[4].toField" ng-blur="setDate(configList[7].freeQueryDataList[4],'assessDateTo',2)">
+			            			 		</div>
+			            			 		<div class="col-md-2 text-right" ng-show="configList[7].freeQueryDataList[4].compareId != 6">
+			            			 			<label>Date</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[7].freeQueryDataList[4].compareId != 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="assessDateValue" ng-model="configList[7].freeQueryDataList[4].value" ng-blur="setDate(configList[7].freeQueryDataList[4],'assessDateValue',3)">
+			            			 		</div>
+            			 		<!-- <div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude74 ng-click="setExcludeFlag(7,4)" aria-hidden="true" title="Exclude"></i>
+            			 	</div> -->
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			 Assessment Duration (min.)
+								  <input type="checkbox" ng-model="configList[7].freeQueryDataList[5].selected" ng-click="addInSelectedFieldsList(configList[7].freeQueryDataList[5].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[7].freeQueryDataList[5].compareId">
+            			 				<option value="">Select</option>
+            			 				<option ng-value="1"> > </option>
+            			 				<option ng-value="2"> = </option>
+            			 				<option ng-value="3"> < </option>
+            			 				<option ng-value="4"> >= </option>
+            			 				<option ng-value="5"> <= </option>
+            			 				<option ng-value="7"> <> </option>
+            			 				<option ng-value="6"> between </option>
+            			 			</select>
+            			 		</div>
+            			 		<div class="col-md-1 no-pads" ng-show="configList[7].freeQueryDataList[5].compareId == 6">
+            			 			<label>From</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[7].freeQueryDataList[5].compareId == 6">
+            			 			<input type="number" class="form-control input-flater input-info"  ng-model="configList[7].freeQueryDataList[5].fromField" allow1>
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[2].freeQueryDataList[5].compareId == 6">
+            			 			<label>To</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[2].freeQueryDataList[5].compareId == 6">
+            			 			<input type="number" class="form-control input-flater input-info" ng-model="configList[7].freeQueryDataList[5].toField" allow1>
+            			 		</div>
+            			 		<div class="col-md-2 text-right" ng-show="configList[7].freeQueryDataList[5].compareId != 6" style="">
+            			 			<label>Duration</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[7].freeQueryDataList[5].compareId != 6" ng-init="setDatePicker()">
+            			 			<input type="number" class="form-control input-flater input-info" ng-model="configList[7].freeQueryDataList[5].value" allow1>
+            			 		</div>
+            			 	<!-- <div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater" ng-model="configList[7].freeQueryDataList[5].value" allow1>
+            			 	</div> -->
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude75" ng-style="{'color':configList[7].freeQueryDataList[5].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(7,5)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<!-- <div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Status
+								  <input type="checkbox" ng-model="configList[7].freeQueryDataList[7].selected" ng-click="addInSelectedFieldsList(configList[7].freeQueryDataList[7].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater">
+            			 		
+            			 		<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allassstatus" name="check"
+														class="flashuser" ng-model="selectAllAssStatuss"
+														ng-click="selectAllAssStatus(selectAllAssStatuss)"> <label
+														class="cstmchk_lbluser" for="allassstatus">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="s in assessmentStatus">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="assstatus{{$index}}" name="check"
+														class="flashuser" ng-model="checkedassstatus"
+														ng-change="addAssStatus(s.id,checkedassstatus)"
+														ng-checked="selectAllAssStatuss"> <label
+														class="cstmchk_lbluser" for="assstatus{{$index}}">{{s.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" ng-click="setExcludeFlag(7,7)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div> -->
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Score
+									  <input type="checkbox" ng-model="configList[7].freeQueryDataList[8].selected" ng-click="addInSelectedFieldsList(configList[7].freeQueryDataList[8].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[7].freeQueryDataList[8].compareId">
+			            			 				<option value="">Select</option>
+			            			 				<option ng-value="1"> > </option>
+			            			 				<option ng-value="2"> = </option>
+			            			 				<option ng-value="3"> < </option>
+			            			 				<option ng-value="4"> >= </option>
+			            			 				<option ng-value="5"> <= </option>
+			            			 				<option ng-value="7"> <> </option>
+            			 							<option ng-value="6"> between </option>
+            			 						</select>
+            			 		</div>
+            			 		<div class="col-md-1 no-pads" ng-show="configList[7].freeQueryDataList[8].compareId == 6">
+            			 			<label>Between</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[7].freeQueryDataList[8].compareId == 6">
+            			 			<input type="text" class="form-control input-flater input-info" ng-model="configList[7].freeQueryDataList[8].fromField">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[7].freeQueryDataList[8].compareId == 6">
+            			 			<label>And</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[7].freeQueryDataList[8].compareId == 6">
+            			 			<input type="text" class="form-control input-flater input-info" ng-model="configList[7].freeQueryDataList[8].toField">
+            			 		</div>
+            			 		<div class="col-md-2 text-right" ng-show="configList[7].freeQueryDataList[8].compareId != 6">
+			            			 <label>Score</label>
+			            		</div>
+			            		<div class="col-md-2 no-pads" ng-show="configList[7].freeQueryDataList[8].compareId != 6">
+			            			 <input type="text" class="form-control input-flater input-info" ng-model="configList[7].freeQueryDataList[8].value">
+			            		</div>
+            			 		<!-- <div class="col-md-1">
+            			 		 	 <i class="fa fa-minus-circle exlucde-icon" id="exclude78" ng-click="setExcludeFlag(7,8)" aria-hidden="true" title="Exclude"></i>
+            			 		</div> -->
+            			 	</div>
+            			</div>
+	            	</div>
+	            	
+            		</div>
+					<div id="" class="tab-pane fade in active" ng-show="menuFlag == 8">
+            			<div class="col-md-8 no-pads">
+            			<div class="query-head">
+            				<h5>Survey</h5>
+            			</div>
+            			<div  class="query-blue clearfix">
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Name Of Survey
+								  <input type="checkbox" ng-model="configList[8].freeQueryDataList[0].selected" ng-click="addInSelectedFieldsList(configList[8].freeQueryDataList[0].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater" ng-model="configList[8].freeQueryDataList[0].value" allow2>
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude80" ng-style="{'color':configList[8].freeQueryDataList[0].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(8,0)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Start Date
+									  <input type="checkbox" ng-model="configList[8].freeQueryDataList[1].selected" ng-click="addInSelectedFieldsList(configList[8].freeQueryDataList[1].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[8].freeQueryDataList[1].compareId">
+			            			 				<option value="">Select</option>
+			            			 				<option ng-value="1"> > </option>
+			            			 				<option ng-value="2"> = </option>
+			            			 				<option ng-value="3"> < </option>
+			            			 				<option ng-value="4"> >= </option>
+			            			 				<option ng-value="5"> <= </option>
+			            			 				<option ng-value="7"> <> </option>
+            			 							<option ng-value="6"> between </option>
+            			 						</select>
+            			 				</div>
+			            			 		<div class="col-md-1 no-pads" ng-show="configList[8].freeQueryDataList[1].compareId == 6">
+			            			 			<label>From</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[8].freeQueryDataList[1].compareId == 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="surveystDateFrom" ng-model="configList[8].freeQueryDataList[1].fromField" ng-blur="setDate(configList[8].freeQueryDataList[1],'surveystDateFrom',1)">
+			            			 		</div>
+			            			 		<div class="col-md-1" ng-show="configList[8].freeQueryDataList[1].compareId == 6">
+			            			 			<label>To</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[8].freeQueryDataList[1].compareId == 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="surveystDateTo" ng-model="configList[8].freeQueryDataList[1].toField" ng-blur="setDate(configList[8].freeQueryDataList[1],'surveystDateTo',2)">
+			            			 		</div>
+			            			 		<div class="col-md-1" ng-show="configList[8].freeQueryDataList[1].compareId != 6">
+			            			 			<label>Date</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[8].freeQueryDataList[1].compareId != 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="surveystDateValue" ng-model="configList[8].freeQueryDataList[1].value" ng-blur="setDate(configList[8].freeQueryDataList[1],'surveystDateValue',3)">
+			            			 		</div>
+            			 					<!-- <div class="col-md-1">
+            			 			 			<i class="fa fa-minus-circle exlucde-icon" id="exclude81" ng-click="setExcludeFlag(8,1)" aria-hidden="true" title="Exclude"></i>
+            			 					</div> -->
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			End Date
+									  <input type="checkbox" ng-model="configList[8].freeQueryDataList[2].selected" ng-click="addInSelectedFieldsList(configList[8].freeQueryDataList[2].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[8].freeQueryDataList[2].compareId">
+			            			 				<option value="">Select</option>
+			            			 				<option ng-value="1"> > </option>
+			            			 				<option ng-value="2"> = </option>
+			            			 				<option ng-value="3"> < </option>
+			            			 				<option ng-value="4"> >= </option>
+			            			 				<option ng-value="5"> <= </option>
+			            			 				<option ng-value="7"> <> </option>
+            			 							<option ng-value="6"> between </option>
+            			 						</select>
+            			 				</div>
+			            			 		<div class="col-md-1 no-pads" ng-show="configList[8].freeQueryDataList[2].compareId == 6">
+			            			 			<label>From</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[8].freeQueryDataList[2].compareId == 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="surveyedDateFrom" ng-model="configList[8].freeQueryDataList[2].fromField" ng-blur="setDate(configList[8].freeQueryDataList[2],'surveyedDateFrom',1)">
+			            			 		</div>
+			            			 		<div class="col-md-1" ng-show="configList[8].freeQueryDataList[2].compareId == 6">
+			            			 			<label>To</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[8].freeQueryDataList[2].compareId == 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="surveyedDateTo" ng-model="configList[8].freeQueryDataList[2].toField" ng-blur="setDate(configList[8].freeQueryDataList[2],'surveyedDateTo',2)">
+			            			 		</div>
+			            			 		<div class="col-md-1" ng-show="configList[8].freeQueryDataList[2].compareId != 6">
+			            			 			<label>Date</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[8].freeQueryDataList[2].compareId != 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="surveyedDateValue" ng-model="configList[8].freeQueryDataList[2].value" ng-blur="setDate(configList[8].freeQueryDataList[2],'surveyedDateValue',3)">
+			            			 		</div>
+            			 					<!-- <div class="col-md-1">
+            			 		 				<i class="fa fa-minus-circle exlucde-icon" id="exclude82" ng-click="setExcludeFlag(8,2)" aria-hidden="true" title="Exclude" ></i>
+            			 					</div> -->
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Completed Date
+									  <input type="checkbox" ng-model="configList[8].freeQueryDataList[3].selected" ng-click="addInSelectedFieldsList(configList[8].freeQueryDataList[3].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[8].freeQueryDataList[3].compareId">
+			            			 				<option value="">Select</option>
+			            			 				<option ng-value="1"> > </option>
+			            			 				<option ng-value="2"> = </option>
+			            			 				<option ng-value="3"> < </option>
+			            			 				<option ng-value="4"> >= </option>
+			            			 				<option ng-value="5"> <= </option>
+			            			 				<option ng-value="7"> <> </option>
+            			 							<option ng-value="6"> between </option>
+            			 						</select>
+            			 				</div>
+			            			 		<div class="col-md-1 no-pads" ng-show="configList[8].freeQueryDataList[3].compareId == 6">
+			            			 			<label>From</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[8].freeQueryDataList[3].compareId == 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="surveycmpDateFrom" ng-model="configList[8].freeQueryDataList[3].fromField" ng-blur="setDate(configList[8].freeQueryDataList[3],'surveycmpDateFrom',1)">
+			            			 		</div>
+			            			 		<div class="col-md-1" ng-show="configList[8].freeQueryDataList[3].compareId == 6">
+			            			 			<label>To</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[8].freeQueryDataList[3].compareId == 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="surveycmpDateTo" ng-model="configList[8].freeQueryDataList[3].toField" ng-blur="setDate(configList[8].freeQueryDataList[3],'surveycmpDateTo',2)">
+			            			 		</div>
+			            			 		<div class="col-md-1" ng-show="configList[8].freeQueryDataList[3].compareId != 6">
+			            			 			<label>Date</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[8].freeQueryDataList[3].compareId != 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="surveycmpDateValue" ng-model="configList[8].freeQueryDataList[3].value" ng-blur="setDate(configList[8].freeQueryDataList[3],'surveycmpDateValue',3)">
+			            			 		</div>
+            			 		<!-- <div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude83" ng-click="setExcludeFlag(8,3)" aria-hidden="true" title="Exclude"></i>
+            			 	</div> -->
+            			 	</div>
+            			 	<!-- <div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Status
+								  <input type="checkbox" ng-model="configList[8].freeQueryDataList[4].selected" ng-click="addInSelectedFieldsList(configList[8].freeQueryDataList[4].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		
+            			 		<input type="text" class="form-control input-flater">
+            			 		
+            			 		<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allsurveystatus" name="check"
+														class="flashuser" ng-model="selectAllSurveyStatus"
+														ng-click="selectAllSurveyStatus(selectAllSurveyStatus)"> <label
+														class="cstmchk_lbluser" for="allsurveystatus">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="s in assessmentStatus">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="surveystatus{{$index}}" name="check"
+														class="flashuser" ng-model="checkedsurveystatus"
+														ng-change="addSurveyStatus(s.id,checkedsurveystatus)"
+														ng-checked="selectAllSurveyStatus"> <label
+														class="cstmchk_lbluser" for="surveystatus{{$index}}">{{s.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" ng-click="setExcludeFlag(8,4)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div> -->
+            			 	
+            			</div>
+	            	</div>
+	            	
+            		</div>
+            		<div id="" class="tab-pane fade in active" ng-show="menuFlag == 9">
+            			<div class="col-md-8 no-pads">
+            			<div class="query-head">
+            				<h5>Documents</h5>
+            			</div>
+            			<div  class="query-blue clearfix">
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			File Name
+								  <input type="checkbox" ng-model="configList[9].freeQueryDataList[0].selected" ng-click="addInSelectedFieldsList(configList[9].freeQueryDataList[0].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater" ng-model="configList[9].freeQueryDataList[0].value" allow2>
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude90" ng-style="{'color':configList[9].freeQueryDataList[0].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(9,0)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			File Type
+								  <input type="checkbox" ng-model="configList[9].freeQueryDataList[1].selected" ng-click="addInSelectedFieldsList(configList[9].freeQueryDataList[1].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Type <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="dt in documentType">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="type2{{$index}}" name="check"
+														class="flashuser" ng-model="checkedtype"
+														ng-checked="dt.isSelected || selectAlltypes" ng-click="addType(dt.id,checkedtype)"> <label
+														class="cstmchk_lbluser" for="type2{{$index}}">{{dt.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude91" ng-style="{'color':configList[9].freeQueryDataList[1].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(9,1)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="docTypeIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{docTypeIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Upload Date
+									  <input type="checkbox" ng-model="configList[9].freeQueryDataList[2].selected" ng-click="addInSelectedFieldsList(configList[9].freeQueryDataList[2].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+	            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[9].freeQueryDataList[2].compareId">
+				            			 				<option value="">Select</option>
+				            			 				<option ng-value="1"> > </option>
+				            			 				<option ng-value="2"> = </option>
+				            			 				<option ng-value="3"> < </option>
+				            			 				<option ng-value="4"> >= </option>
+				            			 				<option ng-value="5"> <= </option>
+				            			 				<option ng-value="7"> <> </option>
+            			 								<option ng-value="6"> between </option>
+	            			 			</select>
+            			 				</div>
+			            			 		<div class="col-md-1 no-pads" ng-show="configList[9].freeQueryDataList[2].compareId == 6">
+			            			 			<label>From</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[9].freeQueryDataList[2].compareId == 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="fileUpDateFrom" ng-model="configList[9].freeQueryDataList[2].fromField" ng-blur="setDate(configList[9].freeQueryDataList[2],'fileUpDateFrom',1)">
+			            			 		</div>
+			            			 		<div class="col-md-1" ng-show="configList[9].freeQueryDataList[2].compareId == 6">
+			            			 			<label>To</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[9].freeQueryDataList[2].compareId == 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="fileUpDateTo" ng-model="configList[9].freeQueryDataList[2].toField" ng-blur="setDate(configList[9].freeQueryDataList[2],'fileUpDateTo',2)">
+			            			 		</div>
+			            			 		<div class="col-md-1" ng-show="configList[9].freeQueryDataList[2].compareId != 6">
+			            			 			<label>Date</label>
+			            			 		</div>
+			            			 		<div class="col-md-2 no-pads" ng-show="configList[9].freeQueryDataList[2].compareId != 6" ng-init="setDatePicker()">
+			            			 			<input type="text" class="form-control input-flater input-info dateonly" id="fileUpDateValue" ng-model="configList[9].freeQueryDataList[2].value" ng-blur="setDate(configList[9].freeQueryDataList[2],'fileUpDateValue',3)">
+			            			 		</div>
+            			 					<!-- <div class="col-md-1">
+            			 		 				<i class="fa fa-minus-circle exlucde-icon" id="exclude92" ng-click="setExcludeFlag(9,2)" aria-hidden="true" title="Exclude"></i>
+            			 					</div> -->
+            			 			</div>
+            			</div>
+	            	</div>
+	            	
+            		</div>
+            		
+            		<div id="posting" class="tab-pane fade in active" ng-show="menuFlag == 10 ">
+            			<div class="col-md-8 no-pads">
+            			<div class="query-head">
+            				<h5>Job Postings</h5>
+            			</div>
+            			<div  class="query-blue clearfix">
+            			
+            			<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			 Brand
+								  <input type="checkbox" ng-model="configList[10].freeQueryDataList[2].selected" ng-click="addInSelectedFieldsList(configList[10].freeQueryDataList[2].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Brand <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allposts" name="check"
+														class="flashuser" ng-model="selectAllbrandsPost"
+														ng-click="selectAllpostBrands(selectAllbrandsPost)"> <label
+														class="cstmchk_lbluser" for="allposts">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="br in brandlistForJobPosting">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="brandpost{{$index}}" name="check"
+														class="flashuser" ng-model="checkedPost"
+														ng-change="filterpositionlist(checkedPost,br.id)"
+														ng-checked="br.isSelected || selectAllbrandsPost" ng-click="addPostBrand(br.id,checkedPost)"> <label
+														class="cstmchk_lbluser" for="brandpost{{$index}}">{{br.name}}</label>
+												</div>
+											</li>
+										</ul>
+								</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude102" ng-style="{'color':configList[10].freeQueryDataList[2].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(10,2)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="postbrandIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{postbrandIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			 Ship
+								  <input type="checkbox" ng-model="configList[10].freeQueryDataList[5].selected" ng-click="addInSelectedFieldsList(configList[10].freeQueryDataList[5].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Ship <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allships" name="check"
+														class="flashuser" ng-model="selectAllships"
+														ng-click="selectAllShips(selectAllships)"> <label
+														class="cstmchk_lbluser" for="allbrands">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="ship in shipList">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="shippost{{$index}}" name="check"
+														class="flashuser" ng-model="checkedship"
+														
+														ng-checked="ship.isSelected ||selectAllships" ng-click="addShip(ship.id,checkedship)"> <label
+														class="cstmchk_lbluser" for="shippost{{$index}}">{{ship.name}}</label>
+												</div>
+											</li>
+										</ul>
+								</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude105" ng-style="{'color':configList[10].freeQueryDataList[5].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(10,5)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="shipIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{shipIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	
+            			 	
+            			 	
+            			 	
+            			 	
+            			 	
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Department
+								  <input type="checkbox" ng-model="configList[10].freeQueryDataList[1].selected" ng-click="addInSelectedFieldsList(configList[10].freeQueryDataList[1].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		
+            			 		<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Department <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+										style="width: 100% !important; left: 0px !important;">
+										<li>
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="alldeptpost" name="check"
+													class="flashuser" ng-model="selectAlldeptpost"
+													ng-change="filterpositionlist(selectAlldeptpost,0)"
+													 ng-click="selectAllPostDept(selectAlldeptpost)">
+												<label class="cstmchk_lbluser" for="alldeptpost">Select All</label>
+											</div>
+										</li>
+										<li ng-repeat="d in departmentlistForJobPosting">
+											<div class="chckbx-cntnr zeromargin">
+												<input type="checkbox" id="deptpost{{$index}}" name="check"
+													class="flashuser" ng-model="checkeddeptpost"
+													ng-change="filterpositionlist(checkeddeptpost,d.id)"
+													ng-checked="d.isSelected || checkeddeptpost" ng-click="addDeptPost(d.id,checkeddeptpost)"> <label
+													class="cstmchk_lbluser" for="deptpost{{$index}}">{{d.name}}</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude101" ng-style="{'color':configList[10].freeQueryDataList[1].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(10,1)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="postdepIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{postdepIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	
+            			 	
+            			 	
+            			 	
+            			 	
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Position
+								  <input type="checkbox" ng-model="configList[10].freeQueryDataList[0].selected" ng-click="addInSelectedFieldsList(configList[10].freeQueryDataList[0].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<!-- <input type="text" class="form-control input-flater"> -->
+            			 		<div class="dropdown">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+										Select Position <span class="caret"
+											style="margin: 10px 0px; float: right;"></span>
+									</div>
+									<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allpositionpost" name="check"
+														class="flashuser" ng-model="selectAllPositionPost"
+														ng-click="selectAllPostJobPositions(selectAllPositionPost)"> <label
+														class="cstmchk_lbluser" for="allpositionpost">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="p in positionlistforjobposting">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="postionpost{{$index}}" name="check"
+														class="flashuser" ng-model="checkedpositionpost"
+														ng-change="addPostJobPosi(p.id,checkedpositionpost)"
+														ng-checked="p.isSelected || selectAllPositionPost"> <label
+														class="cstmchk_lbluser" for="postionpost{{$index}}">{{p.name}}</label>
+												</div>
+											</li>
+										</ul>
+								</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude100" ng-style="{'color':configList[10].freeQueryDataList[0].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(10,0)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div>
+            			 	<div class="margin-box clearfix" ng-if="PostJobposiIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{PostJobposiIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			 	
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Embark Date
+									  <input type="checkbox" ng-model="configList[10].freeQueryDataList[3].selected" ng-click="addInSelectedFieldsList(configList[10].freeQueryDataList[3].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[10].freeQueryDataList[3].compareId">
+            			 				<option value="">Select</option>
+            			 				<option ng-value="1"> > </option>
+            			 				<option ng-value="2"> = </option>
+            			 				<option ng-value="3"> < </option>
+            			 				<option ng-value="4"> >= </option>
+            			 				<option ng-value="5"> <= </option>
+            			 				<option ng-value="7"> <> </option>
+            			 				<option ng-value="6"> between </option>
+            			 			</select>
+            			 		</div>
+            			 		
+            			 		<div class="col-md-1 no-pads" ng-show="configList[10].freeQueryDataList[3].compareId == 6">
+            			 			<label>From</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[10].freeQueryDataList[3].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="embarkFromDate" ng-model="configList[10].freeQueryDataList[3].fromField" ng-blur="setDate(configList[10].freeQueryDataList[3],'embarkFromDate',1)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[10].freeQueryDataList[3].compareId == 6">
+            			 			<label>To</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[10].freeQueryDataList[3].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="embarkToDate" ng-model="configList[10].freeQueryDataList[3].toField" ng-blur="setDate(configList[10].freeQueryDataList[3],'embarkToDate',2)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[10].freeQueryDataList[3].compareId != 6">
+            			 			<label>Date</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[10].freeQueryDataList[3].compareId != 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="embarkDateValue" ng-model="configList[10].freeQueryDataList[3].value" ng-blur="setDate(configList[10].freeQueryDataList[3],'embarkDateValue',3)">
+            			 		</div>
+            			 		<!-- <div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude52" ng-click="setExcludeFlag(5,2)" aria-hidden="true" title="Exclude"></i>
+            			 	</div> -->
+            			 	</div>
+            			 	
+            			 	<div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+	            			 		<label class="query-check">
+	            			 			Dis-Embark Date
+									  <input type="checkbox" ng-model="configList[10].freeQueryDataList[4].selected" ng-click="addInSelectedFieldsList(configList[10].freeQueryDataList[4].name)">
+									  <span class="checkmark"></span>
+									</label>
+	            			 	</div>
+            			 		<div class="col-md-2">
+            			 			<select class="form-control input-flater new-input-fatter" ng-model="configList[10].freeQueryDataList[4].compareId">
+            			 				<option value="">Select</option>
+            			 				<option ng-value="1"> > </option>
+            			 				<option ng-value="2"> = </option>
+            			 				<option ng-value="3"> < </option>
+            			 				<option ng-value="4"> >= </option>
+            			 				<option ng-value="5"> <= </option>
+            			 				<option ng-value="7"> <> </option>
+            			 				<option ng-value="6"> between </option>
+            			 			</select>
+            			 		</div>
+            			 		
+            			 		<div class="col-md-1 no-pads" ng-show="configList[10].freeQueryDataList[4].compareId == 6">
+            			 			<label>From</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[10].freeQueryDataList[4].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="disembarkFromDate" ng-model="configList[10].freeQueryDataList[4].fromField" ng-blur="setDate(configList[10].freeQueryDataList[4],'disembarkFromDate',1)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[10].freeQueryDataList[4].compareId == 6">
+            			 			<label>To</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[10].freeQueryDataList[4].compareId == 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="disembarkToDate" ng-model="configList[10].freeQueryDataList[4].toField" ng-blur="setDate(configList[10].freeQueryDataList[4],'disembarkToDate',2)">
+            			 		</div>
+            			 		<div class="col-md-1" ng-show="configList[10].freeQueryDataList[4].compareId != 6">
+            			 			<label>Date</label>
+            			 		</div>
+            			 		<div class="col-md-2 no-pads" ng-show="configList[10].freeQueryDataList[4].compareId != 6" ng-init="setDatePicker()">
+            			 			<input type="text" class="form-control input-flater input-info dateonly" id="disembarkDateValue" ng-model="configList[10].freeQueryDataList[4].value" ng-blur="setDate(configList[10].freeQueryDataList[4],'disembarkDateValue',3)">
+            			 		</div>
+            			 		<!-- <div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude52" ng-click="setExcludeFlag(5,2)" aria-hidden="true" title="Exclude"></i>
+            			 	</div> -->
+            			 	</div>
+            			 	
+            			 	
+            			 	
+            			 	
+            			 	<!-- <div class="margin-box clearfix">
+            			 		<div class="col-md-3">
+            			 		<label class="query-check">
+            			 			Status
+								  <input type="checkbox" ng-model="configList[5].freeQueryDataList[4].selected" ng-click="addInSelectedFieldsList(configList[5].freeQueryDataList[4].name)">
+								  <span class="checkmark"></span>
+								</label>
+								
+            			 	</div>
+            			 	<div class="col-md-5">
+            			 		<input type="text" class="form-control input-flater">
+            			 		
+            			 		<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Status <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alljobstatus" name="check"
+														class="flashuser" ng-model="selectAllStatus"
+														ng-click="selectAllJobStatus(selectAllStatus)"> <label
+														class="cstmchk_lbluser" for="alljobstatus">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="s in userJobStatus">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="jobstatus{{$index}}" name="check"
+														class="flashuser" ng-model="checkedstatus"
+														ng-change="addJobStatus(s.id,checkedstatus)"
+														ng-checked="s.isSelected || selectAllStatus"> <label
+														class="cstmchk_lbluser" for="jobstatus{{$index}}">{{s.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+            			 		
+            			 	</div>
+            			 	<div class="col-md-1">
+            			 		 <i class="fa fa-minus-circle exlucde-icon" id="exclude54" ng-style="{'color':configList[5].freeQueryDataList[4].exclude?'red':'#00aeef'}" ng-click="setExcludeFlag(5,4)" aria-hidden="true" title="Exclude"></i>
+            			 		 
+            			 	</div>
+            			 	</div> -->
+            			 	<div class="margin-box clearfix" ng-if="jobStatusIds.length > 0">
+            			 		<div class="col-md-9 col-md-offset-3">
+            			 			<div class="checked-info">
+            			 				<div>
+            			 					{{jobStatusIds.length}} Item(s) Selected
+            			 				</div>
+            			 			</div>
+            			 		</div>
+            			 	</div>
+            			</div>
+	            	</div>
+	            	
+            		</div>
+            		
+            		
+            		
+            		
+            	</div>
+            	<div class="col-md-2" style="padding-right:0px">
+	            		<div class="selected-blue">
+            				<ul class="selected-name">
+            					<li><b>Selected Fields</b></li>
+            					<!-- <li>First Name</li>
+            					<li>Last Name</li> -->
+            					<li ng-repeat="selected in freeQueryFields">{{selected}}</li>
+            					<!-- <li>Second Name</li>
+            					<li>Qualification</li> -->
+            				</ul>
+            			</div>
+	            	</div>
+            	</div>
+            	<div class="text-right">
+            		<button type="button" class="btn btn btn-default btn-greener" ng-click="saveAndExecute(freeQueryCandidateData)">
+            			Execute
+            		</button>
+            		<button type="button" class="btn btn btn-default btn-bluer" ng-click="savepFreeQueryDetailCandidate(freeQueryCandidateData)">
+            			Save
+            		</button>
+            		<a ui-sref="restricted.admin.freequerylist"> Cancel </a>
+            	</div>
+            </div>
+            
+        </div>
+       </div>
+     </div>
+  
+     
+ <script type="text/javascript">
+	 
+		 
+		 	 
+ 	 $('.dateonly').datetimepicker({	    		
+			 format: 'DD-MM-YYYY',
+			 useCurrent: false,
+ 			 //minDate:new Date()     	
+  	}).on('dp.change', function (e) { $(this).change()});
+  
+  $('#yearofpassing').on('focus',".dateonlyyear", function(){
+	  $(this).datetimepicker({
+          debug: true,
+  		format: 'MM-YYYY',
+      });
+});
+				
+</script>

@@ -1,0 +1,1136 @@
+<section id="jobs-main" style="padding: 5% 0;margin: 5% 0;">
+<div id="todo" class="container-fluid">
+<div class="row">
+      <div class="col-md-2">
+        <div class="recent-searches fixed-pills">
+          <h5>My Dashboard</h5>
+          <ul class="nav nav-pills nav-stacked e-pro">
+            <li id="liPersonal" class="active"><a data-toggle="pill" href="" ng-click="showFlag = 1;postingView('current')" class="profile-tabs">Job Postings</a> <img ng-if="userPersonal.dob" src="resources/img/checked.svg" class="profile-complete"></li>
+            <li id="liEducational"><a data-toggle="pill" href="" ng-click="showFlag = 2;fetchCompliancebyJob()" class="profile-tabs">To Do List</a><img ng-if="userEducation.length > 0" src="resources/img/checked.svg" class="profile-complete ng-scope"></li>
+		     <li id="liWork"><a data-toggle="pill" href="" ng-click="showFlag = 3;fetchAssessmets(false)" class="profile-tabs">Assessments</a><img ng-if="userProfile.userCV.cvPath" src="resources/img/checked.svg" class="profile-complete"></li>
+            <li id="liReimbursment"><a data-toggle="pill" href="" ng-click="showFlag = 4" class="profile-tabs">Reimbursement</a></li>
+           <li id="liSurvey"><a data-toggle="pill" href="" ng-click="showFlag = 5;fetchSurveysList()" class="profile-tabs">Surveys</a></li>
+           <li id="emails1"><a data-toggle="pill" href="" ng-click="showFlag = 6;fetchEmailList()" class="profile-tabs">Emails</a></li>
+           <li id="documents"><a data-toggle="pill" href="" ng-click="showFlag = 7;fetchDocumentList()" class="profile-tabs">Documents</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-md-10">
+        <div class="tab-content">
+        <div ng-show="showFlag == 1" id="personal" class="">		
+            <div class="job-search-cntnr">
+              <div class="srch-head"><h4>Job Postings</h4></div>
+              
+              <ul class="nav nav-tabs posting-tabs">
+			    <li class="active"><a data-toggle="tab" ng-click="postingView('current')">Current Job Postings</a></li>			    
+			    <li><a data-toggle="tab" ng-click="postingView('future')">Future Job Postings</a></li>
+			    <li><a data-toggle="tab" ng-click="postingView('past')">Past Job Postings</a></li>
+			  </ul>
+
+			  <div class="tab-content">
+			  
+			    <div id="currentpost" ng-if="postingFlag == 1" class="tab-pane fade in active">
+			 <form>
+              <div class="inner-details"> 	              
+	           <div class="table-responsive">	           
+	           <div ng-if="cPostingFlag == false"><p class="data-av">No Current Job Postings Found!!!</p></div>	           
+                  <table ng-if="cPostingFlag == true"class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Brand</th>
+                        <th>Ship</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>Embark Port</th>
+                        <th>Embark Date</th>
+                        <th>Disembark Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    	<tr ng-repeat="c in currentJobPostings">
+                    		<td>{{c.brand.brandName}}</td>
+                    		<td>{{c.ship.shipName}}</td>
+                    		<td>{{c.category.categoryName}}</td>
+                    		<td>{{c.position.positonname}}</td>
+                    		<td>{{c.Embarkport}}</td>
+                    		<td>{{c.Embarkdates}}</td>
+                    		<td>{{c.Disembarkdates}}</td>
+                    	</tr>
+                    </tbody>
+                    </table>
+               </div>	             
+              <!-- <div class="btn-cntnr">
+                      <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+                      <a ng-click="cancell()">Cancel</a>
+                    </div> -->              
+              </div>
+              </form>
+			    </div>
+			    
+			  <div id="pastpost" ng-if="postingFlag == 2" class="tab-pane fade in active">
+			   	 <form>
+              <div class="inner-details"> 	              
+	           <div class="table-responsive">
+	           
+                  <div ng-if="cPostingFlag == false"><p class="data-av">No Past Job Postings Found!!!</p></div>
+	           
+                  <table ng-if="cPostingFlag == true"class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Brand</th>
+                        <th>Ship</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>Embark Port</th>
+                        <th>Embark Date</th>
+                        <th>Disembark Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    	<tr ng-repeat="c in currentJobPostings">
+                    		<td>{{c.brand.brandName}}</td>
+                    		<td>{{c.ship.shipName}}</td>
+                    		<td>{{c.category.categoryName}}</td>
+                    		<td>{{c.position.positonname}}</td>
+                    		<td>{{c.Embarkport}}</td>
+                    		<td>{{c.Embarkdates}}</td>
+                    		<td>{{c.Disembarkdates}}</td>
+                    	</tr>
+                    </tbody>
+                    </table>
+               </div>	             
+             <!--  <div class="btn-cntnr">
+                      <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+                      <a ng-click="cancell()">Cancel</a>
+                    </div> -->
+              
+              </div>
+              </form>   
+			    </div>
+			    
+			    <div id="futurepost" ng-if="postingFlag == 3" class="tab-pane fade in active">
+			   	  <form>
+              <div class="inner-details"> 	              
+	           <div class="table-responsive">
+	           
+                 <div ng-if="cPostingFlag == false"><p class="data-av">No Future Job Postings Found!!!</p></div>
+	           
+                  <table ng-if="cPostingFlag == true"class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Brand</th>
+                        <th>Ship</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>Embark Port</th>
+                        <th>Embark Date</th>
+                        <th>Disembark Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    	<tr ng-repeat="c in currentJobPostings">
+                    		<td>{{c.brand.brandName}}</td>
+                    		<td>{{c.ship.shipName}}</td>
+                    		<td>{{c.category.categoryName}}</td>
+                    		<td>{{c.position.positonname}}</td>
+                    		<td>{{c.Embarkport}}</td>
+                    		<td>{{c.Embarkdates}}</td>
+                    		<td>{{c.Disembarkdates}}</td>
+                    	</tr>
+                    </tbody>
+                    </table>
+               </div>	             
+             <!--  <div class="btn-cntnr">
+                      <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+                      <a ng-click="cancell()">Cancel</a>
+                    </div> -->
+              
+              </div>
+              </form>   
+			    </div>
+			    
+			  </div>
+		              
+            </div>
+          </div>
+          <div class="table-responsive">
+            <div ng-if="showFlag == 2" id="e-todolist" class="job-search-cntnr" style="padding:0px !important;">
+            <div ng-if="complianceFlag==false"><p class="data-av">No Compliances Found!!!</p></div>
+              <div  ng-show="complianceFlag" class="srch-head" style="padding:4px 20px !important;"><h4>Compliance List</h4></div>
+              <form ng-submit="addListOfDocuments(compliancesListbyJob);">
+              <div class="inner-details to-do"> 
+                <div class="table-cntnr table-responsive">
+                
+                  <table ng-show="complianceFlag" class="table table-bordered" style="display:Block;border-top:1px solid #ddd !important;border:0px;">
+                    <thead>
+                      <tr>
+                        <th style="min-width: 150px;">Document Name</th>                       
+                        <th>Days</th>
+                        <th style="min-width: 70px;">Form <label><i class="fa fa-question-circle-o" style="color:#A9A9A9;" data-toggle="tooltip" data-placement="top" title="If download icon appears please download form, complete it and attach the form."></i></label></th>
+                        <th style="min-width: 150px;">Document No.*</th>
+                        <th style="min-width: 150px;">Issue Date*</th>
+                        <th style="min-width: 150px;">Expiry Date*</th>
+                        <th style="width:160px;">Contry of Issue*</th>
+                        <th style="min-width: 150px;">Expected Date</th>
+                        <th>Status</th>
+                        <th style="min-width: 150px;">Completion Date*</th>
+                        <th style="min-width: 150px;">Attach Documents*</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="cl in compliancesListbyJob">
+                        <td style="text-align: center;">
+                       {{cl.compliance.complianceName}} 
+                         <!--  <input class="form-control flat-control-inner" name="task-name" value="Medical"> -->
+                        </td>
+                        <td style="text-align: center;">
+                          <div class="form-group width-200">
+                           <!--  <input class="form-control flat-control-inner" value="15"> -->
+                        {{cl.compliance.complianceDuration}} 
+                          </div>
+                        </td>
+                        <td><button type="button" ng-if="cl.compliance.complianceFormPath != null || cl.compliance.complianceFormPath != undefined" ng-click="download(cl.compliance.complianceFormPath)" class="btn bigblue-btn new-btn-dwn"><i class="fa fa-download" aria-hidden="true"></i></button></td>                                            
+                        <td>
+                        	<input type="text" class="form-control flat-control-inner" id="documentNumber{{$index}}" name="document no" ng-model="cl.documentNumber">
+                        </td>                                              	
+                          
+                       <td>
+                        	<div class="form-group" style="margin-bottom: 0;">	            
+	                 		 <input type="text" id="issuedate{{$index}}" class="dateonly form-control flat-control-inner" ng-model="cl.issueDate" style="margin-bottom: 0;position:relative;">
+	              		  </div>
+                        </td>
+                          
+                        <td>
+                        	<div class="form-group" style="margin-bottom: 0;">	            
+	                 		 <input type="text" id="expirydate{{$index}}" class="dateonly form-control flat-control-inner datecheck" ng-model="cl.expiryDate"   style="margin-bottom: 0;position:relative;" ng-change="validateDate(cl,'expirydate'+$index)" >
+	              		  </div>
+                        </td>
+                         <td>             
+                            
+                            <select id="countryOfIssue{{$index}}" class="form-control flat-control-inner" ng-model="cl.countryOfIssue"> 
+    					   <option ng-value="0">Select</option>          
+                           <option data-ng-repeat="ct in countryList" data-ng-value="{{ct.id}}" ng-selected="ct.id==cl.countryOfIssue">{{ct.CountryName}}</option>                                  
+        					</select>
+                            
+                        </td>
+                        <td style="position:relative;">
+                        	<div class="form-group" style="margin-bottom: 0;position:relative;">	            
+	                 		 <input type="text" id="expectdate{{$index}}" class="dateonly form-control flat-control-inner" placeholder="{{formatDate1(cl.createdDate)}}" disabled style="margin-bottom: 0;position:relative;" title="{{formatDate1(cl.createdDate)}}">
+	              		  </div>
+                        </td>                       
+                        <td>                                              
+                          <div class="chckbx-cntnr zeromargin">
+		                      <input type="checkbox" data-index="{{$index}}" id="chck{{$index}}" name="check" ng-if="getflag(cl.compliance.id) == false" ng-checked="chckflag" ng-click='setTodate($event.target,$index);checkFields($event.target,$index,cl.compliance.id)' class="flashuser todayBox">
+		                      <input type="checkbox" id="chck{{$index}}" name="check" ng-if="getflag(cl.compliance.id)==true" ng-checked="true" ng-click='setTodate($event.target,$index);checkFields($event.target,$index,cl.compliance.id)' class="flashuser todayBox">
+		                   
+		                      <label class="cstmchk_lbl" for="chck{{$index}}" id="rdcheck" style="border: 1px solid #ccc; padding: 10px;margin: 10px 10px;"></label> 
+		                  </div>
+                		</td>
+                        <td>
+                                                                    
+                        	<div class="form-group width-200">
+                        	
+                            <input class="form-control flat-control-inner completeDate" ng-if="getflag(cl.compliance.id)==false" id="completeDate{{$index}}" ng-model="cl.todayDate" disabled>
+                           <input class="form-control flat-control-inner " ng-if="getflag(cl.compliance.id)==true" id="completeDate{{$index}}" placeholder="{{formatDate1(cl.createdDate)}}" disabled title="{{formatDate1(cl.createdDate)}}">                            
+<!--                           <input type="text" class="form-control flat-control-inner" id="completeDate{{$index}}" style="margin-bottom: 0 !important;">
+ -->                       </div>
+                                                   
+                        </td>                        
+                        <td>
+                          <div class="form-group width-200">
+                           
+                             <div class="input-group">
+                                 <input type="text" id="file_name{{$index}}" ng-if="getflag(cl.compliance.id)==false" readonly="" class="form-control flat-control-inner" >
+                                 <input type="text" id="file_name{{$index}}" ng-if="getflag(cl.compliance.id)==true" readonly="" class="form-control flat-control-inner">
+                                <span class="input-group-btn"> 
+                                     <span class="btn btn-primary btn-file" > Browse 
+                                        <input id="documentfilefotodo{{$index}}" ng-if="getflag(cl.compliance.id)==false" data-label="Browse" type="file" onchange="angular.element(this).scope().fileNameChanged(this)" single/>
+                                        <input id="documentfilefotodo{{$index}}" ng-if="getflag(cl.compliance.id)==true" data-label="Browse" type="file" onchange="angular.element(this).scope().fileNameChanged(this)" single/>  
+                                     </span>
+                                 </span>  
+                             </div> 
+                             <div ng-if="getPathflag(cl.compliance.id)==true"> <a href="" ng-click="download(cl.path)" target="_blank">Download</a></div>
+                          </div>                        
+                        </td>  
+                      </tr>                     
+                    </tbody>
+                  </table>                
+                </div>               
+              <div class="btn-cntnr" ng-show="complianceFlag">
+              <button class="btn btn-default btn-bluer" id="" type="submit">Save</button>
+              <a ng-click="cancell()">Cancel</a>
+            </div>
+              </div>
+              </form>
+            </div>
+            </div>
+            
+           
+           
+          
+           <div class="table-responsive">
+            <div class="job-search-cntnr" ng-if="showFlag == 3" id="e-assessment">
+            <div class="srch-head"><h4>My Assessments</h4></div>
+           
+            <ul class="nav nav-tabs posting-tabs">
+			    <!-- <li ng-if="assessType == 1" class="active"><a href="" ng-click="switchAssessment(1);fetchAssessmets(false)">Current Assessments</a></li>
+ 			    <li ng-if="isSelf"><a href="" ng-click="switchAssessment(1);fetchAssessmets(false)">Current Assessments</a></li>
+			    
+			    <li ng-if="assessType == 2" class="active"><a  href="" ng-click="switchAssessment(2);fetchSelfAssessments()">Self Assessments</a></li>
+		    <li ng-if="isCurrent"><a  href="" ng-click="switchAssessment(2);fetchSelfAssessments()">Self Assessments</a></li> -->
+			  
+ 
+ 			<li class="active"><a data-toggle="tab" ng-click="switchAssessment(1);fetchAssessmets(false)">Current Assessments</a></li>			    
+			    <li><a data-toggle="tab" ng-click="switchAssessment(2);fetchSelfAssessments(1)">Self Assessments</a></li>
+ 		</ul>
+                        
+            <div class="tab-content">
+            <div ng-if="cassessFlag == false" class="tab-pane fade in active"><p class="data-av">Current Assessments not Found!!!</p></div>
+			    <div ng-if="cassessFlag == true" id="current-assessment" ng-if="assessType == 1" class="tab-pane fade in active" >			     
+			      <div class="srch-head"><h4>List of Current Assessments</h4></div>
+		              <form>
+		              <div class="inner-details"> 
+		                <div class="table-responsive">
+		                  <table class="table table-bordered">
+		                    <thead>
+		                      <tr>
+		                        <th>Brand</th>		                       
+		                        <th>Department</th>
+		                        <th>Position</th>
+		                        <th>Name of Assessments</th>
+		                        <th>Date</th>
+		                        <th>Status</th>
+		                        <th></th>
+		                      </tr>
+		                    </thead>
+		                     <tr ng-repeat="a in assessmentList">
+		                     	<td>{{a.brand.name}}</td>		                     	
+		                     	<td>{{a.category.name}}</td>
+		                     	<td>{{a.position.name}}</td>
+		                     	<td>{{a.assessmentName}}</td>
+		                     	<td>{{formatDate(a.assessmentDate) |  date:'dd-MM-yyyy'}}</td>
+		                     	
+		                     	<td ng-if="a.statusId ==1"><span class="label label-success">{{a.statusName}}</span></td>
+		                     	<td ng-if="a.statusId ==3"><span class="label label-info">{{a.statusName}}</span></td>
+		                     	<td ng-if="a.statusId ==2 "><span class="label label-danger">{{a.statusName}}</span></td> 
+		                     	<td><button ng-if="a.statusId != 1 && a.IsTodaysDate == true" type="button" class="btn btn-primary" ng-click="checkCamera(a)">Launch</button>
+		                     	<span ng-if="a.statusId == 1 || a.IsTodaysDate == false" type=" " class=" "  disabled></span>
+		                     	</td>
+		                     </tr>
+		                    <tbody>
+		                      
+		                    </tbody>
+		                  </table>
+		                </div>
+		              </div>
+		              </form>
+    		</div>
+    		
+    		   		
+    		<div id="self-assessment" class="tab-pane fade in active" ng-if="assessType == 2">
+    		<div ng-if="sassessFlag == false" class="tab-pane fade in active"><p class="data-av">Self Assessments not Found!!!</p></div>			     
+		              <form>
+		              <div ng-if="sassessFlag == true" class="inner-details"> 
+		                <div class="table-responsive">
+		                  <table class="table table-bordered">
+		                    <thead>
+		                      <tr>
+		                        <th>Brand</th>		                        
+		                        <th>Department</th>
+		                        <th>Position</th>
+		                        <th>Name of Assessments</th>
+		                        <th>Compeleted Date</th>
+		                        <th>Status</th>	
+		                        <th></th>	                        		               
+		                      </tr>
+		                    </thead>
+		                    <tr ng-repeat="a in SelfAssessmentList">
+		                     	<td>{{a.brand.brandName}}</td>		                     	
+		                     	<td>{{a.category.categoryName}}</td>
+		                     	<td>{{a.position.positonname}}</td>
+		                     	<td>{{a.assessmentName}}</td>		                     			                      
+		                        <td ng-if="a.assessmentDate == undefined"></td>
+		                        <td ng-if="a.assessmentDate != undefined">{{formatDate(a.assessmentDate) |  date:'dd-MM-yyyy'}}</td>
+		                        
+		                        <td ng-if="a.statusId ==0 || a.statusId == undefined"><span class="label label-danger">Not Started</span></td>
+		                     	<td ng-if="a.statusId ==1"><span class="label label-success">{{a.statusName}}</span></td>
+		                     	<td ng-if="a.statusId ==3"><span class="label label-info">{{a.statusName}}</span></td>
+		                     	<td ng-if="a.statusId ==2 "><span class="label label-danger">{{a.statusName}}</span></td> 
+		                     	
+		                     	<td><button ng-if="a.statusId != 1 && a.IsTodaysDate == true" type="button" class="btn btn-primary" ng-click="checkCamera(a)">Launch</button>
+		                     	<span ng-if="a.statusId == 1 && a.IsTodaysDate == false" type=" " class=" "  disabled> </span>
+		                     	</td>
+		                     </tr>		                 
+		                    <tbody>		                      
+		                    </tbody>
+		                  </table>
+		                </div>
+		              </div>
+		              </form>
+    		</div>     
+            </div>
+          </div>
+     	</div>
+          
+     	<div class="table-responsive">
+            <div class="job-search-cntnr" ng-if="showFlag == 4" id="e-assessment">
+            <div class="srch-head"><h4>My Reimbursements</h4></div>
+            <div class="col-md-1">
+            <button class="btn btn-default btn-create" style="margin-left: 21px;" id="create-job-btn" data-toggle="modal" data-target="#AskReimbursement" ng-click="goToClaimedList(undefined,3)" style="float:left;"><i class="icon-plus"></i></button>
+          
+          
+           </div>
+            
+           <div class="col-md-5">
+           </div> 
+          <!--  <div class="col-md-3">
+	           	
+	        </div> -->
+             <div class="col-md-5"> 
+             <div class="download-form">
+		          <a href="" ng-click="downloadBankForm(propertiesList.expense_bank_form)">Download bank form</a>
+		        </div> 
+	            <div class="form-group search-box" style="float:right;">
+	              <input type="text" name="" id="id_of_searchbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+	              <i class="icon-search" id="id_of_searchbutton" ng-click="fetchEmployeeExpenseList(0,10,null,null,searchterm,userdetails.id,userdetails.roleId)"></i>
+	            </div>  
+	         </div> 
+	          
+            <div class="col-md-1">
+          <div class="button-group">
+          	<button class="btn-default btn-create icon-navigation1 dropdown-toggle" data-toggle="dropdown" id="create-req-btn"><i class="fa fa-check-square-o"></i></button>
+           <!--  <a class="dropdown-toggle select-drop" data-toggle="dropdown"></a>
+         	<span class="fa fa-filter"></span> -->
+	      <ul class="dropdown-menu selection-column" style="overflow:auto;left: -73px;">
+						 <li>
+						  	<div class="chckbx-cntnr zeromargin">
+						     <input type="checkbox" id="app1" name="check" class="flashadmin" ng-click="selectAllColoumns(colcheck);savesettings()" ng-model="colcheck">
+						     <label class="cstmchk_lbladmin"  for="app1"></label><label for="app1" class="table-label">Select All</label> 
+						   </div>
+						  </li>
+						  <li ng-repeat="c in columnlist">
+						  <div class="chckbx-cntnr zeromargin" ng-if="c.name=='Claim No.' || c.name=='Date of claim' || c.name=='Type of reimbursement' || c.name=='Claimed Amount' || c.name=='Approved amount' || c.name=='Status'">
+						     <input type="checkbox" id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()" disabled>
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  	<div class="chckbx-cntnr zeromargin" ng-hide="c.name=='Claim No.' || c.name=='Date of claim' || c.name=='Type of reimbursement' || c.name=='Claimed Amount' || c.name=='Approved amount' || c.name=='Status'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()">
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  </li>
+		</ul>
+          </div>
+       </div>
+       
+        	  
+       <div class="clearfix"></div>
+                                       
+		              <div class="inner-details" style="padding: 0 20px 20px 20px;"> 
+		                <div class="table-responsive" style="overflow-y: auto;height: 400px;">
+		                  <table class="table table-bordered">
+		                    <thead>
+		                      <tr>
+		                       <th style="min-width: 95px;vertical-align: middle;" ng-show="activeColumn('Claim No.')">Claim No. <i ng-click="SortingExpenseList('claimedId',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>	
+		                       <th style="min-width: 120px;vertical-align: middle;" ng-show="activeColumn('Date of claim')">Date of claim <i ng-click="SortingExpenseList('claimedDate',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+		                       <th style="min-width: 140px;vertical-align: middle;" ng-show="activeColumn('Type of reimbursement')">Type of reimbursement <i ng-click="SortingExpenseList('reimbermntName',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+		                       <th style="min-width: 95px;vertical-align: middle;" ng-show="activeColumn('Claimed Amount')">Claimed Amount <i ng-click="SortingExpenseList('totClmAmnt',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>            
+		                       <th style="min-width: 95px;vertical-align: middle;" ng-show="activeColumn('Approved amount')">Approved amount <i ng-click="SortingExpenseList('apprvdAmnt',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>              
+		                       <th style="min-width: 95px;vertical-align: middle;" ng-show="activeColumn('Status')">Status <i ng-click="SortingExpenseList('status',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+		                       <th style="min-width: 95px;vertical-align: middle;" ng-show="activeColumn('Brand')">Brand <i ng-click="SortingExpenseList('brand',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>	
+		                       <th style="min-width: 95px;vertical-align: middle;" ng-show="activeColumn('Ship')">Ship <i ng-click="SortingExpenseList('ship',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>		                        
+		                       <th style="min-width: 95px;vertical-align: middle;" ng-show="activeColumn('Department')">Department <i ng-click="SortingExpenseList('category',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+		                       <th style="min-width: 95px;vertical-align: middle;" ng-show="activeColumn('Position')">Position <i ng-click="SortingExpenseList('position',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+		                       <!-- <th style="min-width: 95px;vertical-align: middle;" ng-show="activeColumn('Role')">Role <i ng-click="SortingExpenseList('approverRole',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>  -->
+		                       	 
+		                      </tr>
+		                    </thead>
+		                    <tr ng-repeat="e in employeeExpenseList">
+		                     	<td>
+		                     	<a ng-show="activeColumn('Claim No.')" href="" ng-if="e.expStatusId != 1" ng-click="goToClaimedList(e,1)">{{e.claimedNumber}}</a>
+		                     	<a ng-show="activeColumn('Claim No.')" href="" ng-if="e.expStatusId == 1" ng-click="goToClaimedList(e,2)">{{e.claimedNumber}}</a>
+		                     	</td>	
+		                        <td ng-show="activeColumn('Date of claim')">{{formatDate(e.claimedDate)}}</td>
+		                        <td ng-show="activeColumn('Type of reimbursement')">{{e.reimbursement_typeName}}</td>	
+		                        
+		                       
+		                        
+		                        <td ng-show="activeColumn('Claimed Amount')">{{e.currencyTypeTtlClmAmnt}}</td>            
+		                        <td ng-show="activeColumn('Approved amount')">{{e.currencyTypeTtlApprvdAmnt}}</td>
+		                        <td ng-show="activeColumn('Status')">
+		                        	<span ng-if="e.expStatusId == 1" class="label label-info" style="background-color: #487eb0;">{{e.expStatus}}</span>
+			                        <span ng-if="e.expStatusId == 2" class="label label-default" style="background-color: #5bc0de;">{{e.expStatus}}</span>
+			                        <span ng-if="e.expStatusId == 3" class="label label-info" style="background-color: #f0ad4e;">{{e.expStatus}}</span>
+			                        <span ng-if="e.expStatusId == 4" class="label label-info" style="background-color: #b0b302;">{{e.expStatus}}</span>
+<!-- 			                        <span ng-if="e.expStatusId == 5" class="label label-info" style="background-color: #d9534f;">{{e.expStatus}}</span>
+ -->			                        <span ng-if="e.expStatusId == 6" class="label label-info" style="background-color: #5cb85c;">{{e.expStatus}}</span>
+		                       		<span ng-if="e.expStatusId == 7" class="label label-info" style="background-color: #fb8a29;">{{e.expStatus}}</span>
+		                 			<span ng-if="e.expStatusId == 8" class="label label-info" style="background-color: #5cb85c;">Paid</span>
+		                 	        <span ng-if="e.expStatusId == 5" class="label label-info" style="background-color: red;">Rejected</span>
+		                 			
+		                       		
+		                        </td>              
+		                        <td ng-show="activeColumn('Brand')">{{e.brand.brandName}}</td>	
+		                        <td ng-show="activeColumn('Ship')">{{e.ship.shipName}}</td>		                        
+		                        <td ng-show="activeColumn('Department')">{{e.category.categoryName}}</td>
+		                        <td ng-show="activeColumn('Position')">{{e.position.positonname}}</td>		                        
+		                        <!-- <td ng-show="activeColumn('Role')">{{e.approverRole}}/{{e.lastApproverRole}}</td> --> 	 
+		                     </tr>		                 
+		                    <tbody>		                      
+		                    </tbody>
+		                  </table>
+		                </div> 			            
+		              </div>     
+          		</div>          
+          	</div>
+        
+     
+    	  <div class="table-responsive">
+            <div ng-if="showFlag == 5" id="e-todolist" class="job-search-cntnr" style="padding:0px !important;">
+            <div ng-if="surveyList.length <= 0"><p class="data-av">No Survey Found!!!</p></div>
+              <div ng-if="surveyList.length > 0" class="srch-head" style="padding:4px 20px !important;"><h4>Survey List</h4></div>
+              <form ng-if="surveyList.length > 0">
+		              <div  class="inner-details"> 
+		                <div class="table-responsive">
+		                  <table class="table table-bordered">
+		                    <thead>
+		                      <tr>		                        
+		                        <th>Name of Survey</th>
+		                        <th>Start Date</th>
+		                        <th>End Date</th>
+		                        <th>Compeleted Date</th>
+		                        <th>Status</th>	
+		                        <th></th>	                        		               
+		                      </tr>
+		                    </thead>
+		                    <tr ng-repeat="s in surveyList">		                     	
+		                     	<td>{{s.surveyName}}</td>
+		                     	<td>{{s.startDate}}</td>
+		                     	<td>{{s.endDate}}</td>		                     			                      
+		                        <td ng-if="s.surveyCompletionDate == undefined"></td>
+		                        <td ng-if="s.surveyCompletionDate != undefined">{{formatDate(s.surveyCompletionDate) |  date:'dd-MM-yyyy'}}</td>
+		                        
+		                        <td><span ng-if="s.surveyStatus == 0 || s.surveyStatus == undefined" class="label label-danger">Not Started</span>
+		                     	<span ng-if="s.surveyStatus ==1" class="label label-success">{{s.surveyStatusName}}</span>
+		                     	<span ng-if="s.surveyStatus ==3" class="label label-info">{{s.surveyStatusName}}</span>
+		                     	<span ng-if="s.surveyStatus ==2" class="label label-danger">{{s.surveyStatusName}}</span></td> 
+		                     	
+		                     	<td><button ng-if="s.surveyStatus != 1 && s.IsTodaysDate == true" type="button" class="btn btn-primary" ng-click="fetchSurveyQestn(s)">Launch</button>
+		                     	<!-- <button ng-if="s.surveyStatus == 1 && a.IsTodaysDate == false" type="button" class="btn btn-primary" disabled>Launch</button> -->
+		                     	<span ng-if="s.surveyStatus == 1 && s.IsTodaysDate == false" type=" " class=" "  disabled> </span>
+		                     	</td>
+		                     </tr>		                 
+		                    <tbody>		                      
+		                    </tbody>
+		                  </table>
+		                </div>
+		              </div>
+		              </form>
+            	</div>
+            </div>
+            
+            
+            <div class="table-responsive">
+            
+            <div ng-if="showFlag == 6" id="e-todolist" class="job-search-cntnr" style="padding:0px !important;">
+               <div ng-controller="emaillogdetail_Ctrl" class="section-content" id="email-list">
+             
+               <div class="section-heading">
+        			<h4>Emails</h4>
+      			</div>
+      			  <div class="section-content" id="list-uploaded-files">
+        <div class="upper-actions">
+          <div class="col-md-3 col-lg-3" style="padding: 0;">
+           <!-- <div class="button-group">
+            <button class="btn btn-default btn-delete" ng-click="check();" ><i class="icon-trash-2" data-target="#deletelist" ></i></button>
+          </div> -->
+          </div>
+          <div class="col-md-1 col-lg-1">
+            
+          </div>
+          <div class="col-md-8 col-lg-8">
+            <div class="srch-uppr" style="float: right;">
+                <!-- <div class="addfiles-btn" style="float: left;">
+                 <a ui-sref="restricted.admin.emailconfig"><button class="btn btn-configuration" id="configur" ng-click="getEmailConfigBean('null')"><i class="fa fa-cog" style="font-size: 20px;"></i>  Configuration</button></a>
+              </div> -->
+            <div class="button-group" style="text-align: right;display: inline-block;padding-left: 10px;">
+               <button class="btn btn-default btn-create" id="create-report-btn" style="background:#1fa67a;" ng-click="generateExcel();"><i class="fa fa-file-excel-o"></i></button>
+            </div>
+          <div class="search-cntnr" style="float: initial;">
+            <div class="form-group search-box">
+              <input type="text" name="" class="form-control flat-control-search"   ng-model="search" ng-keyup="searchOnEnter($event,search)">
+              <i class="icon-search" ng-click="fetchEmailLogDetailList(0,10,null,null,search);getEmailLogDetailListcount(search)" ></i>
+            </div>
+          </div>
+          <div class="button-group postion-relative" style="padding-left: 10px;">
+            <button class="btn btn-default btn-create dropdown-toggle" data-toggle="dropdown" id="create-req-btn" style="margin-right: 0px;"><i class="fa fa-check-square-o"></i></button>
+            <ul class="dropdown-menu selection-column " style="overflow:auto;width: 100%;">
+						 <li>
+						  	<div class="chckbx-cntnr zeromargin">
+						     <input type="checkbox" id="app1" name="check" class="flashadmin" ng-click="selectAllColoumns(colcheck);savesettings()" ng-model="colcheck">
+						     <label class="cstmchk_lbladmin"  for="app1"></label><label for="app1" class="table-label">Select All</label> 
+						   </div>
+						  </li>
+						 <li ng-repeat="c in columnlist">
+						  	<div class="chckbx-cntnr zeromargin" ng-if="c.name=='Subject' || c.name=='Email Date'">
+						     <input type="checkbox"  id="column{{$index}}"  name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()" disabled>
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						   <div class="chckbx-cntnr zeromargin" ng-hide="c.name=='Subject' || c.name=='Email Date'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()">
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  </li>
+						  
+			</ul>
+          </div>
+        </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        
+        <div class="table-cntnr">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <!-- <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(emaillogdetaillist,all);" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th> -->
+                <!-- <th>#ID</th> -->
+       <!--          <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Emp Number')" >Emp Number <i class="fa fa-sort" aria-hidden="true" ng-click="SortingEmailLogList('e_identifier',search)"></i></th>
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Emp Name')" >Emp Name <i class="fa fa-sort" aria-hidden="true" ng-click="SortingEmailLogList('e_email',search)"></i></th> -->
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Subject')" >Subject <i class="fa fa-sort" aria-hidden="true" ng-click="SortingEmailLogList('e_subject',search)"></i></th>
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Email Date')" >Email Date<i class="fa fa-sort" aria-hidden="true" ng-click="SortingEmailLogList('e_CreatedDate',search)"></i></th>
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Mail From')" >Mail From<i class="fa fa-sort" aria-hidden="true" ng-click="SortingEmailLogList('e_from',search)"></i></th>
+               <!--  <th>To<i class="fa fa-sort" aria-hidden="true" ng-click="SortingEmailLogList('e_to',search)"></i></th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="e in emaillogdetaillist">
+               <!--  <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="checkid{{$index}}" name="check" class="flashadmin" ng-click="checkedList(e.id);" ng-checked="all">
+                      <label class="cstmchk_lbladmin" for="checkid{{$index}}"></label> 
+                    </div>
+                </td> -->
+                <!-- <td><a data-toggle="modal" data-target="#emaillog" style="cursor:pointer;" ng-click="setEmailLogModal(e)">{{e.id}}</a></td> -->
+               <!--  <td ng-show="activeColumn('Emp Number')" data-toggle="modal" data-target="#emaillog" style="cursor:pointer;" ng-click="setEmailLogModal(e)"><a>{{e.employeeIdentifier}}</a></td>
+                <td ng-show="activeColumn('Emp Name')">{{e.emailSenderName}}</td> -->
+                <td ng-show="activeColumn('Subject')"><a data-toggle="modal" data-target="#emaillog" style="cursor:pointer;" ng-click="setEmailLogModal(e)">{{e.subject}}</a></td>
+                <td ng-show="activeColumn('Email Date')">{{dateformate(e.createDate)}}</td>
+                <td ng-show="activeColumn('Mail From')">{{e.from}}</td>
+               <!--  <td>{{e.to}}</td> -->
+              </tr>
+              </tbody>
+          </table>
+          <div class="text-right">
+            <ul class="pagination" style="margin-top: 0;">
+				<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+				<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+				<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+          </div>
+        </div>
+        
+        <div class="modal fade" id="emaillog">
+          <div class="modal-dialog modal-lg add-brand">        
+            <!-- Modal content-->
+            <div class="modal-content" id="reason-1">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Email #{{EmailLogmodal.employeeIdentifier}}</h4>               
+              </div>
+              <div class="modal-body">
+                <form>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <span class="">From : </span>
+                            <input type="text" class="form-control flat-control-inner" value="{{EmailLogmodal.from}}" ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                       <div class="form-group">
+                            <span class="">To :</span>
+                            <input type="text" class="form-control flat-control-inner" value=" {{EmailLogmodal.to}}" ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                       <div class="form-group">
+                            <span class="">Sub : </span>
+                            <input type="text" class="form-control flat-control-inner" value="{{EmailLogmodal.subject}}" ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group" style="padding-right: 15px;padding-left: 15px;">
+                        <textarea cols="10" rows="10" style="width:100%;margin-top: 6px;" class="form-control flat-control-inner">{{EmailLogmodal.body}}</textarea>
+                    </div>
+                    
+                    <div class="btn-cntnr text-right row">
+                        <a class="col-md-12" href="" data-dismiss="modal">Close</a>
+                    </div>
+                    
+                </form>
+              </div>                                 
+            </div> 
+          </div>
+      </div>
+        
+        </div>
+        </div>
+       </div>
+      </div>
+      
+      
+      <div class="table-responsive">
+         <div ng-if="showFlag == 7" id="e-todolist" class="job-search-cntnr" style="padding:0px !important;">
+            <div ng-controller="Upload_Doc_List_Ctrl" class="section-content" id="email-list">
+
+  	<div id="owner" class="tab-pane fade in active">
+      <div class="section-heading">
+        <h4>Documents Upload</h4>
+      </div>
+      <div class="section-content" id="list-uploaded-files">
+        <div class="upper-actions">
+        <div class="col-md-1" style="padding:0;">
+        	<!-- <div class="button-group">
+           		 <button class="btn btn-default btn-delete" ng-click="check();"><i class="icon-trash-2" data-target="#deletelist"></i></button>
+          	</div> -->
+        </div>
+          <div class="col-md-4 col-lg-4" style="padding: 0;">
+              <!-- <div class="addfiles-btn">
+                  <a ui-sref="restricted.admin.uploaddocs" target="_blank"><button class="btn btn-add-files new"><i class="fa fa-plus-circle" style="font-size: 20px;"></i>  Add Files</button></a>
+                  <a ui-sref="restricted.admin.uploaddoclog" ><button class="btn btn-configuration">Document Log</button></a>
+              </div> -->
+              
+          </div>
+          <div class="col-md-1 col-lg-1">
+            
+          </div>
+          <div class="col-md-12 col-lg-12">
+            <div class="srch-uppr" style="float: right;">
+            <div class="button-group" style="text-align: right;display: inline-block;padding-left: 10px;">
+               <button class="btn btn-default btn-create" id="create-report-btn" style="background:#1fa67a;" ng-click="generateExcel()"><i class="fa fa-file-excel-o"></i></button>
+            </div>
+          <div class="search-cntnr" style="float: initial;">
+            <div class="form-group search-box">
+              <input type="text" name="" class="form-control flat-control-search" ng-model="searchterm" ng-keyup="searchOnEnter($event,searchterm)">
+              <i class="icon-search" ng-click="fetchDocumentList(0,10,null,null,searchterm);fetchDocumentListCount(searchterm)"></i>
+            </div>
+          </div>
+          <div class="button-group postion-relative" style="padding-left: 10px;">
+            <button class="btn btn-default btn-create" style="margin-right: 0px;" data-toggle="dropdown"><i class="fa fa-check-square-o"></i></button>
+             <ul class="dropdown-menu selection-column" style="overflow:auto;width: 100%;">
+						 <li>
+						  	<div class="chckbx-cntnr zeromargin">
+						     <input type="checkbox" id="app1" name="check" class="flashadmin" ng-click="selectAllColoumns(colcheck);savesettings()" ng-model="colcheck">
+						     <label class="cstmchk_lbladmin"  for="app1"></label><label for="app1" class="table-label">Select All</label> 
+						   </div>
+						  </li>
+						  <li ng-repeat="c in columnlist">
+						  	<div class="chckbx-cntnr zeromargin" ng-if="c.name=='Emp Number' || c.name=='Emp Name' || c.name=='File Name'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()" disabled>
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						   <div class="chckbx-cntnr zeromargin" ng-hide="c.name=='Emp Number' || c.name=='Emp Name' || c.name=='File Name'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()">
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  </li>
+						  
+			</ul>
+          </div>
+        </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="table-cntnr">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+               <!--  <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(documentList,all);" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th> -->
+               <!--  <th style="vertical-align: middle;min-width: 135px;" >#</th> -->
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Emp Number')">Emp Number<i class="fa fa-sort" aria-hidden="true" ng-click="SortingDocumentList('d_emp_id',searchterm)"></i></th> 
+                <th style="vertical-align: middle;min-width: 125px;" ng-show="activeColumn('Emp Name')">Emp Name<i class="fa fa-sort" aria-hidden="true" ng-click="SortingDocumentList('NAME',searchterm)"></i></th>
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('File Name')">File Name <i class="fa fa-sort" aria-hidden="true" ng-click="SortingDocumentList('d_filename',searchterm)"></i></th>
+                <th style="vertical-align: middle;min-width: 145px;" ng-show="activeColumn('File Type')">File Type<i class="fa fa-sort" aria-hidden="true" ng-click="SortingDocumentList('fileType',searchterm)"></i></th>
+                <th style="vertical-align: middle;min-width: 135px;" ng-show="activeColumn('Upload Date')" >Upload Date <i class="fa fa-sort" aria-hidden="true" ng-click="SortingDocumentList('d_created_on',searchterm)"></i></th>
+                
+                
+                <th>Download</th> 
+                <th>Preview</th> 
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="document in documentList">
+               <!--  <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="checkid{{$index}}" name="check" class="flashadmin" ng-click="checkedList(document.id);" ng-checked="all">
+                      <label class="cstmchk_lbladmin" for="checkid{{$index}}"></label> 
+                    </div>
+                </td> -->
+               <!--  <td><a data-toggle="modal" data-target="#email-info-modal"
+							style="cursor: pointer;" >#{{$index+1}}</a></td> -->
+				<td ng-show="activeColumn('Emp Number')" >{{document.emp_id}}</td>
+                <td ng-show="activeColumn('Emp Name')">{{document.firstName}}</td>
+                <td ng-show="activeColumn('File Name')">{{document.filename}}</td>
+                <td ng-show="activeColumn('File Type')">{{document.fileType}}</td>
+                <td ng-show="activeColumn('Upload Date')">{{document.dispalyCreatedOnDate}}</td>
+                <td style="text-align:center"><a><i class="fa fa-download" ng-click="download(document.url)" style="font-size: 20px;"></a></td>
+                 <td> <button class="btn btn-default btn-create" id="create-job-btn" ng-click="PreviewDocumentEmployee(document.url)" data-toggle="modal"  data-target="#preview-screen-for-user"><i class="fa fa-eye"></i></button></td>
+              </tr>
+              </tbody>
+          </table>
+          <div class="text-right">
+            <ul class="pagination" style="margin-top: 0;">
+				<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+				<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+				<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+          </div>
+        </div>
+        </div>
+      <div>
+    </div>
+ </div>
+ <div id="deletelist" class="modal fade" role="dialog">
+  	<div class="modal-dialog modal-sm add-brand">
+
+    <!-- Modal content-->
+	    <div class="modal-content flat-modal">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">X</button>
+	        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+	      </div>
+	      <div class="modal-body flat-body">
+	          <div class="clearfix" ></div>
+	        Are you sure want to delete  {{getCheckedId.length}} records?
+	      <div class="modal-footer text-left">
+	        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deleteFileLogs();">Delete</button>
+	        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+	      </div>
+	    </div>
+	   </div>
+    </div>
+   </div>
+     
+        </div>
+       </div>
+      </div>
+      
+      
+      
+      
+     </div> 
+    </div>
+          
+          	 <!-- assign assessment -->
+      <div id="start-assessment" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Terms & Condition</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix"></div>
+       <p> Are you sure you want to launch?</p>
+        
+        <p>Terms & Condition
+        1.
+        2.</p>
+        
+      <p>  NOTE: Once question is submited you cant change the question AND 
+      once your start the test you can't close it until exam is over</p>
+        
+      <div class="modal-footer text-left">
+        <button type="button" class="btn" ng-click="openquestionModel()">Next</button>
+      </div>
+    </div>
+    
+     <div class="modal fade" id="start-assessment-question" role="dialog">     
+          <div class="modal-dialog modal-lg add-brand" style="width:1000px;">         
+            <!-- Modal content-->
+            <div class="modal-content" style="height:450px;">
+              <div class="modal-header">
+               <!--   <button type="button" class="close" data-dismiss="modal">X</button>  -->
+                <!-- <h4 class="modal-title">{{Assessmentlist.assessmentName}}</h4> -->
+              </div>
+              <div class="modal-body">
+               <form ng-submit="saveAns(ans);submitAndNext()"> 
+              <div class="col-md-7">          
+              
+              
+              <!-- Question with audio video and image-->
+                <div class="form-group">
+                <label style="margin-left: 20px;"><span class="que-no" style="margin-left: -28px;position:absolute;">{{currentQuestionNo}}</span>{{question.questionText}}</label>
+       
+                    
+	                 <ul class="single-ans"> 
+	                         
+	                         <li data-ng-if="question.questionType == 1">
+	                       <!--   <input  type="text" data-ng-model="$parent.ans.text"> -->
+	                      <div class="input-group">
+                                <textarea type="text" class="form-control flat-control-inner ng-pristine ng-valid ng-empty ng-touched" id="transcript1" data-ng-model="$parent.ans.text" placeholder="Answer" style="width:100%;" cols="100" rows="4"></textarea>
+                            </div> 
+                            
+                                                        
+	                         </li>
+	                                  
+                      <li data-ng-repeat="a in question.ans" ng-if="question.questionType == 2" style="float: none;margin: 5px 35px;">
+                   
+                      	<div class="radio-cntnr new-chc radio-quecheck-ans">
+                      	<input type="radio" id="redioAns{{$index}}" name="redioAnsName" data-ng-value="true" ng-click="checkRedio(a.id)" data-ng-model="redioCheck">
+                  			<label for="redioAns{{$index}}"></label>
+                  		</div>                  		
+                  		<label for="redioAns{{$index}}" style="display:block !important;margin-left: 28px;">{{a.answerText}}</label> 
+                  		
+                  		</li>
+                  		
+                  		 <li data-ng-repeat="a in question.ans" ng-if="question.questionType == 3" style="float: none;margin: 5px 35px;">
+                         
+                          <div class="chckbx-cntnr" style="float: left;margin-right: 18px;">                          
+	                      <input type="checkbox" id="checkboxAns{{$index}}" class="flashadmin ng-pristine ng-untouched ng-valid" ng-change="checkBox(a.id,check5)" ng-model="check5">
+	                      <label class="cstmchk_lbladmin" for="checkboxAns{{$index}}"></label> 	                      
+                       	  </div>                         	                      
+                           <label class="cstmchk_lbl" for="checkboxAns{{$index}}" style="display:block !important;">{{a.answerText}}</label> 
+                           
+                        </li>
+                        
+                    </ul> 
+	           
+                 </div>  
+                
+               </div>
+               <div class="col-md-5" ng-if="question.questionMediaType == 1">
+               		<img   src="{{question.questionMedia}}" class="img-responsive img-thumbnail question-file"> 
+               </div>
+               
+               <div class="col-md-5"ng-if="question.questionMediaType == 3">
+               <video width="320" height="240" id="mediaVideo" src="{{question.questionMedia}}" type="video/mp4"  controls=""  controlslist="nodownload"></video> 
+               
+               </div>
+               
+                 <div class="col-md-5" ng-if="question.questionMediaType == 2">
+                 <audio width="320" height="240" id="audioMedia"  style="margin: 18% 10%;" controls="" controlslist="nodownload"><source src="{{question.questionMedia}}" type="audio/ogg"></audio> 
+               </div>
+                 
+                  <div class="row">
+                    <div class="col-md-8">
+                     <p class="text-left que_count">{{currentQuestionNo}} of {{questionList.length}}</p> </div>
+                    <div class="col-md-4 text-right">
+                    
+                   
+                    
+                    <button class="btn btn-default btn-bluer que-submit" id="" type="submit" >Submit & Next</button>
+                      </div> 
+                    </div> 
+                    </form>
+              </div>              
+            </div>           
+          </div>      
+      </div>    
+   </div>
+ </div>
+</div>
+</div>
+</div>           
+</section>
+
+ <!-- -----------------------------------------PreView btn---------------------------------------------------- -->
+    
+<div class="modal fade" id="preview-screen-for-user" role="dialog">
+         <div class="modal-dialog modal-md add-brand">
+           <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">X</button>
+               <h4 class="modal-title">Document</h4>
+             </div>
+             <div class="modal-body">
+             <div  id="imagetab">
+             <img ng-show="imageFlag == true" ng-src="{{fileurl}}" width="100%"  class="img-responsive" id="imgtab1">
+              <iframe ng-show="pdfFlag == true"  ng-src="{{pdfDocPath}}" height="410px" width="100%" id="imgtab1"></iframe>
+       <!-- <img width="100%" src="resources/img/Fake.jpg" class="img-responsive" id="imgtab1"> -->
+       <!-- <iframe ng-show="pdfFlag == true" ng-src="{{pdfDocPath}}" height="410px" width="100%"></iframe>  -->
+      </div>
+             </div>            
+           </div>
+         </div>
+     </div>
+  <!----Modal error over-list---->
+				<div id="error-over" class="modal fade" role="dialog">
+				  <div class="modal-dialog modal-md add-brand">
+				    <!-- Modal content-->
+				    <div class="modal-content flat-modal">
+				      <div class="modal-header">
+				        <!-- <button type="button" class="close" data-dismiss="modal" ng-click="sessionEnded()">X</button> -->
+				      <h4 class="modal-title common-title" style="margin-left: 0;"> <i class="fa fa-exclamation-circle" id="err-mark1"></i>  Web Camera Not Detected</h4>
+				      </div>
+				      <div class="modal-body flat-body">
+				          <div class="clearfix" ></div>
+				      <p>The Assessment can not start as we could not detect your Web camera.<br><br>If you have a Web camera on your machine , then enable it using the Device Manager option on the Control panel.
+				      <br><br>If you do not have a Web camera then please connect an external camera and launch the test again</p>
+				      <div class="modal-footer text-left">
+				        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="sessionEnded()">OK</button>
+				        <!-- <a class="btn btn-link" data-dismiss="modal" >Cancel</a> -->
+				      </div>
+				    </div>
+				   </div>
+				    </div>
+				    </div>
+
+
+<!----Footer---->
+  <footer id="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-sm-4">
+        <img src="resources/img/logo-big.png">
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <h5>ADDRESS</h5>
+        <p>Carnival Support Services India Ltd,
+Kohinoor City, Tower 2, Floor 5,
+Kirol Road, Off. LBS Marg, Kurla West,
+Mumbai 400 070</p>
+<p>RPSL License No: RPSL - MUM - 062 (Valid till 14 December 2021)</p>
+      </div>
+      <div class="col-md-2 col-sm-4">
+        <h5>CONTACT</h5>
+        <p><a class="footer-contact" href="tel:+917942529292">+91-7942529292</a>
+		 </p>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>GET IN TOUCH</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="https://www.facebook.com/cruisecareersindia/" target="_blank" class="facebook-link"><i class="icon-facebook"></i></a></li>
+          <li><a href="https://twitter.com/cruisecareers" target="_blank" class="twitter-link"><i class="icon-twitter2"></i></a></li>
+          <li><a href="" target="_blank" class="google-link"><i class="icon-instagram"></i></a></li>
+          <li><a href="https://www.linkedin.com/company/carnival-support-services-india-pvt.-ltd" target="_blank" class="utube-link"><i class="icon-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h5>MOBILE APP</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="coming_soon.html" class="android-link"><i class="icon-android"></i></a></li>
+          <li><a href="coming_soon.html" class="ios-link"><i class="icon-apple"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>  
+
+ 
+<script>
+$(document).ready( function() {
+    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+       
+    });
+    
+   
+});
+
+$("#id_of_searchbox").keyup(function(event) {
+    if (event.keyCode === 13) {    	
+        $("#id_of_searchbutton").click();
+    }
+});
+
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
+<script>
+$('#todo').on('focus', ".dateonly", function() {
+	$(this).datetimepicker({
+	format : 'DD-MM-YYYY',
+	useCurrent : false,
+	//minDate:new Date()     
+	}).on('dp.change', function(e) {
+	$(this).change()
+	});
+});
+
+$('#educational').on('focus', ".dateonly", function(){
+	$(this).datetimepicker({
+		format : 'MM-YYYY',
+	});
+});
+/* $('#todo').on('focus',".dateonly", function(){  
+	$('.dateonly').datetimepicker({
+ 	format: 'DD-MM-YYYY',
+ 	useCurrent: false, //Important! See issue #1075
+}).on('dp.change', function (e) { $(this).change()});
+}); */
+
+$(document).ready(function() {
+$("input[type='file'].demo").filepicker({
+style: 'bootstrap' // default, bootstrap or jquery-ui
+});
+});
+</script>
+
+ <script>
+ 
+ document.getElementById('getval').addEventListener('change', readURL, true);
+ function readURL(){
+    var file = document.getElementById("getval").files[0];
+    var reader = new FileReader();
+    reader.onloadend = function(){
+       document.getElementById('clock').style.backgroundImage = "url(" + reader.result + ")";        
+    }
+    if(file){
+       reader.readAsDataURL(file);
+     }else{
+     }
+ }
+ 
+ </script>
+ 
+ <script>
+ 
+ 	$(function () {
+	    
+                $('.dateonly').datetimepicker({
+                  format: 'DD-MM-YYYY',
+                	  maxDate:new Date(),
+                	  useCurrent: false,
+                });
+ </script>
+ 
+ <script type="text/javascript">
+  $(document).on('change', '.btn-file :file', function() {
+  var input = $(this),
+      numFiles = input.get(0).files ? input.get(0).files.length : 1,
+      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+  input.trigger('fileselect', [numFiles, label]);
+  
+  var input = $(this).parents('.input-group').find(':text'),
+  log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+if( input.length ) {
+  input.val(log);
+} else {
+  if( log ) alert(log);
+}
+});
+
+$(document).ready( function() {
+    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+       
+    });     
+});
+
+</script>

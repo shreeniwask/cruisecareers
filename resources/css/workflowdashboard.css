@@ -1,0 +1,671 @@
+.colored-count1{
+	text-align: center;
+	padding: 30px 0;
+	color: #fff;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+}
+.countred_count_link {
+	text-align:center !important;
+	margin-left: 10px;
+	float: unset !important;
+}
+.colored-count1 i {
+    font-size: 32px;
+    margin-right: 15px;
+}
+.colored-count1 h2{
+	display: inline-block;
+    margin: 0;
+}
+/****************Workflow management system*************/
+.write {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    background: #4caf50;
+    font-size: 22px;
+    position: relative;
+    color: #fff;
+    border: none;
+    outline: 0 !important;
+    padding: 5px 6px;
+}
+.dwn-icon {
+    font-size: 20px !important;
+}
+.clone-btn {
+    display: inline-block;
+    /*left: 45px;*/
+    position: relative;
+    margin-right: 10px;
+}
+button.btn-work-clone{
+  border: none;
+  border-radius: 4px;
+  background-color: #006df0;
+  color: #fff;
+  padding: 7px 30px;
+  
+}
+.text-area {
+    width: 100%;
+    height: 140px;
+}
+.workfow-img {
+    display: block;
+    
+}
+.workflow-frm {
+    position: relative;
+    /* float: left; */
+    width: 49%;
+    display: inline-block;
+    padding: 0 10px;
+    margin-bottom: 0px;
+}
+.add-more {
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+    position: relative;
+    padding: 0 20px;
+}
+.add-more a {
+    text-align: right;
+    color: #a3a3a3;
+}
+.add-more a i {
+    padding: 0 10px;
+    color: #006df0;
+    font-size: 26px;
+    position: relative;
+    top: 3px;
+}
+.input-file {
+    display: inline-block;
+    width: 75%;
+}
+.field-setting {
+    margin: 2px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+.vali-sub-head {
+    margin-left: 10px;
+    min-width: 140px;
+    position: relative;
+}
+.date-val {
+    display: inline-block;
+    width: 20%;
+    float: left;
+    margin: 10px 0;
+}
+.list-item-link {
+    margin: 37px 10px 0;
+    cursor: pointer;
+}
+
+.radio-cntnr {
+    display: inline-block;
+    margin-right: 25px;
+    padding-bottom: 10px;
+}
+.new-chc [type="radio"]:checked, .new-chc [type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+.new-chc [type="radio"]:checked + label, .new-chc [type="radio"]:not(:checked) + label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+.new-chc [type="radio"]:checked + label:before, .new-chc [type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 100%;
+    background: #fff;
+}
+.new-chc [type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.new-chc [type="radio"]:checked + label:after, .new-chc [type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: rgb(0, 174, 239);
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.radio-sub-head {
+    min-width: 140px;
+    position: relative;
+    margin-left: 32px;
+    font-size: 14px;
+    bottom: 10px;
+    font-weight: 700;
+}
+.upload-validation {
+    padding: 5px 0 0;
+}
+.field-sttng {
+    padding: 12px 5px;
+    height: 50px;
+    border-bottom: 1px solid #ccc;
+    margin: 0px auto 0px;
+    background-color: #f1f1f1;
+    
+}
+.file-type {
+    float: left;
+    margin: 10px 5px 0 0;
+}
+.file-size {
+    width: 75%;
+    display: inline-block;
+}
+.size-btns {
+    display: inline-block;
+    width: 25%;
+    padding: 30px 0 0;
+}
+.inner-field {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.main-field-setting {
+    
+    padding: 10px;
+    border-radius: 3px 3px;
+}
+.workflow-name {
+    width: 60%;
+    display: inline-block;
+    margin: 0px;
+}
+.workflow-na a {
+	color:#000 !important;
+}
+/*.work-field-name {
+    background-color: #f1f1f1;
+    margin: 0px;
+    padding: 10px;
+}*/
+.task-screen {
+    display: block;
+    
+}
+.task-workflow {
+    text-align: center;
+    padding-top: 10px;
+}
+.task-type p {
+    margin: 14px auto;
+    text-align: center;
+    border: 2px solid #009ad4;
+    width: 35%;
+    color: #009ad4;
+    padding: 8px 14px;
+    background-color: #fff;
+}
+.zero-margin {
+    display: block;
+    margin: 15px 0 !important;
+}
+.task-title {
+    padding: 10px 0;
+}
+.tile {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(224, 224, 224);
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    /* box-shadow: 0px 2px 5.76px 0.24px rgba(0, 0, 0, 0.14); */
+    box-shadow:none;
+    text-align: center;
+    margin-bottom: 30px;
+
+}
+.tile-new {
+	background-color: #ccc;
+	border: 2px double #bab7b7;
+}
+
+.flip-card {
+
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+.flip-card .front, .flip-card:hover .back {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.flip-card .front, .flip-card .back {
+    background-size: cover;
+    background-position: center;
+    -webkit-transition: -webkit-transform .7s cubic-bezier(.4,.2,.2,1);
+    transition: -webkit-transform .7s cubic-bezier(.4,.2,.2,1);
+    -o-transition: transform .7s cubic-bezier(.4,.2,.2,1);
+    transition: transform .7s cubic-bezier(.4,.2,.2,1);
+    transition: transform .7s cubic-bezier(.4,.2,.2,1),-webkit-transform .7s cubic-bezier(.4,.2,.2,1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    width: 100%;
+    /*height: 280px;*/
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1.5rem;
+}
+.flip-card .back {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.flip-card .inner {
+    -webkit-transform: translateY(-50%) translateZ(60px) scale(.94);
+    transform: translateY(-50%) translateZ(60px) scale(.94);
+    bottom: 0;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 2rem 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 1px solid transparent;
+    -webkit-perspective: inherit;
+    perspective: inherit;
+    z-index: 2;
+    background-color: #fff;
+}
+
+.colored-count {
+    text-align: center;
+    padding: 30px 0;
+    color: #fff;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.colored-count i {
+    font-size: 32px;
+    margin-right: 15px;
+}
+.colored-count h2 {
+    display: inline-block;
+    margin: 0;
+}
+.tile h4 {
+    /* padding: 30px 0; */
+    margin: 0;
+    font-size: 16px;
+    height: 60px;
+    padding: 18px 0 !important;
+ }   
+.inner p {
+    color: #333;
+    text-align: left;
+    padding: 0 10px;
+}
+.setting-workflow {
+    display: inline-block;
+    float: right;
+    margin: 0;
+}
+.set-icon {
+    font-size: 20px !important;
+    padding-right: 9px;
+}
+/* .count-1 {
+    padding: 10px !important;
+    font-size: 16px;
+    height: 60px;
+    background-color: #268e08;
+    margin: 10px 0 0 12px;
+    width: 24%;
+    color: #fff;
+    display: inline-block;
+    float: left;
+} */
+.count-1 {
+    padding: 10px !important;
+    font-size: 16px;
+    height: 40px; 
+    width: 40px;
+    line-height: 20px;
+    background-color: #268e08;
+    margin: 0px 0 0 12px;
+    color: #000;
+    float: left;
+    border-radius: 6px;
+}
+.inner-count {
+    height: 100px;
+    /* padding: 8% 0; */
+    background-color: #fff;
+}
+.lower-count {
+    display: block;
+    background: #fff;
+    height: 61px;
+}
+.clone-upper {
+    float: right;
+}
+.assign-main {
+    display: block;
+}
+.task-type-modal {
+    display: inline-block;
+    margin-left: 18px;
+    font-weight: 600;
+    font-size: 16px;
+}
+.head-applicable {
+    display: inline-block;
+    float: left;
+
+}
+.heading-log {
+    display: block;
+    border-bottom: 1px solid #ccc;
+    height: 33px;
+    margin-bottom: 15px;
+    padding-left: 5px;
+}
+.multiselect {
+  width: 200px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+
+.settings-btn {
+    float:left;
+}
+.estimated-timer{
+    width:24%;
+    float:left;
+    margin: 0px 5px 0 10px;
+}
+.set-col input[type=number]::-webkit-inner-spin-button, 
+.set-col input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.set-col1 input[type=number]::-webkit-inner-spin-button, 
+.set-col1 input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.set-sla .set-col:after{
+    content: ":";
+    position: absolute;
+    font-size: 26px;
+}
+.top-actions{
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    margin: 10px 0;
+}
+.assessment-tabs1>li.active>a, .assessment-tabs1>li.active>a:focus, .assessment-tabs1>li.active>a:hover {
+    border: 0px;
+    color: #00aeef;
+    border-bottom: 1px solid #00aeef;
+    background: transparent;
+}
+#notification-settings span{
+    font-size: 18px;
+    margin: 2% 0px;
+    display: block;
+}
+.sla-scenario{
+    margin: 10px;
+    list-style: none;
+    padding: 0;
+}
+#SLA-settings{
+    display: inline-block;
+    width: 100%;
+}
+.red{
+    width: 50px;
+    height: 40px;
+    background: #F82E2E;
+    margin: 10px 0px;
+}
+.amburg{
+    width: 50px;
+    height: 40px;
+    background: #F68F40;
+    margin: 10px 0px;
+}
+.green{
+    width: 50px;
+    height: 40px;
+    background: #268E08;
+    margin: 10px 0px;
+}
+.input-scenario {
+    border: 0px;
+    box-shadow: none;
+    border-bottom: 1px solid #ccc;
+}
+.disabled-row{
+    cursor: not-allowed;
+    background: #f1f1f1 !important;
+}
+.radio-label{
+    width: 30%;
+    float: left;
+    display: block;
+    margin-top: 2%;
+}
+.det-caption p{
+    color: #fff;
+    margin: 2px 18px 0 10px;
+    float: left;
+}
+.det-caption {
+    background: #777;
+}
+.graph_container {
+    display: block;
+    width: 600px;
+}
+.tile h4 a {
+	font-size:16px !important;
+	color:#000 !important;
+	text-decoration:none;
+}
+
+/*************Workflow Dashboard***********/
+.workflow-status {
+    list-style-type: none;
+    padding: 0 10px;
+    text-align: left;
+}
+.workflow-status li {
+    margin: 6px 0px;
+}   
+.workflow-status li p {
+    float: left;
+    width: 160px;
+    display: block;
+    color:#000; 
+    margin: 6px 0px;
+}
+.round {
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    border-radius: 50%;
+}
+.assigned {
+   background: #3498db;
+}
+.not-assigned {
+    background: #eb2f06;
+}
+.overdue {
+    background: #f00;
+}
+.closed-tick {
+    background: #268e08;
+}
+.inprogress{
+    background: #f1c40f;
+}
+.back-count {
+    background: #fff;
+    padding: 0px;
+}
+#stacked-work g{
+    display: block;
+    width:100%;
+}    
+.colored-count h2 a {
+    color:#fff;
+    text-decoration: none;
+}
+/**********Flip**************/
+ #f1_container {
+      position: relative;
+      margin: 10px auto;
+      z-index: 1;
+}
+#f1_container {
+      perspective: 1000;
+    
+}
+#f1_card {
+    width: 100%;
+    height: 100%;
+}
+
+#f1_card .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden; 
+}
+#f1_card .face.back {
+      display: block;
+      transform: rotateY(180deg);
+      box-sizing: border-box;
+      color: white;
+      text-align: center;
+      background-color: #aaa;
+}
+
+#f1_card .face.back {
+
+    animation-name: BackRotate;
+animation-duration: 25s;
+animation-timing-function: ease;
+animation-delay: 3s;
+animation-iteration-count: infinite;
+animation-direction: normal;
+animation-fill-mode: none;
+animation-play-state: running;
+        
+}
+
+#f1_card .face.front {
+    animation-name: Rotate;
+animation-duration: 25s;
+animation-timing-function: ease;
+animation-delay: 3s;
+animation-iteration-count: infinite;
+animation-direction: normal;
+animation-fill-mode: none;
+animation-play-state: running;
+}
+
+
+@keyframes Rotate {
+    0% {transform:rotateY(0deg);}
+    25% {transform:rotateY(180deg);}
+    50% {transform:rotateY(0deg);}
+    75% {transform:rotateY(180deg);}
+    100% {transform:rotateY(0deg);}
+}
+ 
+@keyframes BackRotate {
+    0% {transform:rotateY(180deg);}
+    25% {transform:rotateY(0deg);}
+    50% {transform:rotateY(189deg);}
+    75% {transform:rotateY(0deg);}
+    100% {transform:rotateY(180deg);}
+}
+.middle_text {
+	text-align: center;
+    display: block;
+    float: none !important;
+}
+.workflow-icon1 {
+	margin-top: -15px;
+	height:36px;
+	float:left;
+	
+}
+.workflow-na a {
+	 text-align: center !important;
+	 float:none !important;
+}

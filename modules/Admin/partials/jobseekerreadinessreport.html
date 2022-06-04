@@ -1,0 +1,347 @@
+<style>
+.fa-sort, .link_job, .red-table > tbody > tr > td > a{
+text-transform: capitalize;
+}
+
+.datepicker-background:after {
+    content: "\f133";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    position: absolute;
+    font-size: 20px;
+    color: #000;
+    z-index: 1;
+    top: 28px;
+    right: 25px;
+    cursor: pointer;
+}
+
+</style>
+<!--Report Master-->
+<div class="admin-page" id="redireport" ng-controller="ReadinessReport_Ctrl">
+      <div class="section-heading">
+        <h4>Jobseeker Readiness Report</h4>
+        <!--<p>Create and post new job or choose one from already posted jobs.</p>-->
+      </div>
+      <div class="section-content" id="post-list">
+        <div class="upper-actions">
+          
+        
+         <!--  <div class="button-group">
+            <button class="btn btn-default btn-create" id="create-job-btn" data-toggle="modal" data-target="#add_qualify"><i class="icon-plus"></i></button>
+            <button class="btn btn-default btn-delete"><i class="icon-trash-2"></i></button>
+          </div> -->
+          
+         <div class="section-content" id="create-req">
+          <div class="row">
+              <div class="col-md-2">
+                <div class="form-group date-cal datepicker-background">
+                  <label>From Date:</label>
+                  <input type="text" id="fromdate" ng-model="fromDate"  class="form-control flat-control-inner dateonly">
+                  <!-- <i class="fa fa-calendar-o" aria-hidden="true"></i> -->
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group date-cal datepicker-background">
+                  <label>To Date:</label>
+                  <input type="text" id="todate" ng-model="toDate" class="form-control flat-control-inner dateonly" ng-change="validateDate('todate'+$index)">
+                	<!-- <i class="fa fa-calendar-o" aria-hidden="true"></i> -->
+                </div>
+              </div>
+              <div class="col-md-1">
+              	<div class="button-group" style="margin: 26px 0px 0px 0px;">
+					<button class="btn btn-default btn-create" ng-click="selectFilterDate()"><i class="fa fa-filter"></i></button>
+				</div>
+              </div>
+              <div class="col-md-4" style="text-align:right;">
+              		<div class="button-group" style="margin: 30px 0px 0px 0px;">
+              		<button class="btn btn-default btn-download" id="" ng-click="generateEIFExcel()"><i class="fa fa-download"></i>&nbsp;Candidate Information</button>
+              	</div>
+             	 <div class="button-group" style="margin: 30px 0px 0px 0px;float:right;">
+              		<button ng-click="generateExcel()" class="btn btn-default btn-create" id="create-job-btn" style="background:#1fa67a;"><i class="fa fa-file-excel-o" alt="Download"></i></button>
+              	</div>
+             </div>
+              
+              <div class="col-md-3">
+              	
+              	 <div class="search-cntnr" style="margin: 30px 0px 0px 0px;">
+		            <div class="form-group search-box">
+		              <input type="text" id="id_of_textbox" name="" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+		              <i class="icon-search" id="id_of_button" ng-click="fetchEmpReadinessReport(0,10,null,null,searchterm,fromDate,toDate);getReportListCount(searchterm,fromDate,toDate)"></i>
+		            </div>
+         		 </div>
+              </div>
+            </div>
+         </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="table-cntnr">
+
+          <table id="content2" class="table table-striped red-table">
+           <caption>Readiness Report</caption>
+            <thead>
+              <tr>
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin ">
+                      <label class="cstmchk_lbl" for="rd" style=" margin-top: -6px;"></label> 
+                    </div>
+                </th>
+                <th style="vertical-align: middle;">Candidate Name <i ng-click="SortingReadinessReportList('User',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th style="vertical-align: middle;">Candidate Position <i ng-click="SortingReadinessReportList('Position',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th style="min-width:126px;"><div>Candidate</div> <div>Select Date <i ng-click="SortingReadinessReportList('SelectedDate',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"></i></div></th>
+                <th style="min-width:126px;"><div>Expected</div> <div>Readiness Date <i ng-click="SortingReadinessReportList('ExpectdDate',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"></i></div></th>
+                <th style="min-width:126px;"><div>Compliances</div><div> Achieved Date <i ng-click="SortingReadinessReportList('AchievedDate',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"></i></div></th>
+                <th style="min-width:126px;"><div>EIF Status <i ng-click="SortingReadinessReportList('EifStatus',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"></i></div></th>
+                <th style="vertical-align: middle;">Status<i ng-click="SortingReadinessReportList('Status',searchterm,fromDate,toDate)" class="fa fa-sort" aria-hidden="true"></i></th>
+               </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="e in selectedEmplList">
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="{{e.empId}}" name="check" ng-click="checkedList(e.empId)" class="flashadmin ">
+                      <label class="cstmchk_lbl" for="{{e.empId}}"></label> 
+                    </div>
+                </td>
+                <td>{{e.name}}</td>
+                <td>{{e.positionName}}</td>
+                <td>{{formatDate(e.createdDate)}}</td>
+                <td ng-if="e.readinessDate != undefined">{{formatDate(e.readinessDate)}}</td>
+                <td ng-if="e.readinessDate == undefined">{{formatDate(e.createdDate)}}</td>
+                <td ng-if="e.complianceDate != undefined">{{formatDate(e.complianceDate)}}</td>
+                <td ng-if="e.complianceDate == undefined"></td>
+
+                <td ng-if="e.statusId!=2"><a ui-sref-opts="{reload: true, inherit: false}" ng-click="redirectToEIForm(e.empId,e.eif_status_id,e.statusId)"><span>{{e.eif_status}}</span></a> <span> <i ng-if="e.eif_status == 'crm failed'" class="fa fa-exclamation" style="padding-left:10px;color:red;cursor:pointer;" data-toggle="modal" data-target="#cuk-error-modal"></i></span></td>
+                <td ng-if="e.statusId==2"></td>
+                 <!-- <td><a ui-sref-opts="{reload: true, inherit: false}" ui-sref="restricted.EIForm" ui-sref-active="active"><span>{{e.eif_status}} <i ng-if="e.eif_status == 4" class="fa fa-exclamation" style="padding-left:10px;color:red;cursor:pointer;" data-toggle="modal" data-target="#cuk-error-modal"></i></span></a></td>
+ -->
+                <td>
+                <!-- <a data-toggle="modal"><i class="fa fa-user-circle-o status-ch" ng-if="e.statusId==0 || e.statusId==null || e.statusId==undefined" ng-click="employeedata(e)"></i></a>                
+                <a data-toggle="modal"><i class="fa fa-user-circle-o status-ch" style="color:#228B22;" ng-if="e.statusId==1" ng-click="employeedata(e)"></i></a>
+                <a data-toggle="modal"><i class="fa fa-user-circle-o status-ch" style="color:#FF0000;" ng-if="e.statusId==2" ng-click="employeedata(e)"></i></a> -->
+                
+                <span class="label label-success" ng-if="e.statusId==1" ng-click="employeedata(e)"><a href="" style="color: #f0f5f7 ;" data-toggle="modal">{{satusList[e.statusId].statusname}}</a></span>
+                <span class="label label-warning" ng-if="e.statusId==3" ng-click="employeedata(e)"><a href="" style="color: #f0f5f7 ;" data-toggle="modal">{{satusList[e.statusId].statusname}}</a></span>
+                <!--  <span class="label label-danger" ng-if="e.statusId==2" ng-click="employeedata(e)"><a href="" style="color: #f0f5f7 ;" data-toggle="modal">{{satusList[e.statusId].statusname}}</a></span>  -->
+                 <span class="label label-danger" ng-if="e.statusId==2" ng-click="">{{satusList[e.statusId].statusname}}</span> 
+                </td>
+                
+                <div class="modal fade" id="status-change" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Employee Status Details</h4>
+              </div>
+              <div class="modal-body">
+                <form>
+                  
+                <div class="form-group">
+                  <p>Select Employee Status*:</p>
+                   <select class="form-control flat-control-inner" ng-model="statusDetails.employeeStatusId" id="status-set" ng-change="showRemainigModal(statusDetails.employeeStatusId)" required>
+                                     
+                      <option ng-value="0" >--Select Status--</option> 
+                     <option data-ng-repeat="s in satusLists" data-ng-value="{{s.number}}" ng-selected="s.number==statusDetails.employeeStatusId">{{s.statusname}}</option> 
+                      
+                     <!-- </select>   -->
+                    <!--  <select class="form-control" ng-model="statusDetails.employeeStatusId" ng-options="s.number as s.statusname for s in satusLists" required>
+                    <option value="">--Select Status--</option> -->
+                     </select>
+                                    
+                </div>
+               
+               <div class="boxes" id="employee-detail">
+               <div ng-if="statusDetails.employeeStatusId == 1" id="starusid" class="form-group" >
+                <p>Employee No*:</p>                  
+                    <input type="text" name="employee-no." id="employeeno" ng-model="statusDetails.employeeNo" class="brand-name" required>                 	
+                 </div>
+                 <div ng-if="statusDetails.employeeStatusId == 1"" id="dateofemp" class="form-group">
+                 <p>Date of Employment*:</p>                
+                  <input type="text" id="employeedate" ng-model="statusDetails.dateOfEmployment" class="form-control flat-control-inner dateonly" required>
+                 </div>
+                 <div ng-if="statusDetails.employeeStatusId == 1" id="starusid" class="form-group" >
+                <p>INDoS number:</p>                  
+                    <input type="text" name="indos-no." id="indosno" ng-model="statusDetails.indosNo" class="brand-name" >                 	
+                 </div>
+              	</div>
+              	
+              	<div  ng-if="statusDetails.employeeStatusId == 2" id="abdnt-descr"class="form-group">
+                  <p>Description*:</p>
+                   	<textarea class="form-control flat-control-inner" ng-model="statusDetails.description" rows="06" required></textarea>
+                </div>
+                
+                 <div id="save-button" ng-show="true" class="form-group text-right">
+                  <button type="submit" class="btn-info add_brand" ng-click="saveEmployeeStatusDetails(statusDetails)">Change</button>
+                </div>
+               </form>
+              </div>              
+            </div>            
+          </div>
+      </div>
+      
+      
+      <div class="modal fade" id="cuk-error-modal" role="dialog">
+          <div class="modal-dialog modal-md add-brand">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">EIF failure message: EIF sending failed</h4>
+              </div>
+              <div class="modal-body text-center">
+                <p><span>Error message:</span> 500 internal server error is returned for http request. </p>
+                
+                <div id="save-button" ng-show="true" class="form-group text-center" style="margin-top:40px;">
+                  <button type="button" class="btn-info add_brand" data-dismiss="modal">Close</button>
+                </div>
+              </div>              
+            </div>            
+          </div>
+      </div>
+      
+      
+      
+       <!-- <div class="modal fade" id="astatus-change" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">         
+            Modal content
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Employee Satus</h4>
+              </div>
+              <div class="modal-body">
+                <form>                  
+                <div class="form-group">
+                  <p>Select Employee Status</p>
+                  <select class="form-control flat-control-inner" ng-model="astatusDetails.employeeStatusId" id="astatus-set">
+                   <option value="">--Select Status--</option>
+                    <option value="1">Employee</option>
+                    <option value="2">Absconded</option>
+                  </select>
+                  
+                  <select class="form-control flat-control-inner" ng-model="astatusDetails.employeeStatusId" ng-change="showRemainigModal(astatusDetails.employeeStatusId)"> 
+    					   <option ng-value="0">--Select Status--</option>          
+                           <option data-ng-repeat="s in satusLists" data-ng-value="{{s.number}}" ng-selected="s.number==astatusDetails.employeeStatusId">{{s.statusname}}</option>                                  
+        		  </select>   
+                                                                  
+                </div>                                
+               <div id="employee-detail" class="abox">
+               <div id="starusid" class="form-group">
+                <p>Employee No:</p>                  
+                    <input type="text" id="aemployeeno" name="employee-no." ng-model="astatusDetails.employeeNo" class="brand-name" required>
+                 </div>
+                 <div id="dateofemp" class="form-group">                 
+                 <p>Date of Employment:</p>
+                  <input type="text" id="afromdate" ng-model="astatusDetails.dateOfEmployment" class="form-control flat-control-inner dateonly" required>
+                 </div>
+              	</div>
+                 <div id="save-button" ng-show="true" class="form-group text-right">
+                  <button type="submit" class="btn-info add_brand" ng-click="saveEmployeeStatusDetails(astatusDetails)">Change</button>
+                </div>
+               </form>
+              </div>             
+            </div>           
+          </div>
+      </div> -->
+      
+                
+              </tr>             
+            </tbody>
+          </table>
+   
+        </div>
+        <div class="text-right">           
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+          </div>       
+      </div>
+    </div>
+      
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script> -->
+    
+    
+    
+    <script type="text/javascript">
+      $('#create-req').on('focus',".dateonly", function(){  
+	    	$('.dateonly').datetimepicker({	    		
+	 			 format: 'DD-MM-YYYY',
+	  			 useCurrent: false, 
+	  			 //minDate:new Date()     	
+	    	}).on('dp.change', function (e) { $(this).change()});
+	});
+           
+      $('#astatus-change').on('focus',".dateonly", function(){  
+	    	$('.dateonly').datetimepicker({	    		
+	 			 format: 'DD-MM-YYYY',
+	  			 useCurrent: false, 
+	  			 //minDate:new Date()     	
+	    	}).on('dp.change', function (e) { $(this).change()});
+	});
+      
+      $('#post-list').on('focus',".dateonly", function(){  
+	    	$('.dateonly').datetimepicker({	    		
+	 			 format: 'DD-MM-YYYY',
+	  			 useCurrent: false, 
+	  			 //minDate:new Date()     	
+	    	}).on('dp.change', function (e) { $(this).change()});
+	});
+</script> 
+   <script type="text/javascript">
+       
+       
+        $("#id_of_textbox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#id_of_button").click();
+            }
+        });
+        
+        $('.dateonly').keyup(function(event) {
+            if (event.keyCode === 13) {
+                $('.dateonly').click();
+            }
+        });
+        
+        
+        /* $(function () {
+            $('.dateonly').datetimepicker({
+               format: 'DD-MM-YYYY',
+               useCurrent: true
+            }).on('dp.change', function (e) { $(this).change()});
+        }); */
+        
+            /* $('#create-req').on('focus','#fromDate', function(){  
+        	$('#todate').datetimepicker({       		
+          format: 'DD-MM-YYYY',
+            useCurrent: false, //Important! See issue #1075           
+        })
+       });    */
+        
+    </script>
+    
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#astatus-set").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue){
+                $(".abox").not("." + optionValue).hide();
+                $("." + optionValue).show();
+            } else{
+                $(".abox").hide();
+            }
+        });
+    }).change();
+});
+</script>

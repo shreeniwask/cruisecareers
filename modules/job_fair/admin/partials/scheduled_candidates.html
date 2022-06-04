@@ -1,0 +1,43 @@
+<br>
+<div class="table-cntnr" style="padding: 0 14px;">
+	<table class="table table-striped red-table internet-calling-table"
+		style="margin-bottom: 0px;">
+		<caption>Scheduled Candidates</caption>
+		<thead>
+			<tr>
+			<th>Candidate Ref No <i ng-click="SortingfetchCallList1('refno',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+				<th>Candidate Name <i ng-click="SortingfetchCallList1('name',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+				<th>Event Name <i ng-click="SortingfetchCallList1('eventname',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+				 <th>Slot Time <i ng-click="SortingfetchCallList1('slottime',searchterm)" class="fa fa-sort" aria-hidden="true"></i></th>
+				<th style="vertical-align: middle;">Status <i ng-click="SortingfetchCallList1('interviewstatus',searchterm)" class="fa fa-sort" aria-hidden="true"></i>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="callLog in callLogs"
+				ng-class="{'call-green':!callLog.callLog.agentId&&!callLog.missedCall}"
+				class="font-20 ">
+				 <td>{{callLog.refNo}}</td>
+				<td>{{callLog.name}}</td>
+				<td>{{callLog.eventname}}</td>
+				 <td>{{dateformate(callLog.bookedSlotForJobFair)}}</td>
+				<!-- <td>{{callLog.interviewStatus}}</td> -->
+				<td ng-if="callLog.interviewStatus==1">Pending</td>
+				<td ng-if="callLog.interviewStatus==3">Completed</td>
+				<!-- <td style="text-align: center;" ng-show="callLog.communicationOption.name=='Answered Call'"><a  ng-click="textCommunicationid(callLog.id,callLog.userid)" id="task-flow" data-toggle="tooltip" data-placement="top" title="Answered Call" style="font-weight: 500 !important;"><i class="img/call.png" class="img-responsive workfow-img" style="cursor: pointer;height: 25px;margin: 0 auto;"></a> -->
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="text-right">
+		<br>
+		<ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous1()">&laquo;</a>
+			<li ng-repeat="i in navButtons"
+				ng-class="$parent.offset == i * $parent.limit && 'active'"><a
+				class="" ng-click="current1(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count"
+				ng-click="next1()">&raquo;</a></li>
+		</ul>
+	</div>
+</div>

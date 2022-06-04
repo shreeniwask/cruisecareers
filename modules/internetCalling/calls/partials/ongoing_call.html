@@ -1,0 +1,267 @@
+<!----Main Content---->
+
+<script>
+	$("#myModal").draggable({
+		handle : ".modal-header"
+	});
+	
+	
+	$('.modal-content').resizable({
+	    //alsoResize: ".modal-dialog",
+	    //minHeight: 150
+	});
+	$('.modal-dialog').draggable();
+
+	$('.modal').on('show.bs.modal', function () {
+	    $(this).find('.modal-body').css({
+	        'max-height':'100%'
+	    });
+	});
+</script>
+
+
+<style>
+#videoInput {
+	height: 108px;
+    position: absolute;
+    top: 1px;
+    right: 16px;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0px;
+    border: solid 1px #42afef;
+    width:144px;
+    margin:0px;
+}
+</style>
+<script src="modules/internetCalling/js/index.js"></script>
+<div class="tab-content tab-pane fade in admin-page clearfix">
+
+
+	<div id="user-video" class="tab-pane fade in" style="display: block;">
+		<div>
+			<div class="col-md-6 pre-communication-notes">
+				<h2>Previous Communication Notes</h2>
+				<table class="table">
+					 <tr>
+						    <th style="width:33.33%">Date</td>
+							<th style="width:23.33%">Agent</td>
+							<th style="width:33.33%">Communication Notes</th>
+						 </tr>
+						 <tr ng-repeat="notes in communicationNotes">
+							<td>{{dateformate(notes.createdAtTimeStamp)}}</td>
+							<td><a ng-click="showCommunicationNotes(notes.id)">{{notes.user.firstName}}</a></td>
+							<td><a ng-click="showCommunicationNotes(notes.id)"><p>{{notes.notes}}</p></a></td>
+						</tr>
+					
+				</table>
+				
+			</div>
+			<div class="col-md-6 pre-communication-notes"">
+				<!-- <video width="100%" height="250" controls="" autoplay="">
+				<source src="video.mp4" type="video/mp4">
+			</video> -->
+			<div class="video-screen-div">
+				<video id="videoOutput" autoplay width="100%" height="250" controls
+					poster="{{userdetails.profilePic}}"></video>
+					<video id="videoInput" autoplay width="200px" height="119px"
+						poster=""></video>
+				<div class="control-bttn">
+					<!-- <button class="btn btn-default call-btn">
+						<i class="fa fa-phone" style="color: #3c9a3e;"></i>
+					</button> -->
+					<!-- <button class="btn btn-default call-btn">
+						<i class="fa fa-cog"></i>
+					</button> -->
+					<button class="btn btn-default call-btn mic_unmute" onclick="muteUnmuteCall(this)" style="padding: 0px 6px; margin-bottom:10px" >
+					</button>
+					<button onclick="stop()" ng-if="callFor == 1"  class="btn btn-default call-btn" style="padding: 0px 6px; margin-bottom:10px">
+						<img src="resources/img/end-call-button.png"
+							class="img-responsive">
+					</button>
+					<button onclick="stop()" ng-if="callFor == 2" ui-sref="restricted.admin.interviewer_screen" class="btn btn-default call-btn" style="padding: 0px 6px; margin-bottom:10px">
+						<img src="resources/img/end-call-button.png"
+							class="img-responsive">
+					</button>
+					<br>
+				</div>
+				</div>
+			</div>
+
+		</div>
+		<button id="call_btn" ng-click="initiateCall()" style="display:none">Call</button> 
+		<div class="col-md-12 communication-notes">
+
+
+
+			<div>
+				<h2>Communication Notes</h2>
+				<form ng-submit="saveCommunicationNotes()">
+					<div>
+						<textarea rows="4" cols="100" ng-model="communicationNote.notes"
+							required></textarea>
+					</div>
+					<button type="submit"
+						class="btn btn-default btn-bluer pull-right margin-zero">Save</button>
+
+				</form>
+			</div>
+		</div>
+		<div class="user-data">
+
+			<div class="side-bar">
+				<div class="panel-group" id="accordion2">
+					<div class="panel panel-default">
+						<div class="panel-heading collapsed" data-toggle="collapse"
+							data-parent="#accordion2" href="#collapse5">
+							<h4 class="panel-title">Personal Details</h4>
+						</div>
+						<div id="collapse5" class="panel-collapse collapse">
+						<ul class="list-info">
+							<li><b>Name :</b> {{profile.firstName}} {{profile.lastName}}</li>
+							<li><b>Date of Birth :</b> {{profile.dob}}</li>
+							<li><b>Gender :</b> {{profile.gender}}</li>
+						</ul>
+							
+						</div>
+					</div>
+
+					<div class="panel panel-default" >
+						<div class="panel-heading collapsed" data-toggle="collapse"
+							data-parent="#accordion2" href="#collapse13">
+							<h4 class="panel-title">Contact Info</h4>
+						</div>
+						<div id="collapse13" class="panel-collapse collapse">
+							<div class="">
+							<ul class="list-info">
+								<li><b>Flat/House No.:</b> {{profile.userContact.houseNo}}</li>
+								<li><b>Building/House: </b>{{profile.userContact.houseName}}</li>
+								<li><b>Society:</b> {{profile.userContact.society}}</li>
+								<li><b>PIN/ZIP Code:</b> {{profile.userContact.pincode}}</li>
+								<li><b>Street/Road:</b> {{profile.userContact.street}}</li>
+							</ul>
+					  		
+						</div>
+					</div>
+				</div>
+
+					<div class="panel panel-default" ng-if="profile.userWorkList&&profile.userWorkList.length!=0">
+						<div class="panel-heading collapsed" data-toggle="collapse"
+							data-parent="#accordion2" href="#collapse11">
+							<h4 class="panel-title">Work Experience</h4>
+						</div>
+						<div id="collapse11" class="panel-collapse collapse">
+							<div class="">
+							<ul ng-repeat="work in profile.userWorkList" class="list-info">
+								<li><b>Employer's Name:</b> {{work.employerName}} </li>
+								<li><b>Position:</b> {{work.position}}</li>
+								<li><b>Location:</b> {{work.location}}</li>
+								<li><b>Salary: </b>{{work.salary}}</li>
+								<li><b>From Date: </b>{{work.fromDate}}</li>
+								<li><b>To Date: </b>{{work.toDate}}</li>
+							</ul>
+							</div>
+						</div>
+					</div>
+					
+					<div class="panel panel-default" ng-if="profile.userComplianceList&&profile.userComplianceList.length!=0">
+						<div class="panel-heading collapsed" data-toggle="collapse"
+							data-parent="#accordion2" href="#collapse12">
+							<h4 class="panel-title">Compliances</h4>
+						</div>
+						<div id="collapse12" class="panel-collapse collapse">
+							<div class="">
+							<ul ng-repeat="compliance in profile.userComplianceList" class="list-info">
+								<li><b>Compliance Name:</b> {{compliance.compliance.complianceName}}</li>
+								<li><b>Doc No.: </b>{{compliance.documentNumber}}</li>
+								<li><b>Country Of Issue:</b> {{compliance.countryOfIssue}}</li>
+								<li><b>Issue Date:</b> {{compliance.issueDate}}</li>
+								<li><b>Expiry Date:</b> {{compliance.expiryDate}}</li>
+ 							</ul>							 
+						</div>
+					</div>
+				</div>
+				
+				<div class="panel panel-default" ng-if="appliedJobs&&appliedJobs.length!=0">
+						<div class="panel-heading collapsed" data-toggle="collapse"
+							data-parent="#accordion2" href="#collapse14">
+							<h4 class="panel-title">Applied Jobs</h4>
+						</div>
+						<div id="collapse14" class="panel-collapse collapse">
+							<div class="">
+							<ul ng-repeat="job in appliedJobs" class="list-info">
+								<li>{{job.brand.brandName}},{{job.category.name}},{{job.position.name}}</li>								 						 
+ 							</ul>							 
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		
+	</div>
+	<div class="cross" id="cross">
+			<p>X</p>
+		</div>
+
+		<div class="user-profile">
+			<img src="resources/img/profile-icon.jpg">
+		</div>
+		<div class="back-menu">
+		<a ng-if="callFor == 1" ng-click="gobackToListing()">&lt; Back</a>
+			<!-- <a ng-if="callFor == 2" ui-sref="restricted.admin.interviewer_screen">&lt; Back</a> -->
+		</div>
+
+	<div class="user-profile">
+		<img src="resources/img/profile-icon.jpg">
+	</div>
+	<div class="back-menu">
+				<a ng-if="callFor == 1" ng-click="gobackToListing()">&lt; Back</a> 
+		<!-- <a ng-if="callFor == 2" ui-sref="restricted.admin.interviewer_screen">&lt; Back</a> -->
+	</div>
+	<div class="back-menu">
+				<a ng-if="callFor == 1" ng-click="gobackToListing()">&lt; Back</a>
+		<!-- <a ng-if="callFor == 2" ui-sref="restricted.admin.interviewer_screen">&lt; Back</a> -->
+	</div>
+</div>
+</div>
+
+<div id="notes{{notes.id}}" class="modal fade"
+	ng-repeat="notes in communicationNotes"
+	style="top: 20%; left: auto; right: auto; bottom: auto;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header ll">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title">
+					{{notes.user.firstName}} <span>{{dateformate(notes.createdAtTimeStamp)}}</span>
+				</h4>
+
+			</div>
+			<div class="modal-body">
+				<div class="comment">{{notes.notes}}</div>
+			</div>
+<!-- 			<div class="modal-footer"> -->
+<!-- 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<!-- 			</div> -->
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script>
+	$("#myModal").draggable({
+		handle : ".modal-header"
+	});
+	$("#cross").click(function(){
+		 $('.side-bar .panel-collapse').removeClass('in');
+		 $('.side-bar .panel-heading').addClass('collapsed');
+		});
+</script>
+
+
+

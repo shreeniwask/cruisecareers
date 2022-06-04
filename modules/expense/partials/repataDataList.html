@@ -1,0 +1,391 @@
+<!--Upload Master-->
+<div id="upload-master" class="tab-pane fade in admin-page">
+      <div class="section-heading">
+        <h4>Repat Data</h4>
+        <!--<p>Create and post new job or choose one from already posted jobs.</p>-->
+      </div>
+      <div class="section-content" id="post-list">
+        <div class="upper-actions">
+        <div class="col-md-2">
+           <div class="button-group">
+            <!-- <button class="btn btn-default btn-create" id="create-job-btn" ng-click="clear()" data-toggle="modal" data-target="#upload-excel"><i class="icon-plus"></i></button>
+            <button class="btn btn-default btn-delete" ng-click="check()" data-target="#deletelist"><i class="icon-trash-2"></i></button> -->
+          </div>
+          </div>
+          <div class="col-md-5"></div>
+          
+          
+        <div class="col-md-4">
+        	<div class="button-group" style="text-align: right;display: inline-block;padding-left: 10px;">
+               <button class="btn btn-default btn-create" id="create-report-btn" style="background:#1fa67a;" ng-click="generateExcel()"><i class="fa fa-file-excel-o"></i></button>                    
+          </div> 	
+          <div class="search-cntnr">
+            <div class="form-group search-box inline-blck" style="margin-left: 0px;">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="fetchRepatDataList(0,10,null,null,searchterm);getRepatDataListcount(searchterm)"></i>
+            </div>
+          </div> 
+          </div>  
+          
+          <div class="col-md-1">
+          <div class="button-group">
+          	<button class="btn-default btn-create icon-navigation1 dropdown-toggle" data-toggle="dropdown" id="create-req-btn"><i class="fa fa-check-square-o"></i></button>
+           <!--  <a class="dropdown-toggle select-drop" data-toggle="dropdown"></a>
+         	<span class="fa fa-filter"></span> -->
+	     <ul class="dropdown-menu selection-column" style="overflow:auto;left: -73px;">
+						 <li>
+						  	<div class="chckbx-cntnr zeromargin">
+						     <input type="checkbox" id="app1" name="check" class="flashadmin" ng-click="selectAllColoumns(colcheck);savesettings()" ng-model="colcheck">
+						     <label class="cstmchk_lbladmin"  for="app1"></label><label for="app1" class="table-label">Select All</label> 
+						   </div>
+						  </li>
+						  <li ng-repeat="c in columnlist">
+						  <div class="chckbx-cntnr zeromargin" ng-if="c.name=='Emp. No.' || c.name=='Name' || c.name=='Disembark Date' || c.name=='Max Days' || c.name=='MMI Date'">
+						     <input type="checkbox" id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()" disabled>
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  	<div class="chckbx-cntnr zeromargin" ng-hide="c.name=='Emp. No.' || c.name=='Name' || c.name=='Disembark Date' || c.name=='Max Days' || c.name=='MMI Date'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()">
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  </li>
+			</ul>
+          </div>
+       </div>   
+          <div class="clearfix"></div>
+
+        </div>
+        <div class="table-cntnr table-responsive" style="width: 100%;">
+          <table class="table table-striped red-table">
+            <caption>Repat Data List</caption>
+            <thead>
+              <tr>
+                 <td style="vertical-align: middle;">
+                    <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(shipDataList,all)" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                    </td>
+               <!--  <th>File Name <i ng-click="SortingFileList('Filename',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <th>Uploaded Date <i ng-click="SortingFileList('Uploaded',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <th>Record Success </th>                
+                <th>Status</th>
+                <th>Log</th>
+                <th>Download File</th> -->
+                <th style="vertical-align: middle;min-width: 120px;" ng-show="activeColumn('Emp. No.')">Emp. No.<i ng-click="SortingFileList('Emp_Number',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>                
+                <th style="vertical-align: middle;width: 165px;" ng-show="activeColumn('Name')">Name<i ng-click="SortingFileList('name',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>                              
+                <th style="vertical-align: middle;" ng-show="activeColumn('Brand')">Brand<i ng-click="SortingFileList('Brand_Name',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <th style="vertical-align: middle;min-width: 120px;" ng-show="activeColumn('Ship')">Ship<i ng-click="SortingFileList('Ship_Name',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <th style="vertical-align: middle;" ng-show="activeColumn('Department')">Department<i ng-click="SortingFileList('Category_Name',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>                
+                <th style="vertical-align: middle;min-width: 100px;" ng-show="activeColumn('Position')">Position<i ng-click="SortingFileList('Position_Name',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+                <th style="vertical-align: middle;" ng-show="activeColumn('Disembark Date')">Disembark Date</th aria-hidden="true">
+                <th style="vertical-align: middle;min-width: 95px;text-align: center;" ng-show="activeColumn('Max Days')">Max Days</th aria-hidden="true">                
+                <th style="vertical-align: middle;min-width: 95px;text-align: center;" ng-show="activeColumn('MMI Date')">MMI Date</th aria-hidden="true">
+                
+               </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="s in DataList"> 
+                 <td>
+                        <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="{{s.id}}" name="check" class="flashadmin" ng-click="checkedshipdataList(s.id)" ng-checked="all">
+                      <label class="cstmchk_lbladmin" for="{{s.id}}"></label> 
+                    </div>
+                    </td>                    
+                <td ng-show="activeColumn('Emp. No.')">{{s.employee.empl_number}}</td>
+                <td ng-show="activeColumn('Name')"><a ng-click="openUserDescription(s.employee.id)">{{s.employee.name}}</a></td>
+                <td ng-show="activeColumn('Brand')">{{s.brand.brandName}}</td>
+                <td ng-show="activeColumn('Ship')">{{s.ship.shipName}}</td>
+                <td ng-show="activeColumn('Department')">{{s.category.categoryName}}</td>
+                <td ng-show="activeColumn('Position')">{{s.position.positonname}}</td>
+                <td ng-show="activeColumn('Disembark Date')">{{dateformate(s.disembarkDate)}}</td>
+                <td style="text-align: center;" ng-show="activeColumn('Max Days')"><a data-toggle="modal" ng-click="setlistidMaxDays(s)">{{s.maxDays}} </a></td>
+                <td style="text-align: center;" ng-show="activeColumn('MMI Date')">
+                <a ng-if="s.mmiDate != undefined" ng-click="setlistid(s)">{{dateformate(s.mmiDate)}}</a>
+                <a ng-if="s.mmiDate == undefined" ng-click="setlistid(s)">No Date</a>
+                </td>
+                
+               </tr>
+            </tbody>
+          </table>
+          
+          	<div class="text-right">            
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul> 
+            </div>          
+        </div>
+      </div>
+
+      <div class="modal fade" id="reason-pop" role="dialog">
+          <div class="modal-dialog modal-lg add-brand">        
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Failed Record(s) Log</h4>               
+                <p ng-if="nameFlag == true" class="employee-name">{{Employee_number}} &nbsp &nbsp {{Employee_name}}</p>
+              </div>
+              <div class="modal-body">
+              <div id="reason-body" class="table-responsive" style="position: relative;width: 100%;max-height: 350px;overflow-y: scroll;">
+			  <table class="table table-stripped red-table">
+				<tr>
+					<th>Employee Number</th>
+					<th>Employee Name</th>
+					<th>Reason</th>
+				</tr>
+				<tr ng-repeat="l in logList">
+					<td>{{l.E_number}}</td>
+					<td>{{l.name}}</td>
+					<td ng-if="l.statusFlag !=1" >{{l.reason}}</td>
+					<td ng-if="l.statusFlag == 1"><a ng-click="showDetails('overlapping',l.E_number,l.id,l.name)">{{l.reason}}</a></td>
+				</tr>
+			  </table>			
+			  </div> 
+			   
+			   
+			    
+			   <form>			   
+			  <div id="overlapping-data" class="table-responsive">
+			  <div>
+        			<h5>Existing Data:</h5>
+        <!--<p>Create and post new job or choose one from already posted jobs.</p>-->
+      			</div>			     
+              <table class="table table-bordered red-table">
+              	<thead>
+              	<tr>
+              	<td  style="width:20px;">
+              			<div class="radio-cntnr new-chc" >
+                      	<input type="radio" name="option_0_0" id="option_0_1" class="ng-pristine ng-untouched ng-valid ng-not-empty" value="true" ng-checked="checkFlag1">                  			
+                  			<label class="blue-button" style="padding-left: 0px;" for="option_0_1"></label>
+                  		</div>
+				</td>             	 
+			     <th>Brand</th>
+			     <th>Ship</th>
+			     <th>Department</th>
+			     <th>Postion</th>
+			     <th>Embark Date</th>
+			     <th>Disembark Date</th>
+			     <th>Embark Port</th>
+			     </tr>
+			     </thead>
+              	<tbody>
+              	<tr ng-repeat="o in overappingData" ng-if="o.shipDataForOld.isActive== true">
+              	
+				 <!-- <td>
+                    <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rds" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="rds"></label> 
+                    </div>
+                 </td> -->
+                 <td></td>
+              	<td>{{o.shipDataForOld.brandName}}</td>
+              	<td>{{o.shipDataForOld.shipName}}</td>
+              	<td>{{o.shipDataForOld.Department}}</td>
+              	<td>{{o.shipDataForOld.RolePosition}}</td>
+              	<td>{{o.shipDataForOld.Embarkdates}}</td>
+              	<td>{{o.shipDataForOld.Disembarkdates}}</td>
+              	<td>{{o.shipDataForOld.Embarkport}}</td>              	              	
+              	</tr>
+              	 </table>
+              	 <div>
+        			<h5>Overlapping Data:</h5>
+        <!--<p>Create and post new job or choose one from already posted jobs.</p>-->
+      			</div>
+              	 <table class="table table-bordered red-table">
+              	<thead>
+              	<tr>
+              	<td style="width:20px;">
+              			<div class="radio-cntnr new-chc">
+                      	<input type="radio" name="option_0_0" id="option_0_0" class="ng-pristine ng-untouched ng-valid ng-not-empty" ng-checked="checkFlag2">                  			
+                  			<label  style="position: Absolute;" for="option_0_0"></label>
+                  		</div>
+				</td>
+              	
+			     <th>Brand</th>
+			     <th>Ship</th>
+			     <th>Department</th>
+			     <th>Postion</th>
+			     <th>Embark Date</th>
+			     <th>Disembark Date</th>
+			     <th>Embark Port</th>
+			     </tr>
+			     </thead>
+			     <tbody>
+              	<tr ng-repeat="o in overappingData" ng-if="o.shipDataForOld.isActive == false">
+              	
+              	<!-- <td>
+                    <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="r9s" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="r9s"></label> 
+                    </div>
+                 </td> -->
+                <td></td>
+              	<td>{{o.shipDataForOld.brandName}}</td>
+              	<td>{{o.shipDataForOld.shipName}}</td>
+              	<td>{{o.shipDataForOld.Department}}</td>
+              	<td>{{o.shipDataForOld.RolePosition}}</td>
+              	<td>{{o.shipDataForOld.Embarkdates}}</td>
+              	<td>{{o.shipDataForOld.Disembarkdates}}</td>
+              	<td>{{o.shipDataForOld.Embarkport}}</td>      
+              	</tr>
+              	</tbody>
+             </table>
+              <div class="form-group text-right">
+                  <button type="button" style="margin-right: 15px;padding: 10px 18px;" ng-click="showDetails('reasons',0,0)" class="btn-info add_brand">BACK</button>
+                         
+                  <button type="button" style="margin-right: 15px;padding: 10px 18px;" class="btn-info add_brand" ng-click="keepRecords()">OK</button>
+                </div>
+                <p class="logo_recomm" style:"font-size: 10px;">NOTE: Please select record(s) which you want to keep.</p>
+              </div>
+			   </form>                                
+              </div>                                 
+            </div>           
+          </div>
+      </div>
+
+        <div class="modal fade" id="upload-excel" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Upload Excel File</h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="shipData()">
+                 <!--  <p>File Name:</p>
+                  <div class="form-group">
+                    <input type="text" name="brand-name" ng-model="addshipdatafile.filename" id="filename" class="brand-name" >
+                 </div> -->
+                  <div class="imageupload panel panel-default">
+                   <p>Upload Excel File:</p>
+                      <div class="form-group">
+                          <input type="file" name="" class="file que-file-upload">                                                
+                          <div class="input-group">
+                                <input type="text" id="shipfilepath" class="form-control flat-control-inner" disabled readonly="" required>
+                                 <span class="input-group-btn">
+                                    <span class="btn btn-primary btn-file"> Browse
+                                         <input type="file" id="shipfile" onchange="angular.element(this).scope().fileNameChanged(this)" single>
+                                     </span>
+                                </span> 
+                            </div>
+                         </div>
+                </div>
+                 <div class="form-group text-right">
+                  <button type="submit" id="addbutton" class="btn-info add_brand">Add</button>
+                </div>
+               </form>
+              </div>              
+            </div>            
+          </div>
+      </div>
+      
+	<div id="deletelist" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-sm add-brand">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content flat-modal">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">x</button>
+	        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+	      </div>
+	      <div class="modal-body flat-body">
+	          <div class="clearfix" ng-value="getCheckedId()"></div>
+	          Are you sure you want to delete {{getCheckedshipdataid.length}} record(s)?	       
+	      <div class="modal-footer text-left">
+	        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deletefromList('ShipData')">Delete</button>
+	        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+	      </div>
+	    </div>
+	   </div>
+	    </div>
+	    </div>
+	 </div>
+	 
+	 <div class="modal fade" id="add_mmi_Days" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Add Max Days</h4>
+              </div>
+              <div class="modal-body">
+                <form id="BrandUpdate">
+                  <p>Max Days:</p>
+                  <div class="form-group">
+                    <input type="number" name="brand-name" class="brand-name" ng-model="empMaxDays">                     
+                 </div>
+                 <div class="form-group text-right">
+                  <button type="submit" id="btnupdate" class="btn-info add_brand" ng-click="maxDaysUpdate(empMaxDays)">Add</button>
+                </div>
+               </form>
+              </div>         
+            </div>            
+          </div>   
+      </div>
+ 
+ 	<div class="modal fade" id="add_mmi_date" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Add MMI Date</h4>
+              </div>
+              <div class="modal-body">
+               <form id="maxDaysUpdate">
+                  <p>MMI Date :</p>
+                  <div class="form-group">
+                      <input type="text" name="" id="mmiDate" class="form-control flat-control-inner dateonly" ng-model="empMmiDate">                     
+                 </div>
+                 <div class="form-group text-right">
+                  <button type="submit" id="btnupdate" class="btn-info add_brand" ng-click="mmiDateUpdate()">Add</button>
+                </div>
+               </form>
+              </div>             
+            </div>            
+          </div>   
+      </div>
+      
+      
+      
+      <!-- <div class="modal fade" id="add_mmi_date1" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Add MMI Date</h4>
+              </div>
+              <div class="modal-body">
+               <form id="maxDaysUpdate">
+                  <p>MMI Date :</p>
+                  <div class="form-group">
+                      <input type="text" name="" id="mmiDate" class="form-control flat-control-inner dateonly" required>                     
+                 </div>
+                 <div class="form-group text-right">
+                  <button type="submit" id="btnupdate" class="btn-info add_brand" ng-click="mmiDateUpdate()">Add</button>
+                </div>
+               </form>
+              </div>             
+            </div>            
+          </div>   
+      </div> -->
+
+ <script type="text/javascript">
+ 
+  $('#add_mmi_date').on('focus',".dateonly", function(){ 
+	 	$('.dateonly').datetimepicker({	    		
+				 format: 'DD-MM-YYYY',
+				 maxDate:new Date(), 
+	 	});
+	 }); 
+       
+ 
+        $("#id_of_textbox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#id_of_button").click();
+            }
+        });
+        
+    </script>

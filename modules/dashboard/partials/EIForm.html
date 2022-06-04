@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.comment_section{
+	max-height:300px;
+    overflow: auto;
+}
+#eif-main{
+	padding: 5% 0;
+}
+#form_view .modal-dialog{
+width:90%;
+height:600px
+}
+.chckbx-cntnr{
+position: absolute;
+    top: 32px;
+    left: calc(100% - 25px);
+}
+
+.eif-datepicker .chckbx-cntnr{
+position: absolute;
+    top: 32px;
+    left: calc(100% - 55px);
+}
+.srch-head h3{
+	padding-left:30px;
+}
+.chckbx-cntnr.disabledClass input{
+pointer-events:none;
+background:none;
+}
+
+.chckbx-cntnr.disabledClass label{
+pointer-events:none;
+background:none !important;
+}
+.chckbx-cntnr.disabledClass label:before{
+pointer-events:none;
+background:none !important;
+}
+
+
+.job-search-cntnr {
+    padding-bottom: 20px;
+}
+.job-search-cntnr div.srch-head{
+    padding: 8px 0px;
+}
+.eif-padding{
+	padding: 20px;
+	padding-bottom:0px;
+}
+.eif-heading{
+	padding-bottom:20px;
+}
+.eif-btn-align{
+	display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+.eif-1 input{
+	text-transform: uppercase;
+}
+.eif-2 input{
+	text-transform: uppercase;
+}
+.eif-3 input{
+	text-transform: uppercase;
+}
+.eif-4 input{
+	text-transform: uppercase;
+}
+.eif-5 input{
+	text-transform: uppercase;
+}
+.eif-6 input{
+	text-transform: uppercase;
+}
+.eif-7 input{
+	text-transform: uppercase;
+}
+
+.eif-button .eif-btn-align button{
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(0, 174, 239);
+    color: #fff;
+    padding: 7px 10px;
+    margin: 0px;
+}
+.eif-button .eif-btn-align button:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+.eif-btn-align .eif-btn-preview{
+    margin: 0px 40px !important;
+}
+.eif-datepicker i {
+    position: absolute;
+    font-size: 20px;
+    top: 32px;
+    right: 10px;
+    cursor: pointer;
+}
+.eif-btn-align button i{
+	padding-right: 10px;
+}
+.eif-btn-align .eif-btn-next i{
+	padding-right: 0px !important;
+	padding-left: 10px !important;
+}
+.eif-padding .form-group{
+	position: relative;
+}
+.eif-padding .form-group .eif-checkbox{
+	position: absolute;
+	top: 30px;
+	z-index: 111;
+	left: calc(100% - 30px) !important;
+	width: 30px;
+}
+.eif-padding .eif-datepicker{
+	position: relative;
+}
+.eif-padding .eif-datepicker .eif-checkbox{
+	position: absolute;
+	top: 30px;
+	z-index: 111;
+	left: calc(100% - 70px) !important;
+	width: 30px;
+}
+.search-text{
+	position:relative;
+}
+.comment-btn{
+	position: absolute;
+    right: 0;
+    top: 0%;
+}
+.comment-btn button{
+	margin-right: 16px;
+}
+.job-search-cntnr{
+	position:relative;
+}
+#eif-comment .modal-content{
+	min-height: 200px;
+}
+.margin-30{
+margin-top:30px}
+#eif-comment .modal-content .eif-modal-btn{
+	text-align: center;
+	margin: 30px;
+}
+#eif-comment .modal-content button{
+	margin: 0px;
+}
+input[type="checkbox"]:checked:disabled{ 
+	font-weight: bold; 
+}
+.eif-margin-left{
+	margin-left:150px;
+	width: 80.333333%;
+}
+.high-education-bottom i{
+	padding-right:10px;
+}
+.high-education-bottom a{
+	margin-right:30px;
+}
+
+.application-status .step {
+  list-style: none;
+  margin: .2rem 0;
+  width: 100%;
+  display:inline-flex;
+  padding: 30px 0 0 0;
+}
+
+.application-status .step .step-item {
+  -ms-flex: 1 1 0;
+  flex: 1 1 0;
+  margin-top: 0;
+  min-height: 1rem;
+  position: relative; 
+  text-align: center;
+}
+
+.application-status .step .step-item:not(:first-child)::before {
+  background: #07a807;
+  content: "";
+  height: 2px;
+  left: -50%;
+  position: absolute;
+  top: 9px;
+  width: 100%;
+}
+
+.application-status .step .step-item a {
+  color: #acb3c2;
+  display: inline-block;
+  padding: 30px 10px 0;
+  text-decoration: none;
+}
+
+.application-status .step .step-item a::before {
+  background: #07a807;
+  border: .1rem solid #07a807;
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 2rem;
+  left: 50%;
+  position: absolute;
+  top: 0rem;
+  transform: translateX(-50%);
+  width: 2rem;
+  z-index: 1;
+   cursor:pointer;
+}
+.application-status-icon{
+	background: none;
+  border: .1rem solid #07a807;
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 3.5rem;
+  left: 50%;
+  position: absolute;
+  top: -1rem;
+  transform: translateX(-50%);
+  width: 3.5rem;
+  z-index: 111111;
+  text-align:center;
+  line-height: 35px;
+}
+.application-status-icon i{
+  line-height: 35px;
+}
+.application-status .step .step-item i{
+	color: #fff;
+	font-size: 16px;
+}
+.application-status .step .step-item.active i{
+	color: #07a807;
+}
+.application-status .step .step-item.active a::before {
+  background: #fff;
+  border: .1rem solid #07a807;
+  padding:0px
+}
+
+.application-status .step .step-item.active ~ .step-item::before {
+  background: #e7e9ed;
+}
+
+.application-status .step .step-item.active ~ .step-item a::before {
+  background: #e7e9ed;
+  border: 0.1rem solid #e7e9ed;
+}
+.application-status .step .step-item.active ~ .step-item i{
+  color: #72af72 !important;
+}
+.application-status a{
+	position: relative;
+}
+.application-status p{
+	position: absolute;
+	left: 18px;
+	bottom: 95px;
+	color: #acb3c2;
+	font-size: 13px;
+}
+.application-status .active a{
+	color:#595d64 !important;
+}
+.red-border{
+	border: 1px solid red;
+}
+
+
+</style>
+
+
+<style ng-if="eifdetails.user.roleId==1">
+.chckbx-cntnr{
+opacity:0
+}
+
+.eif-datepicker:after {
+    content: "\f133";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    position: absolute;
+    font-size: 20px;
+    color: #000;
+    z-index: 1;
+    top: 28px;
+    right: 25px;
+    cursor: pointer;
+}
+</style>
+<style ng-if="eifdetails.user.roleId==2 || eifdetails.user.roleId==3">
+.chckbx-cntnr{
+opacity:1
+}
+</style>
+</head>
+
+<body>
+
+<div class="modal fade in ng-scope" id="eif-comment" role="dialog"  style="">
+        <div class="modal-dialog modal-md add-brand">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">x</button>
+              <h4 class="modal-title">Admin Comment</h4>
+             
+              
+            </div>
+            <div class="modal-body">
+             <!-- <p><b>Commented By:</b> Sushant Patil </p>
+                <p><b>Date & Time:</b>20/10/2022 10:10:10 AM</p>
+                <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown ...</p>
+           		 <p ng-if="eifdetails.comments!=null || eifdetails.comments!=''">{{eifdetails.comments}}</p> -->
+           	<!-- 	<p ng-if="eifdetails.comments==null || eifdetails.comments==''">No Comments Yet</p> -->
+           		<div class="comment_section" ng-hide="admincommentlist.length == 0">
+           			<ul type="none" class="detailed-ul"
+								ng-repeat="a in admincommentlist">
+								
+								 <li>
+								 <p><b>Commented By:</b> {{a.username}} </p>
+                				 <p><b>Date & Time:</b>{{a.datetime}}</p>
+                				 <p><b>Comment : </b>{{a.comments}}</p>				 
+								</li>  
+							</ul>
+           		</div>
+           		<div ng-show="admincommentlist.length == 0" style="text-align: center;">
+           		<span>No comments yet</span>
+           		</div>
+            <div class="eif-modal-btn">
+					<button class="btn btn-default btn-bluer" data-dismiss="modal" type="submit">Close</button>
+				</div>
+            </div>              
+          </div>            
+        </div>
+      </div>
+      
+      
+      
+ <div class="modal fade in ng-scope" id="eif-comment-admin" role="dialog"  style="">
+        <div class="modal-dialog modal-md add-brand">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">x</button>
+              <h4 class="modal-title">Admin Comment</h4>
+            </div>
+            <div class="modal-body">
+           
+           		<textarea rows="3" cols="6" ng-model="eifcomments" id="comment" style="width:100%; height:200px; padding:10px; resize: none;"></textarea>
+           		
+           		<div style="height:200px;overflow:auto" ng-hide="admincommentlist.length == 0">
+           			<ul type="none" class="detailed-ul"
+								ng-repeat="a in admincommentlist">
+								
+								 <li>
+								 <p><b>Commented By:</b> {{a.username}} </p>
+                				 <p><b>Date & Time:</b>{{a.datetime}}</p>
+                				 <p><b>Comment : </b>{{a.comments}}</p>				 
+								</li>  
+							</ul>
+           		</div>
+           		<div ng-show="admincommentlist.length == 0" style="text-align: center;">
+           		<span>No comments yet</span>
+           		</div>
+            	<div class="eif-modal-btn ">
+					<button class="btn btn-default btn-bluer" data-dismiss="modal" type="submit">Cancel</button>
+					<button class="btn btn-default btn-bluer pull-right" type="submit" ng-click="saveComments(eifdetails.id,eifcomments)">Send to candidate</button>
+				</div>
+            </div>              
+          </div>            
+        </div>
+      </div>
+
+
+<div class="height-70" ng-show="eifdetails.user.roleId==2 || eifdetails.user.roleId==3"></div>
+
+
+<div id="eif-main">
+	<div class="container-fluid">    
+		<div class="row">
+		
+		
+		<div class="row" style="border-bottom: 1px solid #ddd;" ng-show="eifdetails.user.roleId==1">
+			<div class="col-md-1" ></div>
+			<div class="col-md-10 col-md-offset-1 eif-margin-left" ng-show="eifdetails.user.roleId==1">
+			    <div class="col-md-2">
+			        <p><b>Candidate Name:</b><br> <span class="ng-binding">{{eifdetails.name}}</span> </p>
+			        
+			    </div>
+				<div class="col-md-3">
+			        <p><b>	Candidate Position:</b><br> <span class="ng-binding">{{eifdetails.selectedPositon}}</span> </p>
+			      
+			    </div>
+			       
+			    <div class="col-md-3">
+			        <p><b>Candidate Select Date:</b><br> <span class="ng-binding">{{eifdetails.selectedDate}}</span> </p>
+			        
+			    </div>
+			     
+			    <div class="col-md-3">
+			        <p><b>Expected Readiness Date:</b><br> <span class="ng-binding">{{formatDate(eifdetails.readinessDate)}}</span> </p>
+			        
+			      </div>
+			     <div class="col-md-1">
+			     	<button type="button" class="btn btn-default bigblue-btn" id="" ui-sref="restricted.admin.jobseekerreadinessreport" href="#!/admin/jobseekerreadinessreport">Back</button>
+			     </div> 
+			      		      
+			   </div>
+			
+				
+					
+			</div>
+			
+		</div>
+		
+		
+		<div class="row" style="position: relative;/* z-index: 11111; */">
+    <div class="col-md-6 bottom-btn" style="position: absolute;width: 23%;right: 20px;z-index: 1;top: 0px;margin-top: 30px;
+    display: flex;
+    justify-content: space-between;">
+
+
+       <!-- <button type="button" class="btn btn-default bigblue-btn btn-com" ng-disabled="eifdetailscount==0" ng-show="eifdetails.user.roleId==1 && eiform==8" data-toggle="modal" ng-click="viewAdminComments(eifdetails.id)">Comment</button> -->
+    <button type="button" class="btn btn-default bigblue-btn" ng-disabled="eifstatus==1 || eifstatus==5" ng-show="eifdetails.user.roleId==1 && eiform==8 && userstatusid!=2" style="margin: 0 5px;" ng-click="sendtoMistral(eifdetails,3)">{{buttonlabel}}</button>
+    <button type="button" class="btn btn-default bigblue-btn" ng-disabled="eifstatus==1 || eifstatus==5" ng-show="eifdetails.user.roleId==1 && eiform==8 && userstatusid!=2" data-toggle="modal" ng-click="viewAdminComments(eifdetails.id)">{{button}}</button>
+</div>
+			<div class="col-md-1">
+		      
+		    </div>
+		    
+		    
+		    
+			<div class=""  ng-class="eifdetails.user.roleId==2 || eifdetails.user.roleId==3 ? 'col-md-10 ' :  'col-md-10 col-md-offset-1 margin-30'">
+			  	<h3 class="search-text">Employee Information Form</h3>
+			  	<div class="comment-btn" ng-show="eifdetails.user.roleId==2 || eifdetails.user.roleId==3">
+			 		<button class="btn btn-default btn-bluer" type="submit" data-toggle="modal" ng-click="viewAdminComments(eifdetails.id)">View Admin's Comment</button> 
+				</div>
+			 	<div style="height: 15px;"></div>
+			
+			  	<div class="job-search-cntnr ">	
+			  		 <div class="application-status">				
+						<ul class="step">
+						  <li class="step-item " id="l0" ng-click="redirect(0)">
+							<a class="">BIOGRAPHIC DETAILS</a>				    
+						  </li>
+						  <li class="step-item " id="l1" ng-click="redirect(2)">
+							<a class="">DEMOGRAPHIC DETAILS</a>
+						  </li>
+						  <li class="step-item " id="l2" ng-click="redirect(3)">
+							<a class="">NEXT OF KIN (NOK) DETAILS</a>
+						  </li>
+						  <li class="step-item " id="l3" ng-click="redirect(4)">
+							<a class="">EMERGENCY CONTACT DETAILS</a>
+						  </li>					  
+						  <li class="step-item " id="l4" ng-click="redirect(5)">
+							<a class="">TRAVEL DOCUMENTS</a>
+						  </li>
+						  <li class="step-item " id="l5" ng-click="redirect(6)">				  	
+							<a class="">EDUCATIONAL QUALIFICATIONS</a>
+						  </li>
+						  <li class="step-item " id="l6" ng-click="redirect(7)">
+							<a class="">FAMILY INFO</a>
+						  </li>
+						  <li class="step-item " id="l7" ng-click="redirect(8)">
+							<a class="">UNIFORM MEASUREMENT (IN INCHES)</a>
+						  </li>
+						</ul> 				
+					</div> 
+					
+					
+			  			
+<!-- ------------------------      EIF-1 start   -------------------------------- -->			
+					<div class="eif-1 clearfix" id="eifdiv0" style="" data-hc_id="0"  ng-show="eiform==0 || eiform==1">
+						<div class="srch-head">
+							<h3>BIOGRAPHIC DETAILS</h3>
+						</div>	
+						
+		<!-- ---------biographic 2 start ---------------- -->
+						<div class="col-md-12 eif-padding clearfix biographic-details-2" id="eifdiv0" data-hc_id="0" ng-show="eiform==0">						
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>C number (Should start with C-)*</label> 
+									<input type="text" id="cnumber"  ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==1 || eifdetails.user.roleId==3"   ng-model="eifdetails.user.refNo" class="form-control flat-control-inner c-number">
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch1" name="check"    class="flashadmin" ng-model="eifdetails.cnumber">
+									        <label class="cstmchk_lbladmin" for="eifch1" ></label>  
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Selected Position (as per Offer Letter)</label> 
+									<input type="text"  ng-disabled="eifdetails.user.roleId==2  || eifdetails.user.roleId==1 || eifdetails.user.roleId==3" ng-model="eifdetails.selectedPositon" class="form-control flat-control-inner">
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch2" name="check"   ng-model="eifdetails.checkposition" ng-click="checkedDetails(eifdetails)" class="flashadmin">
+									        <label class="cstmchk_lbladmin" for="eifch2"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Selected Brand</label> 
+									<input type="text"  ng-disabled="eifdetails.user.roleId==2  || eifdetails.user.roleId==1 || eifdetails.user.roleId==3" ng-model="eifdetails.selectedBrand" class="form-control flat-control-inner">
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch3" name="check" ng-model="eifdetails.checkbrand" class="flashadmin">
+									        <label class="cstmchk_lbladmin" for="eifch3"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group eif-datepicker">
+									<label>Date of Hire</label> 
+									<input type="text"  ng-disabled="eifdetails.user.roleId==2  || eifdetails.user.roleId==1 || eifdetails.user.roleId==3" ng-model="eifdetails.selectedDate" class="form-control flat-control-inner dateonly">
+									<!-- <i class="fa fa-calendar-o" aria-hidden="true"></i> -->
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch4" name="check"  ng-model="eifdetails.dateofhire" class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch4"></label> 
+									</div> -->
+								</div>
+							</div>
+							
+							
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Given Name (as per passport)</label> 
+									<input type="text"  ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3" ng-model="eifdetails.passport.firstName" class="form-control flat-control-inner" disabled>
+								<!-- 	<div class="chckbx-cntnr zeromargin">
+										<input type="checkbox"  id="eifch5" name="check" ng-model="eifdetails.surname" class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch5"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Surname (as per passport)</label> 
+									<input type="text"  ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3 " ng-model="eifdetails.passport.lastName"  class="form-control flat-control-inner" disabled>
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch6" name="check" ng-model="eifdetails.givenname" class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch6"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Gender*</label> 
+								<!-- 	<input type="text" id="gender" ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3" ng-model="eifdetails.user.gender" class="form-control flat-control-inner" disabled> -->
+								
+								 <select  class="form-control flat-control-inner" id="gender" ng-model="eifdetails.user.gender" ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3">
+										<option value="" selected="selected">--Select--</option>
+										<option  value="male">Male</option>
+										<option  value="female">Female</option>
+								
+									</select>  
+								
+								
+								
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch7" name="check" ng-model="eifdetails.gender" class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch7"></label> 
+									</div> -->
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Nationality*</label>
+									<select class="form-control flat-control-inner " ng-disabled=""
+									 ng-model="eifdetails.nationalities" id="nationality" >
+										<option value="" selected="selected">--Select--</option>
+										<option data-ng-repeat="n in eifdetails.eifNationality"
+										value="{{n.nationality}}"
+										ng-selected="n.nationality==eifdetails.nationalities">{{n.nationality}}</option>
+									</select>  
+									
+									<!-- <input type="text"  ng-model="eifdetails.nationalities" class="form-control flat-control-inner"> -->
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch8" name="check" ng-model="eifdetails.checknationality"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch8"></label> 
+									</div> -->
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group eif-datepicker">
+									<label>Date of Birth*</label> 
+									<input type="text" name=""  ng-change="dateFormat(eifdetails.passport.dateOfBirth);dateBirthcheck(eifdetails.passport.dateOfBirth,eifdetails)" id="dateofbirth" ng-model="eifdetails.passport.dateOfBirth" ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3" class="form-control flat-control-inner dateonly">
+									<!-- <i class="fa fa-calendar-o" aria-hidden="true" ng-show="eifdetails.user.roleId==1"></i> -->
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch9" name="check" ng-model="eifdetails.dateofbirth" class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch9"></label> 
+									</div> -->
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Manning Agent</label> 
+									<input type="text" value="CSSI" id="manningagent" ng-disabled="eifdetails.user.roleId==1 || eifdetails.user.roleId==2 || eifdetails.user.roleId==3" class="form-control flat-control-inner">
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch10" name="check" ng-model="eifdetails.checkmanningagent"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch10"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Email*</label> 
+									<input type="text"  id="email" ng-model="eifdetails.user.email" ng-disabled="eifdetails.user.roleId==1 || eifdetails.user.roleId==2" class="form-control flat-control-inner">
+									
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="rr" name="check" ng-model="eifdetails.email"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="rr" ></label> 
+									</div> -->
+								</div>
+							</div>	
+						</div>
+					
+					
+					
+			<!-- ---------biographic 2 start ---------------- -->
+
+						<div class="col-md-12 eif-padding clearfix biographic-details-2" id="eifdiv1" data-hc_id="1" ng-show="eiform==1">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Hair Colour</label>
+									<select class="form-control flat-control-inner" ng-disabled=""
+									 ng-model="eifdetails.hairclr" id="haircolor" >
+										<option value="" selected="selected">--Select--</option>
+										<option data-ng-repeat="h in eifdetails.eifHairColor"
+										value="{{h.haircolor}}"
+										ng-selected="h.haircolor==eifdetails.hairclr">{{h.haircolor}}</option>
+										
+									</select> 
+									
+									
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Eye Colour</label> 
+									<select class="form-control flat-control-inner" ng-disabled=""
+									 ng-model="eifdetails.eyeclr" id="eyecolor" >
+										<option value="" selected="selected">--Select--</option>
+										<option data-ng-repeat="e in eifdetails.eifEyeColor"
+										value="{{e.eyecolour}}"
+										ng-selected="e.eyecolour==eifdetails.eyeclr">{{e.eyecolour}}</option>
+										
+									</select>
+									<!-- <input type="text"  ng-model="eifdetails.eyeclr" class="form-control flat-control-inner"> -->
+								</div>
+							</div>
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Height (CM)</label> 
+									<input type="text"  ng-disabled="" maxlength="5" numbers-only="numbers-only" ng-model="eifdetails.height"  class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Weight (KG)</label> 
+									<input type="text"  ng-disabled="" maxlength="5" numbers-only="numbers-only" ng-model="eifdetails.weight" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Nation of Birth*</label> 
+									<input type="text" value="India"  id="nationofbirth" ng-disabled="" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Place of Birth</label> 
+									<input type="text"  ng-model="eifdetails.passport.placeOfBirth" ng-disabled="" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Aadhar Card Number</label> 
+									<input type="text"  ng-disabled="" maxlength="12" numbers-only="numbers-only" ng-model="eifdetails.aadharcardno" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Pan Card Number</label> 
+									<input type="text"  ng-disabled="" maxlength="10" ng-model="eifdetails.pancardno" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Marital status</label>
+									 <select  class="form-control flat-control-inner" id="maritalstatus" ng-model="eifdetails.marital_status" ng-disabled="">
+										<option value="" selected="selected">--Select--</option>
+										<option  value="Married">Married</option>
+										<option  value="Common Law">Common Law</option>
+										<option  value="Divorced">Divorced</option>
+										<option  value="Engaged">Engaged</option>
+										<option  value="Separated">Separated</option>
+										<option  value="Single">Single</option>
+										<option  value="Widowed">Widowed</option>
+										<option  value="Unknown">Unknown</option>
+										
+
+
+									</select>  
+									
+									
+								</div>
+							</div>	
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Alternate Email</label> 
+									<input type="text"  id="altemail" ng-model="eifdetails.userContact.altEmail" ng-disabled="" class="form-control flat-control-inner">
+								</div>
+							</div>							
+						</div>
+					</div>
+<!-- ------------------------      EIF-1 end   -------------------------------- -->	
+
+
+
+<!-- ------------------------      EIF-2 start   -------------------------------- -->						
+					
+					<div class="eif-2 clearfix" id="eifdiv2" style="" data-hc_id="2" ng-show="eiform==2">
+						<div class="srch-head">
+							<h3>DEMOGRAPHIC DETAILS</h3>
+						</div>	
+						<div class="col-md-12 eif-padding clearfix">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Flat/House No*</label> 
+									<input type="text" id="houseno" ng-disabled=""  maxlength="5" numbers-only="numbers-only" ng-model="eifdetails.userContact.houseNo" class="form-control flat-control-inner">
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch11" name="check"   ng-model="eifdetails.dd_house_no" class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch11"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Building/House Name*</label> 
+									<input type="text" id="housename" ng-disabled="" ng-model="eifdetails.userContact.houseName" class="form-control flat-control-inner">
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch12" name="check"  ng-model="eifdetails.dd_building"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch12"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Society*</label> 
+									<input type="text" id="society" ng-disabled=""  ng-model="eifdetails.userContact.society" class="form-control flat-control-inner">
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch13" name="check"  ng-model="eifdetails.dd_society"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch13"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Pin/Zip Code*</label> 
+									<input type="text" id="pincode" ng-disabled="" ng-model="eifdetails.userContact.pincode" maxlength="6" numbers-only="numbers-only" class="form-control flat-control-inner">
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch14" name="check"  ng-model="eifdetails.dd_zip_code"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch14"></label> 
+									</div> -->
+								</div>
+							</div>
+							
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Street/Road*</label> 
+									<input type="text" id="street"  ng-disabled="" ng-model="eifdetails.userContact.street" class="form-control flat-control-inner">
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch15" name="check"  ng-model="eifdetails.dd_street"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch15"></label> 
+									</div> -->
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Country*</label> 
+									<select class="form-control flat-control-inner" ng-disabled=""
+									 	ng-model="eifdetails.userContact.countryId" 
+									 	ng-change="fetchStateList(eifdetails.userContact.countryId)" id="country" >
+										<option ng-value="0" selected="selected">--Select--</option>
+										<option data-ng-repeat="c in countryList"
+										data-ng-value="{{c.id}}"
+										ng-selected="c.id==eifdetails.userContact.countryId">{{c.CountryName}}</option>
+									</select>	
+									
+									 <!-- <input type="text"  id="country" ng-disabled="" ng-model="eifdetails.userContact.countryName" class="form-control flat-control-inner"> -->	
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch18" name="check"  ng-model="eifdetails.dd_country"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch18"></label> 
+									</div> -->
+									
+								</div>
+							</div>
+							
+							
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>State*</label> 
+									 <select class="form-control flat-control-inner" ng-disabled=""
+									 	ng-model="eifdetails.userContact.state.id" 
+									 	ng-change="fetchCityList(eifdetails.userContact.state.id)" id="state">
+										<option ng-value="0" selected="selected">--Select--</option>
+										<option data-ng-repeat="s in statelist"
+										data-ng-value="{{s.id}}"
+										ng-selected="s.id==eifdetails.userContact.state.id">{{s.stateName}}</option>
+									</select>
+									
+									<!-- <input type="text"  id="state" ng-disabled="" ng-model="eifdetails.userContact.state.stateName" class="form-control flat-control-inner"> -->
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch17" name="check"  ng-model="eifdetails.dd_state"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch17"></label> 
+									</div> -->
+									
+								</div>
+							</div>
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>City*</label> 
+									 <select class="form-control flat-control-inner" ng-disabled=""
+									 	ng-model="eifdetails.userContact.city.id" 
+									 	id="city">
+										<option ng-value="0" selected="selected">--Select--</option>
+										<option data-ng-repeat="cl in citylist"
+										data-ng-value="{{cl.id}}"
+										ng-selected="cl.id==eifdetails.userContact.city.id">{{cl.cityName}}</option>
+									</select>
+									
+									
+									<!-- <input type="text"  id="city" ng-disabled="" ng-model="eifdetails.userContact.city.cityName" class="form-control flat-control-inner"> -->
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch16" name="check"  ng-model="eifdetails.dd_city"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch16"></label> 
+									</div> -->
+								</div>
+							</div>
+							
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Home Airport*</label> 
+									<select class="form-control flat-control-inner" ng-disabled=""
+									 ng-model="eifdetails.homeairport" id="homeairport" >
+										<option value="" selected="selected">--Select--</option>
+										<option data-ng-repeat="a in airportList"
+										value="{{a.airportname}}"
+										ng-selected="a.airportname==eifdetails.homeairport">{{a.airportname}}</option>
+										
+									</select>  
+									
+									<!-- <input type="text"  ng-disabled="" ng-model="eifdetails.homeairport"  class="form-control flat-control-inner"> -->
+									
+									<!--  
+                                    <select  class="form-control flat-control-inner">
+                                        <option value="" selected="selected">--Select--</option>
+                                        <option  value="">Mumbai Airport</option>
+                                        <option  value="">Goa Airport</option>
+                                    </select> 
+                                     -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Cell phone 1*</label> 
+									<input type="text" id="phonenumber" ng-disabled="" maxlength="13" numbers-only="numbers-only" ng-model="eifdetails.userContact.phoneNumber" class="form-control flat-control-inner">
+								<!-- 	<div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch19" name="check"  ng-model="eifdetails.dd_cell_phone_1"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch19"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Cell phone 2*</label> 
+									<input type="text" id="phonenumber2" ng-disabled="" maxlength="13" numbers-only="numbers-only"ng-model="eifdetails.userContact.altPhoneNumber" class="form-control flat-control-inner">
+								</div>
+							</div>	
+						</div>
+					</div>
+					
+					
+<!-- ------------------------      EIF-2 end   -------------------------------- -->	
+
+
+
+<!-- ------------------------      EIF-3 start   -------------------------------- -->						
+					
+					<div class="eif-3 clearfix" id="eifdiv3" style="" data-hc_id="3" ng-show="eiform==3">
+						<div class="srch-head">
+							<h3>NEXT OF KIN (NOK) DETAILS</h3>
+						</div>
+						<div class="col-md-12 eif-padding clearfix">
+						
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Surname of Beneficiary</label> 
+									<input type="text"  ng-disabled="" ng-model="eifdetails.bensurname" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Name of Beneficiary </label> 
+									<input type="text"  ng-disabled="" ng-model="eifdetails.benname" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Relationship</label> 
+									<input type="text"  ng-disabled="" ng-model="eifdetails.benrelation" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Flat/House no</label> 
+									<input type="text"  ng-disabled="" maxlength="5" numbers-only="numbers-only" ng-model="eifdetails.benhouseno" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Building/House</label> 
+									<input type="text"  ng-disabled="" ng-model="eifdetails.benbuilding" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Society</label> 
+									<input type="text"   ng-disabled="" ng-model="eifdetails.bensociety" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Pin/Zip Code</label> 
+									<input type="text"  ng-disabled="" maxlength="6" numbers-only="numbers-only"  ng-model="eifdetails.benzipcode" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Street/Road</label> 
+									<input type="text"  ng-disabled="" ng-model="eifdetails.benstreet" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Country</label> 
+									<select class="form-control flat-control-inner" ng-disabled=""
+									 	ng-model="eifdetails.bencountry" 
+									 	ng-change="fetchBenStateList(eifdetails.bencountry)" id="country" >
+										<option ng-value="0" selected="selected">--Select--</option>
+										<option data-ng-repeat="c in countryList"
+										data-ng-value="{{c.id}}"
+										ng-selected="c.id==eifdetails.bencountry">{{c.CountryName}}</option>
+									</select>	
+									
+									<!-- <input type="text"  id="kincountry" ng-disabled="" ng-model="eifdetails.bencountry" class="form-control flat-control-inner"> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>State</label> 
+									 <select class="form-control flat-control-inner" ng-disabled=""
+									 	ng-model="eifdetails.benstate" 
+									 	ng-change="fetchBenCityList(eifdetails.benstate)" id="state">
+										<option ng-value="0" selected="selected">--Select--</option>
+										<option data-ng-repeat="s in benstatelist"
+										data-ng-value="{{s.id}}"
+										ng-selected="s.id==eifdetails.benstate">{{s.stateName}}</option>
+									</select>
+									<!-- <input type="text"  id="kinstate" ng-disabled="" ng-model="eifdetails.benstate" class="form-control flat-control-inner"> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>City</label> 
+									 <select class="form-control flat-control-inner" ng-disabled=""
+									 	ng-model="eifdetails.bencity" 
+									 	id="city">
+										<option ng-value="0" selected="selected">--Select--</option>
+										<option data-ng-repeat="cl in bencitylist"
+										data-ng-value="{{cl.id}}"
+										ng-selected="cl.id==eifdetails.bencity">{{cl.cityName}}</option>
+									</select>
+									
+								<!-- 	<input type="text"  id="kincity" ng-disabled="" ng-model="eifdetails.bencity" class="form-control flat-control-inner"> -->
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Mobile phone 1 (with country code)</label> 
+									<input type="text"  ng-disabled="" maxlength="13" numbers-only="numbers-only"  ng-model="eifdetails.benmobile1" class="form-control flat-control-inner">
+								</div>
+							</div><div class="col-md-3">
+								<div class="form-group">
+									<label>Mobile phone 2 (with country code)</label> 
+									<input type="text"  ng-disabled="" maxlength="13" numbers-only="numbers-only"  ng-model="eifdetails.benmobile2" class="form-control flat-control-inner">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+<!-- ------------------------      EIF-3 end   -------------------------------- -->	
+
+
+
+<!-- ------------------------      EIF-4 start   -------------------------------- -->						
+					
+					<div class="eif-4 clearfix"  id="eifdiv4" style="" data-hc_id="4" ng-show="eiform==4">
+						<div class="srch-head">
+							<h3>EMERGENCY CONTACT DETAILS</h3>
+						</div>
+						<div class="col-md-12 eif-padding clearfix">						
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Surname*</label> 
+									<input type="text" id="ecsurname" ng-disabled=""  ng-model="eifdetails.ecsurname" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Name*</label> 
+									<input type="text" id="ecname" ng-disabled=""  ng-model="eifdetails.ecname" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Relationship*</label> 
+									<input type="text" id="relationship" ng-disabled=""  ng-model="eifdetails.ecrelation" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Flat/House no*</label> 
+									<input type="text" id="echouse" ng-disabled="" maxlength="4" numbers-only="numbers-only" ng-model="eifdetails.echouse_no" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Building/House*</label> 
+									<input type="text"  id="ecbulding" ng-disabled=""  ng-model="eifdetails.ecbuilding" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Society*</label> 
+									<input type="text"  id="ecsociety" ng-disabled=""  ng-model="eifdetails.ecsociety" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Pin/Zip Code*</label> 
+									<input type="text" id="ecpincode" ng-disabled="" maxlength="6" numbers-only="numbers-only" ng-model="eifdetails.eczipcode" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Street/Road*</label> 
+									<input type="text"  id="ecstreet" ng-disabled=""  ng-model="eifdetails.ecstreet" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Country*</label> 
+									<select class="form-control flat-control-inner" ng-disabled=""
+									 	ng-model="eifdetails.eccountry" 
+									 	ng-change="fetchEcStateList(eifdetails.eccountry)" id="eccountry" >
+										<option ng-value="0" selected="selected">--Select--</option>
+										<option data-ng-repeat="c in countryList"
+										data-ng-value="{{c.id}}"
+										ng-selected="c.id==eifdetails.eccountry">{{c.CountryName}}</option>
+									</select>	
+									
+									<!-- <input type="text"   id="eccountry" ng-disabled=""  ng-model="eifdetails.eccountry" class="form-control flat-control-inner"> -->
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>State*</label> 
+									 <select class="form-control flat-control-inner" ng-disabled=""
+									 	ng-model="eifdetails.ecstate" 
+									 	ng-change="fetchEcCityList(eifdetails.ecstate)" id="ecstate">
+										<option ng-value="0" selected="selected">--Select--</option>
+										<option data-ng-repeat="s in ecstatelist"
+										data-ng-value="{{s.id}}"
+										ng-selected="s.id==eifdetails.ecstate">{{s.stateName}}</option>
+									</select>
+								<!-- 	<input type="text"  id="ecstate" ng-disabled=""  ng-model="eifdetails.ecstate" class="form-control flat-control-inner"> -->
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>City*</label>
+									 <select class="form-control flat-control-inner" ng-disabled=""
+									 	ng-model="eifdetails.eccity" 
+									 	id="eccity">
+										<option ng-value="0" selected="selected">--Select--</option>
+										<option data-ng-repeat="cl in eccitylist"
+										data-ng-value="{{cl.id}}"
+										ng-selected="cl.id==eifdetails.eccity">{{cl.cityName}}</option>
+									</select>
+									 
+									<!-- <input type="text"  id="eccity" ng-disabled=""  ng-model="eifdetails.eccity" class="form-control flat-control-inner"> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Mobile phone 1 (with country code)*</label> 
+									<input type="text" id="ecmobile1" ng-disabled="" maxlength="13" numbers-only="numbers-only"  ng-model="eifdetails.ecmobile1" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+		
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Mobile phone 2 (with country code)*</label> 
+									<input type="text" id="ecmobile2" ng-disabled="" maxlength="13" numbers-only="numbers-only" ng-model="eifdetails.ecmobile2" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							
+							
+							
+						</div>
+					</div>		
+					
+					
+					
+					
+<!-- ------------------------      EIF-4 end   -------------------------------- -->	
+
+
+
+<!-- ------------------------      EIF-5 start   -------------------------------- -->						
+					
+					<div class="eif-5 clearfix" id="eifdiv5" style="" data-hc_id="5" ng-show="eiform==5">
+						<div class="srch-head">
+							<h3>TRAVEL DOCUMENTS</h3>
+						</div>
+						<div class="col-md-12 eif-padding clearfix">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Passport No*</label> 
+									<input type="text" id="passportno" ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3"  ng-model="eifdetails.passport.passportNo" class="form-control flat-control-inner" disabled>
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch20" name="check"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch20"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group eif-datepicker">
+									<label>Passport Issue date*</label> 
+									<input type="text" placeholder="" id="dateofissue" ng-change="dateFormat(eifdetails.passport.dateOfIssue);validateDate1(eifdetails)" ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3" ng-model="eifdetails.passport.dateOfIssue" class="form-control flat-control-inner dateonly" disabled>
+									<!-- <i class="fa fa-calendar-o" aria-hidden="true"  ng-show="eifdetails.user.roleId==1"></i> -->
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch21" name="check"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch21"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group eif-datepicker">
+									<label>Passport expiration date*</label>  
+									<input type="text" placeholder="" id="expirydate" ng-change="dateFormat(eifdetails.passport.expiryDate);validateDate1(eifdetails)" ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3" ng-model="eifdetails.passport.expiryDate" class="form-control flat-control-inner dateonly" disabled>
+									<!-- <i class="fa fa-calendar-o" aria-hidden="true"  ng-show="eifdetails.user.roleId==1"></i> -->
+									<!-- <div class="chckbx-cntnr zeromargin ">
+										<input type="checkbox" id="eifch22" name="check"   class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch22"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Issued by</label> 
+									<input type="text" value="Govt. Of India" id="issuebyindia" ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3" placeholder="Govt. Of India" class="form-control flat-control-inner" disabled>
+								<!-- 	<div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch23" name="check"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch23"></label> 
+									</div> -->
+								</div>
+							</div>
+							
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Place of Issue*</label> 
+									<input type="text" id="placeofissue" ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3" ng-model="eifdetails.passport.placeOfIssue" class="form-control flat-control-inner" disabled>
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch24" name="check"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch24"></label> 
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Nation Of Issue*</label> 
+									<input type="text" id="nationofissue"  ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3" ng-model="eifdetails.passport.countryOfissue" class="form-control flat-control-inner" > 
+									<!-- <input type="text" value="India" id="nationofissue"  ng-disabled="eifdetails.user.roleId==2 || eifdetails.user.roleId==3" class="form-control flat-control-inner" > -->
+									<!-- <div class="chckbx-cntnr zeromargin">
+										<input type="checkbox" id="eifch25" name="check"  class="flashadmin">
+									    <label class="cstmchk_lbladmin" for="eifch25"></label> 
+									</div> -->
+								</div>
+							</div>	
+						</div>
+					</div>	
+					
+					
+					
+<!-- ------------------------      EIF-5 end   -------------------------------- -->	
+
+
+
+<!-- ------------------------      EIF-6 start   -------------------------------- -->						
+					
+					<div class="eif-6 clearfix" id="eifdiv6" style="" data-hc_id="6" ng-show="eiform==6">
+						<div class="srch-head">
+							<h3>EDUCATIONAL QUALIFICATIONS</h3>
+						</div>
+						<div class="col-md-12 eif-padding clearfix">
+							
+								<div class="col-md-3">
+								<div class="form-group">
+									<label>Qualification</label> 
+									<select class="form-control flat-control-inner" ng-disabled=""
+									 	ng-model="eifdetails.qualification" id="qualification" >
+										<option  value="" selected="selected">--Select--</option>
+										<option data-ng-repeat="q in eifdetails.qualificationlist"
+										value="{{q.qualificationName}}"
+										ng-selected="q.qualificationName==eifdetails.qualification">{{q.qualificationName}}</option>
+									</select>
+									
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Highest Education</label>
+									<div class="input-group" ng-disabled="">
+										<input type="text" id="edufilepath" class="form-control flat-control-inner"> 
+										<span class="input-group-btn">
+											<span class="btn btn-primary btn-file"> Browse 
+												<input type="file" id="educationalfile" onchange="angular.element(this).scope().fileNameChanged(this)" single>
+											</span>
+									    </span>
+									</div>
+								</div>
+								<div class="high-education-bottom"  ng-if="( eifdetails.highesteducation != null || eifdetails.highesteducation != undefined)">
+							<a href="" ng-click="download(eifdetails.highesteducation)" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> Download</a>
+							<a ng-click="PreviewDocument(eifdetails.highesteducation,1)" data-toggle="modal" data-target="#expand_view"><i class="fa fa-eye" aria-hidden="true"></i> View</a> 
+						</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Passing Year</label> 
+									<input type="text"  ng-disabled="" ng-model="eifdetails.passingyear" class="form-control flat-control-inner">
+								</div>
+							</div>
+						</div>
+					</div>	
+					
+					
+					
+					
+<!-- ------------------------      EIF-6 end   -------------------------------- -->	
+
+
+
+<!-- ------------------------      EIF-7 start   -------------------------------- -->						
+					
+					<div class="eif-7 clearfix"  id="eifdiv7" style="" data-hc_id="7" ng-show="eiform==7">
+						<div class="srch-head">
+							<h3>FAMILY INFO</h3>
+						</div>
+						<div class="col-md-12 eif-padding clearfix">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Mother's Name</label> 
+									<input type="text"  ng-disabled="" ng-model="eifdetails.mothername" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Surname</label> 
+									<input type="text"  ng-disabled="" ng-model="eifdetails.mothersurname" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group eif-datepicker">
+									<label>Date of Birth</label> 
+									<input type="text" name=""  ng-change="dateFormat(eifdetails.dateOfBirth1);dateBirthcheck(eifdetails.dateOfBirth1,eifdetails)" id="dateofbirth1" ng-model="eifdetails.dateOfBirth1" class="form-control flat-control-inner dateonly">
+									<!-- <input type="text" class="form-control flat-control-inner dateonly"> -->
+									<!-- <i class="fa fa-calendar-o" aria-hidden="true"></i>		 -->							
+								</div>
+							</div>
+						</div>
+                        <div class="col-md-12 eif-padding clearfix">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Father's Name</label> 
+									<input type="text"  ng-disabled="" ng-model="eifdetails.fathername" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Surname</label> 
+									<input type="text"  ng-disabled="" ng-model="eifdetails.fathersurname" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group eif-datepicker">
+									<label>Date of Birth</label> 
+									<input type="text" name=""  ng-change="dateFormat(eifdetails.dateOfBirth2);dateBirthcheck(eifdetails.dateOfBirth2,eifdetails)" id="dateofbirth2" ng-model="eifdetails.dateOfBirth2" class="form-control flat-control-inner dateonly">
+									<!-- <input type="text" class="form-control flat-control-inner dateonly"> -->
+									<!-- <i class="fa fa-calendar-o" aria-hidden="true"></i>	 -->								
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+<!-- ------------------------      EIF-7 end   -------------------------------- -->	
+
+
+
+<!-- ------------------------      EIF-8 start   -------------------------------- -->						
+					
+					<div class="eif-8 clearfix"  id="eifdiv8" style="" data-hc_id="8" ng-show="eiform==8">
+						<div class="srch-head">
+							<h3>UNIFORM MEASUREMENT (IN INCHES)</h3>
+						</div>
+						<div class="col-md-12 eif-padding clearfix">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Chest</label> 
+									<input type="text"  ng-disabled="" maxlength="5" numbers-only="numbers-only" ng-model="eifdetails.chest" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Arm Length</label> 
+									<input type="text"  ng-disabled="" maxlength="5" numbers-only="numbers-only" ng-model="eifdetails.armlength" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Waist</label> 
+									<input type="text"  ng-disabled="" maxlength="5" numbers-only="numbers-only" ng-model="eifdetails.waist" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Hip</label> 
+									<input type="text"  ng-disabled="" maxlength="5" numbers-only="numbers-only" ng-model="eifdetails.hip" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Inside Leg</label> 
+									<input type="text"  ng-disabled="" maxlength="5" numbers-only="numbers-only" ng-model="eifdetails.inside_leg" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Neck</label> 
+									<input type="text"  ng-disabled="" maxlength="5" numbers-only="numbers-only" ng-model="eifdetails.neck" class="form-control flat-control-inner">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Shoes</label> 
+									<input type="text"  ng-disabled="" maxlength="5" numbers-only="numbers-only" ng-model="eifdetails.shoes" class="form-control flat-control-inner">
+								</div>
+							</div>
+							
+							
+						</div>
+					</div>																										
+<!------------------------------FORM BUTTON------------------------------------------------>
+					<hr>
+					<div class="eif-button">
+						<div class="eif-btn-align">							
+							<div>
+								<button class="btn btn-default btn-bluer" ng-hide="eiform==0" ng-click="previous()" type="submit" ><i class="fa fa-chevron-left" aria-hidden="true"></i>Previous</button>
+							</div>
+							<div>
+								<button class="btn btn-default btn-bluer eif-btn-preview"  data-toggle="modal" data-target="#form_view" ng-click="previewEIForm(eifdetails,2)" ng-show="eiform==8" style=";"><i class="fa fa-eye" aria-hidden="true"></i> Preview</button>
+							
+								<!-- Admin submit button -->
+								<button class="btn btn-default btn-bluer" ng-show="eiform==8 && eifdetails.user.roleId==1 && userstatusid!=2"  ng-disabled="eifstatus==1"  ng-click="submitEIForm(eifdetails,1)" id="submit" type="submit" style=";"><i class="fa fa-check" aria-hidden="true"></i>Submit</button>
+								
+								<!-- Candidate submit button -->
+								<button class="btn btn-default btn-bluer" ng-show="eiform==8 && (eifdetails.user.roleId==2 || eifdetails.user.roleId==3)"  ng-disabled="eifstatus==2"  ng-click="submitEIForm(eifdetails,1)" id="submit" type="submit" style=";"><i class="fa fa-check" aria-hidden="true"></i>Submit</button>
+								
+								<button class="btn btn-default btn-bluer eif-btn-next" ng-hide="eiform==8" ng-click="saveEIForm(eifdetails,2)" id="next" value="nextbutton" type="submit">Next<i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+							</div>
+							
+						</div>
+					</div>
+					
+					
+					
+					
+				</div>
+			</div>
+     
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="form_view" role="dialog">
+          <div class="modal-dialog modal-md add-brand">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">EIFORM</h4>
+              </div>
+              <div class="modal-body">
+              <div  id="imagetab">
+            <!--   <img ng-show="imageFlag == true" ng-src="{{fileurl}}" width="100%"  class="img-responsive" id="imgtab1"> -->
+               <iframe ng-show="pdfFlag == true"  ng-src="{{eifPdfDocPath}}" height="600px" width="100%" id="imgtab2"></iframe>
+		     
+		       </div>
+              </div>             
+            </div>
+          </div>
+      </div>
+      
+      <div class="modal fade" id="expand_view" role="dialog">
+          <div class="modal-dialog modal-md add-brand">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Document</h4>
+              </div>
+              <div class="modal-body">
+              <div  id="imagetab">
+              <img ng-show="imageFlag == true" ng-src="{{fileurl}}" width="100%"  class="img-responsive" id="imgtab1">
+               <iframe ng-show="pdfFlag == true"  ng-src="{{pdfDocPath}}" height="500px" width="100%" id="imgtab2"></iframe>
+		        		       </div>
+              </div>             
+            </div>
+          </div>
+      </div>
+      
+      
+      
+</body>
+<script type="text/javascript" class="ng-scope">
+
+$('#eifdiv0').on('focus', ".dateonly", function() {
+$(this).datetimepicker({
+format : 'DD-MM-YYYY',
+useCurrent : false,
+//minDate:new Date()     
+}).on('dp.change', function(e) {
+$(this).change()
+});
+});
+
+$('#eifdiv5').on('focus', ".dateonly", function() {
+	$(this).datetimepicker({
+	format : 'DD-MM-YYYY',
+	useCurrent : false,
+	//minDate:new Date()     
+	}).on('dp.change', function(e) {
+	$(this).change()
+	});
+	});
+	
+	
+$('#eifdiv7').on('focus', ".dateonly", function() {
+	$(this).datetimepicker({
+	format : 'DD-MM-YYYY',
+	useCurrent : false,
+	//minDate:new Date()     
+	}).on('dp.change', function(e) {
+	$(this).change()
+	});
+	});
+
+  /*   $(function () {
+        $('.dateonly').datetimepicker({   
+        	format : 'DD-MM-YYYY',
+           //useCurrent: true,        
+         
+        });
+    }); */
+</script>    
+
+</html>
+

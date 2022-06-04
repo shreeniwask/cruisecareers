@@ -1,0 +1,191 @@
+<section id="jobs-main">
+<div class="section-content" id="req-list">
+<div style="text-align:right;">
+      	<a style="text-decoration: underline;cursor:pointer;" ui-sref="restricted.admin.ownerworkflow" >Back</a>
+      </div>
+      <div class="table-responsive">
+            <div class="job-search-cntnr" style="padding:0px !important;">
+            <div class="srch-head" style="padding:4px 20px !important;"><h4>Upload Ticket</h4></div>
+            <!-- <div style="text-align:right;">
+      	<a style="text-decoration: underline;cursor:pointer;" ng-click="getworkflowListTab();">Back</a>
+      </div> -->
+       <div class="upper-actions">
+        <div class="col-md-3">
+           <div class="button-group">
+            <button class="btn btn-default btn-create" id="create-job-btn" ng-click="clear()" data-toggle="modal" data-target="#upload-excel"><i class="icon-plus"></i></button>
+            <button class="btn btn-default btn-delete" ng-click="check()" data-target="#deletelist"><i class="icon-trash-2"></i></button>
+          </div>
+          </div>
+          <div class="col-md-6"></div>
+        <div class="col-md-3">
+          <div class="search-cntnr">
+            <div class="form-group search-box inline-blck">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+              <i class="icon-search" id="id_of_button" ng-click="fetchUploadedFileList(0,10,null,null,searchterm);getTicketDatacount(searchterm)"></i>
+            </div>
+          </div> 
+          </div>         
+                
+          <div class="clearfix"></div>
+		
+		<!-- Add Modal -->	
+		<div class="modal fade" id="upload-excel" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Upload Excel File</h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="uploadTicketData()">
+                 <!--  <p>File Name:</p>
+                  <div class="form-group">
+                    <input type="text" name="brand-name" ng-model="addshipdatafile.filename" id="filename" class="brand-name" >
+                 </div> -->
+                  <div class="imageupload panel panel-default">
+                   <p>Upload Excel File:</p>
+                      <div class="form-group">
+                          <input type="file" name="" class="file que-file-upload">                                                
+                          <div class="input-group">
+                                <input type="text" id="ticket-data-file" class="form-control flat-control-inner" disabled readonly="" required>
+                                 <span class="input-group-btn">
+                                    <span class="btn btn-primary btn-file"> Browse
+                                         <input type="file" id="ticketfile" onchange="angular.element(this).scope().fileNameChanged(this)" single>
+                                     </span>
+                                </span> 
+                            </div>
+                         </div>
+                </div>
+                 <div class="form-group text-right">
+                  <button type="submit" id="addbutton" class="btn-info add_brand">Add</button>
+                </div>
+               </form>
+              </div>              
+            </div>            
+          </div>
+      </div>
+								
+        </div>
+             <form>
+		              <div class="inner-details" style="padding: 0 20px 0 20px;"> 
+		                <div class="table-responsive">
+		                  <table class="table table-bordered">
+		                    <thead>
+		                      <tr>	
+                                <th style="text-align: center;"><div class="chckbx-cntnr">
+                                  <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(fetchUploadedFileList,all)" ng-model="all">
+                                  <label class="cstmchk_lbladmin" for="rd"></label> 
+                                </div>
+                                </th>  
+		                        <th style="vertical-align: middle;">File Name <i ng-click="SortingTicketFileList('Filename',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+		                        <th style="vertical-align: middle;">Uploaded Date <i ng-click="SortingTicketFileList('Filename',searchterm)" class="fa fa-sort" aria-hidden="true" style="font-size:12px;"></i></th>
+		                        <th style="vertical-align: middle;">Record Sucess</th>
+		                        <th style="vertical-align: middle;">Status</th>
+		                        <th style="vertical-align: middle;">Log</th>	
+		                        <th style="vertical-align: middle;">Download File</th>	                        		               
+		                      </tr>
+		                    </thead>
+		                    <tbody class="ticketdet">
+                               <tr ng-repeat="t in ticketDataList">
+                                <td style="text-align: center;">
+                                <div class="chckbx-cntnr zeromargin">
+                                  <input type="checkbox" id="rd{{$index}}" name="check" class="flashadmin" ng-click="checkedticketdataList(t.id)" ng-checked="all">
+                                  <label class="cstmchk_lbladmin" for="rd{{$index}}"></label> 
+                                </div>
+                                </td>
+		                     	<td>{{t.filename}}</td>
+		                     	<td>{{dateformate(t.createdDate)}}</td>
+		                     	<td>{{t.successfull_record_count}}/{{t.total_record_count}}</td> 
+		                     	 
+		                     	<td>
+		                     	<span class="label label-success" ng-if="t.status == 'Success'">{{t.status}}</span>
+                                <span class="label label-warning" ng-if="t.status == 'Partial'">{{t.status}}</span>
+                                <span class="label label-danger" ng-if="t.status == 'Failed'">{{t.status}}</span>
+		                     	</td>
+		                     	
+		                        <td>
+                                    <p class="btn btn-default btn-delete" ng-if="t.status != 'Success'" data-toggle="modal" data-target="#reason-pop1"  ng-click="fetchTicketLogList(t)"><i class="fa fa-eye"></i></p>
+                                </td> 
+		                     	<td><i class="fa fa-download" style="margin: 9px 42px; cursor: pointer; " ng-if="t.filePath != null || t.filePath != undefned"  id="download-doc" ng-click="download(t.filePath)"></i></td>
+		                     </tr>
+		                    </tbody><tbody>		                      
+		                    </tbody>
+		                  </table>
+		                  
+		                  
+		   <div class="text-right">            
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul> 
+            </div>          
+        </div>
+      </div>
+	     
+		      <div class="modal fade" id="reason-pop1" role="dialog">
+		       <div class="modal-dialog modal-lg add-brand">        
+            	<!-- Modal content-->
+	            <div class="modal-content">
+	              <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal">x</button>
+	                <h4 class="modal-title">Failed Record(s) Log</h4>               
+	              </div>
+		        <div class="modal-body">        
+		        <div id="reason-body" class="table-responsive" style="position: relative;width: 100%;max-height: 350px;overflow-y: scroll;">
+			  <table class="table table-stripped red-table">
+			  <caption> Workflow Id: <b>F-{{workflow.workFlowId}}</b> &nbsp; &nbsp;Workflow Name: <b>{{workflow.name}}</b> &nbsp;&nbsp; File Name: <b>{{fileName}}</b> </caption>
+				<tr>
+					<th>Row Number</th>
+					<th>Reason</th>
+				</tr>
+				<tr ng-repeat="tl in ticketLogList">
+					<td>Row no:{{tl.rowNumber}}</td>
+					<td>{{tl.reason}}</td>
+				</tr>
+			  </table>			
+			  </div> 
+			  </div>
+			  </div>
+			  </div>
+			  </div>
+		       
+	 <div id="deletelist" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-sm add-brand">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content flat-modal">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">x</button>
+	        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+	      </div>
+	      <div class="modal-body flat-body">
+	          <div class="clearfix"></div>
+	        Are you sure want to delete {{getCheckedticketdataid.length}} file records?
+	      <div class="modal-footer text-left">
+	        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deletefromList('TicketData')">Delete</button>
+	        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+	      </div>
+	    </div>
+	   </div>
+	    </div>
+	    </div>
+	 </div>         
+	 </div>
+            </div>
+        </div>
+		                
+		 </div>
+		 </form>
+		 
+  <script type="text/javascript">
+       
+        $("#id_of_textbox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#id_of_button").click();
+            }
+        });
+        
+    </script>
+        
+        </section>

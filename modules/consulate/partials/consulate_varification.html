@@ -1,0 +1,308 @@
+<style>
+ [type="checkbox"]:checked:focus + label:before, [type="checkbox"]:not(:checked):focus + label:before{
+  border:1px solid !important}
+  .clamp-list{
+  	    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+  }
+  .section-content{
+  	padding:0px !important;
+  }
+  .flat-control-inner {
+  	height: 30px !important;
+  	margin-bottom: 0px !important;
+  }
+  .form-group {
+  	margin-bottom:0px !important;
+  }
+  .section-heading h4 {
+  	font-size: 20px !important;
+  }
+  .view_consulate li a:hover, li a:focus, li a:active{
+  	color:#000 !important;
+  }
+  .tob_tabs_buttons ul li {
+  	float: left;
+  	border: 1px solid #00aaff;
+    margin: 0 0 0 6px !important;
+    border-radius: 4px 4px 0px 0px;
+    width: 24.5%;
+  }
+  .consolute_custom {
+  	list-style-type:none;
+  	padding:0px !important;
+  }
+  .consolute_custom li a {
+  	border: 0px !important;
+    text-align: center;
+    padding: 6px 3px;
+    display: block;
+    cursor:pointer;
+  }
+  .condult_tab {
+  	display: inline-block;
+    width: 100%;
+    border: 1px solid #00aaff;
+    border-radius: 4px;
+  }
+  .consult_tab {
+	border:1px solid #00aaff;
+	border-top:0px !important;
+	display: inline-block;
+	width: 100%;
+	height:300px;
+    overflow-y: scroll;
+}
+.tob_tabs_buttons ul li .active{
+	background:#00aaff;
+	color:#fff;
+}
+
+</style>
+
+<div id="create-user-btn" class="tab-pane fade in admin-page">
+      <div class="section-heading">
+        <h4>Consulate Verification</h4>
+        <!-- <p>Create new requisition for recruitment from customers.</p> -->
+      </div>
+      <div class="section-content">
+      </div>
+     </div>
+   <div class="table-cntnr admin-page">
+          <div class="inner-form" style="padding: 8px 20px !important;">
+			<p style="font-weight:600;">CANDIDATE DETAILS</p>
+			<table class="table table-striped" id="tbl">
+				<!-- <tr>
+					<td>
+					  <div class="form-group">
+	                  <label style="width:30%;float:left;">Name*</label>
+	                  <input style="width:30%;" type="text" placeholder="Enter name" id="name" class="form-control flat-control-inner" required>
+	                </div>
+	                </td>
+				</tr> -->
+				<tr>
+					<td><div >
+					   <div class="col-md-12" style="padding: 0;">
+                  	   <label style="width:30%;float:left;">Date of Birth:</label>
+                  	   <input autocomplete="off" style="width:30%;" type="text" placeholder="MM/DD/YYYY" id="dob" class="form-control flat-control-inner dateonly" required>
+                	   </div>
+                	   </div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					 <div class="form-group">
+	                  <label style="width:30%;float:left;">Passport Number*:</label>
+	                  <input style="width:30%;" type="text"  placeholder="Enter passport number" id="passNo" class="form-control flat-control-inner" required>
+	                </div>
+					</td>
+				</tr>
+				<!-- <tr>
+					<td>
+					<div class="form-group">
+	                  <label style="width:30%;float:left;">Candidate Reference Number</label>
+	                  <input style="width:30%;" type="text" placeholder="Enter candidate reference number" id="refNo" class="form-control flat-control-inner" required>
+	                </div>
+					</td>
+				</tr> -->
+				
+			</table>
+           <span><p hidden id="p" class="error_p">There seems to be more than one result available with the above information. Please provide candidate's passport number or reference number.</p></span>
+		   <!-- <div class="btn-cntnr">
+              <button class="btn btn-default btn-bluer" >View</button>
+              <button class="btn btn-default btn-bluer" ng-click="pageload()">Cancel</button>
+              <a href="" >Cancel</a>
+            </div> -->
+            
+           <div class="">
+            <div class="btn-cntnr btn_centerize">
+              <button class="btn btn-default btn-bluer" style="margin-right:0!important;" id="viewbtn" ng-click="checkNumberOfCandidate()">View</button>
+              <a class="btn btn-default" id="canclebtn" ng-click="pageload()">Clear</a>
+            </div>
+          </div>
+            
+<div class="col-md-12 text-right" style="margin:10px 0px;">           
+<button class="btn btn-default btn-bluer back_view" id="backbtn" ng-click="pageload()">Back</button>
+</div>
+
+<div class="clearifx"></div>
+<div id="infodiv">
+<div class="tob_tabs_buttons">
+	<ul class="consolute_custom" id="menu-center">
+		<li style="margin:0px !important;"><a class="link active" id="list1" data-block="personal" ng-click="showFlag(1)">Personal Information</a></li>
+		<li><a class="link" id="list2" data-block="prof" ng-click="showFlag(2)">Professional Information</a></li>
+		<li><a class="link" id="list3" data-block="edu" ng-click="showFlag(3)" >Education Information</a></li>
+		<li><a class="link" id="list4" data-block="contact" ng-click="showFlag(4)">Contact Information</a></li>
+	</ul>
+</div>
+<div class="clearfix"></div>
+ <div style="width:100%">
+  <div class="tab-content consult_tab">
+  <div id="personal" class="tab-pane fade in active link">
+      <p class="tabs_inner_title">Personal Information</p>
+      	  <div class="col-md-6">
+            <span class="field_title">First Name</span>
+            <span class="field_actualvalue">{{userProfile.firstName}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="field_title">Last Name</span>
+            <span class="field_actualvalue">{{userProfile.lastName}}</span>
+          </div>
+          <div class="clerafix"></div>
+          <div class="col-md-6">
+            <span class="field_title">Date of Birth</span>
+            <span class="field_actualvalue">{{userProfile.dob}}</span>
+          </div>
+          <!-- <div class="col-md-6">
+            <span class="field_title">Gender:</span>
+            <span class="field_actualvalue">{{userProfile.gender}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="field_title">Source of Info:</span>
+            <span class="field_actualvalue">{{userProfile.sourceOfInfo.name}}</span>
+          </div> -->
+          <div class="col-md-6">
+            <span class="field_title">Candidate Reference Number:</span>
+            <span class="field_actualvalue">{{userProfile.refNo}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="field_title">Passport Number:</span>
+            <span class="field_actualvalue">{{userProfile.userComplianceList[0].documentNumber}}</span>
+          </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="prof" class="tab-pane fade in active link">
+     	<p class="tabs_inner_title">Professional Information</p> 
+     	<ul style="list-style-type:none !important;padding: 0;">
+     	  <li ng-repeat="x in userWork" class="listing_info_consulate">
+     	  <div class="col-md-6">
+            <span class="field_title">Employer's Name</span>
+            <span class="field_actualvalue">{{x.employerName}}</span>
+          </div>
+      	  <div class="col-md-6">
+            <span class="field_title">Position</span>
+            <span class="field_actualvalue">{{x.position}}</span>
+          </div>
+          <div class="clerafix"></div>
+          <!-- <div class="col-md-6">
+            <span class="field_title">Location</span>
+            <span class="field_actualvalue">{{x.location}}</span>
+          </div> -->
+          <div class="col-md-6">
+            <span class="field_title">From Date</span>
+            <span class="field_actualvalue">{{x.fromDate}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="field_title">To Date</span>
+            <span class="field_actualvalue">{{x.toDate}}</span>
+          </div>
+          <!-- <div class="col-md-6">
+          	<span class="field_title">Download</span>
+            <button class="btn bigblue-btn new-btn-dwn" ng-click="download(x.certificatePath)" ng-if="x.certificatePath != null || x.certificatePath != undefined"><i class="fa fa-download" aria-hidden="true"></i></button>
+          </div> -->
+         </li>
+         </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div class="tab-pane fade in active link">
+      <p id="contact" class="tabs_inner_title">Contact Information</p> 
+       <div class="col-md-6">
+            <span class="field_title">Flat/House No.</span>
+            <span class="field_actualvalue">{{contactInfo.houseNo}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="field_title">Building/House</span>
+            <span class="field_actualvalue">{{contactInfo.houseName}}</span>
+          </div>
+          <div class="clerafix"></div>
+          <div class="col-md-6">
+            <span class="field_title">Society</span>
+            <span class="field_actualvalue">{{contactInfo.society}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="field_title">PIN/ZIP Code</span>
+            <span class="field_actualvalue">{{contactInfo.pincode}}</span>
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-md-6">
+            <span class="field_title">Street/Road</span>
+            <span class="field_actualvalue">{{contactInfo.street}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="field_title">City</span>
+            <span class="field_actualvalue">{{contactInfo.city.cityName}}</span>
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-md-6">
+            <span class="field_title">State</span>
+            <span class="field_actualvalue">{{contactInfo.state.stateName}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="field_title">Country</span>
+            <span class="field_actualvalue">{{contactInfo.countryName}}</span>
+          </div>
+           <div class="clearfix"></div>
+          <div class="col-md-6">
+            <span class="field_title">Mobile Number</span>
+            <span class="field_actualvalue">{{contactInfo.phoneNumber}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="field_title">Email</span>
+            <span class="field_actualvalue">{{userProfile.email}}</span>
+          </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="edu" class="tab-pane fade in active link">
+     <p class="tabs_inner_title">Educational Information</p>
+      <ul style="list-style-type:none !important;padding: 0;">
+     	  <li ng-repeat="x in educationalInfo" class="listing_info_consulate">
+      	  <div class="col-md-6">
+            <span class="field_title">Qualification</span>
+            <span class="field_actualvalue">{{x.qualificationObj.qualificationName}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="field_title">Year of Passing</span>
+            <span class="field_actualvalue">{{x.yearOfPassing}}</span>
+          </div>
+          <div class="clerafix"></div>
+          <div class="col-md-6">
+            <span class="field_title">Issuing Authority</span>
+            <span class="field_actualvalue">{{x.board}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="field_title">Grade/Score/Percentage</span>
+            <span class="field_actualvalue">{{x.gradeScore}}</span>
+          </div>
+         </li>
+         </ul>
+    </div> 
+  </div>
+</div> 
+</div>
+<div class="btn-cntnr btn_centerize">
+<button  id="visabtn" ng-click="download(userProfile.documentsBean[0].url);check()" class="btn btn-default btn-bluer" ng-if="userProfile.documentsBean[0].url != null || userProfile.documentsBean[0].url != undefined">View Visa Application Letter</button>
+</div></div>
+</div>
+<script>
+function handleClickLink(event) {
+	  const block = event.target.dataset.block;
+	  console.log(block)
+	  document.getElementById(block).scrollIntoView({ behavior: 'smooth'});
+	}
+
+	document.querySelectorAll('.link').forEach((elem) => {
+	  elem.addEventListener('click', handleClickLink);
+	});
+</script>
+<script type="text/javascript">
+ 			$(function () {
+                $('.dateonly').datetimepicker({
+                   format: 'MM/DD/YYYY',
+                   maxDate: new Date(),
+                   useCurrent: false
+                });
+            });
+
+</script>

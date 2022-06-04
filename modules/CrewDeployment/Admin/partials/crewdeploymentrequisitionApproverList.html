@@ -1,0 +1,285 @@
+<style>
+.config-content {
+    margin-left: 250px;
+}
+.conf-heading{
+	padding-left:20px;
+}
+.upper-actions{
+	display: flex;
+    justify-content: flex-end;
+}
+.excel-download{
+	float:right;
+}
+
+/*------------pagination css--------------------------*/
+.text-right{
+	margin:12px 0;
+}
+.pagination{
+	margin-top: 0;
+}
+.pagination li:first-child{
+	display:none;
+}
+
+
+/*------------reject approver modal css--------------------------*/
+.reject-app-modal{
+	padding: 0px;
+}
+.reject-app-modal textarea{
+	min-height:130px;
+	width:100%;
+	outline: none;
+	resize: vertical;
+	
+}
+.reject-app-modal-btn{
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    border-radius: 4px;
+    padding: 8px 8px;
+    margin-right: 0;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(0, 174, 239);
+    color: #fff;
+    padding: 8px 8px;
+    margin-right: 0;
+    margin-bottom: 0px;
+    width: 100px;
+}	
+.approver-log{
+    width: 95%;
+}
+</style>
+
+<div class="config-content">
+		<div class="tab-content">			
+			<div class="section-heading conf-heading">
+				<h4>Approvers</h4>
+			</div>
+			<div class="section-content">
+				
+				<div class="upper-actions">
+							<div class="col-md-1 add-download-btn">
+							    
+							    <div class="button-group excel-download">
+			                    	<button class="btn btn-default btn-create" style="background:#1fa67a;" ng-click="generateExcel()"><i class="fa fa-file-excel-o"></i></button>
+			                	</div>
+							</div>
+							<div class="col-md-2" style="padding-right: 0; text-align: right;">
+								<label style="padding-top:6px;">Filter By Brand Name</label>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">							        
+							    	<select class="form-control flat-control-inner" ng-change="fetchCrewDeployApproverList(0,10,null,null,searchterm,bl.id);fetchCrewDeployApproverListCount(searchterm,bl.id)" ng-model="bl.id" ng-options="bl.id as bl.brandName for bl in brandsList">
+								<option value="" class="" selected="selected">--Select--</option>
+                  			</select>	
+							    </div>
+							</div>
+							<!-- <div class="col-md-1">
+					    		<div class="button-group" style="/* margin: 26px 0px 0px 0px; */">
+			              			<button class="btn btn-default btn-create"><i class="fa fa-filter"></i></button>
+						    	</div>
+              				</div> -->
+							<div class="col-md-3">
+								<div class="search-cntnr" style="	">
+									<div class="form-group search-box">
+										 <input type="text" name="" id="id_of_searchtextbox" placeholder="Search" class="form-control flat-control-search mar-bottom-zero" ng-model="searchterm">
+						    <i class="icon-search" id="id_of_searchbutton" ng-click="fetchCrewDeployApproverList(0,10,null,null,searchterm,bl.id);fetchCrewDeployApproverListCount(searchterm,bl.id)"></i>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="col-md-1">
+								<div class="button-group">
+									<button class="btn-default btn-create icon-navigation1 dropdown-toggle" data-toggle="dropdown"><i class="fa fa-check-square-o"></i></button>						
+								</div>
+							</div> -->
+						</div>
+						
+						<div class="table-responsive table-cntnr">
+				          <table class="table table-striped red-table">
+				            <caption>Approvers List</caption>
+				            <thead>
+				              <tr>
+				                 
+				                <th style="min-width: 80px; vertical-align: middle;">Requisition Name <i ng-click="sortByColumn('Req. Name',searchterm)" class="fa fa-sort" aria-hidden="true"   style="margin-left:8px;"></i></th>
+								<th style="min-width: 80px; vertical-align: middle;">Requisition Code  <i ng-click="sortByColumn('Req. Code',searchterm)" class="fa fa-sort" aria-hidden="true"   style="margin-left:8px;"></i></th>
+				                <th style="min-width: 100px; vertical-align: middle;">Employee Name  <i ng-click="sortByColumn('EmpName',searchterm)" class="fa fa-sort" aria-hidden="true"   style="margin-left:8px;"></i></th>
+				                <th style="min-width: 70px; vertical-align: middle;">Employee Code <i ng-click="sortByColumn('EmpCode',searchterm)" class="fa fa-sort" aria-hidden="true"   style="margin-left:8px;"></i></th>
+				                <th style="min-width: 100px; vertical-align: middle;">Email <i ng-click="sortByColumn('EmpEmail',searchterm)" ng-click="sortByColumn('Filename',searchterm)" class="fa fa-sort" aria-hidden="true"   style="margin-left:8px;"></i></th>                
+				                <th style="min-width: 80px; vertical-align: middle;">Brand <i ng-click="sortByColumn('Brand',searchterm)" class="fa fa-sort" aria-hidden="true"   style="margin-left:8px;"></i></th>
+				                <th style="min-width: 110px; vertical-align: middle;">Department <i ng-click="sortByColumn('Position',searchterm)" class="fa fa-sort" aria-hidden="true"   style="margin-left:8px;"></i></th>
+				                <th style="min-width: 90px; vertical-align: middle;">Position <i ng-click="sortByColumn('Department',searchterm)" class="fa fa-sort" aria-hidden="true"  style="margin-left:8px;"></i></th>
+								<th style="min-width: 50px; vertical-align: middle;">Log</th>
+								<th style="min-width: 80px; vertical-align: middle;">Status</th>
+								<th style="min-width: 80px; vertical-align: middle;">Action</th>
+				               </tr>
+				            </thead>
+				            <tbody>
+				              <tr ng-repeat="cdal in crewdeploymentapproverList">
+				                                     
+				                <td>{{cdal.req.name}}</td>
+				                <td>{{cdal.req.code}}</td>
+				                <td>{{cdal.crewdata.empname}}</td>
+				                <td>{{cdal.crewdata.empid}}</td>
+				                <td>{{cdal.crewdata.email}}</td>
+								<td>{{cdal.req.brandName}}</td>
+								<td>{{cdal.req.categoryName}}</td>
+								<td>{{cdal.req.positonname}}</td>
+								<td> <button class="btn btn-default btn-delete" data-toggle="modal" data-target="#approve_log_details" ng-click="fetchLogList(cdal.req.id,cdal)"><i class="fa fa-eye"></i></button></td>
+								<td style="color:green;" ng-if="cdal.approval_status==1">Approved</td>
+								<td style="color:red;" ng-if="cdal.approval_status==2">Rejected</td>
+				                <td style="color:green;" ng-if="cdal.approval_status==0"></td>
+				                <td ng-if="cdal.approval_status==0"><button class="btn btn-xs btn-success" ng-click="updateApproverStatus(cdal,'Approved')" style="margin-right:10px;"><i class="fa fa-check"></i></button>
+				                <button class="btn btn-xs btn-danger  btn-reject"  data-toggle="modal" ng-click="getReqDataForRejected(cdal,'Rejected')" data-target="#reject_approver"><i class="fa fa-times"></i></button></td>
+				                <td></td>
+				                
+				              </tr>
+				           
+				            </tbody>
+				          </table>   
+          				</div>
+          	<div class="text-right">
+            
+            <ul class="pagination" style="margin-top: 20px;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+ 
+            </div>
+					</div>
+				</div> 
+			</div>
+			
+<!-- --------------reject approver modal html start----------------------------------- -->  
+
+		<div class="modal fade in" id="reject_approver" role="dialog">
+          <div class="modal-dialog modal-md add-brand" style="">
+            <div class="modal-content">
+              
+              <div class="modal-body reject-app-modal" >
+   				 <div class="modal-header">
+                	<button type="button" class="close" data-dismiss="modal">X</button>
+                	<h4 class="modal-title">Comments</h4>
+              	</div>
+                <div style="padding:15px;" ><textarea id="message" placeholder="Message"></textarea></div>
+
+				<div class="form-group text-center">
+					 <button id="btn-save" ng-click="updateApproverStatus(req,'Rejected')" class="btn-info reject-app-modal-btn">Save </button>
+					 <button id="btn-cancel" type="submit" class="btn-info reject-app-modal-btn" data-dismiss="modal">Cancel </button>
+                  
+                </div>
+              </div>              
+           </div>            
+         </div>
+      </div> 
+      
+<!------- log modal start ------------------------>	      
+      
+      
+      <div class="modal fade in" id="approve_log_details" role="dialog">
+          <div class="modal-dialog modal-lg add-brand approver-log" style="">
+            <div class="modal-content log-modal-height">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{RequisitionName}}</h4>
+              </div>
+              <div class="modal-body">
+              <div class="middledata">
+              		<div class="row">
+						<div class="col-md-3">
+							<h4>Req. Code:</h4>
+							<p>{{RequisitionCode}}</p>
+						</div>
+						<div class="col-md-3">
+							<h4>Position:</h4>
+							<p>{{RequisitionPosition}}</p>
+						</div>
+						<div class="col-md-3">
+							<h4>Brand:</h4>
+							<p>{{RequisitionBrand}}</p>
+						</div>
+						<div class="col-md-3">
+							<h4>Department:</h4>
+							<p>{{RequisitionCategoryName}}</p>
+						</div>
+					</div>
+			                                                                   
+					<div class="row">
+					<div class="col-md-3">
+							<h4>No. of Candidates:</h4>
+							<p>{{RequisitionNoOfCandidates}}</p>
+						</div>
+						<div class="col-md-3">
+							<h4>Ship:</h4>
+							<p>{{RequisitionShip}}</p>
+						</div>
+						<div class="col-md-3">
+							<h4>Port of Joining:</h4>
+							<p>{{RequisitionPort}}</p>
+						</div>
+						<div class="col-md-3">
+							<h4>Expected Joining Date:</h4>
+							<p>{{RequisitionJoiningDate}}</p>
+						</div>
+					</div>
+				</div>
+                <div id="reason-body" class="table-div" style="width: auto;max-height: 420px;overflow: auto;">
+                <table class="table table-striped red-table" style="width: max-content;">
+                <caption>Details</caption>
+                        <thead>
+                            <tr>
+                                <th style="min-width: 80px;">Date of Batch Trigger</th>
+                                <th style="min-width: 90px;">First Name</th>
+                                <th style="min-width: 80px;">Last Name</th>
+                                <th style="min-width: 80px;">Email ID</th>
+                                <th style="min-width: 80px;">Employee Code</th>
+                                <th style="min-width: 80px;">Employee Status</th>
+                                <th style="min-width: 80px;">Employee Response Date</th>
+                                <th style="min-width: 80px;">Approver Status</th>
+                                <th style="min-width: 80px;">Approver Response Date</th>
+                                <th style="min-width: 80px;">Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="l in logList">
+                               <td>{{l.batchtrigger_time}}</td>
+                                <td>{{l.crewdata.firstname}}</td>
+                                <td>{{l.crewdata.lastname}}</td>
+                                <td>{{l.crewdata.email}}</td>
+                                <td>{{l.crewdata.empid}}</td>
+                                <td ng-if="l.crew_status==1" style="color:green;">Accepted</td>
+                                <td ng-if="l.crew_status==2" style="color:red;">Declined</td>
+                                 <td ng-if="l.crew_status==0">NA</td>
+                                <td>{{l.crew_status_date}}</td>
+                               <td ng-if="l.approval_status==1" style="color:green;">Approved</td>
+                               <td ng-if="l.approval_status==2" style="color:red;">Rejected</td>
+                               <td ng-if="l.approval_status==0">NA</td>
+                                <td ng-if="l.approval_status_date==null">NA</td>
+                                <td>{{l.approval_status_date}}</td>
+                                <td>{{l.comment}}</td>
+                            </tr>
+                                                
+                        </tbody>
+                    </table>
+                </div>
+              </div>              
+            </div>            
+          </div>
+      </div>
+	  		
+	  		
+ <script type="text/javascript">
+$("#id_of_searchtextbox").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#id_of_searchbutton").click();
+    }
+});
+
+</script>

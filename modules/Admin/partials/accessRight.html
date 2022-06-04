@@ -1,0 +1,122 @@
+
+      <div class="shadow-container admin-page" >
+          <div class="inner-head">
+            <h4>Free Query:Access Right</h4>
+            
+          </div>
+          <div class="inner-form">
+            <div class="form-group">
+              <label class="col-md-2">Query Name*</label>
+              <div class="col-md-4">
+              	<input type="text" id="name"  class="form-control flat-control-inner" ng-model="selectedQuery.queryName" disabled>
+              </div>
+            </div>
+            <div class="table-cntnr">
+          <table class="table table-striped red-table">
+            <caption>List Of User</caption>
+            <thead>
+           
+                <tr>               
+                <th>Name</th>
+                
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input ng-if="!selectedQuery.edit" type="checkbox" id="vr" name="check" class="flashadmin" ng-model="selectalledit" ng-click="selectOption(1)" disabled>
+                      <label ng-if="!selectedQuery.edit" class="cstmchk_lbladmin" for="vr" ></label>    
+                      
+                       <input type="checkbox" id="vr" name="check" class="flashadmin" ng-model="selectalledit" ng-click="selectOption(1)">
+                      <label  class="cstmchk_lbladmin" for="vr" ></label>    
+                    </div>                    
+                  <span class="leftpad10">Edit</span></th>
+                  
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input ng-if="!selectedQuery.edit" type="checkbox" id="vx" name="check" class="flashadmin" ng-model="selectalldelete" ng-click="selectOption(2)" disabled>
+                      <label ng-if="!selectedQuery.edit" class="cstmchk_lbladmin" for="vx"></label>    
+                      
+                      <input type="checkbox" id="vx" name="check" class="flashadmin" ng-model="selectalldelete" ng-click="selectOption(2)">
+                      <label class="cstmchk_lbladmin" for="vx"></label>                
+                  </div>                  
+                     <span class="leftpad10">Delete</span></th>
+                     
+                     <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input ng-if="!selectedQuery.edit" type="checkbox" id="vx1" name="check" class="flashadmin" ng-model="selectalldelete" ng-click="selectOption(2)" disabled>
+                      <label ng-if="!selectedQuery.edit" class="cstmchk_lbladmin" for="vx1"></label>    
+                      
+                      <input type="checkbox" id="vx" name="check" class="flashadmin" ng-model="selectalldelete" ng-click="selectOption(2)">
+                      <label class="cstmchk_lbladmin" for="vx1"></label>                
+                  </div>                  
+                     <span class="leftpad10">Execute Query</span></th>
+                 <th>
+                 </th>  
+              </tr>
+            </thead>
+            <tbody ng-repeat="x in userPermissions">
+            
+              <tr>             
+                
+                <td ng-if="x.add=='false'"  >{{x.user.firstName+'&nbsp'+x.user.lastName}}</td>    
+                  <!-- <td ng-if="x.add=='true'" ><input type='text' ng-change="serachAdminUsers(userName)" placeholder="Search user"></input></td>  -->  
+                <td ng-if="x.add=='true'">
+                  <div class="form-group" style="margin-bottom: 0">
+                   <select class="form-control" ng-model="x.user.id" ng-options="x.id as x.name for x in userList" required>
+                              <option value="">--Select--</option>                          
+                            </select>
+                  </div>
+                </td>                  
+                  
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input ng-if="!selectedQuery.edit" type="checkbox"  id="a{{$index}}" ng-model="x.edit" class="flashadmin" ng-checked="x.edit"  disabled>
+                      <label ng-if="!selectedQuery.edit" class="cstmchk_lbladmin" for="a{{$index}}"></label> 
+                      
+                      <input ng-if="selectedQuery.edit" type="checkbox"  id="a{{$index}}" ng-model="x.edit" class="flashadmin" ng-checked="selectalledit || option1" ng-init="option1=x.edit">
+                      <label ng-if="selectedQuery.edit" class="cstmchk_lbladmin" for="a{{$index}}"></label> 
+                                            
+                  </div>
+                </td>
+                <td>                
+                  <div class="chckbx-cntnr zeromargin">
+                      <input ng-if="!selectedQuery.edit" type="checkbox" id="b{{$index}}"  class="flashadmin" ng-model="x.del"  ng-checked="x.del" disabled>
+                      <label ng-if="!selectedQuery.edit" class="cstmchk_lbladmin" for="b{{$index}}"></label>     
+                      
+                      <input ng-if="selectedQuery.edit" type="checkbox" id="b{{$index}}"  class="flashadmin" ng-model="x.del"  ng-checked="selectalldelete || option2" ng-init="option2=x.del">
+                      <label ng-if="selectedQuery.edit" class="cstmchk_lbladmin" for="b{{$index}}"></label>                    
+                  </div>                  
+                </td>
+                
+                <td>                
+                  <div class="chckbx-cntnr zeromargin">
+                      <input ng-if="!selectedQuery.edit" type="checkbox" id="c{{$index}}"  class="flashadmin" ng-model="x.executeQuery"  ng-checked="x.del" disabled>
+                      <label ng-if="!selectedQuery.edit" class="cstmchk_lbladmin" for="c{{$index}}"></label>     
+                      
+                      <input ng-if="selectedQuery.edit" type="checkbox" id="c{{$index}}"  class="flashadmin" ng-model="x.executeQuery"  ng-checked="selectalldelete || option3" ng-init="option3=x.executeQuery">
+                      <label ng-if="selectedQuery.edit" class="cstmchk_lbladmin" for="c{{$index}}"></label>                    
+                  </div>                  
+                </td>
+                <td>
+                <button ng-if="selectedQuery.delete" id="$index" class="btn btn-default btn-remove" ng-click="removeuser($index);deleteUserAccess(x.id)"><i class="icon-x-circle"></i></button>
+                <button ng-if="!selectedQuery.delete" id="$index" class="btn btn-default btn-remove" ng-click="removeuser($index);deleteUserAccess(x.id)" disabled><i class="icon-x-circle" ></i></button>
+                </td>
+              </tr> 
+           
+            </tbody>
+          </table>
+          
+          
+          <div class="text-right">
+                  <button ng-if="selectedQuery.edit" class="btn btn-default btn-round-add mar-bottom-zero" style="float: right;" ng-click="addnewuser()"><i class="icon-plus"></i></button>
+        		 <button ng-if="!selectedQuery.edit" class="btn btn-default btn-round-add mar-bottom-zero" style="float: right;" ng-click="addnewuser()" disabled><i class="icon-plus"></i></button>
+                </div>
+        </div>
+        	<div class="btn-cntnr" style="margin-top: 20px; margin-bottom: 20px;">
+              <button ng-if="count == 0"class="btn btn-default btn-bluer" id="create_slot-btn" ng-click="SaveAccessRightsFreeQuery(j)">Save</button>
+              <button ng-if="count != 0" class="btn btn-default btn-bluer" id="create_slot-btn" ng-click="SaveAccessRightsFreeQuery(j)">Update</button>
+              
+              <a ui-sref="restricted.admin.freequerylist">Cancel</a>
+            </div>
+            
+             </div>
+          </div>
+

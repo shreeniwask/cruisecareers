@@ -1,0 +1,1975 @@
+<div id="" class="tab-pane fade in admin-page" >
+<div class="section-content" id="email-listsec">
+            
+        <ul class="nav nav-tabs assessment-tabs1" style="border-bottom: 1px solid #ddd !important;">
+             	 <li ng-class="{'active': approverTabFlag === 1}" ><a ng-click="setapproverTabFlag(1)">Candidate</a></li>
+             	 <li ng-class="{'active': approverTabFlag === 2}"><a ng-click="setapproverTabFlag(2)">Employee</a></li>
+        </ul>        
+    
+        <div class="tab-content">
+            <div id="candidate" class="tab-pane fade in active" >
+            	<div class="section-content" id="create-job">
+            		<div class="row form-group">
+            			<label class="col-md-2 col-sm-12 col-xs-12">
+			          		Query Name:
+			          	</label>
+			          	<div class="col-md-4 col-sm-12 col-xs-12">
+			          		<input type="text" class="form-control"  ng-model="freeQueryCandidateData.queryName" />
+			          	</div>
+			         </div>
+			        <div class="">
+			          <div class="inner-head">
+			            <h4>Personal Information</h4>
+			          </div>
+			          <div class="container-fluid">
+			          <div class="row form-group">
+			          </div>
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+				          		<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[0].freeQueryDataList[0].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[0].freeQueryDataList[0].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[0].freeQueryDataList[0].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+														
+								First Name:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control"  ng-model="configList[0].freeQueryDataList[0].value" /><input type="checkbox" id="check"/>
+			          			
+			          		</div>
+			          	</div>
+			          	<div class="gap-width"></div>
+			          	<div class="half-width">
+			          		
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[0].freeQueryDataList[1].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[0].freeQueryDataList[1].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[0].freeQueryDataList[1].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Last Name:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control" ng-model="configList[0].freeQueryDataList[1].value">
+			          		</div>
+			          	</div>
+			          </div>
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[0].freeQueryDataList[2].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[0].freeQueryDataList[2].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[0].freeQueryDataList[2].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Age:
+			          		</label>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select<span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="comAge{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[0].freeQueryDataList[2])"> <label
+														class="cstmchk_lbluser" for="comAge{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control"  ng-model="configList[0].freeQueryDataList[2].value" />
+			          		</div>
+			          	</div>
+			          	<div class="gap-width"></div>
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[0].freeQueryDataList[3].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[0].freeQueryDataList[3].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[0].freeQueryDataList[3].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Gender:
+			          		</label>
+			          		<div class="col-md-8" >
+						          
+						          
+						          	<div class="radio-cntnr new-radio">
+					          			<input type="radio" ng-click="setAction(1,configList[0].freeQueryDataList[3])" id="slot22" name="radio-group" class="flashadmin"  >
+		                  				<label for="slot22" class="cstmchk_lbladmin">Male</label>
+		                  			</div>
+		                  			<div class="radio-cntnr new-radio">
+					          			<input type="radio" ng-click="setAction(2,configList[0].freeQueryDataList[3])" id="slot21" name="radio-group" class="flashadmin"  >
+		                  				<label for="slot21" class="cstmchk_lbladmin">Female</label>
+		                  			</div>
+		                  			<div class="radio-cntnr new-radio">
+					          			<input type="radio" ng-click="setAction(3,configList[0].freeQueryDataList[3])" id="slot20" name="radio-group" class="flashadmin"  >
+		                  				<label for="slot20" class="cstmchk_lbladmin">ALL</label>
+		                  			</div>
+						         
+						         </div>
+			          	</div>
+			          </div>
+			          
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[0].freeQueryDataList[5].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[0].freeQueryDataList[5].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[0].freeQueryDataList[5].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			<input type="checkbox" id="check{{configList[0].freeQueryDataList[5].id}}"/>Email:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control"  ng-model="configList[0].freeQueryDataList[5].value" />
+			          		</div>
+			          	</div>
+			          	<div class="gap-width">
+			          	
+			          	</div>
+			          	<div class="half-width">
+			          		<label class="col-md-5 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[0].freeQueryDataList[4].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[0].freeQueryDataList[4].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[0].freeQueryDataList[4].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			<input type="checkbox" id="check{{configList[0].freeQueryDataList[4].id}}"/>Source Of Info:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12">
+								<div class="">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Source <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allsource" name="check"
+														class="flashuser" ng-model="selectAllsource"
+														ng-click="selectAllSources(selectAllsource)"> <label
+														class="cstmchk_lbluser" for="allsource">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="s in sourceList">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="source{{$index}}" name="check"
+														class="flashuser" ng-model="checkedsource"
+														ng-change="addSource(s.id,checkedsource)"
+														ng-checked="selectAllsource"> <label
+														class="cstmchk_lbluser" for="source{{$index}}">{{s.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			          	</div>
+			          </div>
+			          	
+			          	
+			          		
+			          		
+			          		
+			          		<div class="row form-group">
+			          	</div>
+			          	
+			          </div>
+			         </div> 
+			         <div class="">
+			          <div class="inner-head">
+			            <h4>Educational Information</h4>
+			          </div>
+			          <div class="container-fluid">
+			          <div class="form-group"></div>
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          	<label class="col-md-4">
+			          		<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[1].freeQueryDataList[0].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[1].freeQueryDataList[0].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[1].freeQueryDataList[0].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          	Qualification:
+			          		
+			          	</label>
+			          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Qualification <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allquali" name="check"
+														class="flashuser" ng-model="selectAllQuali"
+														ng-click="selectAllQualifi(selectAllQuali);"> <label
+														class="cstmchk_lbluser" for="allquali">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="q in qualificationsList">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="quali{{$index}}" name="check"
+														class="flashuser" ng-model="checkedQuali"
+														
+														ng-checked="selectAllQuali" ng-click="addQuali(q.id,checkedQuali)"> <label
+														class="cstmchk_lbluser" for="quali{{$index}}">{{q.qualificationName}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			          	</div>
+			          	<div class="gap-width">
+			          	
+			          	</div>
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[1].freeQueryDataList[1].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[1].freeQueryDataList[1].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[1].freeQueryDataList[1].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			<input type="checkbox" id="check{{configList[1].freeQueryDataList[1].id}}"/>Passing Year:
+			          		</label>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select<span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="passYear{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[1].freeQueryDataList[1])"> <label
+														class="cstmchk_lbluser" for="passYear{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+										<!-- <ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											
+											<li >
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox"  name="check" class="flashuser" > 
+													<label class="cstmchk_lbluser" for="comAge{{$index}}">2016</label>
+												</div>
+											</li>
+											<li >
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox"  name="check" class="flashuser" > 
+													<label class="cstmchk_lbluser" for="comAge{{$index}}">2017</label>
+												</div>
+											</li>
+										</ul> -->
+									</div>
+								</div>
+			          		</div>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control" ng-model="configList[1].freeQueryDataList[1].value">
+			          		</div>
+			          	</div>
+			          </div>	
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[1].freeQueryDataList[2].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[1].freeQueryDataList[2].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[1].freeQueryDataList[2].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			<input type="checkbox" id="check{{configList[1].freeQueryDataList[2].id}}"/>Board /University:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control"  ng-model="configList[1].freeQueryDataList[2].value" />
+			          		</div>
+			          	</div>
+			          	<div class="gap-width"></div>
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[1].freeQueryDataList[3].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[1].freeQueryDataList[3].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[1].freeQueryDataList[3].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			<input type="checkbox" id="check{{configList[1].freeQueryDataList[3].id}}"/>Grade /Score /Percentage:
+			          		</label>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select<span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="percentage{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[1].freeQueryDataList[3])"> <label
+														class="cstmchk_lbluser" for="percentage{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+			          		</div>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control" ng-model="configList[1].freeQueryDataList[3].value">
+			          		</div>
+			          	</div>
+			          </div>
+			          	<div class="row form-group">
+			          		
+				          	
+			          		
+			          		
+			          		
+			          	</div>
+			          </div>
+			        </div>
+			        <div class="">
+			          <div class="inner-head">
+			            <h4>Work Experience</h4>
+			          </div>
+			          <div class="container-fluid">
+			          <div class="row form-group"></div>
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[2].freeQueryDataList[0].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[2].freeQueryDataList[0].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[2].freeQueryDataList[0].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			<input type="checkbox" id="check{{configList[2].freeQueryDataList[0].id}}"/>Employer's Name:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control"  ng-model="configList[2].freeQueryDataList[0].value" />
+			          		</div>
+			          	</div>
+			          	<div class="gap-width"></div>
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[2].freeQueryDataList[1].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[2].freeQueryDataList[1].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[2].freeQueryDataList[1].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Position:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control" ng-model="configList[2].freeQueryDataList[1].value">
+			          		</div>
+			          	</div>
+			          </div>
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[2].freeQueryDataList[2].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[2].freeQueryDataList[2].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[2].freeQueryDataList[2].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Location:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control"  ng-model="configList[2].freeQueryDataList[2].value" />
+			          		</div>
+			          	</div>
+			          	<div class="gap-width"></div>
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[2].freeQueryDataList[3].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[2].freeQueryDataList[3].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[2].freeQueryDataList[3].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          		Year Of Experience:
+			          		</label>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select<span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="yearOfExp{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[2].freeQueryDataList[3])"> <label
+														class="cstmchk_lbluser" for="yearOfExp{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+			          		</div>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control"  ng-model="configList[2].freeQueryDataList[3].value" />
+			          		</div>
+			          	</div>
+			          </div>
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[2].freeQueryDataList[5].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[2].freeQueryDataList[5].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[2].freeQueryDataList[5].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Salary P.A.:
+			          		</label>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select<span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="salray{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[2].freeQueryDataList[5])"> <label
+														class="cstmchk_lbluser" for="salary{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+			          		</div>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control" ng-model="configList[2].freeQueryDataList[5].value">
+			          		</div>
+			          	</div>
+			          	
+			          </div>
+			          
+			          	<div class="row form-group">
+			          		
+			          	</div>
+			          </div>
+			        </div>
+			        <div class="">
+			          <div class="inner-head">
+			            <h4>Contact Information</h4>
+			          </div>
+			          <div class="container-fluid">
+			          	<div class="row form-group"></div>
+			          	<div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[3].freeQueryDataList[0].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[3].freeQueryDataList[0].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[3].freeQueryDataList[0].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Flat  /House No:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control"  ng-model="configList[3].freeQueryDataList[0].value" />
+			          		</div>
+			          	</div>
+			          	<div class="gap-width"></div>
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          		
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[3].freeQueryDataList[1].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[3].freeQueryDataList[1].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[3].freeQueryDataList[1].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+	                    		Building / House Name
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control" ng-model="configList[3].freeQueryDataList[1].value">
+			          		</div>
+			          	</div>
+			          </div>
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[3].freeQueryDataList[2].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[3].freeQueryDataList[2].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[3].freeQueryDataList[2].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Society:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			
+			          			<input type="text" class="form-control"  ng-model="configList[3].freeQueryDataList[2].value" />
+			          		</div>
+			          	</div>
+			          	<div class="gap-width">
+			          	</div>
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[3].freeQueryDataList[3].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[3].freeQueryDataList[3].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[3].freeQueryDataList[3].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Street/Road:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control" ng-model="configList[3].freeQueryDataList[3].value">
+			          		</div>
+			          	</div>
+			          </div>
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[3].freeQueryDataList[4].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[3].freeQueryDataList[4].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[3].freeQueryDataList[4].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          		
+			          			PIN/ZIP code:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control" ng-model="configList[3].freeQueryDataList[4].value">
+			          		</div>
+			          	</div>
+			          	<div class="gap-width">
+			          	</div>
+			          	<div class="half-width">
+				          	<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[3].freeQueryDataList[7].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[3].freeQueryDataList[7].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[3].freeQueryDataList[7].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Mobile NO:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control" ng-model="configList[3].freeQueryDataList[7].value">
+			          		</div>
+			          	</div>
+			          </div>
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox"  name="check" id="rd{{configList[3].freeQueryDataList[8].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" >
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[3].freeQueryDataList[8].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Country
+			          		</label>
+			          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Country <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allcountrys" name="check"
+														class="flashuser" ng-model="selectAllcountrys"
+														ng-click="selectAllCountry(selectAllcountrys)"> <label
+														class="cstmchk_lbluser" for="allcountrys">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="c in countrylist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="country{{$index}}" name="check"
+														class="flashuser" ng-model="checkedcountry"
+														ng-change="stateList(c.id);"
+														ng-checked="selectAllcountrys" ng-click="addCountry(c.id,checkedcountry)"> <label
+														class="cstmchk_lbluser" for="country{{$index}}">{{c.CountryName}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			          	</div>
+			          	<div class="gap-width">
+			          	</div>
+			          	<div class="half-width">
+			          	<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox"  name="check" id="rd{{configList[3].freeQueryDataList[6].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[3].freeQueryDataList[6].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[3].freeQueryDataList[6].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			State
+			          		</label>
+			          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select State <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allstate" name="check"
+														class="flashuser" ng-model="selectAllstate"
+														ng-click="selectAllState(selectAllstate)">
+														
+													<label class="cstmchk_lbluser" for="allstate">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="s in statelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="state{{$index}}" name="check"
+														class="flashuser" ng-model="checkedstate"
+														ng-change="cityList(s.id)"
+														ng-click="addState(s.id,checkedstate)"
+														ng-checked="selectAllstate"> <label
+														class="cstmchk_lbluser" for="state{{$index}}">{{s.stateName}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			          	</div>
+			          </div>	
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          	<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox"  name="check" id="rd{{configList[3].freeQueryDataList[5].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[3].freeQueryDataList[5].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[3].freeQueryDataList[5].id}}"  style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			City
+			          		</label>
+			          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select City <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allcity" name="check"
+														class="flashuser" ng-model="selectAllCity"
+														ng-click="selectAllCity(selectAllCity)"> <label
+														class="cstmchk_lbluser" for="allcity">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="c in citylist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="city{{$index}}" name="check"
+														class="flashuser" ng-model="checkedcity"
+														ng-change="addCity(c.id,checkedcity)"
+														ng-checked="selectAllCity"> <label
+														class="cstmchk_lbluser" for="city{{$index}}">{{c.cityName}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			          	</div>
+			          	
+			          </div>	
+			          	<div class="row form-group">
+			          		
+			          		
+			          		
+			          		
+			          		
+			          		
+			          		<div class="row">
+			          		
+				          	
+				          	
+				          	
+			          	</div>
+			          	</div>
+			          </div>
+			        </div>
+			        <div class="">
+			          <div class="inner-head">
+			            <h4>Compliance Information</h4>
+			          </div>
+			          <div class="container-fluid">
+			          <div class="row form-group"></div>
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[4].freeQueryDataList[0].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[4].freeQueryDataList[0].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[4].freeQueryDataList[0].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Issue Date:
+			          		</label>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select<span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="issueDate{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[4].freeQueryDataList[0])"> <label
+														class="cstmchk_lbluser" for="issueDate{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+			          		</div>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control dateonly"  id="compIssueDate" ng-blur="setDate(configList[4].freeQueryDataList[0],'compIssueDate')" />
+			          		</div>
+			          	</div>
+			          	<div class="gap-width"></div>
+			          	<div class="half-width">
+			          	
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[4].freeQueryDataList[1].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[4].freeQueryDataList[1].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[4].freeQueryDataList[1].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Expiry Date:
+			          		</label>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select<span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="expiryDate{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[4].freeQueryDataList[1])"> <label
+														class="cstmchk_lbluser" for="expiryDate{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+			          		</div>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control dateonly" id="compExpiryeDate" ng-blur="setDate(configList[4].freeQueryDataList[1],'compExpiryeDate')">
+			          		</div>
+			          	</div>
+			          </div>
+			          <div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[4].freeQueryDataList[2].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[4].freeQueryDataList[2].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[4].freeQueryDataList[2].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Country of Issue:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Country <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allcomcountrys" name="check"
+														class="flashuser" ng-model="selectAllComcountrys"
+														ng-click="selectAllComplianceCountry(selectAllComcountrys)"> <label
+														class="cstmchk_lbluser" for="allcomcountrys">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="c in countrylist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="comcountry{{$index}}" name="check"
+														class="flashuser" ng-model="checkedcomcountry"
+														ng-checked="selectAllComcountrys" ng-click="addComplianceCountry(c.id,checkedcomcountry)"> <label
+														class="cstmchk_lbluser" for="comcountry{{$index}}">{{c.CountryName}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			          	</div>
+			          	<div class="gap-width"></div>
+			          	<div class="half-width">
+			          			<label for="status" class='col-md-4 col-sm-12 col-xs-12'>
+			          				<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox"  name="check" id="rd{{configList[4].freeQueryDataList[3].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[4].freeQueryDataList[3].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[4].freeQueryDataList[3].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+	                    		Compliance Document</label>
+			          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Compliance <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allcompliance" name="check"
+														class="flashuser" ng-model="selectAllcompliance"
+														ng-click="selectAllCompliances(selectAllcompliance)"> <label
+														class="cstmchk_lbluser" for="allcompliance">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="cm in compliancelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="compliance{{$index}}" name="check"
+														class="flashuser" ng-model="checkedcom"
+														ng-change="addCompliance(cm.id,checkedcom)"
+														ng-checked="selectAllcompliance"> <label
+														class="cstmchk_lbluser" for="compliance{{$index}}">{{cm.complianceName}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			          	</div>
+			          </div>
+			          
+			          	<div class="row form-group">
+			          		
+			          		
+			          		
+			          		
+			          		
+			          	</div>
+			          </div>
+			        </div>
+			        <div class="">
+			          <div class="inner-head">
+			            <h4>Applied Job</h4>
+			          </div>
+			          <div class="container-fluid">
+			          	<div class="row form-group"></div>
+			          	<div class="full-width clearfix">
+				          	<div class="half-width">
+				          		<label  class='col-md-4 col-sm-12 col-xs-12'>
+			          				<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox"  name="check" id="rd{{configList[5].freeQueryDataList[0].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[5].freeQueryDataList[0].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[5].freeQueryDataList[0].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+	                    		Position</label>
+				          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Position <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allposition" name="check"
+														class="flashuser" ng-model="selectAllPosition"
+														ng-click="selectAllPositions(selectAllPosition)"> <label
+														class="cstmchk_lbluser" for="allposition">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="p in filterPosition">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="postion{{$index}}" name="check"
+														class="flashuser" ng-model="checkedpos"
+														ng-change="addPosi(p.id,checkedpos)"
+														ng-checked="selectAllPosition"> <label
+														class="cstmchk_lbluser" for="postion{{$index}}">{{p.positonname}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+				          	</div>
+				          	<div class="gap-width">
+				          	</div>
+				          	<div class="half-width">
+				          	<label  class='col-md-4 col-sm-12 col-xs-12'>
+			          				<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox"  name="check" id="rd{{configList[5].freeQueryDataList[1].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" >
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[5].freeQueryDataList[1].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+	                    		Department</label>
+				          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Department <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldept" name="check"
+														class="flashuser" ng-model="selectAlldept"
+														ng-click="selectAllDept(selectAlldept)"
+														ng-change="filterpositionlist(selectAlldept,0)">
+													<label class="cstmchk_lbluser" for="alldept">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="d in departmentlist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="dept{{$index}}" name="check"
+														class="flashuser" ng-model="checkeddept"
+														ng-change="filterpositionlist(checkeddept,d.id)"
+														ng-click="addDept(d.id,checkeddept)"
+														ng-checked="selectAlldept"> <label
+														class="cstmchk_lbluser" for="dept{{$index}}">{{d.categoryName}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+				          	</div>
+			          	</div>	
+			          	
+			          	<div class="full-width clearfix">
+			          	<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[5].freeQueryDataList[2].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[5].freeQueryDataList[2].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[5].freeQueryDataList[2].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Applied On:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control dateonly" id="appliedjobon" ng-blur="setDate(configList[5].freeQueryDataList[2],'appliedjobon')" />
+			          		</div>
+			          	</div>
+			          		<div class="gap-width"></div>
+			          		<div class="half-width">
+			          		<label  class='col-md-4 col-sm-12 col-xs-12'>
+			          				<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox"  name="check" id="rd{{configList[5].freeQueryDataList[3].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[5].freeQueryDataList[3].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[5].freeQueryDataList[3].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+	                    		Brand</label>
+			          			<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Brand <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allbrands" name="check"
+														class="flashuser" ng-model="selectAllbrands"
+														ng-click="selectAllBrands(selectAllbrands)"> <label
+														class="cstmchk_lbluser" for="allbrands">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="br in brandlist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="brand{{$index}}" name="check"
+														class="flashuser" ng-model="checkedbrand"
+														
+														ng-checked="selectAllbrands" ng-click="addBrand(br.id,checkedbrand)"> <label
+														class="cstmchk_lbluser" for="brand{{$index}}">{{br.brandName}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			          		</div>
+			          		
+			          		
+			          	</div>
+			            <div class="full-width clearfix">
+			            	<div class="half-width">
+			            		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[5].freeQueryDataList[4].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[5].freeQueryDataList[4].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[5].freeQueryDataList[4].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Status:
+			          		</label>
+			          		
+			          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Status <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alljobstatus" name="check"
+														class="flashuser" ng-model="selectAllStatus"
+														ng-click="selectAllJobStatus(selectAllStatus)"> <label
+														class="cstmchk_lbluser" for="alljobstatus">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="s in userJobStatus">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="jobstatus{{$index}}" name="check"
+														class="flashuser" ng-model="checkedstatus"
+														ng-change="addJobStatus(s.id,checkedstatus)"
+														ng-checked="selectAllStatus"> <label
+														class="cstmchk_lbluser" for="jobstatus{{$index}}">{{s.statusName}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			            	</div>
+			            </div>
+			          	<div class="row form-group">
+			          		
+			          		
+			          		
+			          	</div>
+			          </div>
+			        </div>
+			        <div class="">
+			        	<div class="inner-head">
+				            <h4>Interview</h4>
+				          </div>
+				          <div class="container-fluid">
+				          	<div class="row form-group">
+				          	</div>
+				          	<div class="full-width clearfix">
+				          		<div class="half-width">
+			          		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox"  name="check" id="rd{{configList[6].freeQueryDataList[0].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[6].freeQueryDataList[0].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[6].freeQueryDataList[0].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Interviewed On
+			          		</label>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select<span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="interviewOn{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[6].freeQueryDataList[0])"> <label
+														class="cstmchk_lbluser" for="interviewOn{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control dateonly" id="interviewDate" ng-blur="setDate(configList[6].freeQueryDataList[0],'interviewDate')">
+
+			          		</div>
+			          	</div>
+			          	<div class="gap-width"></div>
+			          	<div class="half-width">
+			          		<div class="">
+			            		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" name="check" id="rd{{configList[6].freeQueryDataList[1].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" >
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[6].freeQueryDataList[1].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Position
+			          		</label>
+			          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allinterviewposition" name="check"
+														class="flashuser" ng-model="selectAllInterviewPosition"
+														ng-click="selectAllInterviewPositions(selectAllInterviewPosition)"> <label
+														class="cstmchk_lbluser" for="allinterviewposition">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="ip in interviewPositionList">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="interviewpostion{{$index}}" name="check"
+														class="flashuser" ng-model="checkedinterviewpos"
+														ng-change="addInterviewPosi(ip.id,checkedinterviewpos)"
+														ng-checked="selectAllInterviewPosition"> <label
+														class="cstmchk_lbluser" for="interviewpostion{{$index}}">{{ip.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			            	</div>
+			          	</div>
+				          	</div>
+				          	<div class="full-width clearfix">
+				          		<div class="half-width">
+				          			<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox"  name="check" id="rd{{configList[6].freeQueryDataList[2].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" >
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[6].freeQueryDataList[2].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Template:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allinterviewtemplate" name="check"
+														class="flashuser" ng-model="selectAllInterviewtemplate"
+														ng-click="selectAllInterviewtemplates(selectAllInterviewtemplate)"> <label
+														class="cstmchk_lbluser" for="allinterviewtemplate">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="t in interviewTemplates">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="interviewtemplate{{$index}}" name="check"
+														class="flashuser" ng-model="checkedinterviewtemp"
+														ng-change="addInterviewTemp(t.id,checkedinterviewtemp)"
+														ng-checked="selectAllInterviewtemplate"> <label
+														class="cstmchk_lbluser" for="interviewtemplate{{$index}}">{{t.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+				          		</div>
+				          		
+				          	</div>	
+				          </div>
+			        </div>
+			        <div class="">
+			          <div class="inner-head">
+			            <h4>My Assessments</h4>
+			          </div>
+			          <div class="container-fluid">
+			          	<div class="row form-group"></div>
+			          	<div class="full-width clearfix">
+			            	<div class="half-width">
+			            		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" name="check" id="rd{{configList[7].freeQueryDataList[0].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[7].freeQueryDataList[0].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[7].freeQueryDataList[0].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Brand
+			          		</label>
+			            		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Brand <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allAssbrands" name="check"
+														class="flashuser" ng-model="selectAllAssbrands"
+														ng-click="selectAllAssBrands(selectAllAssbrands)"> <label
+														class="cstmchk_lbluser" for="allAssbrands">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="br in brandlist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="Assbrand{{$index}}" name="check"
+														class="flashuser" ng-model="checkedAssbrand"
+														
+														ng-checked="selectAllAssbrands" ng-click="addAssBrand(br.id,checkedbrand)"> <label
+														class="cstmchk_lbluser" for="Assbrand{{$index}}">{{br.brandName}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			            	</div>
+			            	<div class="gap-width">
+			            	</div>
+			            	<div class="half-width">	
+			            		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" name="check"  id="rd{{configList[7].freeQueryDataList[1].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" >
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[7].freeQueryDataList[1].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Department
+			          		</label>
+			            		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Department <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allAssdept" name="check"
+														class="flashuser" ng-model="selectAllAssdept"
+														ng-click="selectAllAssDept(selectAllAssdept)"
+														ng-change="filterpositionlist(selectAllAssdept,0)">
+													<label class="cstmchk_lbluser" for="allAssdept">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="d in departmentlist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="Assdept{{$index}}" name="check"
+														class="flashuser" ng-model="checkedAssdept"
+														ng-change="filterpositionlist(checkedAssdept,d.id)"
+														ng-click="addAssDept(d.id,checkeddept)"
+														ng-checked="selectAllAssdept"> <label
+														class="cstmchk_lbluser" for="Assdept{{$index}}">{{d.categoryName}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			            	</div>
+			            </div>	
+						<div class="full-width clearfix">
+			            	<div class="half-width">
+			            		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" name="check" id="rd{{configList[7].freeQueryDataList[2].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[7].freeQueryDataList[2].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[7].freeQueryDataList[2].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			 Position
+			          		</label>
+			            		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Position <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allAssposition" name="check"
+														class="flashuser" ng-model="selectAllAssPosition"
+														ng-click="selectAllAssPositions(selectAllAssPosition)"> <label
+														class="cstmchk_lbluser" for="allAssposition">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="p in filterPosition">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="Asspostion{{$index}}" name="check"
+														class="flashuser" ng-model="checkedAsspos"
+														ng-change="addAssPosi(p.id,checkedpos)"
+														ng-checked="selectAllAssPosition"> <label
+														class="cstmchk_lbluser" for="Asspostion{{$index}}">{{p.positonname}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			            	</div>
+			            	<div class="gap-width">
+			            	</div>
+			            	<div class="half-width">
+			            		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[7].freeQueryDataList[3].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[7].freeQueryDataList[3].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[7].freeQueryDataList[3].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			 Name Of Assessment:
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control"  ng-model="configList[7].freeQueryDataList[3].value" />
+			          		</div>
+			            	</div>
+			            </div>			
+			            <div class="full-width clearfix">
+			            	<div class="half-width">
+			            		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[7].freeQueryDataList[4].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[7].freeQueryDataList[4].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[7].freeQueryDataList[4].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Date:
+			          		</label>
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select<span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="assDate{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[7].freeQueryDataList[4])"> <label
+														class="cstmchk_lbluser" for="assDate{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			          		
+			          		<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control dateonly" id="assessmentDate" ng-blur="setDate(configList[7].freeQueryDataList[4],'assessmentDate')">
+			          		</div>
+			            	</div>
+			            	<div class="gap-width">
+			            	</div>
+			            	<div class="half-width">
+			            		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[7].freeQueryDataList[5].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[7].freeQueryDataList[5].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[7].freeQueryDataList[5].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Assesment Duration(min.):
+			          		</label>
+			          		<div class="col-md-8 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control"  ng-model="configList[7].freeQueryDataList[5].value" />
+			          		</div>
+			            	</div>
+			            </div>
+			            <div class="full-width clearfix">
+			            	<div class="half-width">
+			            		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[7].freeQueryDataList[7].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[7].freeQueryDataList[7].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[7].freeQueryDataList[7].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Status:
+			          		</label>
+			          		<!-- <div class="col-md-4 col-sm-12 col-xs-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select<span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											
+											<li >
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox"  name="check"
+														class="flashuser" 
+														> <label
+														class="cstmchk_lbluser" >22-10-2016</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div> -->
+			          		<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allassstatus" name="check"
+														class="flashuser" ng-model="selectAllAssStatuss"
+														ng-click="selectAllAssStatus(selectAllAssStatuss)"> <label
+														class="cstmchk_lbluser" for="allassstatus">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="s in assessmentStatus">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="assstatus{{$index}}" name="check"
+														class="flashuser" ng-model="checkedassstatus"
+														ng-change="addAssStatus(s.id,checkedassstatus)"
+														ng-checked="selectAllAssStatuss"> <label
+														class="cstmchk_lbluser" for="assstatus{{$index}}">{{s.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+			            	</div>
+			            	<div class="gap-width"></div>
+			            	<div class="half-width">
+			            		<label class="col-md-4 col-sm-12 col-xs-12">
+			          			<div class="chckbx-cntnr zeromargin">  
+	                      			<input type="checkbox" id="rd{{configList[7].freeQueryDataList[8].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[7].freeQueryDataList[8].selected">
+	                      			<label class="cstmchk_lbladmin" for="rd{{configList[7].freeQueryDataList[8].id}}" style="margin:2px -6px;"></label> 
+	                    		</div>
+			          			Score
+			          		</label>
+			          		
+			          		<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="assScore{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[7].freeQueryDataList[7])"> <label
+														class="cstmchk_lbluser" for="assScore{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12 col-xs-12">
+			          			<input type="text" class="form-control"  ng-model="configList[7].freeQueryDataList[7].value" />
+			          		</div>
+			            	</div>
+			            </div>		          	
+			          </div>
+			          </div>
+			          	
+			          <div class="">
+				          <div class="inner-head">
+				            <h4>Survey</h4>
+				          </div>
+				          <div class="container-fluid">
+				          <div class="row form-group"></div>
+				          <div class="full-width clearfix">
+				          	<div class="half-width">
+				          		<label class="col-md-4 col-sm-12 col-xs-12">
+					          		<div class="chckbx-cntnr zeromargin">  
+		                      			<input type="checkbox" id="rd{{configList[8].freeQueryDataList[0].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[8].freeQueryDataList[0].selected">
+		                      			<label class="cstmchk_lbladmin" for="rd{{configList[8].freeQueryDataList[0].id}}" style="margin:2px -6px;"></label> 
+		                    		</div>
+				          			Name Of Survey:
+				          		</label>
+				          		
+				          		<div class="col-md-8 col-sm-12 col-xs-12">
+				          			<input type="text" class="form-control"  ng-model="configList[8].freeQueryDataList[0].value" />
+				          		</div>
+				          	</div>
+				          	<div class="gap-width"></div>
+				          	<div class="half-width">
+				          		<label class="col-md-4 col-sm-12 col-xs-12">
+				          			<div class="chckbx-cntnr zeromargin">  
+		                      			<input type="checkbox" id="rd{{configList[8].freeQueryDataList[1].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[8].freeQueryDataList[1].selected">
+		                      			<label class="cstmchk_lbladmin" for="rd{{configList[8].freeQueryDataList[1].id}}" style="margin:2px -6px;"></label> 
+		                    		</div>
+				          			Start Date:
+				          		</label>
+				          		<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="surveyStartDate{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[8].freeQueryDataList[1])"> <label
+														class="cstmchk_lbluser" for="surveyStartDate{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+				          		<div class="col-md-4 col-sm-12 col-xs-12">
+				          			<input type="text" class="form-control dateonly" id="surveyStartDate" ng-blur="setDate(configList[8].freeQueryDataList[1],'surveyStartDate')">
+				          		</div>
+				          	</div>
+				          </div>
+				          <div class="full-width clearfix">
+				          	<div class="half-width">
+				          		<label class="col-md-4 col-sm-12 col-xs-12">
+				          			<div class="chckbx-cntnr zeromargin">  
+		                      			<input type="checkbox" id="rd{{configList[8].freeQueryDataList[2].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[8].freeQueryDataList[2].selected">
+		                      			<label class="cstmchk_lbladmin" for="rd{{configList[8].freeQueryDataList[2].id}}" style="margin:2px -6px;"></label> 
+		                    		</div>
+				          			End Date:
+				          		</label>
+				          		<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="surveyEndDate{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[8].freeQueryDataList[2])"> <label
+														class="cstmchk_lbluser" for="surveyEndDate{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+				          		<div class="col-md-4 col-sm-12 col-xs-12">
+				          			<input type="text" class="form-control dateonly"  id="surveyEndDate" ng-blur="setDate(configList[8].freeQueryDataList[2],'surveyEndDate')" />
+				          		</div>
+				          	</div>
+				          	<div class="gap-width">
+				          	</div>
+				          	<div class="half-width">
+				          	<label class="col-md-4 col-sm-12 col-xs-12">
+				          			<div class="chckbx-cntnr zeromargin">  
+		                      			<input type="checkbox" id="rd{{configList[8].freeQueryDataList[3].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[8].freeQueryDataList[3].selected">
+		                      			<label class="cstmchk_lbladmin" for="rd{{configList[8].freeQueryDataList[3].id}}" style="margin:2px -6px;"></label> 
+		                    		</div>
+				          			Completed Date:
+				          		</label>
+				          		<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="surveyCompDate{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[8].freeQueryDataList[3])"> <label
+														class="cstmchk_lbluser" for="surveyCompDate{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+				          		<div class="col-md-4 col-sm-12 col-xs-12">
+				          			<input type="text" class="form-control dateonly"  id="surveyCompletedDate" ng-blur="setDate(configList[8].freeQueryDataList[3],'surveyCompletedDate')" />
+				          		</div>
+				          	</div>
+				          </div>	
+				          <div class="full-width clearfix">
+				          	<div class="half-width">
+				          		<label class="col-md-4 col-sm-12 col-xs-12">
+				          			<div class="chckbx-cntnr zeromargin">  
+		                      			<input type="checkbox" id="rd{{configList[8].freeQueryDataList[4].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[8].freeQueryDataList[4].selected">
+		                      			<label class="cstmchk_lbladmin" for="rd{{configList[8].freeQueryDataList[4].id}}" style="margin:2px -6px;"></label> 
+		                    		</div>
+				          			Status:
+				          		</label>
+				          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Status <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="allsurveystatus" name="check"
+														class="flashuser" ng-model="selectAllSurveyStatuss"
+														ng-click="selectAllSurveyStatus(selectAllSurveyStatuss)"> <label
+														class="cstmchk_lbluser" for="allsurveystatus">Select
+														All</label>
+												</div>
+											</li>
+											<li ng-repeat="s in assessmentStatus">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="surveystatus{{$index}}" name="check"
+														class="flashuser" ng-model="checkedsurveystatus"
+														ng-change="addSurveyStatus(s.id,checkedsurveystatus)"
+														ng-checked="selectAllSurveyStatuss"> <label
+														class="cstmchk_lbluser" for="surveystatus{{$index}}">{{s.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+				          	</div>
+				          	
+				          </div>	
+				          	
+				          </div>
+			          </div>
+			          <div class="">
+				          <div class="inner-head">
+				            <h4>Documents</h4>
+				          </div>
+				          <div class="container-fluid">
+				          <div class="row form-group">
+				          </div>
+				          <div class="full-width clearfix">
+				          	<div class="half-width">
+				          		<label class="col-md-4 col-sm-12 col-xs-12">
+				          			<div class="chckbx-cntnr zeromargin">  
+		                      			<input type="checkbox" id="rd{{configList[9].freeQueryDataList[0].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[9].freeQueryDataList[0].selected">
+		                      			<label class="cstmchk_lbladmin" for="rd{{configList[9].freeQueryDataList[0].id}}" style="margin:2px -6px;"></label> 
+		                    		</div>
+				          			File Name
+				          		</label>
+				          		<div class="col-md-8 col-sm-12 col-xs-12">
+				          			<input type="text" class="form-control"  ng-model="configList[9].freeQueryDataList[0].value" />
+				          		</div>
+				          	</div>
+				          	<div class="gap-width"></div>
+				          	<div class="half-width">
+				          		<label class="col-md-4 col-sm-12 col-xs-12">
+				          			<div class="chckbx-cntnr zeromargin">  
+		                      			<input type="checkbox"  name="check" id="rd{{configList[9].freeQueryDataList[1].id}}" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[9].freeQueryDataList[1].selected">
+		                      			<label class="cstmchk_lbladmin" for="rd{{configList[9].freeQueryDataList[1].id}}" style="margin:2px -6px;"></label> 
+		                    		</div>
+				          			File Type
+				          		</label>
+				          		<div class="col-md-8 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select Type <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li>
+											<li ng-repeat="dt in documentType">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="type2{{$index}}" name="check"
+														class="flashuser" ng-model="checkedtype"
+														ng-checked="selectAlltypes" ng-click="addType(dt.id,checkedtype)"> <label
+														class="cstmchk_lbluser" for="type2{{$index}}">{{dt.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+				          	</div>
+				          </div>
+				          <div class="full-width clearfix">
+				          	<div class="half-width">
+				          		<label class="col-md-4 col-sm-12 col-xs-12">
+				          			<div class="chckbx-cntnr zeromargin">  
+		                      			<input type="checkbox" id="rd{{configList[9].freeQueryDataList[2].id}}" name="check" class="flashadmin ng-pristine ng-untouched ng-valid ng-empty" ng-model="configList[9].freeQueryDataList[2].selected">
+		                      			<label class="cstmchk_lbladmin" for="rd{{configList[9].freeQueryDataList[2].id}}" style="margin:2px -6px;"></label> 
+		                    		</div>
+				          			Upload Date:
+				          		</label>
+				          		<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									
+									<div class="dropdown">
+										<div class="dropdown-toggle checkdrop " data-toggle="dropdown">
+											Select <span class="caret"
+												style="margin: 10px 0px; float: right;"></span>
+										</div>
+										<ul class="dropdown-menu padmenu selection-column"
+											style="width: 100% !important; left: 0px !important;">
+											<!-- <li>
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="alldoctypes" name="check"
+														class="flashuser" ng-model="selectAlltypes"
+														ng-click="selectAllDocTypes(selectAlltypes);"> <label
+														class="cstmchk_lbluser" for="alldoctypes">Select All</label>
+												</div>
+											</li> -->
+											<li ng-repeat="cm in comparelist">
+												<div class="chckbx-cntnr zeromargin">
+													<input type="checkbox" id="docUplodDate{{$index}}" name="check"
+														class="flashuser" 
+														ng-click="addComparision(cm.id,configList[9].freeQueryDataList[2])"> <label
+														class="cstmchk_lbluser" for="docUplodDate{{$index}}">{{cm.name}}</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+				          		<div class="col-md-4 col-sm-12 col-xs-12">
+				          			<input type="text" class="form-control dateonly"  id="docUploadDate" ng-blur="setDate(configList[9].freeQueryDataList[2],'docUploadDate')" />
+				          		</div>
+				          	</div>
+				          	
+				          </div>		
+				          	<div class="row form-group">
+				          		
+				          		
+				          	</div>
+				          </div>
+			          </div>
+			        </div>   
+            	</div>
+            	<div class="btn-cntnr" style="margin-top: 20px; margin-bottom: 20px; text-align: right!important;">
+              <button class="btn btn-default btn-bluer" id="update_slot-btn" ng-click="savepFreeQueryDetailCandidate(freeQueryCandidateData)">Save</button>
+               <a ui-sref="restricted.admin.dashboard" >Cancel</a>
+              <!--  <a class="btn btn-default btn-bluer" data-dismiss="modal">Cancel</a> -->
+            <!--   <a href="">Cancel</a> -->
+            </div>
+            </div>
+            
+            <div id="employee" class="tab-pane fade in active" ng-show="approverTabFlag == 2">
+            <div class="section-content" id="create-job">
+			        <div class="shadow-container">
+			          <!-- <div class="inner-head">
+			            <h4>Personal Information</h4>
+			          </div> -->
+			          <div class="inner-form configur-fields" ng-repeat="li in purgeDataEmployeeList">
+			          <h4>{{li.sectionName}}</h4>
+			          	<div class="fields-form">
+			          	<div class="col-md-6" ng-repeat="d in li.purgeUserDataList">
+				          <div class="col-md-3" style="padding: 0;">
+				          	<div class="form-group fields">
+				          		<label>{{d.name}}</label>
+				          	</div>
+				          </div>
+				          <div class="col-md-9">
+				          	<div class="radio-cntnr new-radio">
+			          			<input type="radio" ng-click="setAction2(1,d)" id="slott222{{d.id}}" name="radio-groupp{{d.id}}" class="flashadmin" ng-checked="d.action == 1">
+                  				<label for="slott222{{d.id}}" class="cstmchk_lbladmin">Encrypt</label>
+                  			</div>
+                  			<div class="radio-cntnr new-radio">
+			          			<input type="radio" ng-click="setAction2(2,d)" id="slott211{{d.id}}" name="radio-groupp{{d.id}}" class="flashadmin" ng-checked="d.action == 2">
+                  				<label for="slott211{{d.id}}" class="cstmchk_lbladmin">Delete</label>
+                  			</div>
+                  			<div class="radio-cntnr new-radio">
+			          			<input type="radio" ng-click="setAction2(3,d)" id="slott213{{d.id}}" name="radio-groupp{{d.id}}" class="flashadmin" ng-checked="d.action == 3">
+                  				<label for="slott213{{d.id}}" class="cstmchk_lbladmin">No Action</label>
+                  			</div>
+				          </div>
+				         </div>
+				         </div>
+				      </div>
+			         </div>    
+            	</div>
+            <div class="btn-cntnr" style="margin-top: 20px; margin-bottom: 20px; text-align: right!important;">
+              <button class="btn btn-default btn-bluer" id="update_slot-btn" ng-click="saveEmployeeConfiguration(purgeDataEmployeeList)">Save</button>
+               <a ui-sref=restricted.admin.dashboard >Cancel</a>
+              <!--  <a class="btn btn-default btn-bluer" data-dismiss="modal">Cancel</a> -->
+            <!--   <a href="">Cancel</a> -->
+            </div>
+            </div>
+        </div>
+       </div>
+     </div>
+     
+ <script type="text/javascript">
+	 
+		 	$('.dateonly').datetimepicker({	    		
+					 format: 'DD-MM-YYYY',
+					 minDate:moment().subtract(1,'d'), 
+		 	});
+		
+</script>

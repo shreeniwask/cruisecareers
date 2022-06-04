@@ -1,0 +1,78 @@
+<div >
+
+<div id="interviewtemplate_type" class="tab-pane fade in admin-page">
+
+
+<div class="section-content" id="show-add-interview">
+      <div class="shadow-container">
+          <div class="inner-head">
+         
+            <h4>Create Interview Template </h4>
+          </div>
+          <div class="inner-form">
+            <form ng-submit="SaveInterviewTemplate(interviewtemplate)">
+            <div class="col-md-6 col-sm-12">
+                 <div class="form-group">
+                  <label>Select Position*</label>
+                  
+                    <select class="form-control flat-control-inner" ng-model="interviewtemplate.position.id" ng-options="pll.id as pll.positonname for pll in positionList" required>
+                      <option value="" selected="selected">---Select--</option>                 
+                  </select>      
+                                
+				  <!--    <select class="form-control flat-control-inner" ng-model="interviewtemplate.position.id" > 
+				     <option value="" >Select</option>        
+				     <option data-ng-repeat="p in positionList" data-ng-value="{{p.id}}" ng-selected="p.id==interviewtemplate.position.id">{{p.positonname}}</option>                                  
+				     </select>  -->
+                  
+                </div>
+            </div>
+             <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label>Template Title:</label>
+                  <input type="text" name="" class="form-control flat-control-inner" id="prefilled" ng-model="interviewtemplate.templateName" required>
+                </div> 
+            </div>
+            <div class="table-cntnr">
+          <table class="table table-striped red-table">
+            <caption>Questions</caption>
+            <thead>
+              <tr>
+                <th>Seq No.</th>
+                <th>Questions</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="tq in TemplateQuestion">
+                <td style="width: 100px;">
+                <input type="text" class="form-control flat-control-inner seq-input" id="sequence{{$index}}" ng-model="tq.squence"required disabled></td>
+                <td>
+                  <input type="text" class="form-control flat-control-inner" ng-model="tq.question" required>
+                </td>
+                <td style="text-align: center;vertical-align: middle;display: block;">
+                <button type="button" class="btn btn-default btn-remove" ng-hide="TemplateQuestion.length == 1"ng-click="removeTemplateQuestion($index)"><i class="fa fa-trash" id="#sequence" ></i></button>
+                <button type="button" class="btn btn-default btn-remove" ng-if="TemplateQuestion.length == 1" disabled><i class="fa fa-trash" id="#sequence" ></i></button>
+                
+                </td>
+                
+               </tr >
+            </tbody>
+          </table>
+        </div>
+    <div class="que_add text-right">
+        <button type="button" class="btn btn-default btn-round-add mar-bottom-zero" ng-click="addTemplateQuestion()"><i class="icon-plus"></i></button>
+      </div>
+
+
+        <div class="btn-cntnr" style="margin-top: 20px; margin-bottom: 20px; text-align: left!important;">
+              <button class="btn btn-default btn-bluer"  id="update_slot-btn" type="submit">Save</button>
+               <a ng-click="cancelled()">Cancel</a>
+              <!--  <a class="btn btn-default btn-bluer" data-dismiss="modal">Cancel</a> -->
+            <!--   <a href="">Cancel</a> -->
+            </div>
+            </form>
+    </div>
+    </div>
+</div>   
+</div>
+</div>

@@ -1,0 +1,226 @@
+
+<div id="scheduler" class="tab-pane fade in admin-page" ng-controller="EventScheduler_Ctrl" >
+      <div class="section-heading">
+        <h4>Event Scheduler</h4>
+        <p>Organize events & trainings according to date, time and no. of candidates. </p>
+      </div>
+
+      <div class="section-content" id="slot-lister">
+      <div class="upper-actions">
+          <div class="button-group">
+            <!-- <button class="btn btn-default btn-edit"><i class="icon-edit-2"></i></button> -->
+            <button class="btn btn-default btn-create" id="add_scheduler" ng-click="addScheduler()"><i class="icon-plus"></i></button>
+           <!--  <button class="btn btn-default btn-delete" data-target="#deletelist" data-toggle="modal"><i class="icon-trash-2"></i></button>  -->
+          </div>
+          <div class="search-cntnr">
+            <div class="form-group search-box">
+              <input type="text" name="" id="id_of_textbox" class="form-control flat-control-search" ng-model="search">
+              <i class="icon-search" id="id_of_button" ng-click="fetchEventSchedulerList(0,10,null,null,search);getEventSchedulerListcount(search,null)"></i>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="table-cntnr">
+        <!--   <table class="table table-striped red-table">
+            <caption>List of Event Schedulers</caption>
+            <thead>
+              <tr>
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th>
+                <th>Scheduler Name</th>
+                <th>Owner</th>
+                <th>Total Slots</th>
+                <th>Add Slots</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="1" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="1"></label> 
+                    </div>
+                </td>
+                <td><a href="#/createEventscheduler">Chief Cook Interview Scheduler</a></td>
+                <td>Prasad</td>
+                <td>2</td>
+                <td><button class="btn btn-default btn-round-add mar-bottom-zero" data-target="#add_sloter" data-toggle="modal"><i class="icon-plus"></i></button></td>
+                
+              </tr>
+              <tr>
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="1" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="1"></label> 
+                    </div>
+                </td>
+                <td><a>Personal Safety Training</a></td>
+                <td>Rakesh N</td>
+                <td>0</td>
+                <td><button class="btn btn-default btn-round-add mar-bottom-zero"><i class="icon-plus"></i></button></td>
+               
+              </tr>
+              <tr>
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="1" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="1"></label> 
+                    </div>
+                </td>
+                <td><a>US Visa Scheduler</a></td>
+                <td>Rakesh N</td>
+                <td>1</td>
+                <td><button class="btn btn-default btn-round-add mar-bottom-zero"><i class="icon-plus"></i></button></td>
+                
+              </tr>
+              <tr>
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="1" name="check" class="flashadmin">
+                      <label class="cstmchk_lbladmin" for="1"></label> 
+                    </div>
+                </td>
+                <td><a>Induction Training</a></td>
+                <td>Prasad H</td>
+                <td>3</td>
+                <td><button class="btn btn-default btn-round-add mar-bottom-zero"><i class="icon-plus"></i></button></td>
+                
+              </tr>
+            </tbody>
+          </table> -->
+          
+           <table class="table table-striped red-table">
+<caption>List of Event Schedulers</caption>
+            <thead>
+              <tr>
+                <!-- <th>
+                  <div class="chckbx-cntnr zeromargin">  
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th> -->
+                <th  >Scheduler Name&nbsp;<i ng-click="sortByName(search,'Scheduler Name')" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th  >Owner&nbsp;<i ng-click="sortByName(search,'Owner')" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th >Total Slots <i ng-click="sortByName(search,'slots')" class="fa fa-sort" aria-hidden="true"></i></th>
+                <th>Add Slots </i></th>
+                <th>Delete </i></th>
+              </tr>
+            </thead>
+             <tbody>
+             <tr ng-repeat="j in EventSchedulerList">			
+
+                <td><a ng-click="userdata(j);eventSlotflag()"> {{j.schedulerName}}</a></td>
+                <td>{{j.ownerName}} </td>
+                <td>{{j.totalSlots}} </td>
+                 <td ><button ng-if="j.edit == 1" class="btn btn-default btn-round-add mar-bottom-zero" data-target="#add_sloter" data-toggle="modal" ng-click="checkedList(j.id)"><i class="icon-plus"></i></button>
+                 <button ng-if="j.edit == 0" disabled class="btn btn-default btn-round-add mar-bottom-zero" ><i class="icon-plus"></i></button></td>
+                  <td ><button  ng-if="j.delete == 1"  class="btn btn-default btn-delete" data-target="#deletelist" data-toggle="modal" ng-click="checkedList(j.id)"><i class="icon-trash-2"></i></button>
+                 <button ng-if="j.delete == 0" disabled class="btn btn-default btn-delete" data-target="#deletelist" data-toggle="modal"><i class="icon-trash-2"></i></button></td>
+                <!-- <td class="text-center"><button class="btn btn-default btn-delete"><i  class="icon-briefcase"></i></button></td> -->
+                
+              </tr>
+      
+             </tbody>    
+        </table>
+          <div class="text-right">
+            
+            <ul class="pagination" style="margin-top: 0;">
+			<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+			<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+			<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+ 
+            </div>
+          
+        </div>
+        </div>
+      </div>
+     
+        <!----Modal delete-list---->
+<div id="deletelist" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm add-brand">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+      </div>
+      <div class="modal-body flat-body">
+          <div class="clearfix"></div>
+        Are you sure you want to delete record?
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-default"  id="show_ass" ng-click="deletefromList('Event Scheduler')" data-dismiss="modal">Delete</button>
+        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+      </div>
+    </div>
+   </div>
+    </div>
+    </div>
+    
+    
+    <!----Modal Add Slot List---->
+<div id="add_sloter" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content flat-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title common-title" style="margin-left: 0;">Add New Slot</h4>
+      </div>
+      <form >
+      <div class="modal-body flat-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="datetimepickercns" ng-model="slot.dateTime"></div>
+       
+          </div>
+        </div>
+        <div style="height: 10px;"></div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>No. of Candidates *</label>
+              <input type="number" name="" id="candidates" class="form-control flat-control-inner"  min="1" required>
+            </div>
+          </div>
+        </div>
+       
+        
+      </div>
+      <div class="modal-footer text-right">
+         <button type="button" class="btn btn-default" id="addslot" ng-click="addEventSlot()" data-dismiss="modal">Add</button>
+        <a class="btn btn-link" data-dismiss="modal">Cancel</a>
+        
+      </div>
+	</form>
+    </div>
+
+  </div>
+</div>
+    
+    </div>
+    
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker12, #datetimepickercns').datetimepicker({
+                inline: true,
+                sideBySide: true,
+                minDate: new Date()
+            });
+        });
+        
+    </script>
+    
+    <script type="text/javascript">
+     $("#id_of_textbox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#id_of_button").click();
+            }
+        });
+    
+          </script>

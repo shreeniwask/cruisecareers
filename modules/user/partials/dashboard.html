@@ -1,0 +1,735 @@
+<div >
+
+<div>
+<!---- Sticky Button ---->
+<a class="btn btn-default sticky-btn smooth" href="#slider">
+	<i class="icon-chevron-left"></i>
+</a>
+   <header>
+	<nav class="navbar navbar-default header-nav navbar-fixed-top" id="sc">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle hide-logo" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand cruise-logo smooth" href="#!home/" style="position: absolute;"><img src="resources/img/logo-big.png"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right uppermenu">
+        <li class=""><a href="#jobs" class="smooth">Hot Jobs</a></li>
+        <li class=""><a href="#steps" class="smooth">How do I apply</a></li>
+        <li class=""><a href="#testimonials" class="smooth">Testimonials</a></li>
+        <li class=""><a href="#about" class="smooth">About us</a></li>
+        <li class=""><a ui-sref="register" ui-sref-active="active" class="smooth"><span class="icon-edit"></span> Sign up</a></li>
+        <li class=""><a ui-sref="login" ui-sref-active="active" class="smooth"><span class="icon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>	
+</header>
+
+	
+<div class="height-70"></div>
+<!----Big Slider---->
+	<div class="slider" id="slider">
+		<div id="cruise-slider" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+   <ol class="carousel-indicators hidden-xs">
+    <li data-target="#cruise-slider" data-slide-to="{{$index}}" class="active" ng-repeat="b in homeImagesList" ></li>
+    <!-- <li data-target="#cruise-slider" data-slide-to="1"></li>
+    <li data-target="#cruise-slider" data-slide-to="2"></li>
+    <li data-target="#cruise-slider" data-slide-to="3"></li> -->
+  </ol>
+  
+  
+  <!-- Wrapper for slides -->
+  <div class="carousel-fade">
+  <div class="carousel-inner">
+ 
+  <div class="item relative-item" ng-class="{active:!$index}" ng-repeat="b in homeImagesList">
+      <img ng-src="{{b.path}}" alt="cr{{$index}}" width="100%">
+       <div class="landing-btn setsail">
+      	<button class="btn btn-default landing-btn" id="land">Set Sail</button>
+      </div> 
+      
+       <div class="carousel-caption cruise-captions">
+       <h3 ng-bind-html="b.text"></h3>
+      </div>
+     
+      </div>
+ 
+    </div> 
+  </div>
+  
+  
+  </div>
+
+</div>
+	</div>
+	
+	<div class="col-md-5 col-md-offset-7 slider-div">
+		<button class="btn btn-default slider-btn"  ng-click="fetchJobFairImageListForLandingPage()" ng-show="activeJobfairCount != 0">VIRTUAL CAREER FAIR <i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+		<div class="" id="myDiv"  style="display: none;">
+			<div class="row">
+			
+				<div id="carousel-slider1" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators hidden-xs">
+					    <li data-target="#carousel-slider1" data-slide-to="0" class="active"></li>
+					    <li data-target="#carousel-slider1" data-slide-to="1" class=""></li>
+					    <li id="carousel-slider1" data-target="#carousel-slider1"  data-slide-to="{{$index+2}}"   ng-repeat="j in jobfairimagelistadmin" ></li>
+					 </ol>
+				 <div class="carousel-fade">
+				  <div class="carousel-inner">
+				 
+				   <div class="fix-height item relative-item active banner-job-fare" >
+				   		<img src="resources/img/sky_back.jpg">
+				   		<div class="place-text">
+				   			<h3>WELCOME TO OUR VIRTUAL CAREER FAIR</h3>	
+				   			<h5>Bringing you opportunities from the best cruise ship brands</h5>
+				   			<div class="virtual-care-time">
+				   			<div>
+				   				<h5>
+				   					<!-- {{jobfairjobObj.startDate}} To {{jobfairjobObj.endDate}} -->
+					{{dateformate2(jobfairjobObjs.startDate1)}} {{jobfairjobObjs.startDate.split(" ")[1]}} {{jobfairjobObjs.startDate.split(" ")[2]}} 
+					                   -
+					 {{dateformate2(jobfairjobObjs.endDate1)}}  {{jobfairjobObjs.endDate.split(" ")[1]}} {{jobfairjobObjs.endDate.split(" ")[2]}}
+				   					
+				   				</h5>
+				   			</div>
+				   		</div>
+				   		</div>
+				   		
+				   </div>
+				   <div class="fix-height item relative-item">
+				   	<img src="resources/img/sky_back.jpg">
+				   	<div class="place-text">
+				   			<h3>{{jobfairjobObjs.name}}</h3>	
+				   			<h5>{{jobfairjobObjs.description}}</h5>
+				   		</div>
+				   </div>
+				   <div class="fix-height item relative-item" ng-repeat="j in jobfairimagelistadmin">
+				   	<img  ng-show="j.type !='video'" ng-src="{{j.bannerPath}}" alt="cr{{$index}}">
+				   	 <video ng-show="j.type =='video'"  ng-src="{{j.bannerPath}}" controls></video>  
+				   	
+				   </div>
+				   
+				   
+				   <div class="btn-div-banner">
+				   		<a href="" ng-click="redirectPage('register')">
+				   			REGISTER NOW - IT'S FREE
+				   		</a>
+				   		<a href="" ng-click="redirectPage('login')">
+				   			CLICK HERE TO LOG IN
+				   		</a>
+				   </div>
+				  
+				  
+
+				    </div> 
+				  </div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+
+
+<div class="col-md-5 col-md-offset-7 slider-div1">
+		<button class="btn btn-default slider-btn1"  ng-click="fetchWalkinImageListForLandingPage()" ng-show="activeWalkinCount != 0">Meet A Recruiter <i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+		<div class="" id="myDiv1"  style="display: none;">
+			<div class="row">
+			
+				<div id="carousel-slider1" class="carousel slide" data-ride="carousel">
+				<!-- 	<ol class="carousel-indicators hidden-xs">
+					    <li id="carousel-slider1" data-target="#carousel-slider1"  data-slide-to="{{$index}}" class="active"  ng-repeat="j in Walkinimagelistadmin" ></li>
+					    <li id="carousel-slider1" data-target="#carousel-slider1"  data-slide-to="{{$index+2}}"   ng-repeat="j in Walkinimagelistadmin" ></li>
+					</ol> -->
+					
+					
+					<ol class="carousel-indicators hidden-xs">
+					    <li data-target="#carousel-slider1" data-slide-to="0" class="active"></li>
+					    <li data-target="#carousel-slider1" data-slide-to="1" class=""></li>
+					    <li id="carousel-slider1" data-target="#carousel-slider1"  data-slide-to="{{$index+2}}"  ng-repeat="j in Walkinimagelistadmin" ></li>
+					 </ol>
+					  <div class="carousel-fade">
+				  <div class="carousel-inner">
+				 
+				   <!-- <div class="fix-height item relative-item " ng-class="{active:!$index}" ng-repeat="j in Walkinimagelistadmin"> -->
+				   	 
+				   
+				   <div class="fix-height item relative-item active banner-job-fare" >
+				   		<img src="resources/img/walkins.jpg">
+				   		<div class="place-text">
+				   			<h3>WELCOME TO OUR Meet A Recruiter INTERVIEWS</h3>	
+				   			<h5>Bringing you opportunities from the best cruise ship brands</h5>
+				   			<div class="virtual-care-time">
+				   			<div>
+				   				<h5>
+				   					
+					{{dateformate2(jobfairjobObj.startDate1)}} {{jobfairjobObj.startDate.split(" ")[1]}} {{jobfairjobObj.startDate.split(" ")[2]}} 
+					                   -
+					 {{dateformate2(jobfairjobObj.endDate1)}}  {{jobfairjobObj.endDate.split(" ")[1]}} {{jobfairjobObj.endDate.split(" ")[2]}}
+				   					
+				   				</h5>
+				   			</div>
+				   		</div>
+				   		</div>
+				   		
+				   </div>
+				   <div class="fix-height item relative-item">
+				   	<img src="resources/img/walkins.jpg">
+				   	<div class="place-text">
+				   			<h3>{{jobfairjobObj.name}}</h3>	
+				   			<h5>{{jobfairjobObj.description}}</h5>
+				   		</div>
+				   </div>
+				    <div class="fix-height item relative-item" ng-repeat="j in Walkinimagelistadmin">
+				   	<img  ng-show="j.type !='video'" ng-src="{{j.bannerPath}}" alt="cr{{$index}}">
+				   	 <video ng-show="j.type =='video'"  ng-src="{{j.bannerPath}}" controls></video>  
+				   	
+				   </div>
+				   
+				   
+				   <div class="btn-div-banner">
+				   		<a href="" ng-click="redirectPageWalkins('register')">
+				   			REGISTER NOW - IT'S FREE
+				   		</a>
+				   		<a href="" ng-click="redirectPageWalkins('login')">
+				   			CLICK HERE TO LOG IN
+				   		</a>
+				   </div>
+				  
+				  
+						
+				    </div> 
+				  </div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+
+
+<!----Company Icons---->
+<div class="companies"> 
+		 <div class="container-fluid" >
+      <div  class="company-slider" >
+      
+        
+        <div><a href="https://www.carnival.com/" target="_blank"><img src="resources/img/carnival.png"></a></div>
+        <div><a href="http://www.pocruises.com.au/" target="_blank"><img src="resources/img/pno.png"></a></div>
+        <div><a href="https://www.princess.com/" target="_blank"><img src="resources/img/princess.png"></a></div>
+        <div><a href="https://www.seabourn.com/" target="_blank"><img src="resources/img/seabourn.png"></a></div>
+        <div><a href="https://www.costacruise.com/" target="_blank"><img src="resources/img/costa.png"></a></div>
+        <div><a href="https://www.hollandamerica.com/" target="_blank"><img src="resources/img/holland.png"></a></div>
+        <div><a href="https://www.cunard.com" target="_blank"><img src="resources/img/cunard.png"></a></div>
+        <div><a href="https://www.pocruises.com/" target="_blank"><img src="resources/img/pno2.png"></a></div>
+         
+        
+      </div>
+    </div>
+</div>
+
+
+<!----Position---->
+<section id="jobs">
+  <div class="container-fluid">
+    <h1>Positions Vacant</h1>
+    <div class="sub-head"><h4>All jobs conveniently listed under departments. Go ahead, browse. 
+If something interests you, press apply. Simple.</h4></div>
+    <div class="row">
+      <div class="col-md-7 col-md-offset-1">
+      	<div class="input-group search-cntnr-landing">
+		  <input id="search" type="text" class="form-control flat-control-big" aria-label="Search jobs" aria-describedby="search-icon"
+		  auto-complete-j="{tempListName:'jobTempIdList',serverResultListName:'positionList',callbackFunctionNoParam:'fetchSelectedJobCallback'}" 
+		  auto-complete-j-value="selectedJobId"  
+ 		  ng-change="fetchPositionList()" ng-model="jobTyped" placeholder="Search jobs" /> 
+ 		 
+		  <span class="input-group-addon" id="search-icon"  ng-click="fetchJobSearchResult(jobTyped)"><i class="icon-search"></i></span>
+		 
+		</div>
+		
+		<!-- <div class="col-md-3 col-xs-6" ng-repeat="x in categoryList">
+				<div class="job-type">
+					<a href="" ng-click="fetchJobResult(x.id,'category')"><i><img ng-src="{{x.iconPath}}" style="max-height: 50px; max-width: 50px;"></i>
+					<h5 class="job-name">
+						{{x.name}}
+					</h5>
+					</a>
+				</div> -->
+		
+		<div class="row" ng-if="categoryList.length > 0">
+				<div class="col-md-3 col-xs-6">
+				<div class="job-type">
+					<a ui-sref="job_results({categoryId: categoryList[0].id,flag: 'category'})" ><i><img ng-src="{{categoryList[0].iconPath}}" style="max-height: 50px; max-width: 50px;"></i>
+					<h5 class="job-name">
+						{{categoryList[0].name}}
+					</h5>
+					</a>
+				</div>
+			</div>		
+			
+			 <div class="col-md-3 col-xs-6" ng-if="categoryList.length > 1">
+				<div class="job-type">
+					<a ui-sref="job_results({categoryId: categoryList[1].id,flag: 'category'})"><i><img ng-src="{{categoryList[1].iconPath}}" style="max-height: 50px; max-width: 50px;"></i>
+					<h5 class="job-name">
+						{{categoryList[1].name}}
+					</h5>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-3 col-xs-6" ng-if="categoryList.length > 2">
+				<div class="job-type">
+					<a ui-sref="job_results({categoryId: categoryList[2].id,flag: 'category'})"><i><img ng-src="{{categoryList[2].iconPath}}" style="max-height: 50px; max-width: 50px;"></i>
+					<h5 class="job-name">
+						{{categoryList[2].name}}
+					</h5>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-3 col-xs-6" ng-if="categoryList.length > 3">
+				<div class="job-type">
+					<a ui-sref="job_results({categoryId: categoryList[3].id,flag: 'category'})"><i><img ng-src="{{categoryList[3].iconPath}}" style="max-height: 50px; max-width: 50px;"></i>
+					<h5 class="job-name">
+						{{categoryList[3].name}}
+					</h5>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 col-xs-6" ng-if="categoryList.length > 4">
+				<div class="job-type">
+					<a ui-sref="job_results({categoryId: categoryList[4].id,flag: 'category'})"><i><img ng-src="{{categoryList[4].iconPath}}" style="max-height: 50px; max-width: 50px;"></i>
+					<h5 class="job-name">
+						{{categoryList[4].name}}
+					</h5>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-3 col-xs-6" ng-if="categoryList.length > 5">
+				<div class="job-type">
+					<a ui-sref="job_results({categoryId: categoryList[5].id,flag: 'category'})"><i><img ng-src="{{categoryList[5].iconPath}}" style="max-height: 50px; max-width: 50px;"></i>
+					<h5 class="job-name">
+						{{categoryList[5].name}}
+					</h5>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-3 col-xs-6" ng-if="categoryList.length > 6">
+				<div class="job-type">
+					<a ui-sref="job_results({categoryId: categoryList[6].id,flag: 'category'})"><i><img ng-src="{{categoryList[6].iconPath}}" style="height: 50px; width: 50px;"></i>
+					<h5 class="job-name">
+						{{categoryList[6].name}}
+					</h5>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-3 col-xs-6" ng-if="categoryList.length > 7">
+				<div class="job-type">
+					<a ui-sref="job_results({categoryId: categoryList[7].id,flag: 'category'})"><i><img ng-src="{{categoryList[7].iconPath}}" style="height: 50px; width: 50px;"></i>
+					<h5 class="job-name">
+						{{categoryList[7].name}}
+					</h5>
+					</a>
+				</div>
+			</div>
+		</div>
+			<div class="text-center">
+				<button class="btn btn-default white-btn" ng-click="fetchJobResult(0,'no')">Explore All Jobs</button>
+      		</div>
+      </div>
+      <div class="col-md-3 col-md-offset-1">
+      	<div class="hot_jobs">
+      		<h5>Hiring Now. Quick. Apply</h5>
+      		<ul type="none" >
+      		<li ng-repeat="p in hotJobs track by p.id"><a  ui-sref="job_results({categoryId: p.id,flag: 'position'})">{{p.name}}</a></li>
+      			<!-- <li><a href="">Chief Cook Jobs</a></li>
+      			<li><a href="">AB Seaman Jobs</a></li>
+      			<li><a href="">Steward Jobs</a></li>
+      			<li><a href="">Galley Manager Jobs</a></li>
+      			<li><a href="">Deck Jobs</a></li>
+      			<li><a href="">Engine Jobs</a></li>
+      			<li><a href="">Entertainment Jobs</a></li>
+      			<li><a href="">Food & Beverages Jobs</a></li>
+      			<li><a href="">Casino Jobs</a></li> -->
+      		</ul>
+      	</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!----Steps---->
+<section id="steps">
+  <div class="container-fluid">
+    <h1>How do I apply?</h1>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="inner-step" data-aos="fade-up"  data-aos-duration="1000">
+          	<a href="#!register">
+          <div class="step-imgcntnr">
+          <img src="resources/img/register.png" class="img-responsive stepimg">
+          </div>
+          <h4>Register</h4>
+          <p>Create a free account to upload your resume. Easily apply and track your applications and know the latest jobs on board.(Your details are always confidential and we won't spam you. Ever)</p>
+        	</a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="inner-step" data-aos="fade-up"  data-aos-duration="1500">
+        	<a href="#!register">
+          <div class="step-imgcntnr">
+          <img src="resources/img/apply.png" class="img-responsive stepimg">
+          </div>
+          <h4>Apply</h4>
+          <p>Apply for one job, two jobs, multiple jobs. Doesn't matter. Receive future job alerts, track your applications. It's super convenient.</p>
+        	</a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="inner-step" data-aos="fade-up"  data-aos-duration="2000">
+          	<a href="#!register">
+          <div class="step-imgcntnr">
+          <img src="resources/img/assessed.png" class="img-responsive stepimg">
+          </div>
+          <h4>Get Assessed</h4>
+          <p>That final hurdle before you set sail. Clear our assessments and you are ready to pack your bags. Just btw - our recruitment methods are completely transparent. Your selection is on your merit.</p>
+        	</a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="inner-step" data-aos="fade-up"  data-aos-duration="2500">
+          <a href="#!register">
+          <div class="step-imgcntnr">
+          <img src="resources/img/sail.png" class="img-responsive stepimg">
+          </div>
+          <h4>Set Sail</h4>
+          <p>Embark on a life-changing experience. Find yourself on board any of our 95+ ships with crew from over 30 countries. Work Hard. Play Harder</p>
+        	</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!----Testimonials---->
+<section id="testimonials">
+  <h1>Testimonials</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="test-cntnr" data-aos="fade-down" data-aos-duration="1000">
+          <div ng-if="testimonialsList[0].type == 'Image'" class="picture-test" style="background: url({{testimonialsList[0].profilePicPath}}) no-repeat center;">
+          </div>
+           <div ng-if="testimonialsList[0].type == 'Video'" class="picture-test">
+            <iframe width="100%" ng-src="{{testimonialsList[1].path}}" frameborder="0" allowfullscreen ></iframe>
+          </div>
+           <h4>{{testimonialsList[0].name}}</h4>
+           <p>{{testimonialsList[0].description}}</p>
+           <a href="#!testimonials" ng-click = "readDetailsOfTestimonials(testimonialsList[0].id)">Read More</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="test-cntnr" data-aos="fade-down" data-aos-duration="1500">
+         <div ng-if="testimonialsList[1].type == 'Image'" class="picture-test" style="background: url({{testimonialsList[1].profilePicPath}}) no-repeat center;">
+          </div>
+          <div ng-if="testimonialsList[1].type == 'Video'" class="picture-test">
+            <iframe width="100%" ng-src="{{testimonialsList[1].path}}" frameborder="0" allowfullscreen></iframe>
+          </div>
+           <h4>{{testimonialsList[1].name}}</h4>
+           <p>{{testimonialsList[1].description}}</p>
+           <a href="#!testimonials" ng-click = "readDetailsOfTestimonials(testimonialsList[1].id)">Read More</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="test-cntnr" data-aos="fade-down" data-aos-duration="2000">
+          <div ng-if="testimonialsList[2].type == 'Image'" class="picture-test" style="background: url({{testimonialsList[2].profilePicPath}}) no-repeat center;">
+          </div>
+          <div ng-if="testimonialsList[2].type == 'Video'" class="picture-test">
+            <iframe width="100%" ng-src="{{testimonialsList[2].path}}" frameborder="0" allowfullscreen ></iframe>
+          </div>
+           <h4>{{testimonialsList[2].name}}</h4>
+           <p>{{testimonialsList[2].description}}</p>
+           <a href="#!testimonials" ng-click = "readDetailsOfTestimonials(testimonialsList[2].id)">Read More</a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-default white-btn" ng-click="goToTestimonials()">
+        Read all testimonials
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!----About---->
+<section id="about">
+  <h1>Who are we?</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-6">
+        <div class="about-cntnr" data-aos="flip-left" data-aos-duration="1000">
+          <p>Cruisecareers.in is the career portal of Carnival Support Services India Pvt. Ltd (CSSI).</p>
+<p>CSSI is India's largest manning firm providing highly skilled and trained personnel for cruise ship operations worldwide. Presently, we administer in excess of 21000 Indian personnel on more than 95 cruise ships under the Carnival Corporation umbrella like P&O Cruises, Princess Cruises, Cunard Line, P&O Cruises Australia, Costa Cruises, Holland America Line, Seabourn and Carnival Cruise Line. This means that we bring to India the best cruise ship jobs in the world.</p>
+<p>All recruitment carried out by CSSI are free. Our recruitment procedures are fair and transparent without any bias whatsoever. We are duly licensed by the DG Shipping office in India to carry out recruiting and placement services in India.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- <div ng-if="userdetails.roleId == undefined || userdetails.roleId == 2" class="main-chat-part">
+  <div class='chat-board'>
+  <div class='content'>
+    <div class="chat-body">
+
+      <iframe name="chat_iframe" id="chat_iframe" frameborder="1" scrolling="yes" title="chat widget" class="" style="width:286px;height:400px;border: 0px !important;"></iframe>
+        </div>
+    </div>
+  </div>
+</div>
+
+<i ng-show="userdetails.roleId == undefined || userdetails.roleId == 2" class="fa fa-comments" id="chat-action"></i> -->
+
+
+<!----Footer---->
+<footer id="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <img src="resources/img/logo-big.png">
+      </div>
+      <div class="col-md-3">
+        <h5>ADDRESS</h5>
+        <p>Carnival Support Services India Ltd,
+Kohinoor City, Tower 2, Floor 5,
+Kirol Road, Off. LBS Marg, Kurla West,
+Mumbai 400 070</p>
+<p>RPSL License No: RPSL - MUM - 062 (Valid till 13 December 2026)</p>
+      </div>
+      <div class="col-md-2">
+        <h5>CONTACT</h5>
+        <p><a class="footer-contact" href="tel:+917942529292">+91-7942529292</a></p>
+        
+      </div>
+      <div class="col-md-2">
+        <h5>GET IN TOUCH</h5>
+        <ul type="none" class="social-foot">
+          <li><a href="https://www.facebook.com/cruisecareersindia/" target="_blank" class="facebook-link"><i class="icon-facebook"></i></a></li>
+          <li><a href="https://twitter.com/cruisecareers" target="_blank" class="twitter-link"><i class="icon-twitter2"></i></a></li>
+          <!-- <li><a href="" target="_blank" class="google-link"><i class="icon-instagram"></i></a></li> -->
+          <li><a href="https://www.linkedin.com/company/carnival-support-services-india-pvt.-ltd" target="_blank" class="utube-link"><i class="icon-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <h5>MOBILE APP</h5>
+        <ul type="none" class="social-foot">
+         <li><a href="#!comingsoon/" class="android-link"><i class="icon-android"></i></a></li>
+          <li><a href="#!comingsoon/" class="ios-link"><i class="icon-apple"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+<div class="lower-footer">
+  &copy; 2017 CSSI Pvt. Ltd.
+</div>
+
+</div>
+<!-- <script>
+	
+    $('#chat-action').on('click', function(){
+  $('.chat-board, #chat-action').toggleClass('active');
+  
+  return false;
+});
+</script> -->
+ <script type="text/javascript">
+    $(document).ready(function(){
+      $('.company-slider').slick({
+  dots: false,
+  infinite: true,
+  arrows: true,
+  speed: 300,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  adaptiveHeight: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  pauseOnHover: false,
+  pauseOnFocus: false,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+
+    });
+    
+   
+  </script>
+
+<script type="text/javascript">
+    
+//Script for smooth scrolling
+$('a.smooth').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+        || location.hostname == this.hostname) {
+
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+           if (target.length) {
+             $('html,body').animate({
+                 scrollTop: target.offset().top - 70
+            }, 1000);
+            return false;
+        }
+    }
+});
+  </script>
+  
+  
+  <script type="text/javascript">
+  $(document).ready(function(){
+	    $('.carousel').carousel({
+	      interval: 5000,
+	      pause: "false"
+	    });
+    
+    ///Script to hide logo on click
+    $(".hide-logo").click(function(){
+    	$(".cruise-logo").fadeToggle();
+    });
+    //Script for animate on scroll
+    AOS.init();
+    
+    //Script for set sail button
+    $('body').on('click', '.setsail', function() {
+    	 $('html,body').animate({
+             scrollTop: $("#jobs").offset().top - 70 },
+             1000);
+});
+    
+    
+  });    
+</script>
+
+<script>
+//Script for sticky button
+$(window).scroll(function(){
+     var scroll = $(window).scrollTop();
+
+    if (scroll >= 500) {
+        $(".sticky-btn").addClass("reveal1");
+    }
+  else {
+        $(".sticky-btn").removeClass("reveal1");
+    }
+    if (scroll >= 1000) {
+        $(".sticky-btn").addClass("reveal2");
+    }
+  else {
+        $(".sticky-btn").removeClass("reveal2");
+    }
+
+});
+
+
+$(document).ready(function(){
+	  $('.slider-onbanner').slick({
+		  autoplay:true,
+		  arrows: false,
+		  dots:true
+		  
+	  });
+	  
+	  $(".slider-btn").click(function () {
+		  //alert();
+		  $(this).find('i').toggleClass('fa-chevron-up fa-chevron-down');
+		  $("#myDiv").toggle("slide", {
+			 // alert();
+		        direction: "right"
+		    }, 220);
+		    $(this).toggleClass('margin-left-50');
+		    
+
+		});
+	});
+	
+	
+	
+$(document).ready(function(){
+	  $('.slider-onbanner').slick({
+		  autoplay:true,
+		  arrows: false,
+		  dots:true
+		  
+	  });
+	  
+	  $(".slider-btn1").click(function () {
+		  //alert();
+		  $(this).find('i').toggleClass('fa-chevron-up fa-chevron-down');
+		  $("#myDiv1").toggle("slide", {
+			 // alert();
+		        direction: "right"
+		    }, 220);
+		    $(this).toggleClass('margin-left-50');
+		});
+		 
+
+});
+	
+	
+	
+$('#banner-slider1').carousel({
+	interval: false
+}).on('slide.bs.carousel', function () {
+	 $('video').trigger('pause');
+});
+
+$('#carousel-slider1').carousel({
+	interval: false
+});
+
+
+$('#carousel-slider2').carousel({
+	interval: false
+});
+</script>
+

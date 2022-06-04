@@ -1,0 +1,209 @@
+<div data-ng-controller="Register_Ctrl" data-ng-init="fetchMyApplications()">
+<a class="btn btn-default sticky-btn smooth" href="#jobs-main">
+	<i class="icon-chevron-left"></i>
+</a>
+ 
+<div class="height-70"></div>
+
+<section id="jobs-main" style="padding: 4% 0;">
+  <div class="container-fluid">
+    
+    <div class="row">
+      <div class="col-md-2">
+        
+      </div>
+      <div class="col-md-8 my-application-column">
+        <h3 class="search-text">My Applications</h3>
+       	<div style="height: 15px;"></div>
+
+    <div class="job-search-cntnr" >
+      <div class="srch-head"><h4>All Applications</h4></div>
+      
+   
+        <table ng-repeat="j in myApplications" class="app-table">
+           <tbody ng-if="myApplications.length>0">
+             <tr>
+	             <td><b>Position: </b></td>
+	             <td> {{j.position.name}}</td>
+	             <td class="status-applied text-right" style="width:180px;"> <i ng-if="j.status == 'Applied' || j.status == 'Selected' || j.status == 'Hold' || 
+	            j.status == 'Shortlisted' || j.status == 'Pending Brand Approval' || j.status == 'Assessment Assigned' ||
+	             j.status == 'Assessment Completed' || j.status == 'Interview Scheduled' || j.status == 'Interview Completed' ||
+	              j.status == 'Peer Review Ready' || j.status == 'Peer Review Started' " class="icon-thumbs-up"></i>
+	              <span ng-if="j.status != 'Peer Review Ready' && j.status != 'Peer Review Started' && j.status != 'Not Successful' && j.status != 'Closed' 
+	              && j.status != 'No Show' && j.status != 'Not Suitable' && j.status != 'Abandoned' 
+	             && j.status != 'Failed Assessment' && j.status != 'Inactive' ">{{j.status}}</span>
+	              <span ng-if="j.status == 'Peer Review Ready' || j.status == 'Peer Review Started'">Interview Completed</span>
+	            <!--  <td class="status-applied text-right"><span>Waiting for Peer Review</span> -->
+	             <!-- <span ng-if="j.status == 'Rejected'">Not Successful</span> -->
+	             <button type="button" ng-if="j.status == 'Applied'" class="btn btn-default btn-application-delete" 
+	              ng-click="getIdForWithdrawJob(j.id)">Withdraw Application</button>
+	             
+	             </td>
+	              <td class="status-reject text-right"> 
+	             <i style="margin-right:10px" ng-if="j.status == 'Not Successful'  || j.status == 'No Show' || j.status == 'Not Suitable' || j.status == 'Abandoned' 
+	             || j.status == 'Failed Assessment' || j.status == 'Inactive' " class="fa fa-thumbs-o-down"></i><span ng-if=" j.status == 'Not Successful' || j.status == 'Closed'
+	              || j.status == 'No Show' || j.status == 'Not Suitable' || j.status == 'Abandoned' || j.status == 'Failed Assessment' 
+	             || j.status == 'Inactive' ">{{j.status}}</span>
+	             
+	             </td>
+             </tr>
+             <tr>
+             	<td><b>Applied on:</b></td>
+              	<td> {{j.createdDate}} </td>
+              	
+             </tr>   
+             <tr>
+             	<td><b>Department:</b></td>
+              	<td> {{j.category.categoryName}}</td>
+              	
+             </tr>
+             <tr>
+             	<td><b>Brand:</b></td>
+              	<td> {{j.brand.brandName}}</td>
+              	
+             </tr>
+             <tr>
+             	<td>
+             		<button type="button" ng-show="j.candidatejourneystatuslog==null" class="btn btn-info" ng-click="displayCandidateJourneyLogsInactive(j.id)"><i class="fa fa-info-circle" aria-hidden="true"></i> Info</button>
+             	</td>
+             </tr>
+             <tr class="info_journey_box arrow_top" ng-show="j.candidatejourneystatuslog!=null && j.candidatejourneystatuslog!=0">
+             	<td>
+             	<div class="eif-application-status">
+	  		<div class="application-status " >				
+				<ul class="step">
+				  <li  ng-repeat="cl in j.candidatejourneystatuslog" class="step-item {{cl.tab}} {{cl.status_css_icon_uncompleted}}">
+				 
+				  	<p class="app-status-date">{{cl.updateddate}}</p>
+				    <!-- <a class="">Applied</a> -->
+				    <a class="">{{cl.status_name}}</a>
+				    <div class="application-status-icon"><i class="{{cl.status_css_icon}}" aria-hidden="true"></i></div>
+				    
+				  </li>
+				  
+				</ul> 
+			
+			</div>
+      </div>
+      </td>
+       </tr>
+       
+       <tr class="info_journey_box arrow_top" ng-show="activeOnClickJourneyLogs==j.id && j.candidatejourneystatuslog==null">
+       <td>
+      <div id="inactive-job-journey" class="eif-application-status">
+	  		<div class="application-status ">				
+				<ul class="step">
+				   <li ng-repeat="cli in displayCandidateJourneyLogsInactiveJobs" class="step-item  {{cli.tab}} {{cli.status_css_icon_uncompleted}}" ng-if="j.id==cli.user_jobid">
+				  	<p class="app-status-date">{{cli.updateddate}}</p>
+				    <a class="">{{cli.status_name}}</a>
+				    <div class="application-status-icon"><i class="{{cli.status_css_icon}}" aria-hidden="true"></i></div>
+				  </li>
+				  
+				</ul> 
+			
+			</div>
+      </div>
+      </td>
+      </tr>
+				
+            
+             </tbody>    
+        </table>
+        
+        <div ng-if="myApplications.length==0" style="margin-bottom: 20px;">
+			<h4 class="no-data-found">No Data Found !</h4>
+		</div>
+  		
+  		  
+    </div>
+    
+ 
+    
+      </div>
+     
+    </div>
+  </div>
+  
+  
+<!-- ----------------application withdraw modal----------------------------- -->  
+	
+	<div id="withdraw-app-modal" class="modal fade in" role="dialog" style="">
+		<div class="modal-dialog withdraw-application">	
+		  <!-- Modal content-->
+			<div class="modal-content flat-modal">
+				<div class="modal-header">
+				  	<button type="button" class="close" data-dismiss="modal">x</button>
+				  	<h4 class="modal-title common-title" style="">Withdraw Confirmation</h4>
+				</div>
+				<div class="modal-body flat-body">
+				    <p>If you confirm your application will remove from applied job.</p>
+				   
+					<div class="modal-footer withdraw-app-button">
+					  <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="updateWithdrawApplication()">Confirm</button>
+					  	<a class="btn btn-link" data-dismiss="modal">Cancel</a>
+					</div>
+				</div>
+			</div>
+		 </div>
+	</div>  
+  <script>
+	///Script to hide logo on click
+    $(".hide-logo").click(function(){
+    	$(".cruise-logo").fadeToggle();
+    });
+	
+	
+    function signOut() {    	
+        var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function () {
+            //console.log('User signed out.');
+          }); 
+      }
+
+	
+	</script>
+	
+	</section>
+	
+	<script type="text/javascript">
+  $(document).ready(function(){
+    
+  //Script for sticky button
+    $(window).scroll(function(){
+         var scroll = $(window).scrollTop();
+
+        if (scroll >= 500) {
+            $(".sticky-btn").addClass("reveal1");
+        }
+      else {
+            $(".sticky-btn").removeClass("reveal1");
+        }
+        if (scroll >= 1000) {
+            $(".sticky-btn").addClass("reveal2");
+        }
+      else {
+            $(".sticky-btn").removeClass("reveal2");
+        }
+
+    });
+  //Script for smooth scrolling
+    $('a.smooth').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+            || location.hostname == this.hostname) {
+
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+               if (target.length) {
+                 $('html,body').animate({
+                     scrollTop: target.offset().top - 70
+                }, 1000);
+                return false;
+            }
+        }
+    });
+  });    
+</script>
+	
+
+
+</div>

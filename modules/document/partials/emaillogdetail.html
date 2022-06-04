@@ -1,0 +1,307 @@
+<div id="" class="tab-pane fade in admin-page">
+      <div class="section-heading">
+        <h4>Emails</h4>
+      </div>
+      <div class="section-content" id="email-list">
+        <div class="upper-actions">
+          <div class="col-md-3 col-lg-3" style="padding: 0;">
+           <!-- <div class="button-group">
+            <button class="btn btn-default btn-delete" ng-click="check();" ><i class="icon-trash-2" data-target="#deletelist" ></i></button>
+          </div> -->
+          </div>
+          <div class="col-md-1 col-lg-1">
+            
+          </div>
+          <div class="col-md-8 col-lg-8">
+            <div class="srch-uppr" style="float: right;">
+                <div class="addfiles-btn" style="float: left;">
+                 <a ui-sref="restricted.admin.emailconfig"><button class="btn btn-configuration" id="configur" ng-click="getEmailConfigBean('null')"><i class="fa fa-cog" style="font-size: 20px;"></i>  Configuration</button></a>
+              </div>
+            <div class="button-group" style="text-align: right;display: inline-block;padding-left: 10px;">
+               <button class="btn btn-default btn-create" id="create-report-btn" style="background:#1fa67a;" ng-click="generateExcel();"><i class="fa fa-file-excel-o"></i></button>
+            </div>
+          <div class="search-cntnr" style="float: initial;">
+            <div class="form-group search-box">
+              <input type="text" name="" class="form-control flat-control-search"   ng-model="search" ng-keyup="searchOnEnter($event,search)">
+              <i class="icon-search" ng-click="fetchEmailLogDetailList(0,10,null,null,search);getEmailLogDetailListcount(search)" ></i>
+            </div>
+          </div>
+          <div class="button-group postion-relative" style="padding-left: 10px;">
+            <button class="btn btn-default btn-create dropdown-toggle" data-toggle="dropdown" id="create-req-btn" style="margin-right: 0px;"><i class="fa fa-check-square-o"></i></button>
+            <ul class="dropdown-menu selection-column " style="overflow:auto;width: 100%;">
+						 <li>
+						  	<div class="chckbx-cntnr zeromargin">
+						     <input type="checkbox" id="app1" name="check" class="flashadmin" ng-click="selectAllColoumns(colcheck);savesettings()" ng-model="colcheck">
+						     <label class="cstmchk_lbladmin"  for="app1"></label><label for="app1" class="table-label">Select All</label> 
+						   </div>
+						  </li>
+						  <li ng-repeat="c in columnlist">
+						  	<div class="chckbx-cntnr zeromargin" ng-if="c.name=='Emp Number' || c.name=='Emp Name'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()" disabled>
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						   <div class="chckbx-cntnr zeromargin" ng-hide="c.name=='Emp Number' || c.name=='Emp Name'">
+						     <input type="checkbox"  id="column{{$index}}" name="check" ng-model="c.isActive" class="flashadmin" ng-click="savesettings()">
+						     <label class="cstmchk_lbladmin"  for="column{{$index}}"></label><label for="column{{$index}}" class="table-label">{{c.name}}</label> 
+						   </div>
+						  </li>
+						  
+			</ul>
+          </div>
+        </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="table-cntnr">
+          <table class="table table-striped red-table">
+            <caption>Email Type</caption>
+            <thead>
+              <tr>
+                <th>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="rd" name="check" class="flashadmin" ng-click="checkedAllList(emaillogdetaillist,all);" ng-model="all">
+                      <label class="cstmchk_lbladmin" for="rd"></label> 
+                    </div>
+                </th>
+                <!-- <th>#ID</th> -->
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Emp Number')" >Emp Number <i class="fa fa-sort" aria-hidden="true" ng-click="SortingEmailLogList('emp_number',search)"></i></th>
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Emp Name')" >Emp Name <i class="fa fa-sort" aria-hidden="true" ng-click="SortingEmailLogList('e_email',search)"></i></th>
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Email Date')" >Email Date<i class="fa fa-sort" aria-hidden="true" ng-click="SortingEmailLogList('e_CreatedDate',search)"></i></th>
+                <th style="vertical-align: middle;min-width: 95px;" ng-show="activeColumn('Mail From')" >Mail From<i class="fa fa-sort" aria-hidden="true" ng-click="SortingEmailLogList('e_from',search)"></i></th>
+               <!--  <th>To<i class="fa fa-sort" aria-hidden="true" ng-click="SortingEmailLogList('e_to',search)"></i></th> -->
+               <!--  <th style="vertical-align: middle;min-width: 135px;" >Expiry Date <i class="fa fa-sort" aria-hidden="true"></i></th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="e in emaillogdetaillist">
+                <td>
+                  <div class="chckbx-cntnr zeromargin">
+                      <input type="checkbox" id="checkid{{$index}}" name="check" class="flashadmin" ng-click="checkedList(e.id);" ng-checked="all">
+                      <label class="cstmchk_lbladmin" for="checkid{{$index}}"></label> 
+                    </div>
+                </td>
+                <!-- <td><a data-toggle="modal" data-target="#emaillog" style="cursor:pointer;" ng-click="setEmailLogModal(e)">{{e.id}}</a></td> -->
+                <td ng-show="activeColumn('Emp Number')" ><a data-toggle="modal" data-target="#emaillog" style="cursor:pointer;" ng-click="setEmailLogModal(e)" >{{e.employeeIdentifier}}</a></td>
+                <td ng-show="activeColumn('Emp Name')">{{e.emailSenderName}}</td>
+                <td ng-show="activeColumn('Email Date')">{{dateformate(e.createDate)}}</td>
+                <td ng-show="activeColumn('Mail From')">{{e.from}}</td>
+                <!-- <td style="text-align: center;" data-toggle="modal" data-target="#add_expiry_date">
+                <a ng-if="e.expiryDate!= undefined" ng-click="setemaillistid(e)" >{{dateformate(e.expiryDate)}}</a>
+                <a  ng-if="e.expiryDate == undefined" ng-click="setemaillistid(e)" >No Date</a>
+                </td> -->
+              </tr>
+              </tbody>
+          </table>
+          <div class="text-right">
+            <ul class="pagination" style="margin-top: 0;">
+				<li><a ng-hide="start == 0" ng-click="previous()">&laquo;</a>
+				<li ng-repeat="i in navButtons" ng-class="$parent.offset == i * $parent.limit && 'active'"><a class="" ng-click="current(i)">{{i+1}}</a></li>
+				<li><a ng-hide="(((start+5)*10) + 10) >= count" ng-click="next()">&raquo;</a></li>
+			</ul>
+          </div>
+        </div>
+        </div>     
+        </div> 
+ 
+    
+	<div class="modal fade" id="emaillog">
+          <div class="modal-dialog modal-lg add-brand">        
+            <!-- Modal content-->
+            <div class="modal-content" id="reason-1">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Email #{{EmailLogmodal.employeeIdentifier}}</h4>               
+              </div>
+              <div class="modal-body">
+                <form>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <span class="">From : </span>
+                            <input type="text" class="form-control flat-control-inner" value="{{EmailLogmodal.from}}" ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                       <div class="form-group">
+                            <span class="">To :</span>
+                            <input type="text" class="form-control flat-control-inner" value=" {{EmailLogmodal.to}}" ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                       <div class="form-group">
+                            <span class="">Sub : </span>
+                            <input type="text" class="form-control flat-control-inner" value="{{EmailLogmodal.subject}}" ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group" style="padding-right: 15px;padding-left: 15px;">
+                        <textarea cols="10" rows="10" style="width:100%;margin-top: 6px;" class="form-control flat-control-inner">{{EmailLogmodal.body}}</textarea>
+                    </div>
+                    
+                    <div class="btn-cntnr text-right row">
+                        <a class="col-md-12" href="" data-dismiss="modal">Close</a>
+                    </div>
+                    
+                </form>
+              </div>                                 
+            </div> 
+          </div>
+      </div>
+   <div id="deletelist" class="modal fade" role="dialog">
+  	<div class="modal-dialog modal-sm add-brand">
+
+    <!-- Modal content-->
+	    <div class="modal-content flat-modal">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">x</button>
+	        <h4 class="modal-title common-title" style="margin-left: 0;">Delete Record</h4>
+	      </div>
+	      <div class="modal-body flat-body">
+	          <div class="clearfix" ></div>
+	        Are you sure want to delete  {{getCheckedId.length}} records?
+	      <div class="modal-footer text-left">
+	        <button type="button" class="btn btn-default" data-dismiss="modal" id="show_ass" ng-click="deleteEmailLogs();">Delete</button>
+	        <a class="btn btn-link" data-dismiss="modal" >Cancel</a>
+	      </div>
+	    </div>
+	   </div>
+    </div>
+   </div>
+    
+    
+    
+    <div class="modal fade"  id="add_more_mails">
+          <div class="modal-dialog modal-md add-brand">        
+            <!-- Modal content-->
+            <div class="modal-content" id="reason-1">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Add More</h4>               
+              </div>
+              <div class="modal-body">
+                <form>
+                    <div class="col-md-6">
+                        <div class="form-group">
+								<label for="status" class="">Mail Type</label>
+								<div class="dropdown form-control flat-control-inner">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown" aria-expanded="true" style="padding: 5px 0;">
+										Mail Type <span class="caret" style="margin: 10px 0px; float: right;"></span>
+									</div>
+                                    <div class="dropdown-backdrop"></div>
+									<ul class="dropdown-menu padmenu selection-column mail-type-listing" style="width: 100% !important; left: 0px !important;border-radius: 0;">
+										<li>
+                                            <div class="chckbx-cntnr zeromargin">
+                                              <input type="checkbox" id="mail1" name="check" class="flash">
+                                              <label class="cstmchk_lbl" for="mail1"></label>
+                                            </div>
+                                            <label class="cstmchk_lbluser" for="allbrands" style="margin:0px 10px;">Admin@gmail.com</label>
+										</li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+                  <div class="col-md-6">
+                        <div class="form-group">
+								<label for="status" class="">Assign To</label>
+								<div class="dropdown form-control flat-control-inner">
+									<div class="dropdown-toggle checkdrop " data-toggle="dropdown" aria-expanded="true" style="padding: 5px 0;">
+										Assign To <span class="caret" style="margin: 10px 0px; float: right;"></span>
+									</div>
+                                    <div class="dropdown-backdrop"></div>
+									<ul class="dropdown-menu padmenu selection-column mail-type-listing" style="width: 100% !important; left: 0px !important;border-radius: 0;">
+										<li>
+                                            <div class="chckbx-cntnr zeromargin">
+                                              <input type="checkbox" id="admin" name="check" class="flash">
+                                              <label class="cstmchk_lbl" for="admin"></label>
+                                            </div>
+                                            <label class="cstmchk_lbluser" for="allbrands" style="margin:0px 10px;">Admin</label>
+										</li>
+                                        <li>
+                                            <div class="chckbx-cntnr zeromargin">
+                                              <input type="checkbox" id="owner" name="check" class="flash">
+                                              <label class="cstmchk_lbl" for="owner"></label>
+                                            </div>
+                                            <label class="cstmchk_lbluser" for="allbrands" style="margin:0px 10px;">Owner</label>
+										</li>
+                                        <li>
+                                            <div class="chckbx-cntnr zeromargin">
+                                              <input type="checkbox" id="employee" name="check" class="flash">
+                                              <label class="cstmchk_lbl" for="employee"></label>
+                                            </div>
+                                            <label class="cstmchk_lbluser" for="allbrands" style="margin:0px 10px;">Employee</label>
+										</li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+                    
+                   
+ <div class="clearfix"></div>
+                    
+                    <div class="btn-cntnr">
+                        <button class="btn btn-default btn-bluer" id="cancel-req-btn">Action</button>
+                        <a href="" class="close" data-dismiss="modal">Cancel</a>
+                    </div>
+                </form>
+              </div>                                 
+            </div> 
+          </div>
+      </div>
+
+
+<div class="modal fade" id="add_expiry_date" role="dialog">
+          <div class="modal-dialog modal-sm add-brand">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Add Expiry Date</h4>
+              </div>
+              <div class="modal-body">
+               <form id="maxDaysUpdate">
+                  <p>Expiry Date :</p>
+                  <div class="form-group">
+                      <input type="text" name="" id="expiryDate1" class="form-control flat-control-inner dateonly" ng-model="expiryDate">                     
+                 </div>
+                 <div class="form-group text-right">
+                  <button type="submit" id="btnupdate" class="btn-info add_brand" ng-click="addExpirydate()">Add</button>
+                </div>
+               </form>
+              </div>             
+            </div>            
+          </div>   
+      </div>
+
+<script>
+    $("#configur").click(function(){
+      $("#email-listsec").show();
+      $("#email-list").hide();
+    });
+    $("#add-upload-files").click(function(){
+      $("#file-upload-section").show();
+      $("#list-uploaded-files").hide();
+    });
+    $("#documents-upload-configur").click(function(){
+      $("#upload-configuration").show();
+      $("#list-uploaded-files").hide();
+    });
+     $("#Add-info-configuration").click(function(){
+      $("#add-more-det-conf").show();
+      $("#table-configuration-info").hide();
+    });
+</script>
+  <script type="text/javascript">
+ 
+  $('#add_expiry_date').on('focus',".dateonly", function(){ 
+	 	$('.dateonly').datetimepicker({	    		
+				 format: 'DD-MM-YYYY',
+				 minDate:new Date(),
+				 minDate:moment().subtract(1,'d'), 
+	 	});
+	 }); 
+	 
+	     </script>
+
+
+
+
+
+  
