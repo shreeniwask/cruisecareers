@@ -1,0 +1,95 @@
+
+.top-buttons button{
+  width: 125px;
+  height: 34px;
+  padding: 7px 5px;
+  font-size: 14px;
+  color: #fff;
+  border: 0px;
+  margin: 2px 0px;
+  outline: none !important;
+}
+.btn-save{ 
+  background: #00aeef;
+}
+.btn-preview{
+  background: #41bb71;
+}
+.btn-publish{
+  background: #d8d8d8; 
+}
+.btn-cancle{
+  background: #abb4b7; 
+}
+.bottom-conntents{
+  margin-top: 20px;
+  padding: 30px;
+}
+.bottom-conntents textarea{
+  height: 160px;
+}
+.table-box{
+  background: #fff !important;
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 5px;
+  padding: 10px;
+}
+.table-box th{
+  font-size: 12px;
+  border-bottom: 1px solid #ddd !important;
+}
+.table-box tr{
+  background: none !important;
+}
+.table-box tbody tr td{
+  vertical-align: middle;
+  font-size: 12px;
+}
+.table-box table{
+  margin-bottom: 0px;
+}
+.table-box tbody tr td .form-group{
+  margin-bottom: 0px;
+}
+.table-box tbody tr td .form-group input, .table-box tbody tr td .form-group select{
+  margin-bottom: 0px;
+}
+.table-button{
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.table-button button{
+  height: 34px;
+  padding: 7px 15px;
+  font-size: 14px;
+  color: #fff;
+  border: 0px;
+  margin: 2px 10px;
+  outline: none !important;
+}
+.btn-upload-excel{
+  background: #04B44A;
+}
+
+
+
+
+
+
+
+.btn-delete-col{
+  padding-right: 0px; 
+  display: flex; 
+  justify-content: flex-end; 
+  padding-top: 2px;
+}
+@media (min-width: 992px){
+  .upper-section .col-md-5{
+    padding: 0px;
+  }
+  .upper-section .col-md-5 button{
+    width: 100px !important;
+    
+  }
+}
