@@ -1,17 +1,17 @@
-.upper-section .search-box{
+.top-section .search-box{
   display:inline-block;
   width:25%;
 }
 
-.upper-section .search-box button{
+.top-section .search-box button{
   margin-right:0px;
   padding: 7px 10px;
 }
-.upper-section .col-md-5{
+.top-section .col-md-5{
   display: flex;
     justify-content: space-between;
 }
-.upper-section .col-md-5 button{
+.top-section .col-md-5 button{
   margin-right: 10px;
 }
 .btn-add-new{
@@ -50,17 +50,25 @@
 .table-cntnr{
   margin-top: 50px;
 }
+.top-section .red-table tbody tr td i{
+  margin-right: 10px;
+  color: #00aeef;
+  cursor: pointer;
+}
+.top-section .red-table tbody tr td i:hover{
+  color: #23527c;
+}
 .btn-delete-col{
   padding-right: 0px; 
   display: flex; 
   justify-content: flex-end; 
   padding-top: 2px;
 }
-@media (min-width: 992px){
-  .upper-section .col-md-5{
+@media (max-width: 992px){
+  .top-section .col-md-5{
     padding: 0px;
   }
-  .upper-section .col-md-5 button{
+  .top-section .col-md-5 button{
     width: 100px !important;
     
   }
