@@ -6,8 +6,12 @@
   font-size: 14px;
   color: #fff;
   border: 0px;
-  margin: 2px 0px;
+  margin: 2px 5px;
   outline: none !important;
+}
+.top-buttons .button-group{
+  display: flex;
+  justify-content: space-between;
 }
 .btn-save{ 
   background: #00aeef;
