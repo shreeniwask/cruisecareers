@@ -44,6 +44,9 @@
 		display: flex;
     	justify-content: space-between;
 	}
+	.upper-section .col-md-5 button{
+		margin-right: 10px;
+	}
 	.btn-add-new{
 		width: 125px;
 		height: 34px;
@@ -53,6 +56,7 @@
 		color: #fff;
 		border: 0px;
 		margin: 2px 0px;
+		outline: none !important;
 	}
 	.btn-published{
 		width: 125px;
@@ -63,6 +67,7 @@
 		color: #fff;
 		border: 0px;
 		margin: 2px 0px;
+		outline: none !important;
 	}
 	.btn-unpublished{
 		width: 125px;
@@ -73,10 +78,27 @@
 		color: #fff;
 		border: 0px;
 		margin: 2px 0px;
+		outline: none !important;
 	}
 	.table-cntnr{
 		margin-top: 50px;
 	}
+	.btn-delete-col{
+		padding-right: 0px; 
+		display: flex; 
+		justify-content: flex-end; 
+		padding-top: 2px;
+	}
+	@media (min-width: 992px){
+		.upper-section .col-md-5{
+			padding: 0px;
+		}
+		.upper-section .col-md-5 button{
+			width: 100px !important;
+			
+		}
+	}
+	
 </style>
 </head>
 <body ng-app="CruiseWebsite" class="ng-scope" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
@@ -649,8 +671,8 @@
 									<button class="btn btn-default btn-unpublished" type="button">Unpublished</button>
 								</div>
 							</div>
-							<div class="col-md-1" style="padding-right: 0px">
-								<button class="btn btn-default btn-delete" style="float: right; margin-right:0px"><i class="icon-trash-2"></i></button>
+							<div class="col-md-1 btn-delete-col">
+								<button class="btn btn-default btn-delete" style="margin-right:0px"><i class="icon-trash-2"></i></button>
 							</div>
 						
 
@@ -708,7 +730,7 @@
 											</td>
 											<td>Medical Reports</td>											
 											<td>
-												<a><i class="fa fa-clone" aria-hidden="true" style="margin-right:10px;"></i>https://rb.gy/uoh434y</a>
+												
 											</td>
 											<td>
 												<p style="color: #FC0202;">Unpublished</p>
@@ -740,7 +762,7 @@
 											</td>
 											<td>Company Information</td>											
 											<td>
-												<a><i class="fa fa-clone" aria-hidden="true" style="margin-right:10px;"></i>https://rb.gy/u1h9ay</a>
+												
 											</td>
 											<td>
 												<p style="color: #FC0202;">Unpublished</p>
