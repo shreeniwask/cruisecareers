@@ -583,120 +583,350 @@
 						<h4>Decision Tree</h4>
 					</div>
 					<div class="col-md-12">
-						<div class="bx-step bx-default-step">
+						<!--<div class="bx-step bx-default-step">
 
-							<div class="bx-step-item active">
-							<div class="Step-labels ">
-								<a class="bx-step-link " data-slide-index="0" href=""> Step 1 </a></br>
-							<span>Decision Tree Information</span>
+							<div class="bx-step-item step1-tab active">
+								<div class="Step-labels ">
+									<a class="bx-step-link " data-slide-index="0" href=""> Step 1 </a></br>
+								<span>Decision Tree Information</span>
+								</div>
+								<div class="arrow">
+						
+								</div>
 							</div>
-							<div class="arrow">
 					
-							</div>
-							</div>
-					
-							<div class="bx-step-item active">
+							<div class="bx-step-item step2-tab">
 								<div class="Step-labels second">
-								<a class="bx-step-link" data-slide-index="1" href=""> Step 2 </a></br>
-							<span>Upload Files</span>
+									<a class="bx-step-link" data-slide-index="1" href=""> Step 2 </a></br>
+									<span>Upload Files</span>
+								</div>
+								<div class="arrow">
+						
+								</div>
 							</div>
-							<div class="arrow">
 					
-							</div>
-							</div>
-					
-							<div class="bx-step-item">
+							<div class="bx-step-item step3-tab">
 								<div class="Step-labels third">
-								<a class="bx-step-link" data-slide-index="2" href=""> Step 3 </a></br>
-								<span>Add Questions</span>
+									<a class="bx-step-link" data-slide-index="2" href=""> Step 3 </a></br>
+									<span>Add Questions</span>
 								</div>
 							
 							</div>
 					
+						</div>-->
+						<div id="flowBoxes">
+							<div class="tab-step right step1-tab active"><span>Step 1</span></br><span class="step-desc">Decision Tree Information</span></div>
+							<div class="tab-step left right step2-tab"><span>Step 2</span></br><span class="step-desc">Upload Files</span></div>
+							<div class="tab-step left step3-tab" ><span>Step 3</span></br><span class="step-desc">Add Questions</span></div>
 						</div>
 
-						<div class="bx-step-pane">
+						<div class="bx-step-pane step1">
 							<div class="pane-inner">
-								<div class="upload-files-div">
-									<div class="col-md-6">
-										<span class="heading">Upload Files</span>
-										<div class="upload-div">
-											<img src="resources/img/upload-icon.png">
-											<p><b>Drag & drop files or <span class="theme-color">Browse</span></b></p>
-											<small>Supported formates: Zip,RAR,Wzip</small>
+								<div class="section-content">
+									<div class="top-buttons">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="button-group pull-right">
+													<button class="btn btn-default btn-cancle" type="button">Cancel</button>
+												</div>
+												<div class="button-group pull-right">
+													<button class="btn btn-default btn-publish" type="button">Publish</button>
+												</div>
+												<div class="button-group pull-right">
+													<button class="btn btn-default btn-preview" type="button">Preview</button>
+												</div>
+												<div class="button-group pull-right">
+													<button class="btn btn-default btn-save" type="button">Save</button>
+												</div>					
+												
+												
+												
+											</div>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<span class="heading">Download Sample File by clicking on Button</span>
-										<div class="button-div">
-											<button class="btn btn-default btn-download" type="button" ><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel Format</button>
-										</div>
-										<span class="heading">Uploaded Files</span>
-										<span class="heading" style="float:right;color:red;">Logs</span>
-										<hr></hr>
-										<p>document-name.zip</p>
-										
-									</div>
-									<div class="clearfix"></div>
-									<hr class="separator"></hr>
-									<div class="static-files-div">
-										
-										<div class="col-md-12">
-											
-											<span class="heading">Static Files</span>
-											
-											<div class="form-group file-upload-div">
-												<input type="file" name="" class="file que-file-upload">                                                
-												<div class="input-group">
-													<input type="text" id="shipfilepath" class="form-control flat-control-inner" disabled="" readonly="" required="">
-													<span class="input-group-btn">
-														<span class="btn btn-primary btn-file"> Browse
-															<input type="file" id="shipfile" onchange="angular.element(this).scope().fileNameChanged(this)" single="">
-														</span>
-													</span> 
+			
+									<div class="bottom-conntents">
+										<div class="row">
+											<div class="col-md-5">
+												<div class="form-group">
+													<label>Decision Tree Name</label>
+													<input type="number" class="form-control flat-control-inner">
+												</div>
+												<div class="form-group">
+													<label>Internal Description</label>
+													<textarea class="form-control flat-control-inner"></textarea>
 												</div>
 											</div>
-											<div class="static-file-div">
-												<table class="static-file-table">
-													<tr>
-													  <th>Sr. no.</th>
-													  <th>Firstname</th>
-													  <th>Uploaded File</th> 
-													  <th>Date</th>
-													</tr>
-													<tr>
-													  <td>1</td>
-													  <td>File1</td>
-													  <td>file1.pdf</td>
-													  <td>10-12-2020</td>
-													</tr>
-													<tr>
-														<td>2</td>
-														<td>File2</td>
-														<td>file2.pdf</td>
-														<td>08-12-2020</td>
-													</tr>
-													<tr>
-														<td>3</td>
-														<td>File3</td>
-														<td>file3.pdf</td>
-														<td>12-11-2020</td>
-													</tr>
-												  </table>
+											<div class="col-md-7">
+												<div class="table-box">
+													<div class="table-cntnr">
+														<table class="table table-striped">
+															<thead>
+																<th>Identifier</th>
+																<th style="width: 180px;">Field Name</th>
+																<th style="width: 180px;">Field Type</th>
+																<th style="width: 100px;">Use for OTP</th>
+																<th></th>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>
+																		<div class="chckbx-cntnr zeromargin">
+																			<input type="checkbox" name="check" class="flashadmin" id="identifier_chbox_1">
+																			<label class="cstmchk_lbladmin" for="identifier_chbox_1"></label>   
+																		</div>
+																	</td>
+																	<td>
+																		<div class="form-group">
+																			<input class="form-control flat-control-inner" placeholder="Field  Name">
+																		</div>
+																	</td>
+																	<td>
+																		<div class="form-group">
+				
+																			<select class="form-control flat-control-inner" id="">
+																				<option value="" class="" selected="selected">--Field Type--</option>
+																			</select>
+																			
+																			
+																			</div>
+																	</td>
+																	<td>
+																		<div class="chckbx-cntnr zeromargin">
+																			<input type="checkbox" name="check" class="flashadmin" id="identifier_chbox_2">
+																			<label class="cstmchk_lbladmin" for="identifier_chbox_2"></label>   
+																		</div>
+																	</td>
+																	<td>
+																		<div class="button-group">
+																			<a class="btn btn-default btn-OTP">-</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<div class="chckbx-cntnr zeromargin">
+																			<input type="checkbox" name="check" class="flashadmin" id="identifier_chbox_3">
+																			<label class="cstmchk_lbladmin" for="identifier_chbox_3"></label>   
+																		</div>
+																	</td>
+																	<td>
+																		<div class="form-group">
+																			<input class="form-control flat-control-inner" placeholder="Field  Name">
+																		</div>
+																	</td>
+																	<td>
+																		<div class="form-group">
+				
+																			<select class="form-control flat-control-inner" id="">
+																				<option value="" class="" selected="selected">--Field Type--</option>
+																			</select>
+																		</div>
+																	</td>
+																	<td>
+																		<div class="chckbx-cntnr zeromargin">
+																			<input type="checkbox" name="check" class="flashadmin" id="identifier_chbox_4">
+																			<label class="cstmchk_lbladmin" for="identifier_chbox_4"></label>   
+																		</div>
+																	</td>
+																	<td>
+																		<div class="button-group">
+																			<a class="btn btn-default btn-OTP">-</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<div class="chckbx-cntnr zeromargin">
+																			<input type="checkbox" name="check" class="flashadmin" id="identifier_chbox_5">
+																			<label class="cstmchk_lbladmin" for="identifier_chbox_5"></label>   
+																		</div>
+																	</td>
+																	<td>
+																		<div class="form-group">
+																			<input class="form-control flat-control-inner" placeholder="Field  Name">
+																		</div>
+																	</td>
+																	<td>
+																		<div class="form-group">
+				
+																			<select class="form-control flat-control-inner" id="">
+																				<option value="" class="" selected="selected">--Field Type--</option>
+																			</select>
+																			
+																			
+																			</div>
+																	</td>
+																	<td>
+																		<div class="chckbx-cntnr zeromargin">
+																			<input type="checkbox" name="check" class="flashadmin" id="identifier_chbox_6">
+																			<label class="cstmchk_lbladmin" for="identifier_chbox_6"></label>   
+																		</div>
+																	</td>
+																	<td>
+																		<div class="button-group">
+																			<a class="btn btn-default btn-OTP">-</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<div class="chckbx-cntnr zeromargin">
+																			<input type="checkbox" name="check" class="flashadmin" id="identifier_chbox_7">
+																			<label class="cstmchk_lbladmin" for="identifier_chbox_7"></label>   
+																		</div>
+																	</td>
+																	<td>
+																		<div class="form-group">
+																			<input class="form-control flat-control-inner" placeholder="Field  Name">
+																		</div>
+																	</td>
+																	<td>
+																		<div class="form-group">
+				
+																			<select class="form-control flat-control-inner" id="">
+																				<option value="" class="" selected="selected">--Field Type--</option>
+																			</select>
+																		</div>
+																	</td>
+																	<td>
+																		<div class="chckbx-cntnr zeromargin">
+																			<input type="checkbox" name="check" class="flashadmin" id="identifier_chbox_8">
+																			<label class="cstmchk_lbladmin" for="identifier_chbox_8"></label>   
+																		</div>
+																	</td>
+																	<td>
+																		<div class="button-group">
+																			<a class="btn btn-default btn-OTP">-</a>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+			
+												<div class="table-button">
+													<div class="button-group">
+														<button class="btn btn-default btn-upload-excel" type="button"><i class="fa fa-file-excel-o" style="margin-right: 5px;"></i>  Upload Excel File</button>
+													</div>					
+													<div class="button-group">
+														<button class="btn btn-default btn-save btn-add-more" type="button"><i class="icon-plus" style="margin-right: 5px;"></i>  Add More Fields</button>
+													</div>
+												</div>
 											</div>
 										
 										</div>
 									</div>
-									<div class="form-group text-center">
-										<button type="submit" class="btn btn-default step-btn">Previous</button>
-										<button type="submit" class="btn btn-info step-btn">Save & Next</button>
-									</div>
-									<div class="clearfix"></div>
 								</div>
+								<div class="form-group text-center">
+									<button type="submit" class="btn btn-info step-btn step-btn1">Save & Next</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="bx-step-pane step2" >
+							<div class="pane-inner">
+								<div class="">
+									<div class="upload-files-div">
+										<div class="col-md-6">
+											<span class="heading">Upload Files</span>
+											<div class="upload-div">
+												<img src="resources/img/upload-icon.png">
+												<p><b>Drag & drop files or <span class="theme-color">Browse</span></b></p>
+												<small>Supported formates: Zip,RAR,Wzip</small>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<span class="heading">Download Sample File by clicking on Button</span>
+											<div class="button-div">
+												<button class="btn btn-default btn-download" type="button" ><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel Format</button>
+											</div>
+											<span class="heading">Uploaded Files</span>
+											<a class="heading log-file-link " >Logs</a>
+											<hr></hr>
+											<p>document-name.zip</p>
+											
+										</div>
+										<div class="clearfix"></div>
+										<hr class="separator"></hr>
+										<div class="static-files-div">
+											
+											<div class="col-md-12">
+												
+												<span class="heading">Static Files</span>
+												
+												<div class="form-group file-upload-div">
+													<input type="file" name="" class="file que-file-upload">                                                
+													<div class="input-group">
+														<input type="text" id="shipfilepath" class="form-control flat-control-inner" disabled="" readonly="" required="">
+														<span class="input-group-btn">
+															<span class="btn btn-primary btn-file"> Browse
+																<input type="file" id="shipfile" onchange="" single="">
+															</span>
+														</span> 
+													</div>
+												</div>
+												<div class="static-file-div">
+													<table class="static-file-table">
+														<tr>
+														<th>Sr. no.</th>
+														<th>Firstname</th>
+														<th>Uploaded File</th> 
+														<th>Date</th>
+														</tr>
+														<tr>
+														<td>1</td>
+														<td>File1</td>
+														<td>file1.pdf</td>
+														<td>10-12-2020</td>
+														</tr>
+														<tr>
+															<td>2</td>
+															<td>File2</td>
+															<td>file2.pdf</td>
+															<td>08-12-2020</td>
+														</tr>
+														<tr>
+															<td>3</td>
+															<td>File3</td>
+															<td>file3.pdf</td>
+															<td>12-11-2020</td>
+														</tr>
+													</table>
+												</div>
+											
+											</div>
+										</div>
+										<div class="form-group text-center">
+											<button type="submit" class="btn btn-default step-btn prev1">Previous</button>
+											<button type="submit" class="btn btn-info step-btn step-btn2">Save & Next</button>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+
+								</div>
+
+								
 
 								
 								
 							</div>					
+						</div>
+
+						<div class="bx-step-pane step3">
+							<div class="pane-inner">
+								<div class="">
+									<div class="col-md-12">
+										<span class="heading">Root Question</span>
+										<button type="submit" class="btn btn-default" data-toggle="modal" data-target="#add-question">Add Questions</button>
+									</div>
+									<div class="form-group text-center">
+										<button type="submit" class="btn btn-default step-btn prev2">Previous</button>
+										<button type="submit" class="btn btn-info step-btn step-btn3">Save & Next</button>
+									</div>
+								</div>
+							</div>
 						</div>
 				    </div>
 				</div>
@@ -706,3 +936,211 @@
 	</ui-view>
 </body>
 </html>
+
+<!----Add Question Modal -->
+<div class="modal" id="add-question" role="dialog" >
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal">×</button>
+		</div>
+		<div class="modal-body">
+		  
+			<div class="col-md-12">
+				<span class="heading">Add Question</span>
+				<div class="search-div">
+					<div class="form-group search-box">
+					  <input type="text" name="" id="" class="form-control flat-control-search mar-bottom-zero" >
+					  <i class="icon-search" id="" ></i>
+					</div>
+				</div>
+				<div class="options-div">
+					<div class="radio-btn-div marg_top8">
+						<input type="radio" id="" name="radiobtn1" value="" class="ng-pristine ng-untouched ng-valid ng-empty" checked="checked">
+						<label for="">Do you want to  Apply for jobs ?</label>
+					</div>
+					<div class="radio-btn-div marg_top8">
+						<input type="radio" id="" name="radiobtn2" value="" class="ng-pristine ng-untouched ng-valid ng-empty" >
+						<label for="">What are you looking for ?</label>
+					</div>
+					<div class="radio-btn-div marg_top8">
+						<input type="radio" id="" name="radiobtn3" value="" class="ng-pristine ng-untouched ng-valid ng-empty">
+						<label for="">What you want to do ?</label>
+					</div>
+					<div class="radio-btn-div marg_top8">
+						<input type="radio" id="" name="radiobtn4" value="" class="ng-pristine ng-untouched ng-valid ng-empty">
+						<label for="">Do you want to schedule an event ?</label>
+					</div>
+					<div class="radio-btn-div marg_top8">
+						<input type="radio" id="" name="radiobtn5" value="" class="ng-pristine ng-untouched ng-valid ng-empty" >
+						<label for="">How to take surveys ?</label>
+					</div>
+					<div class="radio-btn-div marg_top8">
+						<input type="radio" id="" name="radiobtn6" value="" class="ng-pristine ng-untouched ng-valid ng-empty">
+						<label for="">Where to check more about company ?</label>
+					</div>
+					<div class="radio-btn-div marg_top8">
+						<input type="radio" id="" name="radiobtn7" value="" class="ng-pristine ng-untouched ng-valid ng-empty">
+						<label for="">How one can apply for more than one job ?</label>
+					</div>
+					<div class="radio-btn-div marg_top8">
+						<input type="radio" id="" name="radiobtn8" value="" class="ng-pristine ng-untouched ng-valid ng-empty" >
+						<label for="">After how  many days one can apply to the same company ?</label>
+					</div>
+				</div>
+		    </div>
+		   <div class="form-group text-center">
+				<button type="submit" class="btn btn-default step-btn">Cancel</button>
+				<button type="submit" class="btn btn-info step-btn ">Add</button>
+			</div>
+		  
+		 </form>
+		</div>              
+	  </div>            
+	</div>
+</div>
+
+<!-- Output Modal -->
+<div class="modal" id="Output-modal" role="dialog">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal">×</button>
+		</div>
+		<div class="modal-body">
+		  
+			<div class="col-md-6">
+				<span class="heading">Output Fields</span>
+				<hr></hr>
+				<div class="options-div">
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" checked>
+						<label class="form-check-label">Email Address</label>
+					  </div>
+					  <div class="form-check">
+						<input type="checkbox" class="form-check-input" checked>
+						<label class="form-check-label">Mobile Number</label>                    
+					   
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" >
+						<label class="form-check-label">Application Id</label>                    
+					   
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" >
+						<label class="form-check-label">Customer Id</label>                    
+					   
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" >
+						<label class="form-check-label">Location</label>                    
+					   
+					</div>
+					
+				</div>
+				
+		    </div>
+
+			<div class="col-md-6">
+				<span class="heading">Static Files</span>
+				<hr></hr>
+				<div class="options-div">
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" >
+						<label class="form-check-label">File1.zip</label>                    
+					   
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" >
+						<label class="form-check-label">File2.pdf</label>                    
+					   
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" >
+						<label class="form-check-label">File3.pdf</label>                    
+					   
+					</div>
+					
+				</div>
+				
+		    </div>
+		   <div class="form-group text-center">
+				<button type="submit" class="btn btn-default step-btn">Cancel</button>
+				<button type="submit" class="btn btn-info step-btn ">Add</button>
+			</div>
+		  
+		 </form>
+		</div>              
+	  </div>            
+	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+    
+
+    $(".step-btn1").click(function () {
+		$(".step1").hide();
+        $(".step3").hide();
+        $(".step2").show();
+		$(".step2-tab").addClass("active");
+
+    });
+	$(".step-btn2").click(function () {
+
+		$(".step2").hide();
+		$(".step1").hide();
+		$(".step3").show();
+		$(".step3-tab").addClass("active");
+
+	});
+	$(".step-btn3").click(function () {
+
+		$(".step2").hide();
+		$(".step1").hide();
+		$(".step3").show();
+
+	});
+    $(".prev1").click(function () {
+
+        $(".step1").show();
+        $(".step2").hide();
+		$(".step2-tab").removeClass("active");
+		$(".step1-tab").addClass("active");
+        
+    });
+	$(".prev2").click(function () {
+
+		$(".step2").show();
+		$(".step3").hide();
+		$(".step3-tab").removeClass("active");
+		$(".step2-tab").addClass("active");
+
+	});
+	$(".step1-tab").click(function () {
+		$(".step2-tab").removeClass("active");
+		$(".step3-tab").removeClass("active");
+		$(".step2").hide();
+		$(".step1").hide();
+        $(".step3").show();
+	});
+	$(".step2-tab").click(function () {
+		$(".step2-tab").addClass("active");
+		$(".step3-tab").removeClass("active");
+		$(".step2").show();
+		$(".step1").hide();
+        $(".step3").hide();
+	});
+	$(".step3-tab").click(function () {
+		$(".step3-tab").addClass("active");
+		$(".step3").show();
+		$(".step2").hide();
+        $(".step1").hide();
+	});
+});
+
+
+
+
+</script>
