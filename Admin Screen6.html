@@ -596,59 +596,104 @@
 							</div>
 
 
+							
+
+
+
 							<div class="bottom-content">
 								<div class="row">
 									<div class="col-md-12">
 										<div class="level">
-											<div class="row">
-												<div class="col-md-12">
-													<div  class="level-header">
-														<h5>Level 1</h5>
-														<i class="fa fa-chevron-down" aria-hidden="true"></i>
+											<div class="bs-example">
+												<div class="panel-group" id="accordion">
+												  	<div class="panel panel-default">
+														<div class="panel-heading level-heading">
+															<h4 class="panel-title">
+																<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+																	<h5>Level 1</h5>
+																	<span class="glyphicon glyphicon-chevron-down"></span> 
+																</a>
+															</h4>
+														</div>
+														<div id="collapseOne" class="panel-collapse collapse in">
+															<div class="panel-body">
+																<div class="col-md-12" style="margin-bottom: 15px;">
+																	<span style="margin-right: 50px;">1. Want you want to know</span><a>Remove</a>
+																</div>
+																<div class="col-md-3">
+																	<div class="level-box">
+																		<p>1. Want to know your application Status</p>
+																	</div>
+																	<i class="fa fa-cog" aria-hidden="true"></i>
+																</div>
+																<div class="col-md-3">
+																	<div class="level-box">
+																		<p>2. Watch your medical records</p>
+																	</div>
+																	<i class="fa fa-cog" aria-hidden="true"></i>
+																</div>
+																<div class="col-md-3">
+																	<div class="level-box">
+																		<p>3. Want to check compilance Information</p>
+																	</div>
+																	<i class="fa fa-cog" aria-hidden="true"></i>
+																</div>
+																<div class="col-md-3">
+																	<div class="level-box">
+																		<p>4. Want to know more job vaccencies</p>
+																	</div>
+																	<i class="fa fa-cog" aria-hidden="true"></i>
+																</div>
+															</div>
+														</div>
 													</div>
+
+
+
+
+
+												  	<div class="panel panel-default">
+														<div class="panel-heading">
+															<h4 class="panel-title">
+																<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+																	<h5>Level 2</h5>
+																	<span class="glyphicon glyphicon-chevron-down"></span> 
+																</a>
+															</h4>
+														</div>
+														<div id="collapseTwo" class="panel-collapse collapse">
+															<div class="panel-body">
+																<div class="col-md-12" style="margin-bottom: 15px;">
+																	<span style="margin-right: 50px;">2. Want to know your application Status</span><a>Remove</a>
+																</div>
+																<div class="col-md-3">
+																	<div class="level-box">
+																		<p>1. Want to know your application Status</p>
+																	</div>
+																	<i class="fa fa-cog" aria-hidden="true"></i>
+																</div>
+																<div class="col-md-3">
+																	<div class="level-box">
+																		<p>2. Watch your medical records</p>
+																	</div>
+																	<i class="fa fa-cog" aria-hidden="true"></i>
+																</div>
+																
+															</div>
+														</div>
+													</div>
+
+
+
+
+
+
+
+
+												  	
 												</div>
 											</div>
-											<div class="row">
-												<div class="col-md-12">
-													<label style="margin-right: 50px;">1. Want you want to know</label><a>Remove</a>
-												</div>
-												<div class="col-md-3">
-													<div class="level-box">
-														<p>1. Want to know your application Status</p>
-													</div>
-													<i class="fa fa-cog" aria-hidden="true"></i>
-												</div>
-												<div class="col-md-3">
-													<div class="level-box">
-														<p>2. Watch your medical records</p>
-													</div>
-													<i class="fa fa-cog" aria-hidden="true"></i>
-												</div>
-												<div class="col-md-3">
-													<div class="level-box">
-														<p>3. Want to check compilance Information</p>
-													</div>
-													<i class="fa fa-cog" aria-hidden="true"></i>
-												</div>
-												<div class="col-md-3">
-													<div class="level-box">
-														<p>4. Want to know more job vaccencies</p>
-													</div>
-													<i class="fa fa-cog" aria-hidden="true"></i>
-												</div>
-												<div class="col-md-3">
-													<div class="level-box">
-														<p>3. Want to know your application Status</p>
-													</div>
-													<i class="fa fa-cog" aria-hidden="true"></i>
-												</div>
-												<div class="col-md-3">
-													<div class="level-box">
-														<p>5. Watch your medical records</p>
-													</div>
-													<i class="fa fa-cog" aria-hidden="true"></i>
-												</div>
-											</div>
+											
 										</div>
 									</div>
 								</div>
@@ -681,4 +726,31 @@
 		</div>
 	</div>
 </body>
+<script>
+	$(document).ready(function() {
+  // Add minus icon for collapse element which is open by default
+  $(".collapse.in").each(function() {
+    $(this)
+      .siblings(".panel-heading")
+      .find(".glyphicon")
+      .addClass("rotate");
+  });
+
+  // Toggle plus minus icon on show hide of collapse element
+  $(".collapse")
+    .on("show.bs.collapse", function() {
+      $(this)
+        .parent()
+        .find(".glyphicon")
+        .addClass("rotate");
+    })
+    .on("hide.bs.collapse", function() {
+      $(this)
+        .parent()
+        .find(".glyphicon")
+        .removeClass("rotate");
+    });
+});
+
+</script>
 </html>
