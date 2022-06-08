@@ -1,0 +1,220 @@
+<html class=" js sessionstorage">
+<head>
+	<title>Cruise Careers</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google-signin-client_id" content="1078553659171-em1ggipvedlrijioae2up3epdikas5m3.apps.googleusercontent.com">
+	<link rel="shortcut icon" href="resources/img/logo.png">
+
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/css/cruise.css">
+	<link rel="stylesheet" href="resources/css/style.css">
+	<link rel="stylesheet" href="resources/css/slick.css">
+	<link rel="stylesheet" href="resources/css/slick-theme.css">
+	<link rel="stylesheet" href="resources/css/aos.css">
+	<link rel="stylesheet" href="vendor/jquery-ui-1.12.1/jquery-ui.css">
+	<link rel="stylesheet" href="resources/css/job-seeker.css">
+	<!-- <link rel="stylesheet" href="resources/css/bootstrap-datepicker3.min.css"> -->
+	<link rel="stylesheet" href="resources/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="resources/css/filepicker.default.css">
+	<link rel="stylesheet" href="resources/css/admin.css">
+	<link rel="stylesheet" href="resources/css/bootstrap-toggle.min.css">
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css">
+	<link rel="stylesheet" href="resources/css/job_fair.css">
+	<link rel="stylesheet" href="resources/css/bootstrap-imageupload.min.css">
+
+	<link rel="stylesheet" href="resources/css/chat_screen.css">
+
+	<script src="vendor/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/bootstrap-datetimepicker.min.js"></script>
+	
+
+<style>
+	
+</style>
+</head>
+<body ng-app="CruiseWebsite" class="ng-scope" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+	<div class="loader" style="display: none;"></div>
+	<!-- uiView: -->
+	<ui-view class="ng-scope">		
+		<div ng-controller="Header_Ctrl" class="ng-scope">
+			<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="call_confirmation">
+				<div class="modal-dialog modal-sm add-brand">
+					<div class="modal-content flat-modal">
+						<div class="modal-header">
+							<button type="button" class="close" ng-click="declineCall()" aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Incoming Call from Support</h4>
+						</div>
+						<div class="modal-body flat-body" "="">
+						<img src=" resources/img/ic/call.gif">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" id="modal-btn-si" ng-click="acceptCall()">Accept</button>
+							<button type="button" class="btn btn-primary" id="modal-btn-no" ng-click="declineCall()">Decline</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div ng-controller="Register_Ctrl" class="ng-scope">
+				<nav class="navbar navbar-default admin-nav ng-scope"
+					ng-if="userdetails.roleId == 1 || (userdetails.roleId > 3 &amp;&amp; userdetails.roleId <= 8) || userdetails.roleId == 9 || userdetails.roleId == 12 || userdetails.roleId == 10">
+					<div class="container-fluid">
+						<ul class="nav navbar-nav navbar-right adminmenu">
+
+							<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> 
+								<img class="admin-img" src="resources/img/call.png">
+								</a>
+								<ul class="dropdown-menu kk-flex" style="padding: 0px !important; border: 2px solid #ccc;">
+								</ul>
+							</li>
+							<li ng-if="userdetails.roleId == 8 || userdetails.roleId == 1 || userdetails.roleId == 12 || userdetails.roleId == 4 || userdetails.roleId == 5 || userdetails.roleId == 6 || userdetails.roleId == 7 ||  userdetails.roleId == 9"
+								class="dropdown ng-scope"><a class="smooth big-icon notification-bell dropdown-toggle"
+									data-toggle="dropdown"> <i class="icon-bell" ng-mouseover="hoverIn()"
+										ng-mouseleave="hoverOut()" ng-click="seeAllNotifications()"
+										style="cursor: pointer;"></i>
+								</a>
+							</li>
+							<li class="dropdown"><a class="dropdown-toggle ng-binding" data-toggle="dropdown" href="">
+									<div class="admin-img"
+										style="background-image: url(https://cruisecareers.in//cruise//attachments//userProfile//avtar_dummy.png);">
+									</div>
+									admin admin1 <span class="icon-chevron-down"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a ui-sref="restricted.admin.changepasswordAdmin" class="logout-admin" href="#!/admin/changepasswordadmin"><i class="icon icon-lock change_pwd"></i>Change Password</a>
+									</li>
+									<li>
+										<a ng-click="logoutAdmin()" class="logout-admin"><i class="fa fa-power-off change_pwd"></i>Logout</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<!-- uiView: -->
+		<div ui-view="" class="ng-scope">
+			<div ng-if="userdetails.roleId == 1 || userdetails.roleId == 10 || (userdetails.roleId > 3 &amp;&amp; userdetails.roleId <= 8) || userdetails.roleId == 9 || userdetails.roleId == 12"
+				style="height: 70px" class="ng-scope"></div>
+			
+			
+			
+			<ui-view class="ng-scope">
+				<link rel="stylesheet" href="resources/css/newwidget.css" class="ng-scope">
+				
+			</ui-view>
+		</div>
+
+
+
+
+	</ui-view>
+
+
+
+
+
+	<div class="chat-page">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-8 offset-2">
+					<h2>Decision Tree Name</h2>
+					<div class="chat-box">
+						<div class="row">
+							<div class="question-row">
+								<div class="q-profile">
+									<img src="resources/img/q-profile.png" alt="">
+								</div>
+							
+								<div class="question-row-right">
+									<div class="help-desc-question">
+										<p>How may i help you?</p>
+									</div>
+									<div class="help-desc-answer-row">
+										<div class="help-desc-answer">
+											<p><span>1.</span> Application Status</p>
+										</div>
+										<div class="help-desc-answer">
+											<p><span>2.</span> View Records</p>
+										</div>
+										<div class="help-desc-answer q-selected">
+											<p><span>3.</span> Others</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="answer-row">
+								
+							
+								<div class="question-row-right">
+									<div class="help-desc-question">
+										<p>How may i help you?</p>
+									</div>
+									<div class="help-desc-answer-row">
+										<div class="help-desc-answer">
+											<p><span>1.</span> Application Status</p>
+										</div>
+										
+									</div>
+								</div>
+								
+								<div class="q-profile">
+									<img src="resources/img/q-profile.png" alt="">
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- DEVELOPMENT END -->
+	<div id="fb-root" class=" fb_reset">
+		<div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+			<div></div>
+		</div>
+	</div>
+</body>
+<script>
+	$(document).ready(function() {
+  // Add minus icon for collapse element which is open by default
+  $(".collapse.in").each(function() {
+    $(this)
+      .siblings(".panel-heading")
+      .find(".glyphicon")
+      .addClass("rotate");
+  });
+
+  // Toggle plus minus icon on show hide of collapse element
+  $(".collapse")
+    .on("show.bs.collapse", function() {
+      $(this)
+        .parent()
+        .find(".glyphicon")
+        .addClass("rotate");
+    })
+    .on("hide.bs.collapse", function() {
+      $(this)
+        .parent()
+        .find(".glyphicon")
+        .removeClass("rotate");
+    });
+});
+
+</script>
+</html>
