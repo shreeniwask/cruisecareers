@@ -792,7 +792,7 @@
 	margin-right: 15px;
 }
 .field_footer .field_cancel:focus, .field_footer .field_add:focus{
-	outline: none;
+	outline: none !important;
 }
 .field_footer .field_add{
 	background: #00AEEF;
@@ -906,12 +906,124 @@
 			</div>
 			<div class="modal-footer field_footer">
 				<button type="button" class="btn field_cancel" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn field_add" data-dismiss="modal">Add</button>				
+				<button type="button" class="btn field_add">Add</button>				
 			</div>
 		</div>
 		</div>
 </div>
 <!-- output fields & statics files modal css & html end here-->
+
+<!--log table modal css & html start here-->
+<style>
+#log_table .modal-dialog{
+	width: 90%;
+}
+.log_modal_css h4{
+	color: #fff;
+}
+.log_table_div{
+	max-height: 420px;
+	overflow: auto;
+}
+.log_footer{
+	text-align: center !important;
+	padding: 15px 15px 40px 15px;
+}
+.log_close{
+	background: #00AEEF;
+	border-radius: 4px !important;
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 17px;
+	text-align: center;
+	color: #FFFFFF !important;
+	width: 125px;
+}
+.log_close:hover, .log_close:focus{
+	outline: none !important;
+}
+</style>
+<div id="log_table" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg">	
+		<!-- Modal content-->
+		<div class="modal-content flat-modal log_modal_css">
+			<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">x</button>
+					<h4 class="modal-title"> Logs </h4>
+			</div>
+			<div class="modal-body">
+				<div class="log_table_div">
+					<table class="table table-striped red-table">
+						<thead>
+							<tr>
+								<th style="min-width: 100px;">First Name</th>
+								<th style="min-width: 100px;">Last Name</th>
+								<th style="min-width: 70px;">File Name</th>
+								<th style="min-width: 70px;">File Size</th>
+								<th style="min-width: 90px;">Uploaded Date</th>
+								<th style="min-width: 100px;">Status</th>
+								<th style="min-width: 100px;">Reason</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Akash</td>
+								<td>Maurya</td>
+								<td>file1.zip</td>
+								<td>210 KB</td>
+								<td>12-12-2021</td>
+								<td style="color:red">Failed</td>
+								<td>Unable to upload</td>								
+							</tr>
+							<tr>
+								<td>Rohit</td>
+								<td> </td>
+								<td>xyz.zip</td>
+								<td>78 KB</td>
+								<td>10-11-2021</td>
+								<td style="color:red">Failed</td>
+								<td>Unable to upload</td>									
+							</tr>
+							<tr>
+								<td>Shushmita</td>
+								<td> </td>
+								<td>test11.zip</td>
+								<td>2.00 MB</td>
+								<td>21-10-2021</td>
+								<td style="color:red">Failed</td>
+								<td>Unable to upload</td>								
+							</tr>
+							<tr>
+								<td>Vishal</td>
+								<td>Gupta</td>
+								<td>file4.zip</td>
+								<td>42 KB</td>
+								<td>12-10-2021</td>
+								<td style="color:red">Failed</td>
+								<td>Unable to upload</td>								
+							</tr>
+							<tr>
+								<td>Ashmita</td>
+								<td>Biya</td>
+								<td>file22.zip</td>
+								<td>57 KB</td>
+								<td>12-09-2021</td>
+								<td style="color:red">Failed</td>
+								<td>Unable to upload</td>								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer log_footer">
+				<button type="button" class="btn log_close" data-dismiss="modal">Close</button>			
+			</div>
+		</div>
+		</div>
+</div>
+<!--log table modal css & html end here-->
 
 	<!-- DEVELOPMENT END -->
 	<div id="fb-root" class=" fb_reset">
