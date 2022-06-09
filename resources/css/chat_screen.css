@@ -62,9 +62,6 @@
   display: flex;
   max-width: 70%;
 }
-.question-row-right{
-  margin-left: 20px;
-}
 .outgoing-row{
   display: flex;
   flex-direction: row-reverse;
@@ -116,4 +113,25 @@
 }
 .outgoing-row{
   margin-left: 30%;
+}
+.outgoing-row-right{
+  margin-right: 20px;
+}
+.profile-table a{
+  text-decoration: none;
+  cursor: pointer;
+}
+.profile-table tr{
+  border-bottom: 1px solid #B9B7B7;
+}
+.profile-table tr td{
+  width: 220px;
+  padding: 10px;
+}
+.profile-table tr td:nth-child(1){
+  font-weight: 600;
+}
+.chat-box{
+  height: 500px;
+  overflow-y: auto;
 }
