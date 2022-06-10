@@ -86,11 +86,19 @@
 }
 .text-type-area input{
   width: 100%;
-  height: 100%;
+  height: 90%;
   background: none;
   border: none;
   outline: none;
   padding-left: 20px;
+  margin-left: 5px;
+  border: 1px solid #F6F6F6;
+}
+.text-type-area input:active{
+  border: 1px solid #0F82FF;
+}
+.text-type-area input:focus-visible{
+  background: #ffffff95;
 }
 .text-type-area p{
   margin-left: 20px;
